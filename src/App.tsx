@@ -106,7 +106,11 @@ const App = () => {
         </div>
         {incomeCeilingOnSelectedYear && (
           <div className="mb-8 text-2xl md:text-4xl">
-            <div>January {incomeCeilingOnSelectedYear.year}:</div>
+            {incomeCeilingOnSelectedYear.year === "SEPT2023" ? (
+              <div>September 2023:</div>
+            ) : (
+              <div>January {incomeCeilingOnSelectedYear.year}:</div>
+            )}
             <div>
               CPF income ceiling:{" "}
               {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
