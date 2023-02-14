@@ -57,72 +57,96 @@ const App = () => {
   }
 
   return (
-    <div className="prose mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-4 text-center dark:prose-invert">
-      <h1>CPF Calculator</h1>
-      <p className="text-left md:text-xl">
-        Following the recent announcement from the Ministry of Finance during
-        the Budget 2023 on 13 February 2023, the income ceiling will be raised
-        from $6000 to $8000 by September 2026.
-      </p>
-      <select
-        name="cpf-income-ceiling"
-        id="cpf-income-ceiling"
-        className="mb-2 w-full cursor-pointer rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
-        onChange={(e) => setSelectedYear(Number(e.target.value))}
-      >
-        {cpfIncomeCeilings.map(({ year }) => {
-          return (
-            <option key={year} value={year}>
-              January {year}
-            </option>
-          );
-        })}
-      </select>
-      <input
-        type="number"
-        pattern="\d"
-        placeholder="Gross Income e.g. 10000"
-        className="mb-2 w-full rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
-        onChange={(e) => setGrossIncome(Number(e.target.value))}
-      />
-      <div className="mb-8 italic text-red-600">
-        This is for illustration purposes only. No data are being stored.
-      </div>
-      {incomeCeilingOnSelectedYear && (
-        <div className="mb-8 text-2xl md:text-4xl">
-          <div>January {incomeCeilingOnSelectedYear.year}:</div>
-          <div>
-            CPF income ceiling:{" "}
-            {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
-          </div>
+    <>
+      <div className="prose mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-4 text-center dark:prose-invert">
+        <h1>CPF Calculator</h1>
+        <p className="text-left md:text-xl">
+          Following the recent announcement from the Ministry of Finance during
+          the Budget 2023 on 13 February 2023, the income ceiling will be raised
+          from $6000 to $8000 by September 2026.
+        </p>
+        <select
+          name="cpf-income-ceiling"
+          id="cpf-income-ceiling"
+          className="mb-2 w-full cursor-pointer rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
+          onChange={(e) => setSelectedYear(Number(e.target.value))}
+        >
+          {cpfIncomeCeilings.map(({ year }) => {
+            return (
+              <option key={year} value={year}>
+                January {year}
+              </option>
+            );
+          })}
+        </select>
+        <input
+          type="number"
+          pattern="\d"
+          placeholder="Gross Income e.g. 10000"
+          className="mb-2 w-full rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
+          onChange={(e) => setGrossIncome(Number(e.target.value))}
+        />
+        <div className="mb-8 italic text-red-600">
+          This is for illustration purposes only. No data are being stored.
         </div>
-      )}
-      {grossIncome && (
-        <div className="mb-8 text-2xl md:text-4xl">
-          Gross income: {formatCurrency(grossIncome)}
-        </div>
-      )}
-      {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && (
-        <>
-          <div className="mb-2 text-2xl md:text-4xl">
-            Income after CPF contribution: {formatCurrency(incomeAfterCpf)}
-          </div>
-          {incomeDifference && (
-            <div className="text-2xl">
-              Before September 2023:{" "}
-              {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
-              <span className="italic text-red-600">
-                ({formatCurrency(incomeDifference)} /{" "}
-                {new Intl.NumberFormat("en-SG", { style: "percent" }).format(
-                  incomeDifference / incomeAfterCpfBeforeSep2023
-                )}
-                )
-              </span>
+        {incomeCeilingOnSelectedYear && (
+          <div className="mb-8 text-2xl md:text-4xl">
+            <div>January {incomeCeilingOnSelectedYear.year}:</div>
+            <div>
+              CPF income ceiling:{" "}
+              {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
             </div>
-          )}
-        </>
-      )}
-    </div>
+          </div>
+        )}
+        {grossIncome && (
+          <div className="mb-8 text-2xl md:text-4xl">
+            Gross income: {formatCurrency(grossIncome)}
+          </div>
+        )}
+        {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && (
+          <>
+            <div className="mb-2 text-2xl md:text-4xl">
+              Income after CPF contribution: {formatCurrency(incomeAfterCpf)}
+            </div>
+            {incomeDifference && (
+              <div className="text-2xl">
+                Before September 2023:{" "}
+                {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
+                <span className="italic text-red-600">
+                  ({formatCurrency(incomeDifference)} /{" "}
+                  {new Intl.NumberFormat("en-SG", { style: "percent" }).format(
+                    incomeDifference / incomeAfterCpfBeforeSep2023
+                  )}
+                  )
+                </span>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+      <footer className="flex flex-col items-center border-t py-4">
+        <div>
+          Created by{" "}
+          <a
+            href="https://ruchern.xyz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neutral-400 underline"
+          >
+            Chong Ru Chern
+          </a>{" "}
+          | Source:{" "}
+          <a
+            href="https://github.com/ruchernchong/cpf-calculator"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neutral-400 underline"
+          >
+            GitHub
+          </a>
+        </div>
+      </footer>
+    </>
   );
 };
 
