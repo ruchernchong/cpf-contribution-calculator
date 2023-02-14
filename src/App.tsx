@@ -108,7 +108,7 @@ const App = () => {
             <div className="mb-2 text-2xl md:text-4xl">
               Income after CPF contribution: {formatCurrency(incomeAfterCpf)}
             </div>
-            {incomeDifference && (
+            {!!incomeDifference && (
               <div className="text-2xl">
                 Before September 2023:{" "}
                 {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
