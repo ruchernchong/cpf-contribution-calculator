@@ -16,6 +16,7 @@ specifiers:
   tailwindcss: ^3.2.6
   typescript: ^4.9.3
   vite: ^4.1.0
+  vite-plugin-radar: ^0.7.0
   vitest: ^0.28.5
 
 dependencies:
@@ -36,6 +37,7 @@ devDependencies:
   tailwindcss: 3.2.6_postcss@8.4.21
   typescript: 4.9.5
   vite: 4.1.1
+  vite-plugin-radar: 0.7.0_vite@4.1.1
   vitest: 0.28.5
 
 packages:
@@ -1936,6 +1938,14 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
+
+  /vite-plugin-radar/0.7.0_vite@4.1.1:
+    resolution: {integrity: sha512-lTpCJ56GDVzNq41SU+6AZExUFP/yZauwpfEqyatw/ZayYYM7bEFq4KWN3+/Hjwxfe5nCIjIpE594XE1jtjjz2A==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0
+    dependencies:
+      vite: 4.1.1
     dev: true
 
   /vite/4.1.1:
