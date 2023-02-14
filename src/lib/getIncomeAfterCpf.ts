@@ -17,9 +17,11 @@ export const getIncomeAfterCpf = (
 ) => {
   const EMPLOYEE_CONTRIBUTION: number = 0.2;
 
-  const INCOME_CEILING: number = options?.useCeilingBeforeChanges
-    ? CPF_INCOME_CEILING_BEFORE_SEPT_2023
-    : CPF_INCOME_CEILING[year];
+  let INCOME_CEILING: number = CPF_INCOME_CEILING[year];
+
+  if (options?.useCeilingBeforeChanges) {
+    INCOME_CEILING = CPF_INCOME_CEILING_BEFORE_SEPT_2023;
+  }
 
   return income - EMPLOYEE_CONTRIBUTION * INCOME_CEILING;
 };

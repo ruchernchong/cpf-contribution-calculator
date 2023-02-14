@@ -2,38 +2,24 @@ import { useEffect, useState } from "react";
 import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
 import { formatCurrency } from "./lib/formatCurrency";
 
-const cpfIncomeCeilings: { year: number; month: number; ceiling: number }[] = [
+const cpfIncomeCeilings: { year: number; ceiling: number }[] = [
   {
     year: 2023,
-    month: 1,
     ceiling: 6000,
   },
   {
-    year: 2023,
-    month: 9,
-    ceiling: 6300,
-  },
-  {
     year: 2024,
-    month: 1,
     ceiling: 6800,
   },
   {
     year: 2025,
-    month: 1,
     ceiling: 7400,
   },
   {
     year: 2026,
-    month: 1,
     ceiling: 8000,
   },
 ];
-
-const MONTH_NAME_MAPPING: Record<number, string> = {
-  1: "January",
-  9: "September",
-};
 
 const App = () => {
   useEffect(() => {
@@ -49,56 +35,45 @@ const App = () => {
   }, []);
 
   const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth();
 
-  const [selectedDate, setSelectedDate] = useState<{
-    year: number;
-    month: number;
-  }>({
-    year: currentYear,
-    month: currentMonth,
-  });
+  const [selectedYear, setSelectedYear] = useState<number>(currentYear);
   const [grossIncome, setGrossIncome] = useState<number>();
 
-  const handleSelectedDateChange = (e: { target: { value: string } }) => {
-    const { year, month } = JSON.parse(e.target.value);
-    setSelectedDate({ year, month });
-  };
-
-  const incomeCeilingOnSelectedDate = cpfIncomeCeilings.find(
-    ({ year, month }) =>
-      year === selectedDate.year && month === selectedDate.month
+  const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
+    ({ year }) => year === selectedYear
   );
 
   let incomeAfterCpfBeforeSep2023, incomeAfterCpf, incomeDifference;
   if (grossIncome) {
-    incomeAfterCpfBeforeSep2023 = getIncomeAfterCpf(
-      grossIncome,
-      selectedDate.year,
-      {
-        useCeilingBeforeChanges: true,
-      }
-    );
+    incomeAfterCpfBeforeSep2023 = getIncomeAfterCpf(grossIncome, selectedYear, {
+      useCeilingBeforeChanges: true,
+    });
 
-    incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedDate.year);
+    incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedYear);
 
-    incomeDifference = incomeAfterCpf - incomeAfterCpfBeforeSep2023;
+    if (currentYear >= 2024) {
+      incomeDifference = incomeAfterCpf - incomeAfterCpfBeforeSep2023;
+    }
   }
 
   return (
-    <div className="prose mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center text-center dark:prose-invert">
+    <div className="prose mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-4 text-center dark:prose-invert">
+      <h1>CPF Calculator</h1>
+      <p className="text-left md:text-xl">
+        Following the recent announcement from the Ministry of Finance during
+        the Budget 2023 on 13 February 2023, the income ceiling will be raised
+        from $6000 to $8000 by September 2026.
+      </p>
       <select
         name="cpf-income-ceiling"
         id="cpf-income-ceiling"
-        className="mb-2 w-1/4 cursor-pointer rounded-lg p-2 dark:text-neutral-900"
-        onChange={handleSelectedDateChange}
+        className="mb-2 w-full cursor-pointer rounded-lg p-2 dark:text-neutral-900 md:w-1/4"
+        onChange={(e) => setSelectedYear(Number(e.target.value))}
       >
-        {cpfIncomeCeilings.map(({ year, month }) => {
-          const value = JSON.stringify({ year, month });
-
+        {cpfIncomeCeilings.map(({ year }) => {
           return (
-            <option key={value} value={value}>
-              {MONTH_NAME_MAPPING[month]} {year}
+            <option key={year} value={year}>
+              January {year}
             </option>
           );
         })}
@@ -107,41 +82,41 @@ const App = () => {
         type="number"
         pattern="\d"
         placeholder="Gross Income e.g. 10000"
-        className="mb-8 w-1/4 rounded-lg p-2 dark:text-neutral-900"
+        className="mb-8 w-full rounded-lg p-2 dark:text-neutral-900 md:w-1/4"
         onChange={(e) => setGrossIncome(Number(e.target.value))}
       />
-      {incomeCeilingOnSelectedDate && (
-        <div className="mb-8 text-4xl">
-          <div>
-            {MONTH_NAME_MAPPING[incomeCeilingOnSelectedDate.month]}{" "}
-            {incomeCeilingOnSelectedDate.year}:
-          </div>
+      {incomeCeilingOnSelectedYear && (
+        <div className="mb-8 text-2xl md:text-4xl">
+          <div>January {incomeCeilingOnSelectedYear.year}:</div>
           <div>
             CPF income ceiling:{" "}
-            {formatCurrency(incomeCeilingOnSelectedDate.ceiling)}
+            {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
           </div>
         </div>
       )}
       {grossIncome && (
-        <div className="mb-8 text-4xl">
+        <div className="mb-8 text-2xl md:text-4xl">
           Gross income: {formatCurrency(grossIncome)}
         </div>
       )}
-      {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && incomeDifference && (
+      {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && (
         <>
-          <div className="mb-2 text-4xl">
+          <div className="mb-2 text-2xl md:text-4xl">
             Income after CPF contribution: {formatCurrency(incomeAfterCpf)}
           </div>
-          <div className="text-2xl">
-            Before September 2023: {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
-            <span className="italic text-red-600">
-              ({formatCurrency(incomeDifference)} /{" "}
-              {new Intl.NumberFormat("en-SG", { style: "percent" }).format(
-                incomeDifference / incomeAfterCpfBeforeSep2023
-              )}
-              )
-            </span>
-          </div>
+          {incomeDifference && (
+            <div className="text-2xl">
+              Before September 2023:{" "}
+              {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
+              <span className="italic text-red-600">
+                ({formatCurrency(incomeDifference)} /{" "}
+                {new Intl.NumberFormat("en-SG", { style: "percent" }).format(
+                  incomeDifference / incomeAfterCpfBeforeSep2023
+                )}
+                )
+              </span>
+            </div>
+          )}
         </>
       )}
     </div>
