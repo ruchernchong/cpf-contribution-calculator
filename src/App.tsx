@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./App.css";
+import { useEffect, useState } from "react";
 import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
 import { formatCurrency } from "./lib/formatCurrency";
 
@@ -37,6 +36,18 @@ const MONTH_NAME_MAPPING: Record<number, string> = {
 };
 
 const App = () => {
+  useEffect(() => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
 
@@ -75,33 +86,32 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <div>
-        <select
-          name="cpf-income-ceiling"
-          id="cpf-income-ceiling"
-          onChange={handleSelectedDateChange}
-        >
-          {cpfIncomeCeilings.map(({ year, month }) => {
-            const value = JSON.stringify({ year, month });
+    <div className="prose mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center text-center dark:prose-invert">
+      <select
+        name="cpf-income-ceiling"
+        id="cpf-income-ceiling"
+        className="mb-2 w-1/4 cursor-pointer rounded-lg p-2 dark:text-neutral-900"
+        onChange={handleSelectedDateChange}
+      >
+        {cpfIncomeCeilings.map(({ year, month }) => {
+          const value = JSON.stringify({ year, month });
 
-            return (
-              <option key={value} value={value}>
-                {MONTH_NAME_MAPPING[month]} {year}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <div>
-        <input
-          type="number"
-          placeholder="10000"
-          onChange={(e) => setGrossIncome(Number(e.target.value))}
-        />
-      </div>
+          return (
+            <option key={value} value={value}>
+              {MONTH_NAME_MAPPING[month]} {year}
+            </option>
+          );
+        })}
+      </select>
+      <input
+        type="number"
+        pattern="\d"
+        placeholder="Gross Income e.g. 10000"
+        className="mb-8 w-1/4 rounded-lg p-2 dark:text-neutral-900"
+        onChange={(e) => setGrossIncome(Number(e.target.value))}
+      />
       {incomeCeilingOnSelectedDate && (
-        <h1>
+        <div className="mb-8 text-4xl">
           <div>
             {MONTH_NAME_MAPPING[incomeCeilingOnSelectedDate.month]}{" "}
             {incomeCeilingOnSelectedDate.year}:
@@ -110,24 +120,28 @@ const App = () => {
             CPF income ceiling:{" "}
             {formatCurrency(incomeCeilingOnSelectedDate.ceiling)}
           </div>
-        </h1>
+        </div>
       )}
-      {grossIncome && <h1>Gross income: {formatCurrency(grossIncome)}</h1>}
+      {grossIncome && (
+        <div className="mb-8 text-4xl">
+          Gross income: {formatCurrency(grossIncome)}
+        </div>
+      )}
       {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && incomeDifference && (
         <>
-          <h2>
+          <div className="mb-2 text-4xl">
             Income after CPF contribution: {formatCurrency(incomeAfterCpf)}
-          </h2>
-          <h3>
+          </div>
+          <div className="text-2xl">
             Before September 2023: {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
-            <span style={{ color: "red" }}>
+            <span className="italic text-red-600">
               ({formatCurrency(incomeDifference)} /{" "}
               {new Intl.NumberFormat("en-SG", { style: "percent" }).format(
                 incomeDifference / incomeAfterCpfBeforeSep2023
               )}
               )
             </span>
-          </h3>
+          </div>
         </>
       )}
     </div>
