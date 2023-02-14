@@ -75,7 +75,7 @@ const App = () => {
         <select
           name="cpf-income-ceiling"
           id="cpf-income-ceiling"
-          className="mb-2 w-full cursor-pointer rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
+          className="mb-2 w-full cursor-pointer appearance-none rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
           onChange={(e) => setSelectedYear(e.target.value)}
         >
           {cpfIncomeCeilings.map(({ year }) => {
