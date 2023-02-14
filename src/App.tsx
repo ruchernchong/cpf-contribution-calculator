@@ -135,15 +135,16 @@ const App = () => {
           >
             Chong Ru Chern
           </a>{" "}
-          | Source:{" "}
+          |{" "}
           <a
             href="https://github.com/ruchernchong/cpf-calculator"
             target="_blank"
             rel="noopener noreferrer"
             className="text-neutral-400 underline"
           >
-            GitHub
-          </a>
+            Source code
+          </a>{" "}
+          on GitHub
         </div>
       </footer>
     </>
