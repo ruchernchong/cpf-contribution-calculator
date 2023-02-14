@@ -51,7 +51,7 @@ const App = () => {
 
     incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedYear);
 
-    if (currentYear >= 2024) {
+    if (selectedYear >= 2024) {
       incomeDifference = incomeAfterCpf - incomeAfterCpfBeforeSep2023;
     }
   }
