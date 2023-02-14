@@ -139,7 +139,7 @@ const App = () => {
           </>
         )}
       </div>
-      <footer className="flex flex-col items-center border-t py-4">
+      <footer className="flex flex-col items-center border-t p-4">
         <div>
           Created by{" "}
           <a
@@ -149,8 +149,9 @@ const App = () => {
             className="text-neutral-400 underline"
           >
             Chong Ru Chern
-          </a>{" "}
-          |{" "}
+          </a>
+        </div>
+        <div>
           <a
             href="https://github.com/ruchernchong/cpf-calculator"
             target="_blank"
