@@ -3,7 +3,12 @@ import { getIncomeAfterCpf } from "../lib/getIncomeAfterCpf";
 
 describe("calculateIncomeAfterCpf", () => {
   it.each([
-    { year: 2023, income: 7000, expected: 5800 },
+    { year: 2023, income: 4000, expected: 3200 },
+    { year: 2023, income: 6000, expected: 4800 },
+    { year: 2023, income: 8000, expected: 6800 },
+    { year: 2026, income: 4000, expected: 3200 },
+    { year: 2026, income: 6000, expected: 4800 },
+    { year: 2026, income: 8000, expected: 6400 },
     { year: 2026, income: 10000, expected: 8400 },
   ])(
     "should return the income after CPF contribution in year $year with a gross income of $income",

@@ -23,5 +23,9 @@ export const getIncomeAfterCpf = (
     INCOME_CEILING = CPF_INCOME_CEILING_BEFORE_SEPT_2023;
   }
 
+  if (income < INCOME_CEILING) {
+    return (1 - EMPLOYEE_CONTRIBUTION) * income;
+  }
+
   return income - EMPLOYEE_CONTRIBUTION * INCOME_CEILING;
 };
