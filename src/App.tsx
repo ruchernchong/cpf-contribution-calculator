@@ -2,21 +2,28 @@ import { useEffect, useState } from "react";
 import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
 import { formatCurrency } from "./lib/formatCurrency";
 
-const cpfIncomeCeilings: { year: number; ceiling: number }[] = [
+const cpfIncomeCeilings: {
+  year: string;
+  ceiling: number;
+}[] = [
   {
-    year: 2023,
+    year: "2023",
     ceiling: 6000,
   },
   {
-    year: 2024,
+    year: "SEPT2023",
+    ceiling: 6300,
+  },
+  {
+    year: "2024",
     ceiling: 6800,
   },
   {
-    year: 2025,
+    year: "2025",
     ceiling: 7400,
   },
   {
-    year: 2026,
+    year: "2026",
     ceiling: 8000,
   },
 ];
@@ -34,9 +41,9 @@ const App = () => {
     }
   }, []);
 
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear().toString();
 
-  const [selectedYear, setSelectedYear] = useState<number>(currentYear);
+  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
   const [grossIncome, setGrossIncome] = useState<number>();
 
   const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
@@ -51,7 +58,7 @@ const App = () => {
 
     incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedYear);
 
-    if (selectedYear >= 2024) {
+    if (selectedYear >= "2024") {
       incomeDifference = incomeAfterCpf - incomeAfterCpfBeforeSep2023;
     }
   }
@@ -69,9 +76,17 @@ const App = () => {
           name="cpf-income-ceiling"
           id="cpf-income-ceiling"
           className="mb-2 w-full cursor-pointer rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
-          onChange={(e) => setSelectedYear(Number(e.target.value))}
+          onChange={(e) => setSelectedYear(e.target.value)}
         >
           {cpfIncomeCeilings.map(({ year }) => {
+            if (year === "SEPT2023") {
+              return (
+                <option key={year} value={year}>
+                  September 2023
+                </option>
+              );
+            }
+
             return (
               <option key={year} value={year}>
                 January {year}
