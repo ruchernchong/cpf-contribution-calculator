@@ -69,7 +69,7 @@ const App = () => {
         <h1>CPF Calculator</h1>
         <p className="text-left md:text-xl">
           Following the recent announcement from the Ministry of Finance during
-          the Budget 2023 on 13 February 2023, the income ceiling will be raised
+          the Budget 2023 on 14 February 2023, the income ceiling will be raised
           from $6000 to $8000 by September 2026.
         </p>
         <select
