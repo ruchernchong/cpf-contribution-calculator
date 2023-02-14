@@ -3,8 +3,9 @@ interface IncomeOptions {
 }
 
 const CPF_INCOME_CEILING_BEFORE_SEPT_2023: number = 6000;
-const CPF_INCOME_CEILING: Record<number, number> = {
+const CPF_INCOME_CEILING: Record<string, number> = {
   2023: 6000,
+  SEPT2023: 6300,
   2024: 6800,
   2025: 7400,
   2026: 8000,
@@ -12,7 +13,7 @@ const CPF_INCOME_CEILING: Record<number, number> = {
 
 export const getIncomeAfterCpf = (
   income: number,
-  year: number,
+  year: number | string,
   options?: IncomeOptions
 ) => {
   const EMPLOYEE_CONTRIBUTION: number = 0.2;
