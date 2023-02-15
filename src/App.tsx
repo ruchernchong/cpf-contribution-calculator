@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
-import { formatCurrency } from "./lib/formatCurrency";
+import { getIncomeAfterCpf } from "lib/getIncomeAfterCpf";
+import { formatCurrency } from "lib/formatCurrency";
 
 const cpfIncomeCeilings: {
   year: string;
