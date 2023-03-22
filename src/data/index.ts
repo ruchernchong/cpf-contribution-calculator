@@ -1,6 +1,18 @@
 import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "../config";
 
-export const ageGroups = [
+export type AgeGroup = {
+  description: string;
+  min?: number;
+  max?: number;
+  contribution: number;
+};
+
+export type CPFIncomeCeiling = {
+  year: string;
+  ceiling: number;
+};
+
+export const ageGroups: AgeGroup[] = [
   {
     description: "55 and below",
     min: 0,
@@ -13,10 +25,7 @@ export const ageGroups = [
   { description: "Above 70", min: 70, contribution: 0.05 },
 ];
 
-export const cpfIncomeCeilings: {
-  year: string;
-  ceiling: number;
-}[] = [
+export const cpfIncomeCeilings: CPFIncomeCeiling[] = [
   {
     year: "2023",
     ceiling: 6000,
