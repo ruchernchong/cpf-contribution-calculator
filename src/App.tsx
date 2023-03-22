@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { getIncomeAfterCpf } from "lib/getIncomeAfterCpf";
-import { formatCurrency } from "lib/formatCurrency";
-import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "config";
 
 const ageGroups = [
   {
@@ -41,6 +38,9 @@ const cpfIncomeCeilings: {
     ceiling: 8000,
   },
 ];
+import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
+import { formatCurrency } from "./lib/formatCurrency";
+import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "./config";
 
 const App = () => {
   useEffect(() => {
