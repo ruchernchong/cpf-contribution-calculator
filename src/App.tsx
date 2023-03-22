@@ -38,8 +38,8 @@ const App = () => {
   }
 
   return (
-    <>
-      <div className="prose mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-4 text-center dark:prose-invert">
+    <div className="flex min-h-screen flex-col">
+      <div className="prose mx-auto flex max-w-4xl grow flex-col items-center justify-center px-4 text-center dark:prose-invert">
         <h1>CPF Calculator</h1>
         <p className="text-left md:text-xl">
           Following the recent announcement from the Ministry of Finance during
@@ -154,7 +154,7 @@ const App = () => {
           on GitHub
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
