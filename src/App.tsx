@@ -1,6 +1,20 @@
 import { useEffect, useState } from "react";
 import { getIncomeAfterCpf } from "lib/getIncomeAfterCpf";
 import { formatCurrency } from "lib/formatCurrency";
+import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "config";
+
+const ageGroups = [
+  {
+    description: "55 and below",
+    min: 0,
+    max: 55,
+    contribution: DEFAULT_EMPLOYEE_CONTRIBUTION,
+  },
+  { description: "Above 55 to 60", min: 55, max: 60, contribution: 0.15 },
+  { description: "Above 60 to 65", min: 60, max: 65, contribution: 0.095 },
+  { description: "Above 65 to 70", min: 65, max: 70, contribution: 0.07 },
+  { description: "Above 70", min: 70, contribution: 0.05 },
+];
 
 const cpfIncomeCeilings: {
   year: string;
@@ -44,6 +58,9 @@ const App = () => {
   const currentYear = new Date().getFullYear().toString();
 
   const [selectedYear, setSelectedYear] = useState<string>(currentYear);
+  const [employeeContribution, setEmployeeContribution] = useState<number>(
+    DEFAULT_EMPLOYEE_CONTRIBUTION
+  );
   const [grossIncome, setGrossIncome] = useState<number>();
 
   const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
@@ -53,10 +70,13 @@ const App = () => {
   let incomeAfterCpfBeforeSep2023, incomeAfterCpf, incomeDifference;
   if (grossIncome) {
     incomeAfterCpfBeforeSep2023 = getIncomeAfterCpf(grossIncome, selectedYear, {
+      employeeContribution,
       useCeilingBeforeChanges: true,
     });
 
-    incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedYear);
+    incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedYear, {
+      employeeContribution,
+    });
 
     if (selectedYear >= "2024") {
       incomeDifference = incomeAfterCpf - incomeAfterCpfBeforeSep2023;
@@ -72,6 +92,21 @@ const App = () => {
           the Budget 2023 on 14 February 2023, the income ceiling will be raised
           from $6000 to $8000 by September 2026.
         </p>
+        <select
+          name="age-group"
+          id="age-group"
+          className="mb-2 w-full cursor-pointer appearance-none rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
+          defaultValue={0.2}
+          onChange={(e) => setEmployeeContribution(Number(e.target.value))}
+        >
+          {ageGroups.map(({ description, contribution }) => {
+            return (
+              <option key={contribution} value={contribution}>
+                {description}
+              </option>
+            );
+          })}
+        </select>
         <select
           name="cpf-income-ceiling"
           id="cpf-income-ceiling"

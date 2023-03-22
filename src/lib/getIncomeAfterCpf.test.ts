@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getIncomeAfterCpf } from "../lib/getIncomeAfterCpf";
+import { getIncomeAfterCpf } from "./getIncomeAfterCpf";
 
 describe("calculateIncomeAfterCpf", () => {
   it.each([

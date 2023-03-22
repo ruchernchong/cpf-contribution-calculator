@@ -1,4 +1,7 @@
+import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "../config";
+
 interface IncomeOptions {
+  employeeContribution?: number;
   useCeilingBeforeChanges?: boolean | undefined;
 }
 
@@ -16,7 +19,8 @@ export const getIncomeAfterCpf = (
   year: number | string,
   options?: IncomeOptions
 ) => {
-  const EMPLOYEE_CONTRIBUTION: number = 0.2;
+  const EMPLOYEE_CONTRIBUTION: number =
+    options?.employeeContribution ?? DEFAULT_EMPLOYEE_CONTRIBUTION;
 
   let INCOME_CEILING: number = CPF_INCOME_CEILING[year];
 
