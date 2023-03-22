@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { SelectBox } from "./components/SelectBox";
 import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
 import { formatCurrency } from "./lib/formatCurrency";
 import { ageGroups, cpfIncomeCeilings } from "./data";
@@ -54,11 +55,10 @@ const App = () => {
           the Budget 2023 on 14 February 2023, the income ceiling will be raised
           from $6000 to $8000 by September 2026.
         </p>
-        <select
+        <SelectBox
           name="age-group"
           id="age-group"
-          className="mb-2 w-full cursor-pointer appearance-none rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
-          defaultValue={0.2}
+          defaultValue={DEFAULT_EMPLOYEE_CONTRIBUTION}
           onChange={(e) => setEmployeeContribution(Number(e.target.value))}
         >
           {ageGroups.map(({ description, contribution }) => {
@@ -68,11 +68,10 @@ const App = () => {
               </option>
             );
           })}
-        </select>
-        <select
+        </SelectBox>
+        <SelectBox
           name="cpf-income-ceiling"
           id="cpf-income-ceiling"
-          className="mb-2 w-full cursor-pointer appearance-none rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
           onChange={(e) => setSelectedYear(e.target.value)}
         >
           {cpfIncomeCeilings.map(({ year }) => {
@@ -90,7 +89,7 @@ const App = () => {
               </option>
             );
           })}
-        </select>
+        </SelectBox>
         <input
           type="number"
           pattern="\d"
