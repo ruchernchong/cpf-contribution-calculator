@@ -85,7 +85,7 @@ const App = () => {
           type="number"
           pattern="\d"
           placeholder="Gross Income e.g. 10000"
-          className="mb-2 w-full rounded-lg p-2 dark:text-neutral-900 md:w-1/3"
+          className="mb-2 w-full rounded-lg p-2 shadow-md shadow-neutral-200 dark:text-neutral-900 dark:shadow-none md:w-1/3"
           onChange={(e) => setGrossIncome(Number(e.target.value))}
         />
         <div className="mb-8 italic text-red-600">
@@ -130,7 +130,7 @@ const App = () => {
           </>
         )}
       </div>
-      <footer className="flex flex-col items-center border-t p-4">
+      <footer className="flex flex-col items-center bg-neutral-100 p-4 dark:bg-neutral-800">
         <div>
           Created by{" "}
           <a
