@@ -42,13 +42,8 @@ const App = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="prose mx-auto flex max-w-4xl grow flex-col justify-center px-4 py-16 dark:prose-invert">
+      <div className="prose mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16 dark:prose-invert">
         <h1>CPF Calculator</h1>
-        <p className="text-left md:text-xl">
-          Following the recent announcement from the Ministry of Finance during
-          the Budget 2023 on 14 February 2023, the income ceiling will be raised
-          from $6000 to $8000 by September 2026.
-        </p>
         <SelectBox
           name="age-group"
           id="age-group"

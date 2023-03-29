@@ -4,6 +4,11 @@ export const DEFAULT_EMPLOYEE_CONTRIBUTION: number = 0.2;
 
 export const faqs: FAQ[] = [
   {
+    question: 'What is this "calculator" about?',
+    answer:
+      "Following the announcement from the Ministry of Finance (MOF) during the Budget 2023 on 14 February 2023, the CPF income ceiling will be raised gradually from $6000 to $8000 by September 2026. This service has no affliation with neither the MOF nor CPF Board.",
+  },
+  {
     question: "Does this collect any of my data?",
     answer:
       "No data is being collected from this. The inputs will be wiped on browser refresh.",
