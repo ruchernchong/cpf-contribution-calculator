@@ -1,6 +1,7 @@
 import type { FAQ } from "../types";
 
 export const DEFAULT_EMPLOYEE_CONTRIBUTION: number = 0.2;
+export const DEFAULT_EMPLOYER_CONTRIBUTION: number = 0.17;
 
 export const faqs: FAQ[] = [
   {
