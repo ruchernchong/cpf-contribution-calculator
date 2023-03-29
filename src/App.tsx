@@ -39,7 +39,7 @@ const App = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="prose mx-auto flex max-w-4xl grow flex-col items-center justify-center px-4 text-center dark:prose-invert">
+      <div className="prose mx-auto flex max-w-4xl grow flex-col justify-center px-4 dark:prose-invert">
         <h1>CPF Calculator</h1>
         <p className="text-left md:text-xl">
           Following the recent announcement from the Ministry of Finance during
@@ -88,47 +88,55 @@ const App = () => {
           className="mb-2 w-full rounded-lg p-2 shadow-md shadow-neutral-200 dark:text-neutral-900 dark:shadow-none md:w-1/3"
           onChange={(e) => setGrossIncome(Number(e.target.value))}
         />
-        <div className="mb-8 italic text-red-600">
+        <div className="mb-4 italic text-red-600">
           This is for illustration purposes only. No data are being stored.
         </div>
-        {incomeCeilingOnSelectedYear && (
-          <div className="mb-8 text-2xl md:text-4xl">
-            {incomeCeilingOnSelectedYear.year === "SEPT2023" ? (
-              <div>September 2023:</div>
-            ) : (
-              <div>January {incomeCeilingOnSelectedYear.year}:</div>
-            )}
-            <div>
-              CPF income ceiling:{" "}
-              {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
-            </div>
-          </div>
-        )}
-        {grossIncome && (
-          <div className="mb-8 text-2xl md:text-4xl">
-            Gross income: {formatCurrency(grossIncome)}
-          </div>
-        )}
-        {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && (
-          <>
-            <div className="mb-2 text-2xl md:text-4xl">
-              Income after CPF contribution: {formatCurrency(incomeAfterCpf)}
-            </div>
-            {!!incomeDifference && (
-              <div className="text-2xl">
-                Before September 2023:{" "}
-                {formatCurrency(incomeAfterCpfBeforeSep2023)}{" "}
-                <span className="italic text-red-600">
-                  ({formatCurrency(incomeDifference)} /{" "}
-                  {new Intl.NumberFormat("en-SG", { style: "percent" }).format(
-                    incomeDifference / incomeAfterCpfBeforeSep2023
+        <div className="flex flex-col gap-y-2">
+          {incomeCeilingOnSelectedYear && (
+            <div className="flex items-center justify-between text-xl md:text-2xl">
+              <div>CPF Income Ceiling</div>
+              <div className="flex flex-col items-end">
+                {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
+                <div className="text-sm">
+                  {incomeCeilingOnSelectedYear.year === "SEPT2023" ? (
+                    <div>September 2023</div>
+                  ) : (
+                    <div>January {incomeCeilingOnSelectedYear.year}</div>
                   )}
-                  )
-                </span>
+                </div>
               </div>
-            )}
-          </>
-        )}
+            </div>
+          )}
+          {grossIncome && (
+            <div className="flex justify-between text-xl md:text-2xl">
+              <div>Gross income</div>
+              <div>{formatCurrency(grossIncome)}</div>
+            </div>
+          )}
+          {incomeAfterCpfBeforeSep2023 && incomeAfterCpf && (
+            <>
+              <div className="flex justify-between text-xl md:text-2xl">
+                <div>After CPF contribution</div>
+                <div>{formatCurrency(incomeAfterCpf)}</div>
+              </div>
+              {!!incomeDifference && (
+                <div className="flex justify-between text-xl md:text-2xl">
+                  <div>Before September 2023</div>
+                  <div className="flex flex-col items-end">
+                    {formatCurrency(incomeAfterCpfBeforeSep2023)}
+                    <span className="text-sm italic text-red-600">
+                      ({formatCurrency(incomeDifference)} /{" "}
+                      {new Intl.NumberFormat("en-SG", {
+                        style: "percent",
+                      }).format(incomeDifference / incomeAfterCpfBeforeSep2023)}
+                      )
+                    </span>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
       <footer className="flex flex-col items-center bg-neutral-100 p-4 dark:bg-neutral-800">
         <div>
