@@ -6,6 +6,22 @@ Following the recent announcement from the Ministry of Finance during the Budget
 
 This is a simple calculator to estimate the new "take-home" income after CPF contributions. The CPF contributions for individual remains no change following the announcements during the Budget.
 
+## Installation
+
+```shell
+# Install packages
+pnpm install
+
+# Start the development server
+pnpm dev
+
+# Build the project
+pnpm build
+
+# Run the unit testing
+pnpm test
+```
+
 ## Screenshot
 <p align="center">
     <img src="screenshot.png" width="50%" height="50%" alt="Screenshot">
