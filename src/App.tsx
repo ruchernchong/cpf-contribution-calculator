@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FAQ } from "./components/FAQ";
+import { Footer } from "./components/Footer";
 import { SelectBox } from "./components/SelectBox";
 import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
 import { formatCurrency } from "./lib/formatCurrency";
@@ -137,30 +138,7 @@ const App = () => {
         </div>
         <FAQ items={faqs} />
       </div>
-      <footer className="flex flex-col items-center bg-neutral-100 p-4 dark:bg-neutral-800">
-        <div>
-          Created by{" "}
-          <a
-            href="https://ruchern.xyz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-400 underline"
-          >
-            Chong Ru Chern
-          </a>
-        </div>
-        <div>
-          <a
-            href="https://github.com/ruchernchong/cpf-calculator"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-400 underline"
-          >
-            Source code
-          </a>{" "}
-          on GitHub
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
