@@ -2,7 +2,7 @@
   "name": "@ruchernchong/cpf-calculator",
   "description": "A CPF calculator with income ceiling following changes announced at the Budget 2023",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
