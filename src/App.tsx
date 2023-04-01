@@ -4,13 +4,13 @@ import { Footer } from "./components/Footer";
 import { SelectBox } from "./components/SelectBox";
 import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
 import { formatCurrency } from "./lib/formatCurrency";
+import { getEmployerContribution } from "./lib/getEmployerContribution";
+import { getTotalCpfContribution } from "./lib/getTotalCpfContribution";
+import { getEmployeeContribution } from "./lib/getEmployeeContribution";
 import { ageGroups, Contribution, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
 
 import { faqs } from "./config";
-import { getEmployerContribution } from "./lib/getEmployerContribution";
-import { getTotalCpfContribution } from "./lib/getTotalCpfContribution";
-import { getEmployeeContribution } from "./lib/getEmployeeContribution";
 
 const App = () => {
   useDarkMode();
