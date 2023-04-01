@@ -24,6 +24,8 @@
     "@vitejs/plugin-react-swc": "^3.0.0",
     "@vitest/coverage-c8": "^0.28.5",
     "autoprefixer": "^10.4.13",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.2",
@@ -33,5 +35,8 @@
     "vite-plugin-radar": "^0.7.0",
     "vite-tsconfig-paths": "^4.0.5",
     "vitest": "^0.28.5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md}": "prettier --write"
   }
 }
