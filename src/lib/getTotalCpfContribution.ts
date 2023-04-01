@@ -1,7 +1,6 @@
-import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "../config";
+import { Contribution } from "../data";
 
 interface IncomeOptions {
-  employeeContribution?: number;
   useCeilingBeforeChanges?: boolean | undefined;
 }
 
@@ -14,13 +13,16 @@ const CPF_INCOME_CEILING: Record<string, number> = {
   2026: 8000,
 };
 
-export const getIncomeAfterCpf = (
+export const getTotalCpfContribution = (
   income: number,
   year: number | string,
+  contribution: Contribution,
   options?: IncomeOptions
-) => {
-  const EMPLOYEE_CONTRIBUTION: number =
-    options?.employeeContribution ?? DEFAULT_EMPLOYEE_CONTRIBUTION;
+): number => {
+  const TOTAL_CONTRIBUTION = Object.values(contribution).reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
 
   let INCOME_CEILING: number = CPF_INCOME_CEILING[year];
 
@@ -28,9 +30,9 @@ export const getIncomeAfterCpf = (
     INCOME_CEILING = CPF_INCOME_CEILING_BEFORE_SEPT_2023;
   }
 
-  if (income <= INCOME_CEILING) {
-    return (1 - EMPLOYEE_CONTRIBUTION) * income;
+  if (income < INCOME_CEILING) {
+    return TOTAL_CONTRIBUTION * income;
   }
 
-  return income - EMPLOYEE_CONTRIBUTION * INCOME_CEILING;
+  return TOTAL_CONTRIBUTION * INCOME_CEILING;
 };

@@ -1,10 +1,18 @@
-import { DEFAULT_EMPLOYEE_CONTRIBUTION } from "../config";
+import {
+  DEFAULT_EMPLOYEE_CONTRIBUTION,
+  DEFAULT_EMPLOYER_CONTRIBUTION,
+} from "../config";
+
+export type Contribution = {
+  employee: number;
+  employer: number;
+};
 
 export type AgeGroup = {
   description: string;
   min?: number;
   max?: number;
-  contribution: number;
+  contribution: Contribution;
 };
 
 export type CPFIncomeCeiling = {
@@ -17,12 +25,34 @@ export const ageGroups: AgeGroup[] = [
     description: "55 and below",
     min: 0,
     max: 55,
-    contribution: DEFAULT_EMPLOYEE_CONTRIBUTION,
+    contribution: {
+      employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
+      employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+    },
   },
-  { description: "Above 55 to 60", min: 55, max: 60, contribution: 0.15 },
-  { description: "Above 60 to 65", min: 60, max: 65, contribution: 0.095 },
-  { description: "Above 65 to 70", min: 65, max: 70, contribution: 0.07 },
-  { description: "Above 70", min: 70, contribution: 0.05 },
+  {
+    description: "Above 55 to 60",
+    min: 55,
+    max: 60,
+    contribution: { employee: 0.15, employer: 0.145 },
+  },
+  {
+    description: "Above 60 to 65",
+    min: 60,
+    max: 65,
+    contribution: { employee: 0.095, employer: 0.11 },
+  },
+  {
+    description: "Above 65 to 70",
+    min: 65,
+    max: 70,
+    contribution: { employee: 0.07, employer: 0.085 },
+  },
+  {
+    description: "Above 70",
+    min: 70,
+    contribution: { employee: 0.05, employer: 0.075 },
+  },
 ];
 
 export const cpfIncomeCeilings: CPFIncomeCeiling[] = [
