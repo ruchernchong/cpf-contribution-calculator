@@ -8,8 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run --coverage",
-    "test:watch": "vitest watch --coverage"
+    "test": "vitest --coverage",
   },
   "dependencies": {
     "@heroicons/react": "^2.0.16",
