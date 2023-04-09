@@ -11,8 +11,15 @@ export const calculateCpfContribution = (
   year: number | string,
   options?: IncomeOptions
 ): ContributionResult => {
-  const employeeContribution = DEFAULT_EMPLOYEE_CONTRIBUTION;
-  const employerContribution = DEFAULT_EMPLOYER_CONTRIBUTION;
+  let employeeContribution = DEFAULT_EMPLOYEE_CONTRIBUTION,
+    employerContribution = DEFAULT_EMPLOYER_CONTRIBUTION;
+
+  if (options?.ageGroup) {
+    const contributionRate = options.ageGroup.contributionRate;
+    employeeContribution = contributionRate.employee;
+    employerContribution = contributionRate.employer;
+  }
+
   const totalCpfContribution = employeeContribution + employerContribution;
 
   let incomeCeiling = CPF_INCOME_CEILING[year];
@@ -23,7 +30,7 @@ export const calculateCpfContribution = (
   if (income <= incomeCeiling) {
     return {
       contribution: {
-        employee: employeeContribution * income,
+        employee: Math.round(employeeContribution * income),
         employer: Math.round(employerContribution * income),
         total: totalCpfContribution * income,
       },
@@ -33,7 +40,7 @@ export const calculateCpfContribution = (
 
   return {
     contribution: {
-      employee: employeeContribution * incomeCeiling,
+      employee: Math.round(employeeContribution * incomeCeiling),
       employer: Math.round(employerContribution * incomeCeiling),
       total: totalCpfContribution * incomeCeiling,
     },

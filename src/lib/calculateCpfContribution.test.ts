@@ -89,4 +89,19 @@ describe("calculateCpfContribution", () => {
       afterCpfContribution: 6800,
     });
   });
+
+  it("should return the result correctly for a certain age group", () => {
+    expect(
+      calculateCpfContribution(6000, 2023, {
+        ageGroup: {
+          description: "Above 70",
+          min: 70,
+          contributionRate: { employee: 0.05, employer: 0.075 },
+        },
+      })
+    ).toEqual({
+      contribution: { employee: 300, employer: 450, total: 750 },
+      afterCpfContribution: 5700,
+    });
+  });
 });

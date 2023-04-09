@@ -1,4 +1,21 @@
+export type ContributionRate = {
+  employee: number;
+  employer: number;
+};
+export type AgeGroup = {
+  description: string;
+  min?: number;
+  max?: number;
+  contributionRate: ContributionRate;
+};
+
+export type CPFIncomeCeiling = {
+  year: string;
+  ceiling: number;
+};
+
 export type IncomeOptions = {
+  ageGroup?: AgeGroup;
   useCeilingBeforeSep2023?: boolean;
 };
 

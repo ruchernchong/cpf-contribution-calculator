@@ -4,10 +4,11 @@ import { Footer } from "./components/Footer";
 import { SelectBox } from "./components/SelectBox";
 import { calculateCpfContribution } from "./lib/calculateCpfContribution";
 import { formatCurrency } from "./lib/formatCurrency";
-import { ageGroups, ContributionRate, cpfIncomeCeilings } from "./data";
+import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
 
 import { faqs } from "./config";
+import type { AgeGroup, ContributionRate } from "./types";
 
 const App = () => {
   useDarkMode();
@@ -17,15 +18,17 @@ const App = () => {
   const [selectedYear, setSelectedYear] = useState<number | string>(
     currentYear
   );
-  const [ageGroupIndex, setAgeGroupIndex] = useState<number>(0);
-  const [cpfContribution, setCpfContribution] = useState<ContributionRate>(
-    ageGroups[ageGroupIndex].contribution
+  const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
+  const [contributionRate, setContributionRate] = useState<ContributionRate>(
+    ageGroup.contributionRate
   );
   const [grossIncome, setGrossIncome] = useState<number>();
 
   useEffect(() => {
-    setCpfContribution(ageGroups[ageGroupIndex].contribution);
-  }, [ageGroupIndex]);
+    if (ageGroup) {
+      setContributionRate(ageGroup.contributionRate);
+    }
+  }, [ageGroup]);
 
   const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
     ({ year }) => year === selectedYear
@@ -33,7 +36,7 @@ const App = () => {
 
   let result;
   if (grossIncome) {
-    result = calculateCpfContribution(grossIncome, selectedYear);
+    result = calculateCpfContribution(grossIncome, selectedYear, { ageGroup });
   }
 
   return (
@@ -43,7 +46,7 @@ const App = () => {
         <SelectBox
           name="age-group"
           id="age-group"
-          onChange={(e) => setAgeGroupIndex(Number(e.target.value))}
+          onChange={(e) => setAgeGroup(ageGroups[Number(e.target.value)])}
         >
           {ageGroups.map(({ description }, index) => {
             return (
@@ -136,7 +139,7 @@ const App = () => {
                   Employee's contribution (
                   {new Intl.NumberFormat("en-SG", {
                     style: "percent",
-                  }).format(cpfContribution.employee)}
+                  }).format(contributionRate.employee)}
                   )
                 </div>
                 <div>{formatCurrency(result.contribution.employee)}</div>
@@ -146,7 +149,7 @@ const App = () => {
                   Employer's contribution (
                   {new Intl.NumberFormat("en-SG", {
                     style: "percent",
-                  }).format(cpfContribution.employer)}
+                  }).format(contributionRate.employer)}
                   )
                 </div>
                 <div>{formatCurrency(result.contribution.employer)}</div>
@@ -156,17 +159,17 @@ const App = () => {
                 <div>{formatCurrency(result.contribution.total)}</div>
               </div>
               {/*<div>*/}
-              {/*{!!cpfContributionDifference && (*/}
+              {/*{!!ageGroup.contributionRateDifference && (*/}
               {/*  <div className="flex justify-between text-xl md:text-2xl">*/}
               {/*<div>Before September 2023</div>*/}
               {/*<div className="flex flex-col items-end">*/}
               {/*{formatCurrency(totalCpfContributionBeforeSep2023)}*/}
               {/*<span className="text-sm italic text-green-600">*/}
-              {/*  ({formatCurrency(cpfContributionDifference)} /{" "}*/}
+              {/*  ({formatCurrency(ageGroup.contributionRateDifference)} /{" "}*/}
               {/*  {new Intl.NumberFormat("en-SG", {*/}
               {/*    style: "percent",*/}
               {/*  }).format(*/}
-              {/*    cpfContributionDifference /*/}
+              {/*    ageGroup.contributionRateDifference /*/}
               {/*      totalCpfContributionBeforeSep2023*/}
               {/*  )}*/}
               {/*  )*/}
