@@ -1,5 +1,14 @@
 import type { FAQ } from "../types";
 
+export const CPF_INCOME_CEILING_BEFORE_SEPT_2023: number = 6000;
+export const CPF_INCOME_CEILING: Record<number | string, number> = {
+  2023: 6000,
+  SEPT2023: 6300,
+  2024: 6800,
+  2025: 7400,
+  2026: 8000,
+};
+
 export const DEFAULT_EMPLOYEE_CONTRIBUTION: number = 0.2;
 export const DEFAULT_EMPLOYER_CONTRIBUTION: number = 0.17;
 

@@ -2,86 +2,41 @@ import { useEffect, useState } from "react";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { SelectBox } from "./components/SelectBox";
-import { getIncomeAfterCpf } from "./lib/getIncomeAfterCpf";
+import { calculateCpfContribution } from "./lib/calculateCpfContribution";
 import { formatCurrency } from "./lib/formatCurrency";
-import { ageGroups, Contribution, cpfIncomeCeilings } from "./data";
+import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
 
 import { faqs } from "./config";
-import { getEmployerContribution } from "./lib/getEmployerContribution";
-import { getTotalCpfContribution } from "./lib/getTotalCpfContribution";
-import { getEmployeeContribution } from "./lib/getEmployeeContribution";
+import type { AgeGroup, ContributionRate } from "./types";
 
 const App = () => {
   useDarkMode();
 
-  const currentYear = new Date().getFullYear().toString();
+  const currentYear = new Date().getFullYear();
 
-  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
-  const [ageGroupIndex, setAgeGroupIndex] = useState<number>(0);
-  const [cpfContribution, setCpfContribution] = useState<Contribution>(
-    ageGroups[ageGroupIndex].contribution
+  const [selectedYear, setSelectedYear] = useState<number | string>(
+    currentYear
+  );
+  const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
+  const [contributionRate, setContributionRate] = useState<ContributionRate>(
+    ageGroup.contributionRate
   );
   const [grossIncome, setGrossIncome] = useState<number>();
 
   useEffect(() => {
-    setCpfContribution(ageGroups[ageGroupIndex].contribution);
-  }, [ageGroupIndex]);
+    if (ageGroup) {
+      setContributionRate(ageGroup.contributionRate);
+    }
+  }, [ageGroup]);
 
   const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
     ({ year }) => year === selectedYear
   );
 
-  let incomeAfterCpfBeforeSep2023,
-    totalCpfContributionBeforeSep2023,
-    incomeAfterCpf,
-    employeeCpfContribution,
-    employerCpfContribution,
-    totalCpfContribution,
-    incomeDifference,
-    cpfContributionDifference;
+  let result;
   if (grossIncome) {
-    incomeAfterCpfBeforeSep2023 = getIncomeAfterCpf(grossIncome, selectedYear, {
-      employeeContribution: cpfContribution.employee,
-      useCeilingBeforeChanges: true,
-    });
-
-    totalCpfContributionBeforeSep2023 = getTotalCpfContribution(
-      grossIncome,
-      selectedYear,
-      cpfContribution,
-      { useCeilingBeforeChanges: true }
-    );
-
-    incomeAfterCpf = getIncomeAfterCpf(grossIncome, selectedYear, {
-      employeeContribution: cpfContribution.employee,
-    });
-
-    employeeCpfContribution = getEmployeeContribution(
-      grossIncome,
-      selectedYear,
-      { employeeContribution: cpfContribution.employee }
-    );
-
-    employerCpfContribution = getEmployerContribution(
-      grossIncome,
-      selectedYear,
-      {
-        employerContribution: cpfContribution.employer,
-      }
-    );
-
-    totalCpfContribution = getTotalCpfContribution(
-      grossIncome,
-      selectedYear,
-      cpfContribution
-    );
-
-    if (selectedYear >= "SEP2023") {
-      incomeDifference = incomeAfterCpf - incomeAfterCpfBeforeSep2023;
-      cpfContributionDifference =
-        totalCpfContribution - totalCpfContributionBeforeSep2023;
-    }
+    result = calculateCpfContribution(grossIncome, selectedYear, { ageGroup });
   }
 
   return (
@@ -91,7 +46,7 @@ const App = () => {
         <SelectBox
           name="age-group"
           id="age-group"
-          onChange={(e) => setAgeGroupIndex(Number(e.target.value))}
+          onChange={(e) => setAgeGroup(ageGroups[Number(e.target.value)])}
         >
           {ageGroups.map(({ description }, index) => {
             return (
@@ -154,80 +109,77 @@ const App = () => {
               <div>{formatCurrency(grossIncome)}</div>
             </div>
           )}
-          {incomeAfterCpfBeforeSep2023 &&
-            totalCpfContributionBeforeSep2023 &&
-            incomeAfterCpf &&
-            employeeCpfContribution &&
-            employerCpfContribution &&
-            totalCpfContribution && (
-              <>
-                <div className="flex justify-between text-xl md:text-2xl">
-                  <div>After CPF contribution</div>
-                  <div>{formatCurrency(incomeAfterCpf)}</div>
-                </div>
-                {!!incomeDifference && (
-                  <div className="flex justify-between text-xl md:text-2xl">
-                    <div>Before September 2023</div>
-                    <div className="flex flex-col items-end">
-                      {formatCurrency(incomeAfterCpfBeforeSep2023)}
-                      <span className="text-sm italic text-red-600">
-                        ({formatCurrency(incomeDifference)} /{" "}
-                        {new Intl.NumberFormat("en-SG", {
-                          style: "percent",
-                        }).format(
-                          incomeDifference / incomeAfterCpfBeforeSep2023
-                        )}
-                        )
-                      </span>
-                    </div>
-                  </div>
-                )}
-                <div className="flex justify-between text-xl text-green-600 md:text-2xl">
-                  <div>
-                    Employee's contribution (
-                    {new Intl.NumberFormat("en-SG", {
-                      style: "percent",
-                    }).format(cpfContribution.employee)}
-                    )
-                  </div>
-                  <div>{formatCurrency(employeeCpfContribution)}</div>
-                </div>
-                <div className="flex justify-between text-xl text-green-600 md:text-2xl">
-                  <div>
-                    Employer's contribution (
-                    {new Intl.NumberFormat("en-SG", {
-                      style: "percent",
-                    }).format(cpfContribution.employer)}
-                    )
-                  </div>
-                  <div>{formatCurrency(employerCpfContribution)}</div>
-                </div>
-                <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
-                  <div>Total CPF contribution</div>
-                  <div>{formatCurrency(totalCpfContribution)}</div>
-                </div>
+          {result && (
+            <>
+              <div className="flex justify-between text-xl md:text-2xl">
+                <div>After CPF contribution</div>
+                <div>{formatCurrency(result.afterCpfContribution)}</div>
+              </div>
+              {/*{!!incomeDifference && (*/}
+              {/*  <div className="flex justify-between text-xl md:text-2xl">*/}
+              {/*    <div>Before September 2023</div>*/}
+              {/*    <div className="flex flex-col items-end">*/}
+              {/*      {formatCurrency(incomeAfterCpfBeforeSep2023)}*/}
+              {/*      {*/}
+              {/*        <span className="text-sm italic text-red-600">*/}
+              {/*          ({formatCurrency(incomeDifference)} /{" "}*/}
+              {/*          {new Intl.NumberFormat("en-SG", {*/}
+              {/*            style: "percent",*/}
+              {/*          }).format(*/}
+              {/*            incomeDifference / incomeAfterCpfBeforeSep2023*/}
+              {/*          )}*/}
+              {/*          )*/}
+              {/*        </span>*/}
+              {/*      }*/}
+              {/*    </div>*/}
+              {/*  </div>*/}
+              {/*)}*/}
+              <div className="flex justify-between text-xl text-green-600 md:text-2xl">
                 <div>
-                  {!!cpfContributionDifference && (
-                    <div className="flex justify-between text-xl md:text-2xl">
-                      <div>Before September 2023</div>
-                      <div className="flex flex-col items-end">
-                        {formatCurrency(totalCpfContributionBeforeSep2023)}
-                        <span className="text-sm italic text-green-600">
-                          ({formatCurrency(cpfContributionDifference)} /{" "}
-                          {new Intl.NumberFormat("en-SG", {
-                            style: "percent",
-                          }).format(
-                            cpfContributionDifference /
-                              totalCpfContributionBeforeSep2023
-                          )}
-                          )
-                        </span>
-                      </div>
-                    </div>
-                  )}
+                  Employee's contribution (
+                  {new Intl.NumberFormat("en-SG", {
+                    style: "percent",
+                  }).format(contributionRate.employee)}
+                  )
                 </div>
-              </>
-            )}
+                <div>{formatCurrency(result.contribution.employee)}</div>
+              </div>
+              <div className="flex justify-between text-xl text-green-600 md:text-2xl">
+                <div>
+                  Employer's contribution (
+                  {new Intl.NumberFormat("en-SG", {
+                    style: "percent",
+                  }).format(contributionRate.employer)}
+                  )
+                </div>
+                <div>{formatCurrency(result.contribution.employer)}</div>
+              </div>
+              <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
+                <div>Total CPF contribution</div>
+                <div>{formatCurrency(result.contribution.total)}</div>
+              </div>
+              {/*<div>*/}
+              {/*{!!ageGroup.contributionRateDifference && (*/}
+              {/*  <div className="flex justify-between text-xl md:text-2xl">*/}
+              {/*<div>Before September 2023</div>*/}
+              {/*<div className="flex flex-col items-end">*/}
+              {/*{formatCurrency(totalCpfContributionBeforeSep2023)}*/}
+              {/*<span className="text-sm italic text-green-600">*/}
+              {/*  ({formatCurrency(ageGroup.contributionRateDifference)} /{" "}*/}
+              {/*  {new Intl.NumberFormat("en-SG", {*/}
+              {/*    style: "percent",*/}
+              {/*  }).format(*/}
+              {/*    ageGroup.contributionRateDifference /*/}
+              {/*      totalCpfContributionBeforeSep2023*/}
+              {/*  )}*/}
+              {/*  )*/}
+              {/*</span>*/}
+              {/*</div>*/}
+              {/*</div>*/}
+              {/*)}*/}
+              {/*</div>*/}
+            </>
+          )}
         </div>
         <FAQ items={faqs} />
       </div>
