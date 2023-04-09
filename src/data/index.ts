@@ -3,7 +3,7 @@ import {
   DEFAULT_EMPLOYER_CONTRIBUTION,
 } from "../config";
 
-export type Contribution = {
+export type ContributionRate = {
   employee: number;
   employer: number;
 };
@@ -12,7 +12,7 @@ export type AgeGroup = {
   description: string;
   min?: number;
   max?: number;
-  contribution: Contribution;
+  contribution: ContributionRate;
 };
 
 export type CPFIncomeCeiling = {
