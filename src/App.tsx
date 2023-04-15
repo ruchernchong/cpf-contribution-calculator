@@ -42,7 +42,7 @@ const App = () => {
   return (
     <div className="flex min-h-screen flex-col">
       <div className="prose mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16 dark:prose-invert">
-        <h1>CPF Calculator</h1>
+        <h1>CPF Contribution Calculator</h1>
         <SelectBox
           name="age-group"
           id="age-group"
