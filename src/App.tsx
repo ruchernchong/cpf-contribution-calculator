@@ -139,6 +139,7 @@ const App = () => {
                   Employee's contribution (
                   {new Intl.NumberFormat("en-SG", {
                     style: "percent",
+                    maximumFractionDigits: 2,
                   }).format(contributionRate.employee)}
                   )
                 </div>
@@ -149,6 +150,7 @@ const App = () => {
                   Employer's contribution (
                   {new Intl.NumberFormat("en-SG", {
                     style: "percent",
+                    maximumFractionDigits: 2,
                   }).format(contributionRate.employer)}
                   )
                 </div>
