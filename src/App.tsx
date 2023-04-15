@@ -3,12 +3,12 @@ import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { SelectBox } from "./components/SelectBox";
 import { calculateCpfContribution } from "./lib/calculateCpfContribution";
-import { formatCurrency } from "./lib/formatCurrency";
 import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
 
 import { faqs } from "./config";
 import type { AgeGroup, ContributionRate } from "./types";
+import { formatCurrency, formatPercentage } from "./lib/format";
 
 const App = () => {
   useDarkMode();
@@ -137,22 +137,14 @@ const App = () => {
               <div className="flex justify-between text-xl text-green-600 md:text-2xl">
                 <div>
                   Employee's contribution (
-                  {new Intl.NumberFormat("en-SG", {
-                    style: "percent",
-                    maximumFractionDigits: 2,
-                  }).format(contributionRate.employee)}
-                  )
+                  {formatPercentage(contributionRate.employee)})
                 </div>
                 <div>{formatCurrency(result.contribution.employee)}</div>
               </div>
               <div className="flex justify-between text-xl text-green-600 md:text-2xl">
                 <div>
                   Employer's contribution (
-                  {new Intl.NumberFormat("en-SG", {
-                    style: "percent",
-                    maximumFractionDigits: 2,
-                  }).format(contributionRate.employer)}
-                  )
+                  {formatPercentage(contributionRate.employer)})
                 </div>
                 <div>{formatCurrency(result.contribution.employer)}</div>
               </div>
