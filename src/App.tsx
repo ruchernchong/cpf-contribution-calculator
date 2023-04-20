@@ -104,10 +104,10 @@ const App = () => {
               </div>
             </div>
           )}
-          {grossIncome && (
+          {Boolean(grossIncome) && (
             <div className="flex justify-between text-xl md:text-2xl">
               <div>Gross income</div>
-              <div>{formatCurrency(grossIncome)}</div>
+              <div>{formatCurrency(grossIncome as number)}</div>
             </div>
           )}
           {result && (
