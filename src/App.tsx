@@ -79,7 +79,8 @@ const App = () => {
         </SelectBox>
         <input
           type="number"
-          pattern="\d"
+          inputMode="decimal"
+          pattern="\d*"
           placeholder="Gross Income e.g. 10000"
           className="mb-2 w-full rounded-lg p-2 shadow-md shadow-neutral-200 dark:text-neutral-900 dark:shadow-none md:w-1/3"
           onChange={(e) => setGrossIncome(Number(e.target.value))}
