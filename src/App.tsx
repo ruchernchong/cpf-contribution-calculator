@@ -113,7 +113,7 @@ const App = () => {
           {result && (
             <>
               <div className="flex justify-between text-xl md:text-2xl">
-                <div>After CPF contribution</div>
+                <div>Take home income</div>
                 <div>{formatCurrency(result.afterCpfContribution)}</div>
               </div>
               {/*{!!incomeDifference && (*/}
@@ -137,14 +137,14 @@ const App = () => {
               {/*)}*/}
               <div className="flex justify-between text-xl text-green-600 md:text-2xl">
                 <div>
-                  Employee's contribution (
+                  Your contribution (
                   {formatPercentage(contributionRate.employee)})
                 </div>
                 <div>{formatCurrency(result.contribution.employee)}</div>
               </div>
               <div className="flex justify-between text-xl text-green-600 md:text-2xl">
                 <div>
-                  Employer's contribution (
+                  Company's contribution (
                   {formatPercentage(contributionRate.employer)})
                 </div>
                 <div>{formatCurrency(result.contribution.employer)}</div>
