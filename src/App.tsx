@@ -6,7 +6,7 @@ import { calculateCpfContribution } from "./lib/calculateCpfContribution";
 import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
 
-import { faqs } from "./config";
+import { CPF_ADDITIONAL_WAGE_CEILING, faqs } from "./config";
 import type { AgeGroup, ContributionRate } from "./types";
 import { formatCurrency, formatPercentage } from "./lib/format";
 
@@ -14,7 +14,6 @@ const App = () => {
   useDarkMode();
 
   const currentYear = new Date().getFullYear();
-
   const [selectedYear, setSelectedYear] = useState<number | string>(
     currentYear
   );
@@ -22,7 +21,7 @@ const App = () => {
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
   );
-  const [grossIncome, setGrossIncome] = useState<number>();
+  const [grossIncome, setGrossIncome] = useState<number>(0);
 
   useEffect(() => {
     if (ageGroup) {
@@ -38,6 +37,8 @@ const App = () => {
   if (grossIncome) {
     result = calculateCpfContribution(grossIncome, selectedYear, { ageGroup });
   }
+
+  const annualWage = grossIncome * 12;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -59,6 +60,7 @@ const App = () => {
         <SelectBox
           name="cpf-income-ceiling"
           id="cpf-income-ceiling"
+          defaultValue={currentYear}
           onChange={(e) => setSelectedYear(e.target.value)}
         >
           {cpfIncomeCeilings.map(({ year }) => {
@@ -153,6 +155,14 @@ const App = () => {
                 <div>Total CPF contribution</div>
                 <div>{formatCurrency(result.contribution.total)}</div>
               </div>
+              {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
+                <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
+                  <div>Remaining Additional Wage (AW) for CPF contribution</div>
+                  <div>
+                    {formatCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
+                  </div>
+                </div>
+              )}
               {/*<div>*/}
               {/*{!!ageGroup.contributionRateDifference && (*/}
               {/*  <div className="flex justify-between text-xl md:text-2xl">*/}

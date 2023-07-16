@@ -2,6 +2,7 @@ export type ContributionRate = {
   employee: number;
   employer: number;
 };
+
 export type AgeGroup = {
   description: string;
   min?: number;
