@@ -7,7 +7,15 @@
   "imageSize": 100,
   "commit": true,
   "commitConvention": "angular",
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "ruchernchong",
+      "name": "Ru Chern Chong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10343662?v=4",
+      "profile": "https://ruchern.xyz/",
+      "contributions": ["code", "design", "doc"]
+    }
+  ],
   "contributorsPerLine": 7,
   "linkToUsage": true
 }
