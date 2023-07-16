@@ -23,6 +23,7 @@
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "@vitest/coverage-c8": "^0.28.5",
+    "all-contributors-cli": "^6.26.1",
     "autoprefixer": "^10.4.13",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.0",
