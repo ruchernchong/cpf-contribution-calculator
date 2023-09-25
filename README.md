@@ -1,6 +1,10 @@
 # CPF Contribution Calculator
 
-Site: https://cpf-contribution-calculator.vercel.app
+[Link to Calculator](https://cpf-contribution-calculator.vercel.app)
+
+You can also add this as a bookmark on a mobile device to open it as an "app".
+
+_This calculator is PWA compatible (for the techies)._
 
 ## Summary
 
