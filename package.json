@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest --coverage"
+    "test": "vitest --coverage",
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.16",
@@ -21,6 +22,7 @@
     "@types/jest": "^29.4.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@vite-pwa/assets-generator": "^0.0.10",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "@vitest/coverage-c8": "^0.28.5",
     "autoprefixer": "^10.4.13",
@@ -32,6 +34,7 @@
     "tailwindcss": "^3.2.6",
     "typescript": "^4.9.3",
     "vite": "^4.1.5",
+    "vite-plugin-pwa": "^0.16.5",
     "vite-plugin-radar": "^0.7.0",
     "vite-tsconfig-paths": "^4.0.5",
     "vitest": "^0.28.5"
