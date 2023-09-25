@@ -7,31 +7,34 @@ import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
 
 import { CPF_ADDITIONAL_WAGE_CEILING, faqs } from "./config";
-import type { AgeGroup, ContributionRate } from "./types";
+import type { AgeGroup, ContributionRate, CPFIncomeCeiling } from "./types";
 import { formatCurrency, formatPercentage } from "./lib/format";
 
 const App = () => {
   useDarkMode();
 
-  const currentYear = new Date().getFullYear();
-  const [selectedYear, setSelectedYear] = useState<number | string>(
-    currentYear
-  );
+  const currentYear = new Date().getFullYear().toString();
+  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
   );
   const [grossIncome, setGrossIncome] = useState<number>(0);
+  const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
+    useState<CPFIncomeCeiling>();
+
+  useEffect(() => {
+    const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
+      ({ year }) => year === selectedYear
+    );
+    setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
+  }, [selectedYear]);
 
   useEffect(() => {
     if (ageGroup) {
       setContributionRate(ageGroup.contributionRate);
     }
   }, [ageGroup]);
-
-  const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-    ({ year }) => year === selectedYear
-  );
 
   let result;
   if (grossIncome) {
@@ -43,7 +46,17 @@ const App = () => {
   return (
     <div className="flex min-h-screen flex-col">
       <div className="prose mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16 dark:prose-invert">
-        <h1>CPF Contribution Calculator</h1>
+        <div className="text-center">
+          <h1>CPF Contribution Calculator</h1>
+          <h2 className="flex flex-col items-center">
+            <span>Current CPF Income Ceiling</span>
+            {incomeCeilingOnSelectedYear && (
+              <span className="text-red-300">
+                {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
+              </span>
+            )}
+          </h2>
+        </div>
         <SelectBox
           name="age-group"
           id="age-group"
@@ -91,21 +104,6 @@ const App = () => {
           This is for illustration purposes only. No data are being stored.
         </div>
         <div className="flex flex-col gap-y-2">
-          {incomeCeilingOnSelectedYear && (
-            <div className="flex items-center justify-between text-xl md:text-2xl">
-              <div>CPF Income Ceiling</div>
-              <div className="flex flex-col items-end">
-                {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
-                <div className="text-sm">
-                  {incomeCeilingOnSelectedYear.year === "SEPT2023" ? (
-                    <div>September 2023</div>
-                  ) : (
-                    <div>January {incomeCeilingOnSelectedYear.year}</div>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
           {Boolean(grossIncome) && (
             <div className="flex justify-between text-xl md:text-2xl">
               <div>Gross income</div>
