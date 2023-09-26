@@ -45,7 +45,7 @@ const App = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="prose mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16 dark:prose-invert">
+      <div className="prose prose-invert mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16">
         <div className="text-center">
           <h1>CPF Contribution Calculator</h1>
           <h2 className="flex flex-col items-center">
@@ -97,7 +97,7 @@ const App = () => {
           inputMode="decimal"
           pattern="\d*"
           placeholder="Gross Income e.g. 10000"
-          className="mb-2 w-full rounded-lg p-2 shadow-md shadow-neutral-200 dark:text-neutral-900 dark:shadow-none md:w-1/3"
+          className="mb-2 w-full rounded-lg p-2 text-neutral-900 md:w-1/3"
           onChange={(e) => setGrossIncome(Number(e.target.value))}
         />
         <div className="mb-4 italic text-red-600">
