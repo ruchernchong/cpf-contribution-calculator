@@ -24,9 +24,9 @@ export const FAQ = ({ items }: FAQProps) => {
           <Fragment key={question}>
             <div
               className={classNames(
-                "cursor-pointer border p-4 dark:border-neutral-600",
+                "cursor-pointer border border-neutral-600 p-4",
                 {
-                  "dark:bg-neutral-50 dark:text-neutral-900": selectedIndex,
+                  "bg-neutral-50 text-neutral-900": selectedIndex,
                 }
               )}
               onClick={() => setActiveIndex(index)}
@@ -44,7 +44,7 @@ export const FAQ = ({ items }: FAQProps) => {
             </div>
             <div
               className={classNames(
-                "border bg-neutral-100 p-4 dark:border-neutral-600 dark:bg-neutral-800",
+                "border border-neutral-600 bg-neutral-100 bg-neutral-800 p-4",
                 {
                   hidden: !selectedIndex,
                 }
