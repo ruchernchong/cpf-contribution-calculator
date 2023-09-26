@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="flex flex-col items-center bg-neutral-100 bg-neutral-800 p-4">
+    <footer className="flex flex-col items-center bg-neutral-800 p-4">
       <div>
         Created by{" "}
         <a
