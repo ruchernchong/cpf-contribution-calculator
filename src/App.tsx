@@ -19,9 +19,16 @@ const App = () => {
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
   );
-  const [grossIncome, setGrossIncome] = useState<number>(0);
+  const dataFromLocalstorage = JSON.parse(
+    localStorage.getItem("data") as string
+  );
+  const [grossIncome, setGrossIncome] = useState<number>(
+    dataFromLocalstorage?.grossIncome || 0
+  );
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
     useState<CPFIncomeCeiling>();
+  const [storeInputInLocalstorage, setStoreInputInLocalstorage] =
+    useState<boolean>(dataFromLocalstorage?.storeInput || false);
 
   useEffect(() => {
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
@@ -42,6 +49,22 @@ const App = () => {
   }
 
   const annualWage = grossIncome * 12;
+
+  useEffect(() => {
+    if (storeInputInLocalstorage) {
+      localStorage.setItem(
+        "data",
+        JSON.stringify({ storeInput: storeInputInLocalstorage, grossIncome })
+      );
+    }
+
+    if (!storeInputInLocalstorage) {
+      localStorage.setItem(
+        "data",
+        JSON.stringify({ storeInput: storeInputInLocalstorage, grossIncome: 0 })
+      );
+    }
+  }, [grossIncome, storeInputInLocalstorage]);
 
   return (
     <div className="flex min-h-screen flex-col text-neutral-50">
@@ -99,10 +122,25 @@ const App = () => {
             pattern="\d*"
             placeholder="Gross Income e.g. 10000"
             className="mb-2 w-full rounded-lg p-2 text-neutral-900 md:w-1/3"
+            defaultValue={grossIncome || undefined}
             onChange={(e) => setGrossIncome(Number(e.target.value))}
           />
-          <div className="mb-4 italic text-red-300">
-            This is for illustration purposes only. No data are being stored.
+          <label htmlFor="store-data">
+            <input
+              type="checkbox"
+              id="store-data"
+              className="mr-2"
+              defaultChecked={storeInputInLocalstorage}
+              onChange={(e) => setStoreInputInLocalstorage(e.target.checked)}
+            />
+            <span>Store input on this browser?</span>
+          </label>
+          <div className="mb-4 text-center italic text-red-300">
+            <div>By ticking the above checkbox.</div>
+            <div>
+              You will be storing the input on your browser. No data are being
+              stored on any servers.
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-y-2">
