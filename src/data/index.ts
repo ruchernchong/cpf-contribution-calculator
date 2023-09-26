@@ -47,6 +47,7 @@ export const cpfIncomeCeilings: CPFIncomeCeiling[] = [
   {
     year: "SEPT2023",
     ceiling: 6300,
+    current: true,
   },
   {
     year: "2024",

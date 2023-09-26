@@ -13,8 +13,13 @@ import { formatCurrency, formatPercentage } from "./lib/format";
 const App = () => {
   useDarkMode();
 
-  const currentYear = new Date().getFullYear().toString();
-  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
+  const currentYear = cpfIncomeCeilings.find(({ current }) =>
+    Boolean(current)
+  )?.year;
+
+  const [currentIncomeCeiling, setCurrentIncomeCeiling] = useState<
+    string | undefined
+  >(currentYear);
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
@@ -25,10 +30,10 @@ const App = () => {
 
   useEffect(() => {
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ year }) => year === selectedYear
+      ({ year }) => year === currentIncomeCeiling
     );
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [selectedYear]);
+  }, [currentIncomeCeiling]);
 
   useEffect(() => {
     if (ageGroup) {
@@ -37,8 +42,10 @@ const App = () => {
   }, [ageGroup]);
 
   let result;
-  if (grossIncome) {
-    result = calculateCpfContribution(grossIncome, selectedYear, { ageGroup });
+  if (currentIncomeCeiling && grossIncome) {
+    result = calculateCpfContribution(grossIncome, currentIncomeCeiling, {
+      ageGroup,
+    });
   }
 
   const annualWage = grossIncome * 12;
@@ -75,7 +82,7 @@ const App = () => {
             name="cpf-income-ceiling"
             id="cpf-income-ceiling"
             defaultValue={currentYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
+            onChange={(e) => setCurrentIncomeCeiling(e.target.value)}
           >
             {cpfIncomeCeilings.map(({ year }) => {
               if (year === "SEPT2023") {
