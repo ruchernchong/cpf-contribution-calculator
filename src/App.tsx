@@ -53,17 +53,13 @@ const App = () => {
   return (
     <div className="flex min-h-screen flex-col text-neutral-50">
       <div className="prose prose-invert mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16 md:px-8">
-        <div className="text-center">
-          <h1>CPF Contribution Calculator</h1>
-          <h2 className="flex flex-col items-center">
-            <span>Current CPF Income Ceiling</span>
-            {incomeCeilingOnSelectedYear && (
-              <span className="text-red-300">
-                {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
-              </span>
-            )}
-          </h2>
-        </div>
+        <h1 className="text-center">CPF Contribution Calculator</h1>
+        <h2 className="text-center">Current CPF Income Ceiling</h2>
+        {incomeCeilingOnSelectedYear && (
+          <p className="text-center text-2xl text-red-300">
+            {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
+          </p>
+        )}
         <div className="flex flex-col items-center">
           <SelectBox
             name="age-group"
