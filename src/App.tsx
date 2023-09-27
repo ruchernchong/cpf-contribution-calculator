@@ -108,6 +108,7 @@ const App = () => {
             This is for illustration purposes only. No data are being stored.
           </div>
         </div>
+        <hr />
         <div className="flex flex-col gap-y-2">
           {Boolean(grossIncome) && (
             <div className="flex justify-between text-xl md:text-2xl">
@@ -117,6 +118,13 @@ const App = () => {
           )}
           {result && (
             <>
+              <div className="flex justify-between text-xl text-green-600 md:text-2xl">
+                <div>
+                  Your contribution (
+                  {formatPercentage(contributionRate.employee)})
+                </div>
+                <div>{formatCurrency(result.contribution.employee)}</div>
+              </div>
               <div className="flex justify-between text-xl md:text-2xl">
                 <div>Take home income</div>
                 <div>{formatCurrency(result.afterCpfContribution)}</div>
@@ -140,26 +148,21 @@ const App = () => {
               {/*    </div>*/}
               {/*  </div>*/}
               {/*)}*/}
-              <div className="flex justify-between text-xl text-green-600 md:text-2xl">
-                <div>
-                  Your contribution (
-                  {formatPercentage(contributionRate.employee)})
-                </div>
-                <div>{formatCurrency(result.contribution.employee)}</div>
-              </div>
-              <div className="flex justify-between text-xl text-green-600 md:text-2xl">
+              <hr />
+              <div className="flex justify-between gap-x-4 text-xl text-green-600 md:text-2xl">
                 <div>
                   Company's contribution (
                   {formatPercentage(contributionRate.employer)})
                 </div>
                 <div>{formatCurrency(result.contribution.employer)}</div>
               </div>
+              <hr />
               <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
                 <div>Total CPF contribution</div>
                 <div>{formatCurrency(result.contribution.total)}</div>
               </div>
               {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
-                <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
+                <div className="flex justify-between gap-x-4 text-xl text-blue-500 md:text-2xl">
                   <div>Remaining Additional Wage (AW) for CPF contribution</div>
                   <div>
                     {formatCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
@@ -189,6 +192,7 @@ const App = () => {
             </>
           )}
         </div>
+        <hr />
         <FAQ items={faqs} />
       </div>
       <Footer />
