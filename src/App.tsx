@@ -108,7 +108,6 @@ const App = () => {
             This is for illustration purposes only. No data are being stored.
           </div>
         </div>
-        <hr />
         <div className="flex flex-col gap-y-2">
           {Boolean(grossIncome) && (
             <div className="flex justify-between text-xl md:text-2xl">
@@ -192,7 +191,6 @@ const App = () => {
             </>
           )}
         </div>
-        <hr />
         <FAQ items={faqs} />
       </div>
       <Footer />
