@@ -125,7 +125,13 @@ const App = () => {
                 <div>{formatCurrency(result.contribution.employee)}</div>
               </div>
               <div className="flex justify-between text-xl md:text-2xl">
-                <div>Take home income</div>
+                <div>
+                  Take home income
+                  <div className="text-sm italic text-neutral-400">
+                    Excluding other contributions like donations, expense
+                    claims, and etc...
+                  </div>
+                </div>
                 <div>{formatCurrency(result.afterCpfContribution)}</div>
               </div>
               {/*{!!incomeDifference && (*/}
