@@ -83,157 +83,157 @@ const App = () => {
             {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
           </p>
         )}
-        <div className="flex flex-col items-center">
-          <SelectBox
-            name="age-group"
-            id="age-group"
-            onChange={(e) => setAgeGroup(ageGroups[Number(e.target.value)])}
-          >
-            {ageGroups.map(({ description }, index) => {
-              return (
-                <option key={index} value={index}>
-                  {description}
-                </option>
-              );
-            })}
-          </SelectBox>
-          <SelectBox
-            name="cpf-income-ceiling"
-            id="cpf-income-ceiling"
-            defaultValue={currentYear}
-            onChange={(e) => setCurrentIncomeCeiling(e.target.value)}
-          >
-            {cpfIncomeCeilings.map(({ year }) => {
-              if (year === "SEPT2023") {
+        <div className="gap-x-4 md:flex">
+          <div className="flex flex-col gap-y-2 md:w-1/3">
+            <SelectBox
+              name="age-group"
+              id="age-group"
+              onChange={(e) => setAgeGroup(ageGroups[Number(e.target.value)])}
+            >
+              {ageGroups.map(({ description }, index) => {
                 return (
-                  <option key={year} value={year}>
-                    September 2023
+                  <option key={index} value={index}>
+                    {description}
                   </option>
                 );
-              }
+              })}
+            </SelectBox>
+            <SelectBox
+              name="cpf-income-ceiling"
+              id="cpf-income-ceiling"
+              defaultValue={currentYear}
+              onChange={(e) => setCurrentIncomeCeiling(e.target.value)}
+            >
+              {cpfIncomeCeilings.map(({ year }) => {
+                if (year === "SEPT2023") {
+                  return (
+                    <option key={year} value={year}>
+                      September 2023
+                    </option>
+                  );
+                }
 
-              return (
-                <option key={year} value={year}>
-                  January {year}
-                </option>
-              );
-            })}
-          </SelectBox>
-          <input
-            type="number"
-            inputMode="decimal"
-            pattern="\d*"
-            placeholder="Gross Income e.g. 10000"
-            className="mb-2 w-full rounded-lg p-2 text-neutral-900 md:w-1/3"
-            defaultValue={grossIncome || undefined}
-            onChange={(e) => setGrossIncome(Number(e.target.value))}
-          />
-          <label htmlFor="store-data">
+                return (
+                  <option key={year} value={year}>
+                    January {year}
+                  </option>
+                );
+              })}
+            </SelectBox>
             <input
-              type="checkbox"
-              id="store-data"
-              className="mr-2"
-              defaultChecked={storeInputInLocalstorage}
-              onChange={(e) => setStoreInputInLocalstorage(e.target.checked)}
+              type="number"
+              inputMode="decimal"
+              pattern="\d*"
+              placeholder="Gross Income e.g. 10000"
+              className="rounded-lg p-2 text-neutral-900"
+              defaultValue={grossIncome || undefined}
+              onChange={(e) => setGrossIncome(Number(e.target.value))}
             />
-            <span>Store input on this browser?</span>
-          </label>
-          <div className="mb-4 text-center italic text-red-300">
-            <div>By ticking the above checkbox.</div>
-            <div>
-              You will be storing the input on your own browser. No data are
-              being stored on any servers.
+            <div className="flex gap-x-2">
+              <input
+                type="checkbox"
+                id="store-data"
+                defaultChecked={storeInputInLocalstorage}
+                onChange={(e) => setStoreInputInLocalstorage(e.target.checked)}
+              />
+              <label htmlFor="store-data">Store input on this browser?</label>
+            </div>
+            <div className="mb-4 text-xs italic text-red-300">
+              By ticking the above checkbox, the input will be stored on your
+              own browser. No data are being stored on any servers.
             </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-y-2">
-          {Boolean(grossIncome) && (
-            <div className="flex justify-between text-xl md:text-2xl">
-              <div>Gross income</div>
-              <div>{formatCurrency(grossIncome as number)}</div>
-            </div>
-          )}
-          {result && (
-            <>
-              <div className="flex justify-between text-xl text-green-600 md:text-2xl">
-                <div>
-                  Your contribution (
-                  {formatPercentage(contributionRate.employee)})
-                </div>
-                <div>{formatCurrency(result.contribution.employee)}</div>
+          <div className="flex flex-auto flex-col gap-y-2">
+            {Boolean(grossIncome) && (
+              <div className="flex justify-between text-xl">
+                <div>Gross income</div>
+                <div>{formatCurrency(grossIncome as number)}</div>
               </div>
-              <div className="flex justify-between text-xl md:text-2xl">
-                <div>
-                  Take home income
-                  <div className="text-sm italic text-neutral-400">
-                    Excluding other contributions like donations, expense
-                    claims, and etc...
-                  </div>
-                </div>
-                <div>{formatCurrency(result.afterCpfContribution)}</div>
-              </div>
-              {/*{!!incomeDifference && (*/}
-              {/*  <div className="flex justify-between text-xl md:text-2xl">*/}
-              {/*    <div>Before September 2023</div>*/}
-              {/*    <div className="flex flex-col items-end">*/}
-              {/*      {formatCurrency(incomeAfterCpfBeforeSep2023)}*/}
-              {/*      {*/}
-              {/*        <span className="text-sm italic text-red-600">*/}
-              {/*          ({formatCurrency(incomeDifference)} /{" "}*/}
-              {/*          {new Intl.NumberFormat("en-SG", {*/}
-              {/*            style: "percent",*/}
-              {/*          }).format(*/}
-              {/*            incomeDifference / incomeAfterCpfBeforeSep2023*/}
-              {/*          )}*/}
-              {/*          )*/}
-              {/*        </span>*/}
-              {/*      }*/}
-              {/*    </div>*/}
-              {/*  </div>*/}
-              {/*)}*/}
-              <hr className="my-4" />
-              <div className="flex justify-between gap-x-4 text-xl text-green-600 md:text-2xl">
-                <div>
-                  Company's contribution (
-                  {formatPercentage(contributionRate.employer)})
-                </div>
-                <div>{formatCurrency(result.contribution.employer)}</div>
-              </div>
-              <hr className="my-4" />
-              <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
-                <div>Total CPF contribution</div>
-                <div>{formatCurrency(result.contribution.total)}</div>
-              </div>
-              {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
-                <div className="flex justify-between gap-x-4 text-xl text-blue-500 md:text-2xl">
-                  <div>Remaining Additional Wage (AW) for CPF contribution</div>
+            )}
+            {result && (
+              <>
+                <div className="flex justify-between text-xl text-green-600">
                   <div>
-                    {formatCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
+                    Your contribution (
+                    {formatPercentage(contributionRate.employee)})
                   </div>
+                  <div>{formatCurrency(result.contribution.employee)}</div>
                 </div>
-              )}
-              {/*<div>*/}
-              {/*{!!ageGroup.contributionRateDifference && (*/}
-              {/*  <div className="flex justify-between text-xl md:text-2xl">*/}
-              {/*<div>Before September 2023</div>*/}
-              {/*<div className="flex flex-col items-end">*/}
-              {/*{formatCurrency(totalCpfContributionBeforeSep2023)}*/}
-              {/*<span className="text-sm italic text-green-600">*/}
-              {/*  ({formatCurrency(ageGroup.contributionRateDifference)} /{" "}*/}
-              {/*  {new Intl.NumberFormat("en-SG", {*/}
-              {/*    style: "percent",*/}
-              {/*  }).format(*/}
-              {/*    ageGroup.contributionRateDifference /*/}
-              {/*      totalCpfContributionBeforeSep2023*/}
-              {/*  )}*/}
-              {/*  )*/}
-              {/*</span>*/}
-              {/*</div>*/}
-              {/*</div>*/}
-              {/*)}*/}
-              {/*</div>*/}
-            </>
-          )}
+                <div className="flex justify-between text-xl">
+                  <div>
+                    Take home income
+                    <div className="text-sm italic text-neutral-400">
+                      Excluding other contributions like donations, expense
+                      claims, and etc...
+                    </div>
+                  </div>
+                  <div>{formatCurrency(result.afterCpfContribution)}</div>
+                </div>
+                {/*{!!incomeDifference && (*/}
+                {/*  <div className="flex justify-between text-xl">*/}
+                {/*    <div>Before September 2023</div>*/}
+                {/*    <div className="flex flex-col items-end">*/}
+                {/*      {formatCurrency(incomeAfterCpfBeforeSep2023)}*/}
+                {/*      {*/}
+                {/*        <span className="text-sm italic text-red-600">*/}
+                {/*          ({formatCurrency(incomeDifference)} /{" "}*/}
+                {/*          {new Intl.NumberFormat("en-SG", {*/}
+                {/*            style: "percent",*/}
+                {/*          }).format(*/}
+                {/*            incomeDifference / incomeAfterCpfBeforeSep2023*/}
+                {/*          )}*/}
+                {/*          )*/}
+                {/*        </span>*/}
+                {/*      }*/}
+                {/*    </div>*/}
+                {/*  </div>*/}
+                {/*)}*/}
+                <hr className="my-4" />
+                <div className="flex justify-between gap-x-4 text-xl text-green-600">
+                  <div>
+                    Company's contribution (
+                    {formatPercentage(contributionRate.employer)})
+                  </div>
+                  <div>{formatCurrency(result.contribution.employer)}</div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex justify-between text-xl text-blue-500">
+                  <div>Total CPF contribution</div>
+                  <div>{formatCurrency(result.contribution.total)}</div>
+                </div>
+                {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
+                  <div className="flex justify-between gap-x-4 text-xl text-blue-500">
+                    <div>
+                      Remaining Additional Wage (AW) for CPF contribution
+                    </div>
+                    <div>
+                      {formatCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
+                    </div>
+                  </div>
+                )}
+                {/*<div>*/}
+                {/*{!!ageGroup.contributionRateDifference && (*/}
+                {/*  <div className="flex justify-between text-xl">*/}
+                {/*<div>Before September 2023</div>*/}
+                {/*<div className="flex flex-col items-end">*/}
+                {/*{formatCurrency(totalCpfContributionBeforeSep2023)}*/}
+                {/*<span className="text-sm italic text-green-600">*/}
+                {/*  ({formatCurrency(ageGroup.contributionRateDifference)} /{" "}*/}
+                {/*  {new Intl.NumberFormat("en-SG", {*/}
+                {/*    style: "percent",*/}
+                {/*  }).format(*/}
+                {/*    ageGroup.contributionRateDifference /*/}
+                {/*      totalCpfContributionBeforeSep2023*/}
+                {/*  )}*/}
+                {/*  )*/}
+                {/*</span>*/}
+                {/*</div>*/}
+                {/*</div>*/}
+                {/*)}*/}
+                {/*</div>*/}
+              </>
+            )}
+          </div>
         </div>
         <FAQ items={faqs} />
       </div>
