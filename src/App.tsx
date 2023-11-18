@@ -141,8 +141,8 @@ const App = () => {
           <div className="mb-4 text-center italic text-red-300">
             <div>By ticking the above checkbox.</div>
             <div>
-              You will be storing the input on your browser. No data are being
-              stored on any servers.
+              You will be storing the input on your own browser. No data are
+              being stored on any servers.
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@ const App = () => {
               {/*    </div>*/}
               {/*  </div>*/}
               {/*)}*/}
-              <hr />
+              <hr className="my-4" />
               <div className="flex justify-between gap-x-4 text-xl text-green-600 md:text-2xl">
                 <div>
                   Company's contribution (
@@ -199,7 +199,7 @@ const App = () => {
                 </div>
                 <div>{formatCurrency(result.contribution.employer)}</div>
               </div>
-              <hr />
+              <hr className="my-4" />
               <div className="flex justify-between text-xl text-blue-500 md:text-2xl">
                 <div>Total CPF contribution</div>
                 <div>{formatCurrency(result.contribution.total)}</div>
