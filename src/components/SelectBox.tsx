@@ -8,9 +8,14 @@ interface SelectBoxProps extends PropsWithChildren {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
-export const SelectBox = (props: SelectBoxProps) => {
-  const { name, id, defaultValue, children, onChange, ...rest } = props;
-
+export const SelectBox = ({
+  name,
+  id,
+  defaultValue,
+  children,
+  onChange,
+  ...props
+}: SelectBoxProps) => {
   return (
     <select
       name={name}
@@ -19,7 +24,7 @@ export const SelectBox = (props: SelectBoxProps) => {
       defaultValue={defaultValue}
       onChange={onChange}
       aria-label={id}
-      {...rest}
+      {...props}
     >
       {children}
     </select>
