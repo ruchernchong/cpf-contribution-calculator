@@ -23,6 +23,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - uses: oven-sh/setup-bun@v1
+      - run: bun run test
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
