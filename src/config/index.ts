@@ -22,7 +22,7 @@ export const faqs: FAQ[] = [
   {
     question: "Does this collect any of my data?",
     answer:
-      "No data are being collected. The inputs are wiped on browser refresh.",
+      "No data are being collected. The inputs are wiped on browser refresh. However, if you have checked the checkbox, you will be storing the input on the browser.",
   },
   {
     question: "Do I need to login to use this?",
