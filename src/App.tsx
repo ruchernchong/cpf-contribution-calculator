@@ -129,7 +129,7 @@ const App = () => {
               defaultValue={grossIncome || undefined}
               onChange={(e) => setGrossIncome(Number(e.target.value))}
             />
-            <div className="flex gap-x-2">
+            <div className="flex items-center gap-x-2">
               <input
                 type="checkbox"
                 id="store-data"
