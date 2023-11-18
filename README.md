@@ -1,6 +1,6 @@
 # CPF Contribution Calculator
 
-[Link to Calculator](https://cpf-contribution-calculator.vercel.app)
+[Link to Calculator](https://cpf-contribution-calculator.ruchern.xyz)
 
 You can also add this as a bookmark on a mobile device to open it as an "app".
 
