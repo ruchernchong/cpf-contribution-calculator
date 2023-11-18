@@ -1,5 +1,7 @@
 # CPF Contribution Calculator
 
+A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023
+
 [Link to Calculator](https://cpf-contribution-calculator.ruchern.xyz)
 
 You can also add this as a bookmark on a mobile device to open it as an "app".
