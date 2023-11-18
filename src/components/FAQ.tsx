@@ -46,7 +46,7 @@ export const FAQ = ({ items }: FAQProps) => {
               </div>
               <div
                 className={classNames(
-                  "border border-neutral-600 bg-neutral-100 bg-neutral-800 p-4",
+                  "border border-neutral-600 bg-neutral-800 p-4",
                   {
                     hidden: !selectedIndex,
                   }

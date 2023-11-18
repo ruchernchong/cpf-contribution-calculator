@@ -15,7 +15,7 @@ export const SelectBox = (props: SelectBoxProps) => {
     <select
       name={name}
       id={id}
-      className="mb-2 w-full cursor-pointer appearance-none rounded-lg p-2 text-neutral-900 md:w-1/3"
+      className="cursor-pointer appearance-none rounded-lg p-2 text-neutral-900"
       defaultValue={defaultValue}
       onChange={onChange}
       aria-label={id}
