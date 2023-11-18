@@ -2,7 +2,7 @@
   "name": "@ruchernchong/cpf-contribution-calculator",
   "description": "A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023",
   "private": true,
-  "version": "1.4.0",
+  "version": "1.4.1",
   "type": "module",
   "scripts": {
     "dev": "sst bind vite",
