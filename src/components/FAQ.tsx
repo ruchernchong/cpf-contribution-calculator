@@ -16,7 +16,7 @@ export const FAQ = ({ items }: FAQProps) => {
 
   return (
     <>
-      <h2>FAQs</h2>
+      <h3>FAQs</h3>
       {items.map(({ question, answer }, index) => {
         const selectedIndex = activeIndex === index;
         const hasQuestionAndAnswer = Boolean(question && answer);

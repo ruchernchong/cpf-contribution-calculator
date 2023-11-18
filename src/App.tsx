@@ -74,15 +74,22 @@ const App = () => {
   }, [grossIncome, storeInputInLocalstorage]);
 
   return (
-    <div className="flex min-h-screen flex-col text-neutral-50">
-      <div className="prose prose-invert mx-auto flex w-full max-w-6xl grow flex-col justify-center px-4 py-16 md:px-8">
-        <h1 className="text-center">CPF Contribution Calculator</h1>
-        <h2 className="text-center">Current CPF Income Ceiling</h2>
-        {incomeCeilingOnSelectedYear && (
-          <p className="text-center text-2xl text-red-300">
-            {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
-          </p>
-        )}
+    <div className="flex min-h-screen flex-col">
+      <div className="prose prose-invert mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 md:px-8">
+        <div className="text-center">
+          <h1>CPF Contribution Calculator</h1>
+          <h2>
+            A calculator to compute CPF contributions after the 2023 income
+            ceiling changes following Ministry of Finance announcement at the
+            Singapore Budget 2023
+          </h2>
+          <h3>Current CPF Income Ceiling</h3>
+          {incomeCeilingOnSelectedYear && (
+            <p className="text-2xl text-red-300">
+              {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
+            </p>
+          )}
+        </div>
         <div className="gap-x-4 md:flex">
           <div className="flex flex-col gap-y-2 md:w-1/3">
             <SelectBox
