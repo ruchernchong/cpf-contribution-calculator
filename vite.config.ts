@@ -4,6 +4,9 @@ import { VitePluginRadar } from "vite-plugin-radar";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { VitePWA } from "vite-plugin-pwa";
 
+const title = `CPF Contribution Calculator`;
+const description = `A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023`;
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -21,10 +24,9 @@ export default defineConfig({
       injectRegister: "auto",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
-        name: "CPF Contribution Calculator",
-        short_name: "CPF Contribution Calculator",
-        description:
-          "A CPF Contribution Calculator with the latest Income Ceiling changes",
+        name: title,
+        short_name: title,
+        description,
         theme_color: "#000000",
         icons: [
           {
