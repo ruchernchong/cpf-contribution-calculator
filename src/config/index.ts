@@ -30,6 +30,11 @@ export const faqs: FAQ[] = [
       "No login is required. There is no reason to implement this since it is not storing any form of data",
   },
   {
+    question: 'Should I check the "Store input on this browser?"',
+    answer:
+      "This is a feature to help with storing the input value on your own browser and for the convenience of not having to re-type your input when you return to this page. It is strictly up to you to decide to use this function or not.",
+  },
+  {
     question: "Why are you doing this?",
     answer:
       "As a developer, I just love to build things. I created this immediately after the announcement of the CPF income ceiling changes in Budget 2023 (14 February). I wanted to challenge myself and see how quickly could I react to design and deploy to production a particular microservice/product.",
