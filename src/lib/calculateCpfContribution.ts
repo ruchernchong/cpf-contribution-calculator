@@ -6,6 +6,12 @@ import {
 } from "../config";
 import type { ContributionResult, IncomeOptions } from "../types";
 
+enum CPF_TYPE {
+  OA = "OA",
+  SA = "SA",
+  MA = "MA",
+}
+
 export const calculateCpfContribution = (
   income: number,
   year: number | string,
@@ -27,23 +33,45 @@ export const calculateCpfContribution = (
     incomeCeiling = CPF_INCOME_CEILING_BEFORE_SEPT_2023;
   }
 
-  if (income <= incomeCeiling) {
-    return {
-      contribution: {
-        employee: Math.round(employeeContribution * income),
-        employer: Math.round(employerContribution * income),
-        total: totalCpfContribution * income,
-      },
-      afterCpfContribution: (1 - employeeContribution) * income,
-    };
-  }
+  const distributionRate = options?.ageGroup?.distributionRate;
 
-  return {
-    contribution: {
-      employee: Math.round(employeeContribution * incomeCeiling),
-      employer: Math.round(employerContribution * incomeCeiling),
-      total: totalCpfContribution * incomeCeiling,
-    },
-    afterCpfContribution: income - employeeContribution * incomeCeiling,
+  const calculateDistributionValue = (type: CPF_TYPE) => {
+    if (distributionRate) {
+      return {
+        [type]: +(
+          +distributionRate[type] *
+          totalCpfContribution *
+          income
+        ).toFixed(2),
+      };
+    }
   };
+
+  const calculateContribution = (income: number) => {
+    let employee, employer, total, afterCpfContribution;
+
+    if (income <= incomeCeiling) {
+      employee = +(employeeContribution * income).toFixed(2);
+      employer = +(employerContribution * income).toFixed(2);
+      total = totalCpfContribution * income;
+      afterCpfContribution = (1 - employeeContribution) * income;
+    } else {
+      employee = +(employeeContribution * incomeCeiling).toFixed(2);
+      employer = +(employerContribution * incomeCeiling).toFixed(2);
+      total = totalCpfContribution * incomeCeiling;
+      afterCpfContribution = income - employeeContribution * incomeCeiling;
+    }
+
+    return {
+      contribution: { employee, employer, total },
+      distribution: {
+        ...calculateDistributionValue(CPF_TYPE.OA),
+        ...calculateDistributionValue(CPF_TYPE.SA),
+        ...calculateDistributionValue(CPF_TYPE.MA),
+      },
+      afterCpfContribution,
+    };
+  };
+
+  return calculateContribution(income);
 };
