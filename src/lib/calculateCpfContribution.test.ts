@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { calculateCpfContribution } from "./calculateCpfContribution";
 import type { ContributionResult } from "../types";
+import {
+  DEFAULT_EMPLOYEE_CONTRIBUTION,
+  DEFAULT_EMPLOYER_CONTRIBUTION,
+} from "../config";
 
 type TestCase = {
   year: number;
@@ -14,6 +18,11 @@ const testCases: TestCase[] = [
     income: 4000,
     expected: {
       contribution: { employee: 800, employer: 680, total: 1480 },
+      distribution: {
+        OA: 920.12,
+        SA: 239.91,
+        MA: 319.98,
+      },
       afterCpfContribution: 3200,
     },
   },
@@ -22,6 +31,11 @@ const testCases: TestCase[] = [
     income: 6000,
     expected: {
       contribution: { employee: 1200, employer: 1020, total: 2220 },
+      distribution: {
+        MA: 479.96,
+        OA: 1380.17,
+        SA: 359.86,
+      },
       afterCpfContribution: 4800,
     },
   },
@@ -30,6 +44,11 @@ const testCases: TestCase[] = [
     income: 8000,
     expected: {
       contribution: { employee: 1200, employer: 1020, total: 2220 },
+      distribution: {
+        MA: 639.95,
+        OA: 1840.23,
+        SA: 479.82,
+      },
       afterCpfContribution: 6800,
     },
   },
@@ -38,6 +57,11 @@ const testCases: TestCase[] = [
     income: 4000,
     expected: {
       contribution: { employee: 800, employer: 680, total: 1480 },
+      distribution: {
+        OA: 920.12,
+        SA: 239.91,
+        MA: 319.98,
+      },
       afterCpfContribution: 3200,
     },
   },
@@ -46,6 +70,11 @@ const testCases: TestCase[] = [
     income: 6000,
     expected: {
       contribution: { employee: 1200, employer: 1020, total: 2220 },
+      distribution: {
+        MA: 479.96,
+        OA: 1380.17,
+        SA: 359.86,
+      },
       afterCpfContribution: 4800,
     },
   },
@@ -54,6 +83,11 @@ const testCases: TestCase[] = [
     income: 8000,
     expected: {
       contribution: { employee: 1600, employer: 1360, total: 2960 },
+      distribution: {
+        MA: 639.95,
+        OA: 1840.23,
+        SA: 479.82,
+      },
       afterCpfContribution: 6400,
     },
   },
@@ -62,16 +96,34 @@ const testCases: TestCase[] = [
     income: 10000,
     expected: {
       contribution: { employee: 1600, employer: 1360, total: 2960 },
+      distribution: {
+        MA: 799.94,
+        OA: 2300.29,
+        SA: 599.77,
+      },
       afterCpfContribution: 8400,
     },
   },
 ];
 
+const testAgeGroup = {
+  description: "55 and below",
+  min: 0,
+  max: 35,
+  contributionRate: {
+    employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
+    employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+  },
+  distributionRate: { OA: 0.6217, SA: 0.1621, MA: 0.2162 },
+};
+
 describe("calculateCpfContribution", () => {
   it.each(testCases)(
     "should return the expected income after CPF contribution in $year on a gross income of $income",
     ({ year, income, expected }) => {
-      expect(calculateCpfContribution(income, year)).toEqual(expected);
+      expect(
+        calculateCpfContribution(income, year, { ageGroup: testAgeGroup })
+      ).toEqual(expected);
     }
   );
 
@@ -80,12 +132,14 @@ describe("calculateCpfContribution", () => {
       calculateCpfContribution(6000, 2023, { useCeilingBeforeSep2023: true })
     ).toEqual({
       contribution: { employee: 1200, employer: 1020, total: 2220 },
+      distribution: {},
       afterCpfContribution: 4800,
     });
     expect(
       calculateCpfContribution(8000, 2023, { useCeilingBeforeSep2023: true })
     ).toEqual({
       contribution: { employee: 1200, employer: 1020, total: 2220 },
+      distribution: {},
       afterCpfContribution: 6800,
     });
   });
@@ -97,10 +151,16 @@ describe("calculateCpfContribution", () => {
           description: "Above 70",
           min: 70,
           contributionRate: { employee: 0.05, employer: 0.075 },
+          distributionRate: { OA: 0.08, SA: 0.08, MA: 0.84 },
         },
       })
     ).toEqual({
       contribution: { employee: 300, employer: 450, total: 750 },
+      distribution: {
+        OA: 60,
+        SA: 60,
+        MA: 630,
+      },
       afterCpfContribution: 5700,
     });
   });

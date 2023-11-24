@@ -3,11 +3,18 @@ export type ContributionRate = {
   employer: number;
 };
 
+export type DistributionRate = {
+  OA: number;
+  SA: number;
+  MA: number;
+};
+
 export type AgeGroup = {
   description: string;
-  min?: number;
+  min: number;
   max?: number;
   contributionRate: ContributionRate;
+  distributionRate: DistributionRate;
 };
 
 export type CPFIncomeCeiling = {
@@ -17,16 +24,14 @@ export type CPFIncomeCeiling = {
 };
 
 export type IncomeOptions = {
+  age?: number;
   ageGroup?: AgeGroup;
   useCeilingBeforeSep2023?: boolean;
 };
 
 export type ContributionResult = {
-  contribution: {
-    employee: number;
-    employer: number;
-    total: number;
-  };
+  contribution: { total: number; employer: number; employee: number };
+  distribution: { [key: string]: number };
   afterCpfContribution: number;
 };
 

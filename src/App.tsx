@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
+import { CPFDistribution } from "./components/CPFDistribution";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { SelectBox } from "./components/SelectBox";
-import { calculateCpfContribution } from "./lib/calculateCpfContribution";
+import { CPF_ADDITIONAL_WAGE_CEILING, faqs } from "./config";
 import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
-
-import { CPF_ADDITIONAL_WAGE_CEILING, faqs } from "./config";
-import type { AgeGroup, ContributionRate, CPFIncomeCeiling } from "./types";
+import { calculateCpfContribution } from "./lib/calculateCpfContribution";
+import { findAgeGroup } from "./lib/findAgeGroup";
 import { formatCurrency, formatPercentage } from "./lib/format";
+import type { AgeGroup, ContributionRate, CPFIncomeCeiling } from "./types";
+import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
 
 const App = () => {
   useDarkMode();
@@ -24,16 +26,21 @@ const App = () => {
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
   );
-  const dataFromLocalstorage = JSON.parse(
+
+  const dataFromLocalStorage = JSON.parse(
     localStorage.getItem("data") as string
   );
   const [grossIncome, setGrossIncome] = useState<number>(
-    dataFromLocalstorage?.grossIncome || 0
+    dataFromLocalStorage?.grossIncome || 0
   );
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
     useState<CPFIncomeCeiling>();
-  const [storeInputInLocalstorage, setStoreInputInLocalstorage] =
-    useState<boolean>(dataFromLocalstorage?.storeInput || false);
+  const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
+    useState<boolean>(dataFromLocalStorage?.storeInput || false);
+  const [birthDate, setBirthDate] = useState<string>(
+    dataFromLocalStorage?.birthDate
+  );
+  const [selectedAge, setSelectedAge] = useState<number>();
 
   useEffect(() => {
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
@@ -48,6 +55,11 @@ const App = () => {
     }
   }, [ageGroup]);
 
+  useEffect(() => {
+    const age = convertBirthDateToAge(birthDate);
+    setSelectedAge(age);
+  }, [birthDate]);
+
   let result;
   if (currentIncomeCeiling && grossIncome) {
     result = calculateCpfContribution(grossIncome, currentIncomeCeiling, {
@@ -55,23 +67,47 @@ const App = () => {
     });
   }
 
+  let distributionRate;
+  if (result) {
+    distributionRate = Object.entries(result.distribution).map(
+      ([name, value]) => ({ name, value })
+    );
+  }
+
   const annualWage = grossIncome * 12;
 
   useEffect(() => {
-    if (storeInputInLocalstorage) {
+    if (storeInputInLocalStorage) {
       localStorage.setItem(
         "data",
-        JSON.stringify({ storeInput: storeInputInLocalstorage, grossIncome })
+        JSON.stringify({
+          storeInput: storeInputInLocalStorage,
+          grossIncome,
+          birthDate,
+        })
+      );
+    } else {
+      localStorage.setItem(
+        "data",
+        JSON.stringify({ storeInput: storeInputInLocalStorage, grossIncome: 0 })
       );
     }
+  }, [birthDate, grossIncome, storeInputInLocalStorage]);
 
-    if (!storeInputInLocalstorage) {
-      localStorage.setItem(
-        "data",
-        JSON.stringify({ storeInput: storeInputInLocalstorage, grossIncome: 0 })
-      );
+  const handleBirthDateChange = (e: { target: { value: string } }) => {
+    const birthdate = e.target.value;
+    const age = convertBirthDateToAge(birthdate);
+
+    setBirthDate(birthdate);
+    setSelectedAge(age);
+  };
+
+  useEffect(() => {
+    if (selectedAge) {
+      const ageGroup = findAgeGroup(selectedAge) as AgeGroup;
+      setAgeGroup(ageGroup);
     }
-  }, [grossIncome, storeInputInLocalstorage]);
+  }, [selectedAge]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -92,19 +128,16 @@ const App = () => {
         </div>
         <div className="gap-x-4 md:flex">
           <div className="flex flex-col gap-y-2 md:w-1/3">
-            <SelectBox
-              name="age-group"
-              id="age-group"
-              onChange={(e) => setAgeGroup(ageGroups[Number(e.target.value)])}
-            >
-              {ageGroups.map(({ description }, index) => {
-                return (
-                  <option key={index} value={index}>
-                    {description}
-                  </option>
-                );
-              })}
-            </SelectBox>
+            <input
+              type="text"
+              name="dateOfBirth"
+              id="dateOfBirth"
+              placeholder="MM/YYYY"
+              className="rounded-lg p-2 text-neutral-900"
+              maxLength={7}
+              defaultValue={birthDate}
+              onChange={handleBirthDateChange}
+            />
             <SelectBox
               name="cpf-income-ceiling"
               id="cpf-income-ceiling"
@@ -140,8 +173,8 @@ const App = () => {
               <input
                 type="checkbox"
                 id="store-data"
-                defaultChecked={storeInputInLocalstorage}
-                onChange={(e) => setStoreInputInLocalstorage(e.target.checked)}
+                defaultChecked={storeInputInLocalStorage}
+                onChange={(e) => setStoreInputInLocalStorage(e.target.checked)}
               />
               <label htmlFor="store-data">Store input on this browser?</label>
             </div>
@@ -242,6 +275,7 @@ const App = () => {
             )}
           </div>
         </div>
+        <CPFDistribution data={distributionRate} />
         <FAQ items={faqs} />
       </div>
       <Footer />
