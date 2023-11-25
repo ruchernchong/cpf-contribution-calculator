@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
 import { formatCurrency, formatPercentage } from "../lib/format";
 
-export const DistributionPieChart = ({ data }: any) => {
+interface DistributionPieChartProps extends PropsWithChildren {
+  data: any;
+  className: string;
+}
+
+export const DistributionPieChart = ({
+  data,
+  ...props
+}: DistributionPieChartProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const renderActiveShape = (props: any) => {
@@ -85,6 +93,7 @@ export const DistributionPieChart = ({ data }: any) => {
       width="50%"
       aspect={16 / 9}
       style={{ margin: "0 auto" }}
+      className={props.className}
     >
       <PieChart>
         <Pie

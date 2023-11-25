@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateCpfContribution } from "./calculateCpfContribution";
-import type { ContributionResult } from "../types";
+import type { ComputedResult } from "../types";
 import {
   DEFAULT_EMPLOYEE_CONTRIBUTION,
   DEFAULT_EMPLOYER_CONTRIBUTION,
@@ -9,7 +9,7 @@ import {
 type TestCase = {
   effectiveDate: string;
   income: number;
-  expected: ContributionResult;
+  expected: ComputedResult;
 };
 
 const testCases: TestCase[] = [

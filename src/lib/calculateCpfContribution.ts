@@ -6,8 +6,9 @@ import {
   DEFAULT_EMPLOYER_CONTRIBUTION,
 } from "../config";
 import type {
-  ContributionResult,
+  ComputedResult,
   DistributionRate,
+  DistributionResult,
   IncomeOptions,
 } from "../types";
 
@@ -15,7 +16,7 @@ export const calculateCpfContribution = (
   income: number,
   year: number | string,
   options?: IncomeOptions
-): ContributionResult => {
+): ComputedResult => {
   let employeeContribution = DEFAULT_EMPLOYEE_CONTRIBUTION,
     employerContribution = DEFAULT_EMPLOYER_CONTRIBUTION;
 
@@ -39,11 +40,9 @@ export const calculateCpfContribution = (
   ): DistributionRate | undefined => {
     if (distributionRate) {
       return {
-        [type]: +(
-          +distributionRate[type] *
-          totalCpfContribution *
-          income
-        ).toFixed(2),
+        [type]: parseInt(
+          (distributionRate[type] * totalCpfContribution * income).toFixed(2)
+        ),
       };
     }
   };

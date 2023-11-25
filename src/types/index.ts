@@ -3,9 +3,7 @@ export type ContributionRate = {
   employer: number;
 };
 
-export type DistributionRate = {
-  [key: string]: number;
-};
+export type DistributionRate = Record<string, number>;
 
 export type AgeGroup = {
   description: string;
@@ -27,7 +25,18 @@ export type IncomeOptions = {
 };
 
 export type ContributionResult = {
-  contribution: { total: number; employer: number; employee: number };
+  total: number;
+  employer: number;
+  employee: number;
+};
+
+export type DistributionResult = {
+  name: string;
+  value: number;
+};
+
+export type ComputedResult = {
+  contribution: ContributionResult;
   distribution: DistributionRate;
   afterCpfContribution: number;
 };

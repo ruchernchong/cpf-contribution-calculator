@@ -1,9 +1,9 @@
 import { formatCurrency, formatPercentage } from "../lib/format";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "../config";
-import type { ContributionRate, ContributionResult } from "../types";
+import type { ContributionRate, ComputedResult } from "../types";
 
 type ContributionResultProps = {
-  result: ContributionResult;
+  result: ComputedResult;
   contributionRate: ContributionRate;
   monthlyGrossIncome: number;
 };
