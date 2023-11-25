@@ -7,14 +7,14 @@ import {
 } from "../config";
 
 type TestCase = {
-  year: number;
+  effectiveDate: string;
   income: number;
   expected: ContributionResult;
 };
 
 const testCases: TestCase[] = [
   {
-    year: 2023,
+    effectiveDate: "01-2023",
     income: 4000,
     expected: {
       contribution: { employee: 800, employer: 680, total: 1480 },
@@ -27,7 +27,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    year: 2023,
+    effectiveDate: "01-2023",
     income: 6000,
     expected: {
       contribution: { employee: 1200, employer: 1020, total: 2220 },
@@ -40,7 +40,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    year: 2023,
+    effectiveDate: "01-2023",
     income: 8000,
     expected: {
       contribution: { employee: 1200, employer: 1020, total: 2220 },
@@ -53,7 +53,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    year: 2026,
+    effectiveDate: "01-2026",
     income: 4000,
     expected: {
       contribution: { employee: 800, employer: 680, total: 1480 },
@@ -66,7 +66,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    year: 2026,
+    effectiveDate: "01-2026",
     income: 6000,
     expected: {
       contribution: { employee: 1200, employer: 1020, total: 2220 },
@@ -79,7 +79,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    year: 2026,
+    effectiveDate: "01-2026",
     income: 8000,
     expected: {
       contribution: { employee: 1600, employer: 1360, total: 2960 },
@@ -92,7 +92,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    year: 2026,
+    effectiveDate: "01-2026",
     income: 10000,
     expected: {
       contribution: { employee: 1600, employer: 1360, total: 2960 },
@@ -120,23 +120,29 @@ const testAgeGroup = {
 describe("calculateCpfContribution", () => {
   it.each(testCases)(
     "should return the expected income after CPF contribution in $year on a gross income of $income",
-    ({ year, income, expected }) => {
+    ({ effectiveDate, income, expected }) => {
       expect(
-        calculateCpfContribution(income, year, { ageGroup: testAgeGroup })
+        calculateCpfContribution(income, effectiveDate, {
+          ageGroup: testAgeGroup,
+        })
       ).toEqual(expected);
     }
   );
 
   it("should return the income after CPF contribution before the ceiling changes", () => {
     expect(
-      calculateCpfContribution(6000, 2023, { useCeilingBeforeSep2023: true })
+      calculateCpfContribution(6000, "01-2023", {
+        useCeilingBeforeSep2023: true,
+      })
     ).toEqual({
       contribution: { employee: 1200, employer: 1020, total: 2220 },
       distribution: {},
       afterCpfContribution: 4800,
     });
     expect(
-      calculateCpfContribution(8000, 2023, { useCeilingBeforeSep2023: true })
+      calculateCpfContribution(8000, "01-2023", {
+        useCeilingBeforeSep2023: true,
+      })
     ).toEqual({
       contribution: { employee: 1200, employer: 1020, total: 2220 },
       distribution: {},
@@ -146,7 +152,7 @@ describe("calculateCpfContribution", () => {
 
   it("should return the result correctly for a certain age group", () => {
     expect(
-      calculateCpfContribution(6000, 2023, {
+      calculateCpfContribution(6000, "01-2023", {
         ageGroup: {
           description: "Above 70",
           min: 70,
