@@ -30,7 +30,7 @@ export type IncomeOptions = {
 
 export type ContributionResult = {
   contribution: { total: number; employer: number; employee: number };
-  distribution: { [key: string]: number };
+  distribution: DistributionRate;
   afterCpfContribution: number;
 };
 

@@ -5,22 +5,22 @@ import type { ContributionRate, ContributionResult } from "../types";
 type ContributionResultProps = {
   result: ContributionResult;
   contributionRate: ContributionRate;
-  grossIncome: number;
+  monthlyGrossIncome: number;
 };
 
 export const CalculatedResult = ({
   result,
   contributionRate,
-  grossIncome,
+  monthlyGrossIncome,
 }: ContributionResultProps) => {
-  const annualWage = grossIncome * 12;
+  const annualWage = monthlyGrossIncome * 12;
 
   return (
     <div className="flex flex-auto flex-col gap-y-2">
-      {Boolean(grossIncome) && (
+      {Boolean(monthlyGrossIncome) && (
         <div className="flex justify-between text-xl">
           <div>Gross income</div>
-          <div>{formatCurrency(grossIncome as number)}</div>
+          <div>{formatCurrency(monthlyGrossIncome)}</div>
         </div>
       )}
       {result && (
