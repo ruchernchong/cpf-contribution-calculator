@@ -57,9 +57,9 @@ const testCases: TestCase[] = [
         total: 2220,
       },
       distribution: {
-        MA: 639.95,
-        OA: 1840.23,
-        SA: 479.82,
+        OA: 1380.17,
+        SA: 359.86,
+        MA: 479.96,
       },
       afterCpfContribution: 6800,
     },
@@ -91,9 +91,9 @@ const testCases: TestCase[] = [
         total: 2220,
       },
       distribution: {
-        MA: 479.96,
         OA: 1380.17,
         SA: 359.86,
+        MA: 479.96,
       },
       afterCpfContribution: 4800,
     },
@@ -125,9 +125,9 @@ const testCases: TestCase[] = [
         total: 2960,
       },
       distribution: {
-        MA: 799.94,
-        OA: 2300.29,
-        SA: 599.77,
+        OA: 1840.23,
+        SA: 479.82,
+        MA: 639.95,
       },
       afterCpfContribution: 8400,
     },
@@ -147,7 +147,7 @@ const testAgeGroup = {
 
 describe("calculateCpfContribution", () => {
   it.each(testCases)(
-    "should return the expected income after CPF contribution in $year on a gross income of $income",
+    "should return the expected income after CPF contribution in $effectiveDate on a gross income of $income",
     ({ effectiveDate, income, expected }) => {
       expect(
         calculateCpfContribution(income, effectiveDate, {
