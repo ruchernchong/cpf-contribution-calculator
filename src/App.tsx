@@ -120,7 +120,7 @@ const App = () => {
           </h2>
           <h3>Current CPF Income Ceiling</h3>
           {incomeCeilingOnSelectedYear && (
-            <p className="text-2xl text-red-300">
+            <p className="text-4xl font-extrabold text-red-300">
               {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
             </p>
           )}
