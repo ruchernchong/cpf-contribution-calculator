@@ -55,6 +55,7 @@ export const UserInput = ({
         pattern="\d*"
         placeholder="Gross Income e.g. 10000"
         className="rounded-lg p-2 text-neutral-900"
+        defaultValue={monthlyGrossIncome}
         onChange={onGrossIncomeChange}
       />
       <div className="flex items-center gap-x-2">

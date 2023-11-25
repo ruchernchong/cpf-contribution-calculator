@@ -17,7 +17,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2023",
     income: 4000,
     expected: {
-      contribution: { employee: 800, employer: 680, total: 1480 },
+      contribution: {
+        employee: 800,
+        employer: 680,
+        total: 1480,
+      },
       distribution: {
         OA: 920.12,
         SA: 239.91,
@@ -30,7 +34,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2023",
     income: 6000,
     expected: {
-      contribution: { employee: 1200, employer: 1020, total: 2220 },
+      contribution: {
+        employee: 1200,
+        employer: 1020,
+        total: 2220,
+      },
       distribution: {
         MA: 479.96,
         OA: 1380.17,
@@ -43,7 +51,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2023",
     income: 8000,
     expected: {
-      contribution: { employee: 1200, employer: 1020, total: 2220 },
+      contribution: {
+        employee: 1200,
+        employer: 1020,
+        total: 2220,
+      },
       distribution: {
         MA: 639.95,
         OA: 1840.23,
@@ -56,7 +68,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2026",
     income: 4000,
     expected: {
-      contribution: { employee: 800, employer: 680, total: 1480 },
+      contribution: {
+        employee: 800,
+        employer: 680,
+        total: 1480,
+      },
       distribution: {
         OA: 920.12,
         SA: 239.91,
@@ -69,7 +85,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2026",
     income: 6000,
     expected: {
-      contribution: { employee: 1200, employer: 1020, total: 2220 },
+      contribution: {
+        employee: 1200,
+        employer: 1020,
+        total: 2220,
+      },
       distribution: {
         MA: 479.96,
         OA: 1380.17,
@@ -82,7 +102,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2026",
     income: 8000,
     expected: {
-      contribution: { employee: 1600, employer: 1360, total: 2960 },
+      contribution: {
+        employee: 1600,
+        employer: 1360,
+        total: 2960,
+      },
       distribution: {
         MA: 639.95,
         OA: 1840.23,
@@ -95,7 +119,11 @@ const testCases: TestCase[] = [
     effectiveDate: "01-2026",
     income: 10000,
     expected: {
-      contribution: { employee: 1600, employer: 1360, total: 2960 },
+      contribution: {
+        employee: 1600,
+        employer: 1360,
+        total: 2960,
+      },
       distribution: {
         MA: 799.94,
         OA: 2300.29,

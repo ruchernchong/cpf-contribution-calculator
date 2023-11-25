@@ -71,7 +71,11 @@ export const calculateCpfContribution = (
     }
 
     return {
-      contribution: { employee, employer, total: totalCpfContribution },
+      contribution: {
+        employee,
+        employer,
+        total: totalCpfContribution,
+      },
       distribution: {
         ...calculateDistributionValue(totalCpfContribution, CPF_TYPE.OA),
         ...calculateDistributionValue(totalCpfContribution, CPF_TYPE.SA),
