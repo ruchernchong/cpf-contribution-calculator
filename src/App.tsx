@@ -17,24 +17,21 @@ import type {
   CPFIncomeCeiling,
 } from "./types";
 import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
+import { findLatestIncomeCeilingDate } from "./lib/findLatestIncomeCeilingDate";
 
 const App = () => {
   useDarkMode();
 
-  const currentYear = cpfIncomeCeilings.find(({ current }) =>
-    Boolean(current)
-  )?.year;
-
-  const [currentIncomeCeiling, setCurrentIncomeCeiling] = useState<
-    string | undefined
-  >(currentYear);
+  const latestIncomeCeiling = findLatestIncomeCeilingDate(cpfIncomeCeilings);
+  const [currentYearIncomeCeiling, setCurrentYearIncomeCeiling] =
+    useState<string>(latestIncomeCeiling);
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
   );
 
   const dataFromLocalStorage = JSON.parse(localStorage.getItem("data") || "{}");
-  const [grossIncome, setGrossIncome] = useState<number>(
+  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(
     dataFromLocalStorage.grossIncome || 0
   );
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
@@ -44,14 +41,14 @@ const App = () => {
   const [birthDate, setBirthDate] = useState<string>(
     dataFromLocalStorage.birthDate || ""
   );
-  const [selectedAge, setSelectedAge] = useState<number>();
+  const [selectedAge, setSelectedAge] = useState<number>(0);
 
   useEffect(() => {
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ year }) => year === currentIncomeCeiling
+      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling
     );
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [currentIncomeCeiling]);
+  }, [currentYearIncomeCeiling]);
 
   useEffect(() => {
     if (ageGroup) {
@@ -64,24 +61,22 @@ const App = () => {
     setSelectedAge(age);
   }, [birthDate]);
 
-  let result;
-  if (currentIncomeCeiling && grossIncome) {
-    result = calculateCpfContribution(grossIncome, currentIncomeCeiling, {
+  const contributionResult: ContributionResult = calculateCpfContribution(
+    monthlyGrossIncome,
+    currentYearIncomeCeiling,
+    {
       ageGroup,
-    });
-  }
+    }
+  );
 
-  let distributionRate;
-  if (result) {
-    distributionRate = Object.entries(result.distribution).map(
-      ([name, value]) => ({ name, value })
-    );
-  }
+  const distributionRate = Object.entries(contributionResult.distribution).map(
+    ([name, value]) => ({ name, value })
+  );
 
   useEffect(() => {
     const dataToStore = {
       storeInput: storeInputInLocalStorage,
-      grossIncome,
+      grossIncome: monthlyGrossIncome,
       birthDate,
     };
 
@@ -90,7 +85,7 @@ const App = () => {
     } else {
       localStorage.removeItem("data");
     }
-  }, [birthDate, grossIncome, storeInputInLocalStorage]);
+  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
 
   const handleBirthDateChange = (e: { target: { value: string } }) => {
     const birthdate = e.target.value;
@@ -102,7 +97,7 @@ const App = () => {
 
   useEffect(() => {
     if (selectedAge) {
-      const ageGroup = findAgeGroup(selectedAge) as AgeGroup;
+      const ageGroup = findAgeGroup(selectedAge);
       setAgeGroup(ageGroup);
     }
   }, [selectedAge]);
@@ -127,27 +122,29 @@ const App = () => {
         <div className="gap-x-4 md:flex">
           <UserInput
             birthDate={birthDate}
-            grossIncome={grossIncome}
-            currentYear={currentYear as string}
+            grossIncome={monthlyGrossIncome}
+            currentYear={latestIncomeCeiling}
             storeInputInLocalStorage={storeInputInLocalStorage}
             onBirthDateChange={handleBirthDateChange}
             onStoreInputInLocalStorageChange={(e) =>
               setStoreInputInLocalStorage(e.target.checked)
             }
             onCurrentIncomeCeilingChange={(e) =>
-              setCurrentIncomeCeiling(e.target.value)
+              setCurrentYearIncomeCeiling(e.target.value)
             }
             onGrossIncomeChange={(e) =>
-              setGrossIncome(parseInt(e.target.value))
+              setMonthlyGrossIncome(parseInt(e.target.value))
             }
           />
           <CalculatedResult
-            result={result as ContributionResult}
+            result={contributionResult}
             contributionRate={contributionRate}
-            grossIncome={grossIncome}
+            monthlyGrossIncome={monthlyGrossIncome}
           />
         </div>
-        <DistributionPieChart data={distributionRate} />
+        {contributionResult.contribution.total > 0 && (
+          <DistributionPieChart data={distributionRate} />
+        )}
         <FAQ items={faqs} />
       </div>
       <Footer />

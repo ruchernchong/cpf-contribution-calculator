@@ -41,18 +41,10 @@ export const UserInput = ({
         defaultValue={currentYear}
         onChange={onCurrentIncomeCeilingChange}
       >
-        {cpfIncomeCeilings.map(({ year }) => {
-          if (year === "SEPT2023") {
-            return (
-              <option key={year} value={year}>
-                September 2023
-              </option>
-            );
-          }
-
+        {cpfIncomeCeilings.map(({ effectiveDate }) => {
           return (
-            <option key={year} value={year}>
-              January {year}
+            <option key={effectiveDate} value={effectiveDate}>
+              {effectiveDate}
             </option>
           );
         })}

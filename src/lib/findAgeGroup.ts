@@ -6,4 +6,6 @@ export const findAgeGroup = (age: number) => {
       return group;
     }
   }
+
+  return ageGroups[0];
 };
