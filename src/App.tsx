@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CalculatedResult } from "./components/CalculatedResult";
-import { CPFDistribution } from "./components/CPFDistribution";
+import { DistributionPieChart } from "./components/DistributionPieChart";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { UserInput } from "./components/UserInput";
@@ -147,7 +147,7 @@ const App = () => {
             grossIncome={grossIncome}
           />
         </div>
-        <CPFDistribution data={distributionRate} />
+        <DistributionPieChart data={distributionRate} />
         <FAQ items={faqs} />
       </div>
       <Footer />

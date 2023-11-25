@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
 import { formatCurrency, formatPercentage } from "../lib/format";
 
-export const CPFDistribution = ({ data }: any) => {
+export const DistributionPieChart = ({ data }: any) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const renderActiveShape = (props: any) => {
