@@ -7,8 +7,11 @@ import { UserInput } from "./components/UserInput";
 import { faqs } from "./config";
 import { ageGroups, cpfIncomeCeilings } from "./data";
 import { useDarkMode } from "./hooks/useDarkMode";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import { calculateCpfContribution } from "./lib/calculateCpfContribution";
+import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
 import { findAgeGroup } from "./lib/findAgeGroup";
+import { findLatestIncomeCeilingDate } from "./lib/findLatestIncomeCeilingDate";
 import { formatCurrency } from "./lib/format";
 import type {
   AgeGroup,
@@ -17,9 +20,6 @@ import type {
   CPFIncomeCeiling,
   DistributionResult,
 } from "./types";
-import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
-import { findLatestIncomeCeilingDate } from "./lib/findLatestIncomeCeilingDate";
-import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const App = () => {
   useDarkMode();
