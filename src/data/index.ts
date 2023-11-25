@@ -1,6 +1,6 @@
 import {
-  DEFAULT_EMPLOYEE_CONTRIBUTION,
-  DEFAULT_EMPLOYER_CONTRIBUTION,
+  DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+  DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
 } from "../config";
 import type { AgeGroup, CPFIncomeCeiling } from "../types";
 
@@ -10,8 +10,8 @@ export const ageGroups: AgeGroup[] = [
     min: 0,
     max: 35,
     contributionRate: {
-      employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
-      employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+      employee: DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+      employer: DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
     },
     distributionRate: { OA: 0.6217, SA: 0.1621, MA: 0.2162 },
   },
@@ -20,8 +20,8 @@ export const ageGroups: AgeGroup[] = [
     min: 35,
     max: 45,
     contributionRate: {
-      employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
-      employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+      employee: DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+      employer: DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
     },
     distributionRate: { OA: 0.5677, SA: 0.1891, MA: 0.2432 },
   },
@@ -30,8 +30,8 @@ export const ageGroups: AgeGroup[] = [
     min: 45,
     max: 50,
     contributionRate: {
-      employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
-      employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+      employee: DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+      employer: DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
     },
     distributionRate: { OA: 0.5136, SA: 0.2162, MA: 0.2702 },
   },
@@ -40,8 +40,8 @@ export const ageGroups: AgeGroup[] = [
     min: 50,
     max: 55,
     contributionRate: {
-      employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
-      employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+      employee: DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+      employer: DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
     },
     distributionRate: { OA: 0.4055, SA: 0.3108, MA: 0.2837 },
   },

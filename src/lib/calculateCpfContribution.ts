@@ -2,8 +2,8 @@ import {
   CPF_INCOME_CEILING,
   CPF_INCOME_CEILING_BEFORE_SEPT_2023,
   CPF_TYPE,
-  DEFAULT_EMPLOYEE_CONTRIBUTION,
-  DEFAULT_EMPLOYER_CONTRIBUTION,
+  DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+  DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
 } from "../config";
 import type {
   ComputedResult,
@@ -17,16 +17,17 @@ export const calculateCpfContribution = (
   year: number | string,
   options?: IncomeOptions
 ): ComputedResult => {
-  let employeeContribution = DEFAULT_EMPLOYEE_CONTRIBUTION,
-    employerContribution = DEFAULT_EMPLOYER_CONTRIBUTION;
+  let employeeContributionRate = DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+    employerContributionRate = DEFAULT_EMPLOYER_CONTRIBUTION_RATE;
 
   if (options?.ageGroup) {
     const contributionRate = options.ageGroup.contributionRate;
-    employeeContribution = contributionRate.employee;
-    employerContribution = contributionRate.employer;
+    employeeContributionRate = contributionRate.employee;
+    employerContributionRate = contributionRate.employer;
   }
 
-  const totalCpfContribution = employeeContribution + employerContribution;
+  const totalCpfContributionRate =
+    employeeContributionRate + employerContributionRate;
 
   let incomeCeiling = CPF_INCOME_CEILING[year];
   if (options?.useCeilingBeforeSep2023) {
@@ -51,29 +52,30 @@ export const calculateCpfContribution = (
   const calculateContribution = (income: number): ComputedResult => {
     let employee = 0,
       employer = 0,
-      cpfContribution = 0,
+      totalCpfContribution = 0,
       afterCpfContribution = 0;
 
     if (income > 0) {
       if (income <= incomeCeiling) {
-        employee = +(employeeContribution * income).toFixed(2);
-        employer = +(employerContribution * income).toFixed(2);
-        cpfContribution = totalCpfContribution * income;
-        afterCpfContribution = (1 - employeeContribution) * income;
+        employee = +(employeeContributionRate * income).toFixed(2);
+        employer = +(employerContributionRate * income).toFixed(2);
+        totalCpfContribution = totalCpfContributionRate * income;
+        afterCpfContribution = (1 - employeeContributionRate) * income;
       } else {
-        employee = +(employeeContribution * incomeCeiling).toFixed(2);
-        employer = +(employerContribution * incomeCeiling).toFixed(2);
-        cpfContribution = totalCpfContribution * incomeCeiling;
-        afterCpfContribution = income - employeeContribution * incomeCeiling;
+        employee = +(employeeContributionRate * incomeCeiling).toFixed(2);
+        employer = +(employerContributionRate * incomeCeiling).toFixed(2);
+        totalCpfContribution = totalCpfContributionRate * incomeCeiling;
+        afterCpfContribution =
+          income - employeeContributionRate * incomeCeiling;
       }
     }
 
     return {
-      contribution: { employee, employer, total: cpfContribution },
+      contribution: { employee, employer, total: totalCpfContribution },
       distribution: {
-        ...calculateDistributionValue(cpfContribution, CPF_TYPE.OA),
-        ...calculateDistributionValue(cpfContribution, CPF_TYPE.SA),
-        ...calculateDistributionValue(cpfContribution, CPF_TYPE.MA),
+        ...calculateDistributionValue(totalCpfContribution, CPF_TYPE.OA),
+        ...calculateDistributionValue(totalCpfContribution, CPF_TYPE.SA),
+        ...calculateDistributionValue(totalCpfContribution, CPF_TYPE.MA),
       },
       afterCpfContribution,
     };

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { calculateCpfContribution } from "./calculateCpfContribution";
 import type { ComputedResult } from "../types";
 import {
-  DEFAULT_EMPLOYEE_CONTRIBUTION,
-  DEFAULT_EMPLOYER_CONTRIBUTION,
+  DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+  DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
 } from "../config";
 
 type TestCase = {
@@ -111,8 +111,8 @@ const testAgeGroup = {
   min: 0,
   max: 35,
   contributionRate: {
-    employee: DEFAULT_EMPLOYEE_CONTRIBUTION,
-    employer: DEFAULT_EMPLOYER_CONTRIBUTION,
+    employee: DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
+    employer: DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
   },
   distributionRate: { OA: 0.6217, SA: 0.1621, MA: 0.2162 },
 };

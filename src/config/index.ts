@@ -16,8 +16,8 @@ export const CPF_TYPE = {
   MA: "MA",
 };
 
-export const DEFAULT_EMPLOYEE_CONTRIBUTION: number = 0.2;
-export const DEFAULT_EMPLOYER_CONTRIBUTION: number = 0.17;
+export const DEFAULT_EMPLOYEE_CONTRIBUTION_RATE: number = 0.2;
+export const DEFAULT_EMPLOYER_CONTRIBUTION_RATE: number = 0.17;
 
 export const faqs: FAQ[] = [
   {
