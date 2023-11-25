@@ -23,23 +23,16 @@ export const DistributionComponent = ({
 
   return (
     <>
-      <table className="auto text-center">
-        <caption className="caption-bottom">
-          Table: CPF Accounts Distribution
-        </caption>
-        <thead>
+      <table className="auto border border-neutral-400 text-center">
+        <thead className="bg-neutral-800">
           <tr>
             {distributionResults.map(({ name, value }) => {
-              const distributionPercent = formatPercentage(
-                value / totalCpfContribution
-              );
-
               return (
-                <th key={name}>
+                <th key={name} className="border border-neutral-400 p-4">
                   <div>
                     {CPF_ACCOUNTS[name]} ({name})
                   </div>
-                  <div>({distributionPercent})</div>
+                  <div>({formatPercentage(value / totalCpfContribution)})</div>
                 </th>
               );
             })}
@@ -48,7 +41,11 @@ export const DistributionComponent = ({
         <tbody>
           <tr>
             {distributionResults.map(({ name, value }) => {
-              return <td key={name}>{formatCurrency(value)}</td>;
+              return (
+                <td key={name} className="border border-neutral-400 p-4">
+                  {formatCurrency(value)}
+                </td>
+              );
             })}
           </tr>
         </tbody>
