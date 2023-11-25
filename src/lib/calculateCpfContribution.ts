@@ -40,7 +40,7 @@ export const calculateCpfContribution = (
   ): DistributionRate | undefined => {
     if (distributionRate) {
       return {
-        [type]: parseInt(
+        [type]: parseFloat(
           (distributionRate[type] * totalCpfContribution * income).toFixed(2)
         ),
       };

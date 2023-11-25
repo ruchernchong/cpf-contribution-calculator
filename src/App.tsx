@@ -137,7 +137,7 @@ const App = () => {
               setCurrentYearIncomeCeiling(e.target.value)
             }
             onGrossIncomeChange={(e) =>
-              setMonthlyGrossIncome(parseInt(e.target.value))
+              setMonthlyGrossIncome(parseFloat(e.target.value))
             }
           />
           <CalculatedResult
