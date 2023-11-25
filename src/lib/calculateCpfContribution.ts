@@ -36,38 +36,44 @@ export const calculateCpfContribution = (
   const distributionRate = options?.ageGroup?.distributionRate;
 
   const calculateDistributionValue = (
+    cpfContribution: number,
     type: string
   ): DistributionRate | undefined => {
     if (distributionRate) {
       return {
         [type]: parseFloat(
-          (distributionRate[type] * totalCpfContribution * income).toFixed(2)
+          (distributionRate[type] * cpfContribution).toFixed(2)
         ),
       };
     }
   };
 
   const calculateContribution = (income: number): ComputedResult => {
-    let employee, employer, total, afterCpfContribution;
+    let employee = 0,
+      employer = 0,
+      cpfContribution = 0,
+      afterCpfContribution = 0;
 
-    if (income <= incomeCeiling) {
-      employee = +(employeeContribution * income).toFixed(2);
-      employer = +(employerContribution * income).toFixed(2);
-      total = totalCpfContribution * income;
-      afterCpfContribution = (1 - employeeContribution) * income;
-    } else {
-      employee = +(employeeContribution * incomeCeiling).toFixed(2);
-      employer = +(employerContribution * incomeCeiling).toFixed(2);
-      total = totalCpfContribution * incomeCeiling;
-      afterCpfContribution = income - employeeContribution * incomeCeiling;
+    if (income > 0) {
+      if (income <= incomeCeiling) {
+        employee = +(employeeContribution * income).toFixed(2);
+        employer = +(employerContribution * income).toFixed(2);
+        cpfContribution = totalCpfContribution * income;
+        afterCpfContribution = (1 - employeeContribution) * income;
+      } else {
+        employee = +(employeeContribution * incomeCeiling).toFixed(2);
+        employer = +(employerContribution * incomeCeiling).toFixed(2);
+        cpfContribution = totalCpfContribution * incomeCeiling;
+        afterCpfContribution = income - employeeContribution * incomeCeiling;
+      }
     }
 
     return {
-      contribution: { employee, employer, total },
+      contribution: { employee, employer, total: cpfContribution },
       distribution: {
-        ...calculateDistributionValue(CPF_TYPE.OA),
-        ...calculateDistributionValue(CPF_TYPE.SA),
-        ...calculateDistributionValue(CPF_TYPE.MA),
+        ...calculateDistributionValue(cpfContribution, CPF_TYPE.OA),
+        ...calculateDistributionValue(cpfContribution, CPF_TYPE.SA),
+        ...calculateDistributionValue(cpfContribution, CPF_TYPE.MA),
       },
       afterCpfContribution,
     };
