@@ -4,9 +4,7 @@ export type ContributionRate = {
 };
 
 export type DistributionRate = {
-  OA: number;
-  SA: number;
-  MA: number;
+  [key: string]: number;
 };
 
 export type AgeGroup = {

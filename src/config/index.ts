@@ -10,6 +10,12 @@ export const CPF_INCOME_CEILING: Record<number | string, number> = {
 };
 export const CPF_ADDITIONAL_WAGE_CEILING: number = 102000;
 
+export const CPF_TYPE = {
+  OA: "OA",
+  SA: "SA",
+  MA: "MA",
+};
+
 export const DEFAULT_EMPLOYEE_CONTRIBUTION: number = 0.2;
 export const DEFAULT_EMPLOYER_CONTRIBUTION: number = 0.17;
 

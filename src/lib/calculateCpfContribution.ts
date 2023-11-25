@@ -1,16 +1,15 @@
 import {
   CPF_INCOME_CEILING,
   CPF_INCOME_CEILING_BEFORE_SEPT_2023,
+  CPF_TYPE,
   DEFAULT_EMPLOYEE_CONTRIBUTION,
   DEFAULT_EMPLOYER_CONTRIBUTION,
 } from "../config";
-import type { ContributionResult, IncomeOptions } from "../types";
-
-enum CPF_TYPE {
-  OA = "OA",
-  SA = "SA",
-  MA = "MA",
-}
+import type {
+  ContributionResult,
+  DistributionRate,
+  IncomeOptions,
+} from "../types";
 
 export const calculateCpfContribution = (
   income: number,
@@ -35,7 +34,9 @@ export const calculateCpfContribution = (
 
   const distributionRate = options?.ageGroup?.distributionRate;
 
-  const calculateDistributionValue = (type: CPF_TYPE) => {
+  const calculateDistributionValue = (
+    type: string
+  ): DistributionRate | undefined => {
     if (distributionRate) {
       return {
         [type]: +(
