@@ -17,17 +17,25 @@ import type {
   CPFIncomeCeiling,
 } from "./types";
 import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
+import { closestTo, format, isPast, max, parse } from "date-fns";
 
 const App = () => {
   useDarkMode();
 
-  const currentYear = cpfIncomeCeilings.find(({ current }) =>
-    Boolean(current)
-  )?.year;
+  const parsedData = cpfIncomeCeilings.map(({ effectiveDate, ceiling }) => ({
+    date: parse(effectiveDate, "MM-yyyy", new Date()),
+    ceiling,
+  }));
+  const currentDate = new Date();
+  const pastDates = parsedData.filter(({ date }) => date < currentDate);
+  const closestPastDate = closestTo(
+    currentDate,
+    pastDates.map(({ date }) => date)
+  ) as Date;
+  const formattedClosestPastDate = format(closestPastDate, "MM-yyyy");
 
-  const [currentIncomeCeiling, setCurrentIncomeCeiling] = useState<
-    string | undefined
-  >(currentYear);
+  const [currentYearIncomeCeiling, setCurrentYearIncomeCeiling] =
+    useState<string>(formattedClosestPastDate);
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate
@@ -48,10 +56,10 @@ const App = () => {
 
   useEffect(() => {
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ year }) => year === currentIncomeCeiling
+      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling
     );
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [currentIncomeCeiling]);
+  }, [currentYearIncomeCeiling]);
 
   useEffect(() => {
     if (ageGroup) {
@@ -64,19 +72,17 @@ const App = () => {
     setSelectedAge(age);
   }, [birthDate]);
 
-  let result;
-  if (currentIncomeCeiling && grossIncome) {
-    result = calculateCpfContribution(grossIncome, currentIncomeCeiling, {
+  const contributionResult = calculateCpfContribution(
+    grossIncome,
+    currentYearIncomeCeiling,
+    {
       ageGroup,
-    });
-  }
+    }
+  );
 
-  let distributionRate;
-  if (result) {
-    distributionRate = Object.entries(result.distribution).map(
-      ([name, value]) => ({ name, value })
-    );
-  }
+  const distributionRate = Object.entries(contributionResult.distribution).map(
+    ([name, value]) => ({ name, value })
+  );
 
   useEffect(() => {
     const dataToStore = {
@@ -128,21 +134,21 @@ const App = () => {
           <UserInput
             birthDate={birthDate}
             grossIncome={grossIncome}
-            currentYear={currentYear as string}
+            currentYear={formattedClosestPastDate}
             storeInputInLocalStorage={storeInputInLocalStorage}
             onBirthDateChange={handleBirthDateChange}
             onStoreInputInLocalStorageChange={(e) =>
               setStoreInputInLocalStorage(e.target.checked)
             }
             onCurrentIncomeCeilingChange={(e) =>
-              setCurrentIncomeCeiling(e.target.value)
+              setCurrentYearIncomeCeiling(e.target.value)
             }
             onGrossIncomeChange={(e) =>
               setGrossIncome(parseInt(e.target.value))
             }
           />
           <CalculatedResult
-            result={result as ContributionResult}
+            result={contributionResult}
             contributionRate={contributionRate}
             grossIncome={grossIncome}
           />

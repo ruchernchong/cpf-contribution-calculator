@@ -76,24 +76,23 @@ export const ageGroups: AgeGroup[] = [
 
 export const cpfIncomeCeilings: CPFIncomeCeiling[] = [
   {
-    year: "2023",
+    effectiveDate: "01-2023",
     ceiling: 6000,
   },
   {
-    year: "SEPT2023",
+    effectiveDate: "09-2023",
     ceiling: 6300,
-    current: true,
   },
   {
-    year: "2024",
+    effectiveDate: "01-2024",
     ceiling: 6800,
   },
   {
-    year: "2025",
+    effectiveDate: "01-2025",
     ceiling: 7400,
   },
   {
-    year: "2026",
+    effectiveDate: "01-2026",
     ceiling: 8000,
   },
 ];

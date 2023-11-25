@@ -18,9 +18,8 @@ export type AgeGroup = {
 };
 
 export type CPFIncomeCeiling = {
-  year: string;
+  effectiveDate: string;
   ceiling: number;
-  current?: boolean;
 };
 
 export type IncomeOptions = {
