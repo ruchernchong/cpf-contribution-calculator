@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { CalculatedResult } from "./components/CalculatedResult";
-import { DistributionPieChart } from "./components/DistributionPieChart";
 import { DistributionComponent } from "./components/DistributionComponent";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
@@ -16,7 +15,6 @@ import type {
   ContributionRate,
   ComputedResult,
   CPFIncomeCeiling,
-  DistributionRate,
   DistributionResult,
 } from "./types";
 import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";

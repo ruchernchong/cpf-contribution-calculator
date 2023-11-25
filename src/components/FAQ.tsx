@@ -4,7 +4,6 @@ import {
   ArrowDownCircleIcon,
   ArrowUpCircleIcon,
 } from "@heroicons/react/20/solid";
-
 import type { FAQ as FAQType } from "../types";
 
 interface FAQProps {

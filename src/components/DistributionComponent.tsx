@@ -1,6 +1,6 @@
+import { DistributionPieChart } from "./DistributionPieChart";
 import { formatCurrency, formatPercentage } from "../lib/format";
 import type { DistributionResult } from "../types";
-import { DistributionPieChart } from "./DistributionPieChart";
 
 type DistributionComponentProps = {
   distributionResults: DistributionResult[];
