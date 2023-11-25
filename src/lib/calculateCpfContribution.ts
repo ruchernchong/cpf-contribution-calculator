@@ -47,7 +47,7 @@ export const calculateCpfContribution = (
     }
   };
 
-  const calculateContribution = (income: number) => {
+  const calculateContribution = (income: number): ComputedResult => {
     let employee, employer, total, afterCpfContribution;
 
     if (income <= incomeCeiling) {
