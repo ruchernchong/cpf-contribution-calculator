@@ -146,8 +146,9 @@ const App = () => {
             monthlyGrossIncome={monthlyGrossIncome}
           />
         </div>
-
-        <DistributionComponent distributionResults={distributionResults} />
+        {contributionResult.contribution.total > 0 && (
+          <DistributionComponent distributionResults={distributionResults} />
+        )}
         <FAQ items={faqs} />
       </div>
       <Footer />
