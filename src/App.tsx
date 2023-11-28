@@ -12,7 +12,7 @@ import { calculateCpfContribution } from "./lib/calculateCpfContribution";
 import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
 import { findAgeGroup } from "./lib/findAgeGroup";
 import { findLatestIncomeCeilingDate } from "./lib/findLatestIncomeCeilingDate";
-import { formatCurrency } from "./lib/format";
+import { formatCurrency, formatDate } from "./lib/format";
 import type {
   AgeGroup,
   ContributionRate,
@@ -109,7 +109,7 @@ const App = () => {
   return (
     <main className="flex min-h-screen flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
       <div className="prose mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 dark:prose-invert md:px-8">
-        <div className="text-center ">
+        <div className="text-center">
           <h1>CPF Contribution Calculator</h1>
           <h2>
             A calculator to compute CPF contributions after the 2023 income
@@ -122,6 +122,13 @@ const App = () => {
               {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
             </p>
           )}
+          <p className="text-2xl">
+            Estimating contributions for{" "}
+            {formatDate(currentYearIncomeCeiling, {
+              inputFormat: "MM-yyyy",
+              outputFormat: "dd MMMM yyyy",
+            })}
+          </p>
         </div>
         <div className="gap-x-4 md:flex">
           <UserInput

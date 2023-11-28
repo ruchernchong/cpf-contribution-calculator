@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 import { SelectBox } from "./SelectBox";
 import { cpfIncomeCeilings } from "../data";
+import { formatDate } from "../lib/format";
 
 type UserInputProps = {
   birthDate: string;
@@ -44,7 +45,10 @@ export const UserInput = ({
         {cpfIncomeCeilings.map(({ effectiveDate }) => {
           return (
             <option key={effectiveDate} value={effectiveDate}>
-              {effectiveDate}
+              {formatDate(effectiveDate, {
+                inputFormat: "MM-yyyy",
+                outputFormat: "dd MMMM yyyy",
+              })}
             </option>
           );
         })}
