@@ -60,7 +60,6 @@ export const CalculatedResult = ({
           {/*    </div>*/}
           {/*  </div>*/}
           {/*)}*/}
-          <hr className="my-2" />
           <div className="flex justify-between gap-x-4 text-xl text-teal-600">
             <div>
               Company's contribution (
@@ -68,7 +67,6 @@ export const CalculatedResult = ({
             </div>
             <div>{formatCurrency(result.contribution.employer)}</div>
           </div>
-          <hr className="my-2" />
           <div className="flex justify-between text-xl text-teal-600">
             <div>Total CPF contribution</div>
             <div>{formatCurrency(result.contribution.total)}</div>
