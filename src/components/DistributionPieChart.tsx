@@ -50,7 +50,7 @@ export const DistributionPieChart = ({
           outerRadius={outerRadius}
           startAngle={startAngle}
           endAngle={endAngle}
-          fill={fill}
+          fill="fill-text-600"
         />
         <Sector
           cx={cx}
@@ -59,7 +59,7 @@ export const DistributionPieChart = ({
           endAngle={endAngle}
           innerRadius={outerRadius + 6}
           outerRadius={outerRadius + 10}
-          fill={fill}
+          fill="fill-text-600"
         />
         <path
           d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
@@ -71,7 +71,7 @@ export const DistributionPieChart = ({
           x={ex + (cos >= 0 ? 1 : -1) * 12}
           y={ey}
           textAnchor={textAnchor}
-          fill="#cccccc"
+          fill="fill-text-600"
         >
           {formatCurrency(value)}
         </text>
@@ -80,7 +80,7 @@ export const DistributionPieChart = ({
           y={ey}
           dy={18}
           textAnchor={textAnchor}
-          fill="#999"
+          fill="fill-text-600"
         >
           {formatPercentage(percent)}
         </text>
@@ -105,8 +105,8 @@ export const DistributionPieChart = ({
           innerRadius={60}
           outerRadius={80}
           nameKey="name"
-          fill="#0d9488"
           dataKey="value"
+          className="fill-teal-600"
           onMouseEnter={(_, index) => setActiveIndex(index)}
         />
       </PieChart>

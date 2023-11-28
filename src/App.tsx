@@ -107,9 +107,9 @@ const App = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <div className="prose prose-invert mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 md:px-8">
-        <div className="text-center">
+    <main className="flex min-h-screen flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
+      <div className="prose mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 dark:prose-invert md:px-8">
+        <div className="text-center ">
           <h1>CPF Contribution Calculator</h1>
           <h2>
             A calculator to compute CPF contributions after the 2023 income
@@ -118,7 +118,7 @@ const App = () => {
           </h2>
           <h3>Current CPF Income Ceiling</h3>
           {incomeCeilingOnSelectedYear && (
-            <p className="text-4xl font-extrabold text-red-300">
+            <p className="text-4xl font-extrabold text-red-600 dark:text-red-300">
               {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
             </p>
           )}
@@ -152,7 +152,7 @@ const App = () => {
         <FAQ items={faqs} />
       </div>
       <Footer />
-    </div>
+    </main>
   );
 };
 

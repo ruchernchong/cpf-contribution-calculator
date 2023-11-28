@@ -23,12 +23,12 @@ export const DistributionComponent = ({
 
   return (
     <>
-      <table className="auto border border-neutral-400 text-center">
-        <thead className="bg-neutral-800">
+      <table className="auto border text-center">
+        <thead className="bg-gray-200 dark:bg-gray-800">
           <tr>
             {distributionResults.map(({ name, value }) => {
               return (
-                <th key={name} className="border border-neutral-400 p-4">
+                <th key={name} className="border p-4 dark:border-gray-600">
                   <div>
                     {CPF_ACCOUNTS[name]} ({name})
                   </div>
@@ -42,7 +42,7 @@ export const DistributionComponent = ({
           <tr>
             {distributionResults.map(({ name, value }) => {
               return (
-                <td key={name} className="border border-neutral-400 p-4">
+                <td key={name} className="border p-4 dark:border-gray-600">
                   {formatCurrency(value)}
                 </td>
               );
