@@ -10,7 +10,7 @@ const Link = ({ href, children }: LinkProps) => {
       href={href}
       target="_blank"
       rel="noopener"
-      className="text-neutral-400 underline"
+      className="text-gray-900 underline dark:text-gray-50"
     >
       {children}
     </a>
@@ -19,7 +19,7 @@ const Link = ({ href, children }: LinkProps) => {
 
 export const Footer = () => {
   return (
-    <footer className="flex flex-col items-center bg-neutral-800 p-4">
+    <footer className="flex flex-col items-center bg-gray-200 p-4 dark:bg-gray-800">
       <div>
         Created by <Link href="https://ruchern.xyz">Ru Chern</Link>
       </div>

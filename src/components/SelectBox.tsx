@@ -20,7 +20,7 @@ export const SelectBox = ({
     <select
       name={name}
       id={id}
-      className="cursor-pointer appearance-none rounded-lg p-2 text-neutral-900"
+      className="cursor-pointer appearance-none rounded-lg border p-2 dark:bg-gray-900"
       defaultValue={defaultValue}
       onChange={onChange}
       aria-label={id}

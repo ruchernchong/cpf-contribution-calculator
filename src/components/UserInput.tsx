@@ -24,13 +24,13 @@ export const UserInput = ({
   onStoreInputInLocalStorageChange,
 }: UserInputProps) => {
   return (
-    <div className="flex flex-col gap-y-2 md:w-1/3">
+    <div className="flex flex-col gap-y-2 dark:text-gray-50 md:w-1/3">
       <input
         type="text"
         name="dateOfBirth"
         id="dateOfBirth"
         placeholder="MM/YYYY"
-        className="rounded-lg p-2 text-neutral-900"
+        className="rounded-lg border p-2 dark:bg-gray-900"
         maxLength={7}
         defaultValue={birthDate}
         onChange={onBirthDateChange}
@@ -54,7 +54,7 @@ export const UserInput = ({
         inputMode="decimal"
         pattern="\d*"
         placeholder="Gross Income e.g. 10000"
-        className="rounded-lg p-2 text-neutral-900"
+        className="rounded-lg border p-2 dark:bg-gray-900"
         defaultValue={monthlyGrossIncome}
         onChange={onGrossIncomeChange}
       />
@@ -67,7 +67,7 @@ export const UserInput = ({
         />
         <label htmlFor="store-data">Store input on this browser?</label>
       </div>
-      <div className="mb-4 text-xs italic text-red-300">
+      <div className="mb-4 text-xs italic text-red-600 dark:text-red-300 ">
         By ticking the above checkbox, the input will be stored on your own
         browser. No data are being stored on any servers.
       </div>

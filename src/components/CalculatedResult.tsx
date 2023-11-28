@@ -25,7 +25,7 @@ export const CalculatedResult = ({
       )}
       {result && (
         <>
-          <div className="flex justify-between text-xl text-green-600">
+          <div className="flex justify-between text-xl text-teal-600">
             <div>
               Your contribution ({formatPercentage(contributionRate.employee)})
             </div>
@@ -34,7 +34,7 @@ export const CalculatedResult = ({
           <div className="flex justify-between text-xl">
             <div>
               Take home income
-              <div className="text-sm italic text-neutral-400">
+              <div className="text-sm italic text-gray-600 dark:text-gray-400">
                 Excluding other contributions like donations, expense claims,
                 and etc...
               </div>
@@ -60,21 +60,19 @@ export const CalculatedResult = ({
           {/*    </div>*/}
           {/*  </div>*/}
           {/*)}*/}
-          <hr className="my-4" />
-          <div className="flex justify-between gap-x-4 text-xl text-green-600">
+          <div className="flex justify-between gap-x-4 text-xl text-teal-600">
             <div>
               Company's contribution (
               {formatPercentage(contributionRate.employer)})
             </div>
             <div>{formatCurrency(result.contribution.employer)}</div>
           </div>
-          <hr className="my-4" />
-          <div className="flex justify-between text-xl text-blue-500">
+          <div className="flex justify-between text-xl text-teal-600">
             <div>Total CPF contribution</div>
             <div>{formatCurrency(result.contribution.total)}</div>
           </div>
           {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
-            <div className="flex justify-between gap-x-4 text-xl text-blue-500">
+            <div className="flex justify-between gap-x-4 text-xl text-teal-600">
               <div>Remaining Additional Wage (AW) for CPF contribution</div>
               <div>
                 {formatCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
