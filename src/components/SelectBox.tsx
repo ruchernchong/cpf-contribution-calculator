@@ -1,4 +1,4 @@
-import { PropsWithChildren, SelectHTMLAttributes } from "react";
+import { Fragment, PropsWithChildren, SelectHTMLAttributes } from "react";
 
 interface SelectBoxProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
@@ -9,7 +9,7 @@ interface SelectBoxProps
 
 export const SelectBox = ({ id, labelText, ...props }: SelectBoxProps) => {
   return (
-    <>
+    <Fragment>
       <label htmlFor={id} className="translate-y-4 text-xs text-teal-600">
         {labelText}
       </label>
@@ -19,6 +19,6 @@ export const SelectBox = ({ id, labelText, ...props }: SelectBoxProps) => {
         aria-label={id}
         {...props}
       />
-    </>
+    </Fragment>
   );
 };

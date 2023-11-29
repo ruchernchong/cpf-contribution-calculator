@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { formatCurrency, formatPercentage } from "../lib/format";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "../config";
 import type { ContributionRate, ComputedResult } from "../types";
@@ -24,7 +25,7 @@ export const CalculatedResult = ({
         </div>
       )}
       {result && (
-        <>
+        <Fragment>
           <div className="flex justify-between text-xl text-teal-600">
             <div>
               Your contribution ({formatPercentage(contributionRate.employee)})
@@ -99,7 +100,7 @@ export const CalculatedResult = ({
           {/*</div>*/}
           {/*)}*/}
           {/*</div>*/}
-        </>
+        </Fragment>
       )}
     </div>
   );

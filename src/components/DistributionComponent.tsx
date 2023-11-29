@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { DistributionPieChart } from "./DistributionPieChart";
 import { formatCurrency, formatPercentage } from "../lib/format";
 import type { DistributionResult } from "../types";
@@ -22,7 +23,7 @@ export const DistributionComponent = ({
   }, 0);
 
   return (
-    <>
+    <Fragment>
       <table className="auto border text-center">
         <thead className="bg-gray-200 dark:bg-gray-800">
           <tr>
@@ -54,6 +55,6 @@ export const DistributionComponent = ({
         data={distributionResults}
         className="hidden md:block"
       />
-    </>
+    </Fragment>
   );
 };

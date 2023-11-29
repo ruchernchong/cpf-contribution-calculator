@@ -14,7 +14,7 @@ export const FAQ = ({ items }: FAQProps) => {
   const [activeIndex, setActiveIndex] = useState<number>();
 
   return (
-    <>
+    <Fragment>
       <h3>FAQs</h3>
       {items.map(({ question, answer }, index) => {
         const selectedIndex = activeIndex === index;
@@ -58,6 +58,6 @@ export const FAQ = ({ items }: FAQProps) => {
           )
         );
       })}
-    </>
+    </Fragment>
   );
 };
