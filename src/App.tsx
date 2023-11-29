@@ -123,7 +123,7 @@ const App = () => {
             </p>
           )}
           <p className="text-2xl">
-            Estimating contributions for{" "}
+            Estimating contributions from{" "}
             {formatDate(currentYearIncomeCeiling, {
               inputFormat: "MM-yyyy",
               outputFormat: "dd MMMM yyyy",
