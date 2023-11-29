@@ -22,7 +22,7 @@ export const DistributionPieChart = ({
       outerRadius,
       startAngle,
       endAngle,
-      fill,
+      className,
       payload,
       percent,
       value,
@@ -40,7 +40,7 @@ export const DistributionPieChart = ({
 
     return (
       <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+        <text x={cx} y={cy} dy={8} textAnchor="middle" className={className}>
           {payload.name.toUpperCase()}
         </text>
         <Sector
@@ -50,7 +50,7 @@ export const DistributionPieChart = ({
           outerRadius={outerRadius}
           startAngle={startAngle}
           endAngle={endAngle}
-          fill="fill-text-600"
+          className={className}
         />
         <Sector
           cx={cx}
@@ -59,19 +59,19 @@ export const DistributionPieChart = ({
           endAngle={endAngle}
           innerRadius={outerRadius + 6}
           outerRadius={outerRadius + 10}
-          fill="fill-text-600"
+          className={className}
         />
         <path
           d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-          stroke={fill}
+          className="stroke-teal-600"
           fill="none"
         />
-        <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+        <circle cx={ex} cy={ey} r={2} fill={"fill-teal-600"} stroke="none" />
         <text
           x={ex + (cos >= 0 ? 1 : -1) * 12}
           y={ey}
           textAnchor={textAnchor}
-          fill="fill-text-600"
+          className={className}
         >
           {formatCurrency(value)}
         </text>
@@ -80,7 +80,7 @@ export const DistributionPieChart = ({
           y={ey}
           dy={18}
           textAnchor={textAnchor}
-          fill="fill-text-600"
+          className={className}
         >
           {formatPercentage(percent)}
         </text>
@@ -106,7 +106,7 @@ export const DistributionPieChart = ({
           outerRadius={80}
           nameKey="name"
           dataKey="value"
-          className="fill-teal-600"
+          className="cursor-pointer fill-teal-600"
           onMouseEnter={(_, index) => setActiveIndex(index)}
         />
       </PieChart>
