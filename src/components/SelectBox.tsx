@@ -1,32 +1,24 @@
-import { ChangeEventHandler, PropsWithChildren } from "react";
+import { PropsWithChildren, SelectHTMLAttributes } from "react";
 
-interface SelectBoxProps extends PropsWithChildren {
-  name: string;
+interface SelectBoxProps
+  extends SelectHTMLAttributes<HTMLSelectElement>,
+    PropsWithChildren {
   id: string;
-  className?: string;
-  defaultValue?: string | number;
-  onChange?: ChangeEventHandler<HTMLSelectElement>;
+  labelText: string;
 }
 
-export const SelectBox = ({
-  name,
-  id,
-  defaultValue,
-  children,
-  onChange,
-  ...props
-}: SelectBoxProps) => {
+export const SelectBox = ({ id, labelText, ...props }: SelectBoxProps) => {
   return (
-    <select
-      name={name}
-      id={id}
-      className="cursor-pointer appearance-none rounded-lg border p-2 dark:bg-gray-900"
-      defaultValue={defaultValue}
-      onChange={onChange}
-      aria-label={id}
-      {...props}
-    >
-      {children}
-    </select>
+    <>
+      <label htmlFor={id} className="translate-y-4 text-xs text-teal-600">
+        {labelText}
+      </label>
+      <select
+        id={id}
+        className="w-full cursor-pointer appearance-none border-b bg-transparent py-2 outline-none"
+        aria-label={id}
+        {...props}
+      />
+    </>
   );
 };

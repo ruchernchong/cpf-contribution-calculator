@@ -36,17 +36,17 @@ const App = () => {
     "data",
     {
       storeInput: false,
-      monthlyGrossIncome: 0,
-      birthDate: "",
+      monthlyGrossIncome: null,
+      birthDate: null,
     }
   );
   const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
     useState<boolean>(dataFromLocalStorage.storeInput);
   const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(
-    dataFromLocalStorage.monthlyGrossIncome
+    dataFromLocalStorage.monthlyGrossIncome || null
   );
   const [birthDate, setBirthDate] = useState<string>(
-    dataFromLocalStorage.birthDate
+    dataFromLocalStorage.birthDate || null
   );
 
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
