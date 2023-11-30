@@ -14,8 +14,26 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
+  BuildAndTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+      - name: Installing dependencies
+        run: |
+          bun install
+      - name: Run tests
+        run: |
+          bun run test
+      - name: Run build
+        run: |
+          bun run build
+
   DeployApp:
     runs-on: ubuntu-latest
+    needs: BuildAndTest
+    if: startsWith(github.ref, 'refs/heads/release/')
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
@@ -28,9 +46,6 @@ jobs:
       - name: Installing dependencies
         run: |
           bun install
-      - name: Run tests
-        run: |
-          bun run test
       - name: Deploy app
         run: |
           bun sst deploy --stage prod
