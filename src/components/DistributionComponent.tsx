@@ -1,7 +1,8 @@
 import { Fragment } from "react";
-import { DistributionPieChart } from "./DistributionPieChart";
 import { formatCurrency, formatPercentage } from "../lib/format";
 import type { DistributionResult } from "../types";
+
+const { DistributionPieChart } = await import("./DistributionPieChart");
 
 type DistributionComponentProps = {
   distributionResults: DistributionResult[];
