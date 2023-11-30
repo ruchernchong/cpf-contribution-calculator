@@ -14,7 +14,7 @@ type TestCase = {
 
 const testCases: TestCase[] = [
   {
-    effectiveDate: "01-2023",
+    effectiveDate: "01-01-2023",
     income: 4000,
     expected: {
       contribution: {
@@ -31,7 +31,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-2023",
+    effectiveDate: "01-01-2023",
     income: 6000,
     expected: {
       contribution: {
@@ -48,7 +48,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-2023",
+    effectiveDate: "01-01-2023",
     income: 8000,
     expected: {
       contribution: {
@@ -65,7 +65,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-2026",
+    effectiveDate: "01-01-2026",
     income: 4000,
     expected: {
       contribution: {
@@ -82,7 +82,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-2026",
+    effectiveDate: "01-01-2026",
     income: 6000,
     expected: {
       contribution: {
@@ -99,7 +99,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-2026",
+    effectiveDate: "01-01-2026",
     income: 8000,
     expected: {
       contribution: {
@@ -116,7 +116,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-2026",
+    effectiveDate: "01-01-2026",
     income: 10000,
     expected: {
       contribution: {
@@ -159,7 +159,7 @@ describe("calculateCpfContribution", () => {
 
   it("should return the income after CPF contribution before the ceiling changes", () => {
     expect(
-      calculateCpfContribution(6000, "01-2023", {
+      calculateCpfContribution(6000, "01-01-2023", {
         useCeilingBeforeSep2023: true,
       })
     ).toEqual({
@@ -168,7 +168,7 @@ describe("calculateCpfContribution", () => {
       afterCpfContribution: 4800,
     });
     expect(
-      calculateCpfContribution(8000, "01-2023", {
+      calculateCpfContribution(8000, "01-01-2023", {
         useCeilingBeforeSep2023: true,
       })
     ).toEqual({
@@ -180,7 +180,7 @@ describe("calculateCpfContribution", () => {
 
   it("should return the result correctly for a certain age group", () => {
     expect(
-      calculateCpfContribution(6000, "01-2023", {
+      calculateCpfContribution(6000, "01-01-2023", {
         ageGroup: {
           description: "Above 70",
           min: 70,

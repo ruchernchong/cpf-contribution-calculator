@@ -47,10 +47,7 @@ export const UserInput = ({
         {cpfIncomeCeilings.map(({ effectiveDate }) => {
           return (
             <option key={effectiveDate} value={effectiveDate}>
-              {formatDate(effectiveDate, {
-                inputFormat: "MM-yyyy",
-                outputFormat: "dd MMMM yyyy",
-              })}
+              {formatDate(effectiveDate)}
             </option>
           );
         })}

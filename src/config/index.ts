@@ -1,12 +1,16 @@
+import moment from "moment-timezone";
 import type { FAQ } from "../types";
+
+const defaultTimezone = "Asia/Singapore";
+moment.tz.setDefault(defaultTimezone);
 
 export const CPF_INCOME_CEILING_BEFORE_SEPT_2023: number = 6000;
 export const CPF_INCOME_CEILING: Record<number | string, number> = {
-  "01-2023": 6000,
-  "09-2023": 6300,
-  "01-2024": 6800,
-  "01-2025": 7400,
-  "01-2026": 8000,
+  "01-01-2023": 6000,
+  "09-01-2023": 6300,
+  "01-01-2024": 6800,
+  "01-01-2025": 7400,
+  "01-01-2026": 8000,
 };
 export const CPF_ADDITIONAL_WAGE_CEILING: number = 102000;
 

@@ -1,30 +1,29 @@
-import { closestTo, format, parse } from "date-fns";
+import moment from "moment";
+import { formatDate } from "./format";
 import { CPFIncomeCeiling } from "../types";
 
 export const findLatestIncomeCeilingDate = (
   dates: CPFIncomeCeiling[]
 ): string => {
-  const currentDate = new Date();
+  const currentDate = moment();
 
   const pastDates = dates
     .map(({ effectiveDate, ceiling }) => ({
-      effectiveDate: parse(effectiveDate, "MM-yyyy", new Date()),
+      effectiveDate: moment(effectiveDate, "MM-DD-YYYY"),
       ceiling,
     }))
-    .filter(({ effectiveDate }) => effectiveDate < currentDate);
+    .filter(({ effectiveDate }) => effectiveDate.isBefore(currentDate));
 
-  const closestPastDate = closestTo(
-    currentDate,
+  const closestPastDate = moment.max(
     pastDates.map(({ effectiveDate }) => effectiveDate)
   );
 
   if (closestPastDate) {
-    return formatDateStandard(closestPastDate);
+    return formatDate(closestPastDate, "MM-DD-YYYY");
   }
 
-  return formatDateStandard(
-    pastDates.reverse().map(({ effectiveDate }) => effectiveDate)[0]
+  return formatDate(
+    pastDates.reverse().map(({ effectiveDate }) => effectiveDate)[0],
+    "MM-DD-YYYY"
   );
 };
-
-const formatDateStandard = (date: Date) => format(date, "MM-yyyy");
