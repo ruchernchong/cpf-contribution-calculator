@@ -123,11 +123,7 @@ const App = () => {
             </p>
           )}
           <p className="text-2xl">
-            Estimating contributions from{" "}
-            {formatDate(currentYearIncomeCeiling, {
-              inputFormat: "MM-yyyy",
-              outputFormat: "dd MMMM yyyy",
-            })}
+            Estimating contributions from {formatDate(currentYearIncomeCeiling)}
           </p>
         </div>
         <div className="gap-x-4 md:flex">

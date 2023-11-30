@@ -1,12 +1,7 @@
-import { format, parse } from "date-fns";
+import moment, { Moment } from "moment";
 
 type PercentageFormatOptions = {
   decimalPlaces?: number;
-};
-
-type DateOptions = {
-  inputFormat: string;
-  outputFormat?: string;
 };
 
 export const formatCurrency = (value: number | string): string => {
@@ -20,29 +15,10 @@ export const formatCurrency = (value: number | string): string => {
   }).format(value);
 };
 
-/**
- * TODO: Clean up this function
- *
- * @param date
- * @param options
- */
-export const formatDate = (date: Date | string, options?: DateOptions) => {
-  let inputFormat = "MM-yyyy";
-  let outputFormat = "MM-yyyy";
-
-  if (options?.outputFormat) {
-    inputFormat = options.inputFormat;
-  }
-  if (options?.outputFormat) {
-    outputFormat = options.outputFormat;
-  }
-
-  if (typeof date === "string") {
-    date = parse(date, inputFormat, new Date());
-  }
-
-  return format(date, outputFormat);
-};
+export const formatDate = (
+  date: Moment | string,
+  format: string = "DD MMMM YYYY"
+) => moment(date, "MM-DD-YYYY").format(format);
 
 export const formatPercentage = (
   value: number | string,

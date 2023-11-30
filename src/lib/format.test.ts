@@ -9,23 +9,13 @@ describe("formatCurrency", () => {
 });
 
 describe("formatDate", () => {
-  it("should return a formatted date of MM-yyyy by default", () => {
-    expect(formatDate("09-2023", { inputFormat: "MM-yyyy" })).toBe("09-2023");
+  it("should return a formatted date of DD MMMM YYYY by default", () => {
+    expect(formatDate("09-01-2023")).toBe("01 September 2023");
   });
 
   it("should return a nicely formatted date", () => {
-    expect(
-      formatDate("09-2023", {
-        inputFormat: "MM-yyyy",
-        outputFormat: "dd MMMM yyyy",
-      })
-    ).toBe("01 September 2023");
-    expect(
-      formatDate("01-2024", {
-        inputFormat: "MM-yyyy",
-        outputFormat: "dd MMMM yyyy",
-      })
-    ).toBe("01 January 2024");
+    expect(formatDate("09-01-2023")).toBe("01 September 2023");
+    expect(formatDate("01-01-2024", "DD-MM-YYYY")).toBe("01-01-2024");
   });
 });
 

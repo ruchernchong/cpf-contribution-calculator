@@ -1,9 +1,8 @@
-import { differenceInYears, parse } from "date-fns";
+import moment from "moment";
 
 export const convertBirthDateToAge = (birthDate: string) => {
-  const parsedDate = parse(birthDate, "MM/yyyy", new Date());
+  const parsedDate = moment(birthDate, "MM/YYYY");
+  const currentDate = moment();
 
-  const currentDate = new Date();
-
-  return differenceInYears(currentDate, parsedDate);
+  return currentDate.diff(parsedDate, "years");
 };
