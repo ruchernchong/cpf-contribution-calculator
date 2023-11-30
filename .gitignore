@@ -26,3 +26,6 @@ dist-ssr
 
 # sst
 .sst/
+
+# Rollup Bundle Analyzer
+stats.html
