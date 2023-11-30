@@ -14,8 +14,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.16",
     "classnames": "^2.3.2",
-    "moment": "^2.29.4",
-    "moment-timezone": "^0.5.43",
+    "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^2.10.1"
