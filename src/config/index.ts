@@ -1,8 +1,4 @@
-import moment from "moment-timezone";
 import type { FAQ } from "../types";
-
-const defaultTimezone = "Asia/Singapore";
-moment.tz.setDefault(defaultTimezone);
 
 export const CPF_INCOME_CEILING_BEFORE_SEPT_2023: number = 6000;
 export const CPF_INCOME_CEILING: Record<number | string, number> = {

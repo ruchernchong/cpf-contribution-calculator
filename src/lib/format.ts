@@ -1,4 +1,4 @@
-import moment, { Moment } from "moment";
+import { format, parse, toDate } from "date-fns";
 
 type PercentageFormatOptions = {
   decimalPlaces?: number;
@@ -16,9 +16,15 @@ export const formatCurrency = (value: number | string): string => {
 };
 
 export const formatDate = (
-  date: Moment | string,
-  format: string = "DD MMMM YYYY"
-) => moment(date, "MM-DD-YYYY").format(format);
+  date: Date | string,
+  dateFormat: string = "dd MMMM yyyy"
+) => {
+  if (date instanceof Date) {
+    return format(date, dateFormat);
+  }
+
+  return format(parse(date, "MM-dd-yyyy", new Date()), dateFormat);
+};
 
 export const formatPercentage = (
   value: number | string,

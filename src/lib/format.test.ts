@@ -13,9 +13,13 @@ describe("formatDate", () => {
     expect(formatDate("09-01-2023")).toBe("01 September 2023");
   });
 
-  it("should return a nicely formatted date", () => {
+  it("should return the date formatted to the expected output", () => {
     expect(formatDate("09-01-2023")).toBe("01 September 2023");
-    expect(formatDate("01-01-2024", "DD-MM-YYYY")).toBe("01-01-2024");
+    expect(formatDate("01-01-2024", "dd-MM-yyyy")).toBe("01-01-2024");
+  });
+
+  it("should return the date formatted to the expected output for a instanceof Date provided", () => {
+    expect(formatDate(new Date("01-01-2023"))).toBe("01 January 2023");
   });
 });
 
