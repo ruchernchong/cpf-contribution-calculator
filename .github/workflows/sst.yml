@@ -27,6 +27,7 @@ jobs:
 
   DeployApp:
     runs-on: ubuntu-latest
+    environment: Production
     needs: BuildAndTest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
