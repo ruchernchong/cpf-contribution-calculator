@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CalculatedResult } from "./components/CalculatedResult";
-import { DistributionComponent } from "./components/DistributionComponent";
+import { DistributionView } from "./components/DistributionView";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { UserInput } from "./components/UserInput";
@@ -59,32 +59,27 @@ const App = () => {
       monthlyGrossIncome,
       birthDate,
     });
-  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
 
-  useEffect(() => {
-    const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling
-    );
-    setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [currentYearIncomeCeiling]);
-
-  useEffect(() => {
-    if (ageGroup) {
-      setContributionRate(ageGroup.contributionRate);
-    }
-  }, [ageGroup]);
-
-  useEffect(() => {
     const age = convertBirthDateToAge(birthDate);
     setSelectedAge(age);
-  }, [birthDate]);
 
-  useEffect(() => {
-    if (selectedAge) {
-      const ageGroup = findAgeGroup(selectedAge);
+    if (age) {
+      const ageGroup = findAgeGroup(age);
       setAgeGroup(ageGroup);
+      setContributionRate(ageGroup?.contributionRate || 0);
     }
-  }, [selectedAge]);
+
+    const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
+      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling
+    )!;
+    setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
+  }, [
+    birthDate,
+    monthlyGrossIncome,
+    storeInputInLocalStorage,
+    currentYearIncomeCeiling,
+    cpfIncomeCeilings,
+  ]);
 
   const contributionResult: ComputedResult = calculateCpfContribution(
     monthlyGrossIncome,
@@ -150,7 +145,7 @@ const App = () => {
           />
         </div>
         {contributionResult.contribution.total > 0 && (
-          <DistributionComponent distributionResults={distributionResults} />
+          <DistributionView distributionResults={distributionResults} />
         )}
         <FAQ items={faqs} />
       </div>
