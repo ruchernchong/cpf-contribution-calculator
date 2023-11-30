@@ -16,7 +16,7 @@ const CPF_ACCOUNTS: CPFAccount = {
   MA: "MediSave Account",
 };
 
-export const DistributionComponent = ({
+export const DistributionView = ({
   distributionResults,
 }: DistributionComponentProps) => {
   const totalCpfContribution = distributionResults.reduce((accum, curr) => {
