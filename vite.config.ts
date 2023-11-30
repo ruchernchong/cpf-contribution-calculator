@@ -31,7 +31,7 @@ export default defineConfig({
         name: title,
         short_name: title,
         description,
-        theme_color: "#000000",
+        theme_color: "#0d9488",
         icons: [
           {
             src: "pwa-64x64.png",
