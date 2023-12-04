@@ -1,10 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { CalculatedResult } from "../components/CalculatedResult";
-import { DistributionView } from "../components/DistributionView";
-import { FAQ } from "../components/FAQ";
-import { UserInput } from "../components/UserInput";
+import React, { useEffect, useState } from "react";
 import { faqs } from "../config";
 import { ageGroups, cpfIncomeCeilings } from "../data";
 import { useDarkMode } from "../hooks/useDarkMode";
@@ -14,6 +10,10 @@ import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
 import { findAgeGroup } from "../lib/findAgeGroup";
 import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate";
 import { formatCurrency, formatDate } from "../lib/format";
+import { CalculatedResult } from "../components/CalculatedResult";
+import { DistributionView } from "../components/DistributionView";
+import { FAQ } from "../components/FAQ";
+import { UserInput } from "../components/UserInput";
 import type {
   AgeGroup,
   ContributionRate,
@@ -73,14 +73,8 @@ const HomePage = () => {
   }, [storeInputInLocalStorage]);
 
   useEffect(() => {
-    let age;
-    if (birthDate) {
-      age = convertBirthDateToAge(birthDate);
-      setSelectedAge(age);
-    }
-
-    if (age) {
-      const ageGroup = findAgeGroup(age);
+    if (selectedAge) {
+      const ageGroup = findAgeGroup(selectedAge);
       setAgeGroup(ageGroup);
       setContributionRate(ageGroup?.contributionRate || 0);
     }
@@ -109,8 +103,8 @@ const HomePage = () => {
       }))
     : [];
 
-  const handleBirthDateChange = (e: { target: { value: string } }) => {
-    const birthdate = e.target.value;
+  const handleBirthDateChange = (event: { target: { value: string } }) => {
+    const birthdate = event.target.value;
     const age = convertBirthDateToAge(birthdate);
 
     setBirthDate(birthdate);
@@ -160,7 +154,7 @@ const HomePage = () => {
             monthlyGrossIncome={monthlyGrossIncome as number}
           />
         </div>
-        {contributionResult && contributionResult.contribution.total > 0 && (
+        {contributionResult && (
           <DistributionView distributionResults={distributionResults} />
         )}
         <FAQ items={faqs} />
