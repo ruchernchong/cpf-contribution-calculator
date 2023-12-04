@@ -33,36 +33,51 @@ const HomePage = () => {
     ageGroup.contributionRate,
   );
 
+  const localStorageInitialValue = {
+    storeInput: false,
+    monthlyGrossIncome: null,
+    birthDate: null,
+  };
   const [dataFromLocalStorage, setDataFromLocalStorage] = useLocalStorage(
     "data",
-    {
-      storeInput: false,
-      monthlyGrossIncome: null,
-      birthDate: null,
-    },
+    localStorageInitialValue,
   );
   const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
-    useState<boolean>(dataFromLocalStorage.storeInput);
-  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(
-    dataFromLocalStorage.monthlyGrossIncome || null,
-  );
-  const [birthDate, setBirthDate] = useState<string>(
-    dataFromLocalStorage.birthDate || null,
-  );
+    useState<boolean>();
+  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>();
+  const [birthDate, setBirthDate] = useState<string>();
 
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
     useState<CPFIncomeCeiling>();
   const [selectedAge, setSelectedAge] = useState<number>(0);
 
   useEffect(() => {
+    setStoreInputInLocalStorage(dataFromLocalStorage.storeInput);
+    setMonthlyGrossIncome(dataFromLocalStorage.monthlyGrossIncome);
+    setBirthDate(dataFromLocalStorage.birthDate);
+  }, []);
+
+  useEffect(() => {
     setDataFromLocalStorage({
+      ...dataFromLocalStorage,
       storeInput: storeInputInLocalStorage,
       monthlyGrossIncome,
       birthDate,
     });
+  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
 
-    const age = convertBirthDateToAge(birthDate);
-    setSelectedAge(age);
+  useEffect(() => {
+    if (!storeInputInLocalStorage) {
+      setDataFromLocalStorage(localStorageInitialValue);
+    }
+  }, [storeInputInLocalStorage]);
+
+  useEffect(() => {
+    let age;
+    if (birthDate) {
+      age = convertBirthDateToAge(birthDate);
+      setSelectedAge(age);
+    }
 
     if (age) {
       const ageGroup = findAgeGroup(age);
@@ -74,25 +89,25 @@ const HomePage = () => {
       ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling,
     )!;
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [
-    birthDate,
-    monthlyGrossIncome,
-    storeInputInLocalStorage,
-    currentYearIncomeCeiling,
-    cpfIncomeCeilings,
-  ]);
+  }, [birthDate, currentYearIncomeCeiling, cpfIncomeCeilings]);
 
-  const contributionResult: ComputedResult = calculateCpfContribution(
-    monthlyGrossIncome,
-    currentYearIncomeCeiling,
-    {
-      ageGroup,
-    },
-  );
+  let contributionResult;
+  if (monthlyGrossIncome) {
+    contributionResult = calculateCpfContribution(
+      monthlyGrossIncome,
+      currentYearIncomeCeiling,
+      {
+        ageGroup,
+      },
+    );
+  }
 
-  const distributionResults: DistributionResult[] = Object.entries(
-    contributionResult.distribution,
-  ).map(([name, value]) => ({ name, value }));
+  const distributionResults: DistributionResult[] = contributionResult
+    ? Object.entries(contributionResult.distribution).map(([name, value]) => ({
+        name,
+        value,
+      }))
+    : [];
 
   const handleBirthDateChange = (e: { target: { value: string } }) => {
     const birthdate = e.target.value;
@@ -124,10 +139,10 @@ const HomePage = () => {
         </div>
         <div className="gap-x-4 md:flex">
           <UserInput
-            birthDate={birthDate}
-            monthlyGrossIncome={monthlyGrossIncome}
+            birthDate={birthDate as string}
+            monthlyGrossIncome={monthlyGrossIncome as number}
             currentYear={latestIncomeCeiling}
-            storeInputInLocalStorage={storeInputInLocalStorage}
+            storeInputInLocalStorage={storeInputInLocalStorage as boolean}
             onBirthDateChange={handleBirthDateChange}
             onStoreInputInLocalStorageChange={(e) =>
               setStoreInputInLocalStorage(e.target.checked)
@@ -140,12 +155,12 @@ const HomePage = () => {
             }}
           />
           <CalculatedResult
-            result={contributionResult}
+            result={contributionResult as ComputedResult}
             contributionRate={contributionRate}
-            monthlyGrossIncome={monthlyGrossIncome}
+            monthlyGrossIncome={monthlyGrossIncome as number}
           />
         </div>
-        {contributionResult.contribution.total > 0 && (
+        {contributionResult && contributionResult.contribution.total > 0 && (
           <DistributionView distributionResults={distributionResults} />
         )}
         <FAQ items={faqs} />

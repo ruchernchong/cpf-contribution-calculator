@@ -67,7 +67,7 @@ export const UserInput = ({
         <input
           type="checkbox"
           id="store-data"
-          defaultChecked={storeInputInLocalStorage}
+          checked={storeInputInLocalStorage}
           onChange={onStoreInputInLocalStorageChange}
         />
         <label htmlFor="store-data">Store input on this browser?</label>
