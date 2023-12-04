@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { CalculatedResult } from "../components/CalculatedResult";
 import { DistributionView } from "../components/DistributionView";
 import { FAQ } from "../components/FAQ";
-import Layout from "./layout";
 import { UserInput } from "../components/UserInput";
 import { faqs } from "../config";
 import { ageGroups, cpfIncomeCeilings } from "../data";
