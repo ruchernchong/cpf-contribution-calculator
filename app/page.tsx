@@ -1,27 +1,29 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { CalculatedResult } from "./components/CalculatedResult";
-import { DistributionView } from "./components/DistributionView";
-import { FAQ } from "./components/FAQ";
-import { Footer } from "./components/Footer";
-import { UserInput } from "./components/UserInput";
-import { faqs } from "./config";
-import { ageGroups, cpfIncomeCeilings } from "./data";
-import { useDarkMode } from "./hooks/useDarkMode";
-import { useLocalStorage } from "./hooks/useLocalStorage";
-import { calculateCpfContribution } from "./lib/calculateCpfContribution";
-import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
-import { findAgeGroup } from "./lib/findAgeGroup";
-import { findLatestIncomeCeilingDate } from "./lib/findLatestIncomeCeilingDate";
-import { formatCurrency, formatDate } from "./lib/format";
+import { CalculatedResult } from "../components/CalculatedResult";
+import { DistributionView } from "../components/DistributionView";
+import { FAQ } from "../components/FAQ";
+import Layout from "./layout";
+import { UserInput } from "../components/UserInput";
+import { faqs } from "../config";
+import { ageGroups, cpfIncomeCeilings } from "../data";
+import { useDarkMode } from "../hooks/useDarkMode";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { calculateCpfContribution } from "../lib/calculateCpfContribution";
+import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
+import { findAgeGroup } from "../lib/findAgeGroup";
+import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate";
+import { formatCurrency, formatDate } from "../lib/format";
 import type {
   AgeGroup,
   ContributionRate,
   ComputedResult,
   CPFIncomeCeiling,
   DistributionResult,
-} from "./types";
+} from "../types";
 
-const App = () => {
+const HomePage = () => {
   useDarkMode();
 
   const latestIncomeCeiling = findLatestIncomeCeilingDate(cpfIncomeCeilings);
@@ -29,7 +31,7 @@ const App = () => {
     useState<string>(latestIncomeCeiling);
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
-    ageGroup.contributionRate
+    ageGroup.contributionRate,
   );
 
   const [dataFromLocalStorage, setDataFromLocalStorage] = useLocalStorage(
@@ -38,15 +40,15 @@ const App = () => {
       storeInput: false,
       monthlyGrossIncome: null,
       birthDate: null,
-    }
+    },
   );
   const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
     useState<boolean>(dataFromLocalStorage.storeInput);
   const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(
-    dataFromLocalStorage.monthlyGrossIncome || null
+    dataFromLocalStorage.monthlyGrossIncome || null,
   );
   const [birthDate, setBirthDate] = useState<string>(
-    dataFromLocalStorage.birthDate || null
+    dataFromLocalStorage.birthDate || null,
   );
 
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
@@ -70,7 +72,7 @@ const App = () => {
     }
 
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling
+      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling,
     )!;
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
   }, [
@@ -86,11 +88,11 @@ const App = () => {
     currentYearIncomeCeiling,
     {
       ageGroup,
-    }
+    },
   );
 
   const distributionResults: DistributionResult[] = Object.entries(
-    contributionResult.distribution
+    contributionResult.distribution,
   ).map(([name, value]) => ({ name, value }));
 
   const handleBirthDateChange = (e: { target: { value: string } }) => {
@@ -102,7 +104,7 @@ const App = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
+    <>
       <div className="prose mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 dark:prose-invert md:px-8">
         <div className="text-center">
           <h1>CPF Contribution Calculator</h1>
@@ -149,9 +151,8 @@ const App = () => {
         )}
         <FAQ items={faqs} />
       </div>
-      <Footer />
-    </main>
+    </>
   );
 };
 
-export default App;
+export default HomePage;

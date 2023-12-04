@@ -24,7 +24,7 @@ export const Accordion = ({ title, children }: AccordionProps) => {
           {
             "bg-gray-900 text-gray-50 dark:bg-gray-50 dark:text-gray-900":
               isActive,
-          }
+          },
         )}
         onClick={toggle}
       >
@@ -44,7 +44,7 @@ export const Accordion = ({ title, children }: AccordionProps) => {
           "border bg-gray-200 p-4 dark:border-gray-600 dark:bg-gray-800",
           {
             hidden: !isActive,
-          }
+          },
         )}
       >
         {children}
