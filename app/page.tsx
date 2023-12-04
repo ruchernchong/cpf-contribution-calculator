@@ -43,13 +43,13 @@ const HomePage = () => {
     localStorageInitialValue,
   );
   const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
-    useState<boolean>();
-  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>();
-  const [birthDate, setBirthDate] = useState<string>();
+    useState<boolean>(false);
+  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(0);
+  const [birthDate, setBirthDate] = useState<string>("");
 
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
-    useState<CPFIncomeCeiling>();
-  const [selectedAge, setSelectedAge] = useState<number>(0);
+    useState<CPFIncomeCeiling | undefined>();
+  const [selectedAge, setSelectedAge] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     setStoreInputInLocalStorage(dataFromLocalStorage.storeInput);
@@ -85,23 +85,20 @@ const HomePage = () => {
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
   }, [birthDate, currentYearIncomeCeiling, cpfIncomeCeilings]);
 
-  let contributionResult;
-  if (monthlyGrossIncome) {
-    contributionResult = calculateCpfContribution(
-      monthlyGrossIncome,
-      currentYearIncomeCeiling,
-      {
-        ageGroup,
-      },
-    );
-  }
+  const contributionResult: ComputedResult = calculateCpfContribution(
+    monthlyGrossIncome,
+    currentYearIncomeCeiling,
+    {
+      ageGroup,
+    },
+  );
 
-  const distributionResults: DistributionResult[] = contributionResult
-    ? Object.entries(contributionResult.distribution).map(([name, value]) => ({
-        name,
-        value,
-      }))
-    : [];
+  const distributionResults: DistributionResult[] = Object.entries(
+    contributionResult.distribution,
+  ).map(([name, value]) => ({
+    name,
+    value,
+  }));
 
   const handleBirthDateChange = (event: { target: { value: string } }) => {
     const birthdate = event.target.value;
@@ -133,10 +130,10 @@ const HomePage = () => {
         </div>
         <div className="gap-x-4 md:flex">
           <UserInput
-            birthDate={birthDate as string}
-            monthlyGrossIncome={monthlyGrossIncome as number}
+            birthDate={birthDate}
+            monthlyGrossIncome={monthlyGrossIncome}
             currentYear={latestIncomeCeiling}
-            storeInputInLocalStorage={storeInputInLocalStorage as boolean}
+            storeInputInLocalStorage={storeInputInLocalStorage}
             onBirthDateChange={handleBirthDateChange}
             onStoreInputInLocalStorageChange={(e) =>
               setStoreInputInLocalStorage(e.target.checked)
@@ -149,9 +146,9 @@ const HomePage = () => {
             }}
           />
           <CalculatedResult
-            result={contributionResult as ComputedResult}
+            result={contributionResult}
             contributionRate={contributionRate}
-            monthlyGrossIncome={monthlyGrossIncome as number}
+            monthlyGrossIncome={monthlyGrossIncome}
           />
         </div>
         {contributionResult && (
