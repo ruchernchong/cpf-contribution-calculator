@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import { calculateCpfContribution } from "./calculateCpfContribution";
 import type { ComputedResult } from "../types";
 import {
@@ -152,16 +151,16 @@ describe("calculateCpfContribution", () => {
       expect(
         calculateCpfContribution(income, effectiveDate, {
           ageGroup: testAgeGroup,
-        })
+        }),
       ).toEqual(expected);
-    }
+    },
   );
 
   it("should return the income after CPF contribution before the ceiling changes", () => {
     expect(
       calculateCpfContribution(6000, "01-01-2023", {
         useCeilingBeforeSep2023: true,
-      })
+      }),
     ).toEqual({
       contribution: { employee: 1200, employer: 1020, total: 2220 },
       distribution: {},
@@ -170,7 +169,7 @@ describe("calculateCpfContribution", () => {
     expect(
       calculateCpfContribution(8000, "01-01-2023", {
         useCeilingBeforeSep2023: true,
-      })
+      }),
     ).toEqual({
       contribution: { employee: 1200, employer: 1020, total: 2220 },
       distribution: {},
@@ -187,7 +186,7 @@ describe("calculateCpfContribution", () => {
           contributionRate: { employee: 0.05, employer: 0.075 },
           distributionRate: { OA: 0.08, SA: 0.08, MA: 0.84 },
         },
-      })
+      }),
     ).toEqual({
       contribution: { employee: 300, employer: 450, total: 750 },
       distribution: {

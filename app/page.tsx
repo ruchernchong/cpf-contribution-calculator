@@ -1,27 +1,28 @@
-import { useEffect, useState } from "react";
-import { CalculatedResult } from "./components/CalculatedResult";
-import { DistributionView } from "./components/DistributionView";
-import { FAQ } from "./components/FAQ";
-import { Footer } from "./components/Footer";
-import { UserInput } from "./components/UserInput";
-import { faqs } from "./config";
-import { ageGroups, cpfIncomeCeilings } from "./data";
-import { useDarkMode } from "./hooks/useDarkMode";
-import { useLocalStorage } from "./hooks/useLocalStorage";
-import { calculateCpfContribution } from "./lib/calculateCpfContribution";
-import { convertBirthDateToAge } from "./lib/convertBirthDateToAge";
-import { findAgeGroup } from "./lib/findAgeGroup";
-import { findLatestIncomeCeilingDate } from "./lib/findLatestIncomeCeilingDate";
-import { formatCurrency, formatDate } from "./lib/format";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { faqs } from "../config";
+import { ageGroups, cpfIncomeCeilings } from "../data";
+import { useDarkMode } from "../hooks/useDarkMode";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { calculateCpfContribution } from "../lib/calculateCpfContribution";
+import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
+import { findAgeGroup } from "../lib/findAgeGroup";
+import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate";
+import { formatCurrency, formatDate } from "../lib/format";
+import { CalculatedResult } from "../components/CalculatedResult";
+import { DistributionView } from "../components/DistributionView";
+import { FAQ } from "../components/FAQ";
+import { UserInput } from "../components/UserInput";
 import type {
   AgeGroup,
   ContributionRate,
   ComputedResult,
   CPFIncomeCeiling,
   DistributionResult,
-} from "./types";
+} from "../types";
 
-const App = () => {
+const HomePage = () => {
   useDarkMode();
 
   const latestIncomeCeiling = findLatestIncomeCeilingDate(cpfIncomeCeilings);
@@ -29,72 +30,78 @@ const App = () => {
     useState<string>(latestIncomeCeiling);
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
-    ageGroup.contributionRate
+    ageGroup.contributionRate,
   );
 
+  const localStorageInitialValue = {
+    storeInput: false,
+    monthlyGrossIncome: null,
+    birthDate: null,
+  };
   const [dataFromLocalStorage, setDataFromLocalStorage] = useLocalStorage(
     "data",
-    {
-      storeInput: false,
-      monthlyGrossIncome: null,
-      birthDate: null,
-    }
+    localStorageInitialValue,
   );
   const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
-    useState<boolean>(dataFromLocalStorage.storeInput);
-  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(
-    dataFromLocalStorage.monthlyGrossIncome || null
-  );
-  const [birthDate, setBirthDate] = useState<string>(
-    dataFromLocalStorage.birthDate || null
-  );
+    useState<boolean>(false);
+  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(0);
+  const [birthDate, setBirthDate] = useState<string>("");
 
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
-    useState<CPFIncomeCeiling>();
-  const [selectedAge, setSelectedAge] = useState<number>(0);
+    useState<CPFIncomeCeiling | undefined>();
+  const [selectedAge, setSelectedAge] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    setStoreInputInLocalStorage(dataFromLocalStorage.storeInput);
+    setMonthlyGrossIncome(dataFromLocalStorage.monthlyGrossIncome);
+    setBirthDate(dataFromLocalStorage.birthDate);
+  }, []);
 
   useEffect(() => {
     setDataFromLocalStorage({
+      ...dataFromLocalStorage,
       storeInput: storeInputInLocalStorage,
       monthlyGrossIncome,
       birthDate,
     });
+  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
 
-    const age = convertBirthDateToAge(birthDate);
-    setSelectedAge(age);
+  useEffect(() => {
+    if (!storeInputInLocalStorage) {
+      setDataFromLocalStorage(localStorageInitialValue);
+    }
+  }, [storeInputInLocalStorage]);
 
-    if (age) {
-      const ageGroup = findAgeGroup(age);
+  useEffect(() => {
+    if (selectedAge) {
+      const ageGroup = findAgeGroup(selectedAge);
       setAgeGroup(ageGroup);
       setContributionRate(ageGroup?.contributionRate || 0);
     }
 
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling
+      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling,
     )!;
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [
-    birthDate,
-    monthlyGrossIncome,
-    storeInputInLocalStorage,
-    currentYearIncomeCeiling,
-    cpfIncomeCeilings,
-  ]);
+  }, [birthDate, currentYearIncomeCeiling, cpfIncomeCeilings]);
 
   const contributionResult: ComputedResult = calculateCpfContribution(
     monthlyGrossIncome,
     currentYearIncomeCeiling,
     {
       ageGroup,
-    }
+    },
   );
 
   const distributionResults: DistributionResult[] = Object.entries(
-    contributionResult.distribution
-  ).map(([name, value]) => ({ name, value }));
+    contributionResult.distribution,
+  ).map(([name, value]) => ({
+    name,
+    value,
+  }));
 
-  const handleBirthDateChange = (e: { target: { value: string } }) => {
-    const birthdate = e.target.value;
+  const handleBirthDateChange = (event: { target: { value: string } }) => {
+    const birthdate = event.target.value;
     const age = convertBirthDateToAge(birthdate);
 
     setBirthDate(birthdate);
@@ -102,7 +109,7 @@ const App = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
+    <>
       <div className="prose mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 dark:prose-invert md:px-8">
         <div className="text-center">
           <h1>CPF Contribution Calculator</h1>
@@ -144,14 +151,13 @@ const App = () => {
             monthlyGrossIncome={monthlyGrossIncome}
           />
         </div>
-        {contributionResult.contribution.total > 0 && (
+        {contributionResult && (
           <DistributionView distributionResults={distributionResults} />
         )}
         <FAQ items={faqs} />
       </div>
-      <Footer />
-    </main>
+    </>
   );
 };
 
-export default App;
+export default HomePage;

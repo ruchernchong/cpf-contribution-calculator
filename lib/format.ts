@@ -17,7 +17,7 @@ export const formatCurrency = (value: number | string): string => {
 
 export const formatDate = (
   date: Date | string,
-  dateFormat: string = "dd MMMM yyyy"
+  dateFormat: string = "dd MMMM yyyy",
 ) => {
   if (date instanceof Date) {
     return format(date, dateFormat);
@@ -28,7 +28,7 @@ export const formatDate = (
 
 export const formatPercentage = (
   value: number | string,
-  options?: PercentageFormatOptions
+  options?: PercentageFormatOptions,
 ): string => {
   if (typeof value === "string") {
     value = Number(value);

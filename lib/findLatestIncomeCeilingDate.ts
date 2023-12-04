@@ -3,7 +3,7 @@ import { formatDate } from "./format";
 import { CPFIncomeCeiling } from "../types";
 
 export const findLatestIncomeCeilingDate = (
-  dates: CPFIncomeCeiling[]
+  dates: CPFIncomeCeiling[],
 ): string => {
   const currentDate = new Date();
 
@@ -16,7 +16,7 @@ export const findLatestIncomeCeilingDate = (
 
   const closestPastDate = closestTo(
     currentDate,
-    pastDates.map(({ effectiveDate }) => effectiveDate)
+    pastDates.map(({ effectiveDate }) => effectiveDate),
   );
 
   if (closestPastDate) {

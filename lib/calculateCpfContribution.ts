@@ -15,7 +15,7 @@ import type {
 export const calculateCpfContribution = (
   income: number,
   year: number | string,
-  options?: IncomeOptions
+  options?: IncomeOptions,
 ): ComputedResult => {
   let employeeContributionRate = DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
     employerContributionRate = DEFAULT_EMPLOYER_CONTRIBUTION_RATE;
@@ -38,12 +38,12 @@ export const calculateCpfContribution = (
 
   const calculateDistributionValue = (
     cpfContribution: number,
-    type: string
+    type: string,
   ): DistributionRate | undefined => {
     if (distributionRate) {
       return {
         [type]: parseFloat(
-          (distributionRate[type] * cpfContribution).toFixed(2)
+          (distributionRate[type] * cpfContribution).toFixed(2),
         ),
       };
     }

@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://cpf-contribution-calculator.ruchern.xyz/sitemap.xml

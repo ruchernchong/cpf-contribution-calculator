@@ -1,5 +1,9 @@
 import type { FAQ } from "../types";
 
+export const title: string = "CPF Contribution Calculator";
+export const description: string =
+  "A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023";
+
 export const CPF_INCOME_CEILING_BEFORE_SEPT_2023: number = 6000;
 export const CPF_INCOME_CEILING: Record<number | string, number> = {
   "01-01-2023": 6000,

@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 
 export const useLocalStorage = (key: string, initialValue: any) => {
+  const isClient = typeof window !== "undefined";
+
   const [value, setValue] = useState(() => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : initialValue;
+    if (isClient) {
+      const storedValue = window.localStorage.getItem(key);
+      return storedValue ? JSON.parse(storedValue) : initialValue;
+    }
+    return initialValue;
   });
 
   useEffect(() => {
