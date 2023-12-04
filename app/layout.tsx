@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/script";
 import { Footer } from "../components/Footer";
 import { description, title } from "../config";
 import "./global.css";
@@ -32,7 +32,16 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <main className="flex min-h-screen flex-col">{children}</main>
         <Footer />
       </body>
-      <GoogleTagManager gtmId="G-4W2DF7BF1S" />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-4W2DF7BF1S" />
+      <Script id="google-analytics">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-4W2DF7BF1S');
+        `}
+      </Script>
     </html>
   );
 };
