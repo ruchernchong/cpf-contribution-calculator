@@ -1,5 +1,5 @@
-import type { SSTConfig } from "sst";
-import { StaticSite } from "sst/constructs";
+import { SSTConfig } from "sst";
+import { NextjsSite } from "sst/constructs";
 
 export default {
   config(_input) {
@@ -10,9 +10,7 @@ export default {
   },
   stacks(app) {
     app.stack(function site({ stack }) {
-      const staticSite = new StaticSite(stack, "site", {
-        buildOutput: "dist",
-        buildCommand: "bun run build",
+      const nextjsSite = new NextjsSite(stack, "site", {
         customDomain: {
           domainName: "cpf-contribution-calculator.ruchern.xyz",
           hostedZone: "ruchern.xyz",
@@ -20,7 +18,7 @@ export default {
       });
 
       stack.addOutputs({
-        SiteUrl: staticSite.url,
+        SiteUrl: nextjsSite.url,
       });
     });
   },
