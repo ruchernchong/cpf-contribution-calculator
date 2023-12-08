@@ -1,5 +1,1 @@
-/// <reference types="vite/client" />
-interface ImportMetaEnv {}
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
-}
+/// <reference path="./.sst/types/index.ts" />

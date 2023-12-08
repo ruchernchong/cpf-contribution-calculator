@@ -25,4 +25,7 @@ dist-ssr
 *.sw?
 
 # sst
-.sst/
+.sst
+
+# open-next
+.open-next
