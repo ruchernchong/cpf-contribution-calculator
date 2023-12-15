@@ -4,8 +4,10 @@ import { Footer } from "../components/Footer";
 import { BASE_URL, description, title } from "../config";
 import "./global.css";
 
+const url = new URL(BASE_URL);
+
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+  metadataBase: url,
   title: {
     template: `%s | ${title}`,
     default: title,
@@ -18,7 +20,9 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
+    siteName: title,
     images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    url,
     locale: "en_SG",
     type: "website",
   },
@@ -26,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: [{ url: "twitter-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/twitter-image.png", width: 1200, height: 630 }],
     creator: "@ruchernchong",
   },
 };
