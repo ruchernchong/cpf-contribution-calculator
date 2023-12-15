@@ -1,16 +1,20 @@
 import { Metadata } from "next";
 import Script from "next/script";
 import { Footer } from "../components/Footer";
-import { description, title } from "../config";
+import { BASE_URL, description, title } from "../config";
 import "./global.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     template: `%s | ${title}`,
     default: title,
   },
   description,
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title,
     description,

@@ -1,5 +1,9 @@
 import type { FAQ } from "../types";
 
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "https://cpf-contribution-calculator.ruchern.xyz";
+
 export const title: string = "CPF Contribution Calculator";
 export const description: string =
   "A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023";
