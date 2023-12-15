@@ -1,7 +1,9 @@
 import { Fragment } from "react";
-import { DistributionPieChart } from "./DistributionPieChart";
+import dynamic from "next/dynamic";
 import { formatCurrency, formatPercentage } from "../lib/format";
 import type { DistributionResult } from "../types";
+
+const DistributionPieChart = dynamic(() => import("./DistributionPieChart"));
 
 type DistributionComponentProps = {
   distributionResults: DistributionResult[];
@@ -58,3 +60,5 @@ export const DistributionView = ({
     </Fragment>
   );
 };
+
+export default DistributionView;

@@ -113,3 +113,5 @@ export const DistributionPieChart = ({
     </ResponsiveContainer>
   );
 };
+
+export default DistributionPieChart;
