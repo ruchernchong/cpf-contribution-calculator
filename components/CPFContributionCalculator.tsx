@@ -101,10 +101,21 @@ export const CPFContributionCalculator = () => {
   }));
 
   const handleBirthDateChange = (event: { target: { value: string } }) => {
-    const birthdate = event.target.value;
-    const age = convertBirthDateToAge(birthdate);
+    let inputValue = event.target.value;
 
-    setBirthDate(birthdate);
+    if (inputValue.length === 2 && birthDate.length === 3) {
+      inputValue = inputValue.slice(0, 1) + "/";
+    } else {
+      inputValue = inputValue.replace(/[^0-9]/g, "");
+
+      if (inputValue.length > 2) {
+        inputValue = inputValue.substring(0, 2) + "/" + inputValue.substring(2);
+      }
+    }
+
+    const age = convertBirthDateToAge(inputValue);
+
+    setBirthDate(inputValue);
     setSelectedAge(age);
   };
 

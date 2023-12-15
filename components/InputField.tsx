@@ -1,4 +1,4 @@
-import { Fragment, InputHTMLAttributes, PropsWithChildren } from "react";
+import { InputHTMLAttributes, PropsWithChildren } from "react";
 
 interface InputFieldProps
   extends InputHTMLAttributes<HTMLInputElement>,
@@ -9,15 +9,13 @@ interface InputFieldProps
 
 export const InputField = ({ id, labelText, ...props }: InputFieldProps) => {
   return (
-    <Fragment>
-      <label htmlFor={id} className="translate-y-4 text-xs text-teal-600">
-        {labelText}
-      </label>
+    <label htmlFor={id} className="text-teal-600">
+      <span>{labelText}</span>
       <input
         id={id}
-        className="w-full border-b bg-transparent py-2 text-gray-50 outline-none"
+        className="w-full border-0 border-b-2 border-teal-600 bg-transparent focus:border-teal-800 focus:ring-0 dark:text-gray-50 dark:focus:border-teal-400"
         {...props}
       />
-    </Fragment>
+    </label>
   );
 };
