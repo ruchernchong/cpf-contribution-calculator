@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 interface LinkProps extends PropsWithChildren {
   href: string;
@@ -10,25 +11,23 @@ const Link = ({ href, children }: LinkProps) => {
       href={href}
       target="_blank"
       rel="noopener"
-      className="text-gray-900 underline dark:text-gray-50"
+      className="flex items-center gap-x-1 text-gray-900 hover:underline hover:underline-offset-8 dark:text-gray-50"
     >
       {children}
+      <ArrowTopRightOnSquareIcon width={16} height={16} />
     </a>
   );
 };
 
 export const Footer = () => {
   return (
-    <footer className="flex flex-col items-center bg-gray-200 p-4 dark:bg-gray-800">
-      <div>
-        Created by <Link href="https://ruchern.xyz">Ru Chern</Link>
-      </div>
-      <div>
-        <Link href="https://github.com/ruchernchong/cpf-contribution-calculator">
-          Source code
-        </Link>{" "}
-        on GitHub
-      </div>
+    <footer className="flex items-center justify-center gap-x-4 bg-gray-200 p-4 dark:bg-gray-800">
+      <Link href="https://ruchern.xyz">
+        <span>Chong Ru Chern</span>
+      </Link>
+      <Link href="https://github.com/ruchernchong/cpf-contribution-calculator">
+        <span>Source code</span>
+      </Link>
     </footer>
   );
 };
