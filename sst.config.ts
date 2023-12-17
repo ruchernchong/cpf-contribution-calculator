@@ -15,6 +15,9 @@ export default {
           domainName: "cpf-contribution-calculator.ruchern.xyz",
           hostedZone: "ruchern.xyz",
         },
+        experimental: {
+          disableIncrementalCache: true,
+        },
       });
 
       stack.addOutputs({
