@@ -11,7 +11,7 @@ const Link = ({ href, children }: LinkProps) => {
       href={href}
       target="_blank"
       rel="noopener"
-      className="flex items-center gap-x-1 text-gray-900 hover:underline hover:underline-offset-8 dark:text-gray-50"
+      className="flex items-center gap-x-1 text-gray-900 hover:underline hover:underline-offset-8"
     >
       {children}
       <ArrowTopRightOnSquareIcon width={16} height={16} />
@@ -21,7 +21,7 @@ const Link = ({ href, children }: LinkProps) => {
 
 export const Footer = () => {
   return (
-    <footer className="flex items-center justify-center gap-x-4 bg-gray-200 p-4 dark:bg-gray-800">
+    <footer className="flex items-center justify-center gap-x-4 bg-gray-100 p-4">
       <Link href="https://ruchern.xyz">
         <span>Chong Ru Chern</span>
       </Link>

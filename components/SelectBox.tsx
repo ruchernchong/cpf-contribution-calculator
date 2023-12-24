@@ -13,7 +13,7 @@ export const SelectBox = ({ id, labelText, ...props }: SelectBoxProps) => {
       <span>{labelText}</span>
       <select
         id={id}
-        className="w-full cursor-pointer border-0 border-b-2 border-teal-600 bg-transparent focus:ring-0 dark:text-gray-50 dark:focus:border-teal-400"
+        className="w-full cursor-pointer border-0 border-b-2 border-teal-600 bg-transparent focus:ring-0"
         aria-label={id}
         {...props}
       />

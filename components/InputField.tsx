@@ -13,7 +13,7 @@ export const InputField = ({ id, labelText, ...props }: InputFieldProps) => {
       <span>{labelText}</span>
       <input
         id={id}
-        className="w-full border-0 border-b-2 border-teal-600 bg-transparent focus:border-teal-800 focus:ring-0 dark:text-gray-50 dark:focus:border-teal-400"
+        className="w-full border-0 border-b-2 border-teal-600 bg-transparent focus:border-teal-800 focus:ring-0"
         {...props}
       />
     </label>
