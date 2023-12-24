@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
+      <body className="bg-gray-50 text-gray-900">
         <main className="flex min-h-screen flex-col">{children}</main>
         <Footer />
       </body>

@@ -35,7 +35,7 @@ export const CalculatedResult = ({
           <div className="flex justify-between text-xl">
             <div>
               Take home income
-              <div className="text-sm italic text-gray-600 dark:text-gray-400">
+              <div className="text-sm italic text-gray-600">
                 Excluding other contributions like donations, expense claims,
                 and etc...
               </div>

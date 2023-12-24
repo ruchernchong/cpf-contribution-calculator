@@ -26,7 +26,7 @@ export const UserInput = ({
   onStoreInputInLocalStorageChange,
 }: UserInputProps) => {
   return (
-    <div className="flex flex-col gap-y-4 dark:text-gray-50 md:w-1/3">
+    <div className="flex flex-col gap-y-4 md:w-1/3">
       <InputField
         type="text"
         name="dateOfBirth"
@@ -68,12 +68,12 @@ export const UserInput = ({
           type="checkbox"
           id="store-data"
           checked={storeInputInLocalStorage}
-          className="h-4 w-4 rounded text-teal-600 focus:ring-2 focus:ring-teal-600 dark:bg-gray-800"
+          className="rounded-lg text-gray-900 focus:ring-2 focus:ring-teal-600"
           onChange={onStoreInputInLocalStorageChange}
         />
         <label htmlFor="store-data">Store input on this browser?</label>
       </div>
-      <div className="mb-4 text-xs italic text-red-600 dark:text-red-300">
+      <div className="text-xs italic text-red-600">
         By ticking the above checkbox, the input will be stored on your own
         browser. No data are being stored on any servers.
       </div>

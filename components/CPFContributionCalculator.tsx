@@ -8,7 +8,6 @@ import { UserInput } from "./UserInput";
 import { faqs } from "../config";
 import { ageGroups, cpfIncomeCeilings } from "../data";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useDarkMode } from "../hooks/useDarkMode";
 import { calculateCpfContribution } from "../lib/calculateCpfContribution";
 import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
 import { findAgeGroup } from "../lib/findAgeGroup";
@@ -23,8 +22,6 @@ import type {
 } from "../types";
 
 export const CPFContributionCalculator = () => {
-  useDarkMode();
-
   const latestIncomeCeiling = findLatestIncomeCeilingDate(cpfIncomeCeilings);
   const [currentYearIncomeCeiling, setCurrentYearIncomeCeiling] =
     useState<string>(latestIncomeCeiling);
@@ -121,7 +118,7 @@ export const CPFContributionCalculator = () => {
 
   return (
     <>
-      <div className="prose mx-auto flex w-full max-w-6xl grow flex-col px-4 py-16 dark:prose-invert md:px-8">
+      <div className="prose mx-auto flex max-w-6xl grow flex-col px-4 py-16">
         <div className="text-center">
           <h1>CPF Contribution Calculator</h1>
           <h2>
@@ -131,7 +128,7 @@ export const CPFContributionCalculator = () => {
           </h2>
           <h3>Current CPF Income Ceiling</h3>
           {incomeCeilingOnSelectedYear && (
-            <p className="text-4xl font-extrabold text-red-600 dark:text-red-300">
+            <p className="text-4xl font-extrabold text-red-600">
               {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
             </p>
           )}
@@ -139,7 +136,7 @@ export const CPFContributionCalculator = () => {
             Estimating contributions from {formatDate(currentYearIncomeCeiling)}
           </p>
         </div>
-        <div className="gap-x-4 md:flex">
+        <div className="mb-8 gap-x-8 md:flex">
           <UserInput
             birthDate={birthDate}
             monthlyGrossIncome={monthlyGrossIncome}

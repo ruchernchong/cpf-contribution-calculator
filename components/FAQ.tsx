@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import type { FAQ as FAQType } from "../types";
-import { Accordion } from "./Accordion";
 
 interface FAQProps {
   items: FAQType[];
@@ -15,9 +14,12 @@ export const FAQ = ({ items }: FAQProps) => {
 
         return (
           hasQuestionAndAnswer && (
-            <Accordion key={question} title={question}>
-              {answer}
-            </Accordion>
+            <details>
+              <summary className="cursor-pointer border p-4">
+                {question}
+              </summary>
+              <div className="border bg-gray-100 p-4">{answer}</div>
+            </details>
           )
         );
       })}
