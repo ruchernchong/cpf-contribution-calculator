@@ -60,7 +60,7 @@ export const UserInput = ({
         pattern="\d*"
         placeholder="e.g. 10000"
         labelText="Gross Income"
-        defaultValue={monthlyGrossIncome}
+        value={monthlyGrossIncome}
         onChange={onGrossIncomeChange}
       />
       <label htmlFor="shouldStoreInput" className="flex items-center gap-x-2">
