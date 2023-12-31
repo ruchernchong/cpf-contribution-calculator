@@ -9,12 +9,12 @@ export const FAQ = ({ items }: FAQProps) => {
   return (
     <Fragment>
       <h3>Frequently Asked Questions</h3>
-      {items.map(({ question, answer }) => {
+      {items.map(({ question, answer }, index) => {
         const hasQuestionAndAnswer = Boolean(question && answer);
 
         return (
           hasQuestionAndAnswer && (
-            <details>
+            <details key={index}>
               <summary className="cursor-pointer border p-4">
                 {question}
               </summary>
