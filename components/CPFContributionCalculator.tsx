@@ -42,7 +42,7 @@ export const CPFContributionCalculator = () => {
   );
 
   const latestIncomeCeiling = cpfIncomeCeilings.find(
-    ({ effectiveDate }) => effectiveDate === latestIncomeCeilingDate,
+    (ceiling) => ceiling.effectiveDate === effectiveDate,
   ) as CPFIncomeCeiling;
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
     useState<CPFIncomeCeiling>(latestIncomeCeiling);
@@ -56,7 +56,7 @@ export const CPFContributionCalculator = () => {
     }
 
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ effectiveDate }) => effectiveDate === effectiveDate,
+      (ceiling) => ceiling.effectiveDate === effectiveDate,
     )!;
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
   }, [birthDate, effectiveDate, cpfIncomeCeilings]);
