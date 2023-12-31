@@ -55,19 +55,17 @@ export const CPFContributionCalculator = () => {
   }, []);
 
   useEffect(() => {
-    setDataFromLocalStorage({
-      ...dataFromLocalStorage,
-      storeInput: storeInputInLocalStorage,
-      monthlyGrossIncome,
-      birthDate,
-    });
-  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
-
-  useEffect(() => {
     if (!storeInputInLocalStorage) {
       setDataFromLocalStorage(localStorageInitialValue);
+    } else {
+      setDataFromLocalStorage({
+        ...dataFromLocalStorage,
+        storeInput: storeInputInLocalStorage,
+        monthlyGrossIncome,
+        birthDate,
+      });
     }
-  }, [storeInputInLocalStorage]);
+  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
 
   useEffect(() => {
     if (selectedAge) {
