@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { CalculatedResult } from "./CalculatedResult";
 import { DistributionView } from "./DistributionView";
 import { FAQ } from "./FAQ";
@@ -13,6 +13,7 @@ import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
 import { findAgeGroup } from "../lib/findAgeGroup";
 import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate";
 import { formatCurrency, formatDate } from "../lib/format";
+import { formatDateInput } from "../utils/formatDateInput";
 import {
   AgeGroup,
   ContributionRate,
@@ -101,26 +102,14 @@ export const CPFContributionCalculator = () => {
 
   const distributionResults: DistributionResult[] = Object.entries(
     contributionResult.distribution,
-  ).map(([name, value]) => ({
-    name,
-    value,
-  }));
+  ).map(([name, value]) => ({ name, value }));
 
-  const handleBirthDateChange = (event: { target: { value: string } }) => {
-    let inputValue = event.target.value;
+  const handleBirthDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const rawInput = event.target.value;
+    const formattedBirthDate = formatDateInput(rawInput, birthDate);
+    const age = convertBirthDateToAge(formattedBirthDate);
 
-    if (inputValue.length === 2 && birthDate.length === 3) {
-      inputValue = inputValue.slice(0, 1) + "/";
-    } else {
-      inputValue = inputValue.replace(/[^0-9]/g, "");
-
-      if (inputValue.length > 2) {
-        inputValue = inputValue.substring(0, 2) + "/" + inputValue.substring(2);
-      }
-    }
-
-    const age = convertBirthDateToAge(inputValue);
-    setBirthDate(inputValue);
+    setBirthDate(formattedBirthDate);
     setSelectedAge(age);
   };
 
@@ -137,7 +126,7 @@ export const CPFContributionCalculator = () => {
           <h3>Current CPF Income Ceiling</h3>
           {incomeCeilingOnSelectedYear && (
             <p className="text-4xl font-extrabold text-red-600">
-              {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
+              {formatCurrency(incomeCeilingOnSelectedYear.ceilingThreshold)}
             </p>
           )}
           <p className="text-2xl">

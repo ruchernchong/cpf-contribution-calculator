@@ -68,7 +68,7 @@ export const CalculatedResult = ({
           </div>
           <div className="flex justify-between text-xl text-teal-600">
             <div>Total CPF contribution</div>
-            <div>{formatCurrency(result.contribution.total)}</div>
+            <div>{formatCurrency(result.contribution.totalContribution)}</div>
           </div>
           {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
             <div className="flex justify-between gap-x-4 text-xl text-teal-600">
