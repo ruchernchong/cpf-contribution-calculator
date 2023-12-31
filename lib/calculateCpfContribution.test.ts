@@ -19,7 +19,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 800,
         employer: 680,
-        total: 1480,
+        totalContribution: 1480,
       },
       distribution: {
         OA: 920.12,
@@ -36,7 +36,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 1200,
         employer: 1020,
-        total: 2220,
+        totalContribution: 2220,
       },
       distribution: {
         MA: 479.96,
@@ -53,7 +53,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 1200,
         employer: 1020,
-        total: 2220,
+        totalContribution: 2220,
       },
       distribution: {
         OA: 1380.17,
@@ -70,7 +70,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 800,
         employer: 680,
-        total: 1480,
+        totalContribution: 1480,
       },
       distribution: {
         OA: 920.12,
@@ -87,7 +87,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 1200,
         employer: 1020,
-        total: 2220,
+        totalContribution: 2220,
       },
       distribution: {
         OA: 1380.17,
@@ -104,7 +104,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 1600,
         employer: 1360,
-        total: 2960,
+        totalContribution: 2960,
       },
       distribution: {
         MA: 639.95,
@@ -121,7 +121,7 @@ const testCases: TestCase[] = [
       contribution: {
         employee: 1600,
         employer: 1360,
-        total: 2960,
+        totalContribution: 2960,
       },
       distribution: {
         OA: 1840.23,
@@ -182,7 +182,7 @@ describe("calculateCpfContribution", () => {
       calculateCpfContribution(6000, "01-01-2023", {
         ageGroup: {
           description: "Above 70",
-          min: 70,
+          minAge: 70,
           contributionRate: { employee: 0.05, employer: 0.075 },
           distributionRate: { OA: 0.08, SA: 0.08, MA: 0.84 },
         },

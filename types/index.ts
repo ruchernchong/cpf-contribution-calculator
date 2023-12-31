@@ -7,15 +7,15 @@ export type DistributionRate = Record<string, number>;
 
 export type AgeGroup = {
   description: string;
-  min: number;
-  max?: number;
+  minAge: number;
+  maxAge?: number;
   contributionRate: ContributionRate;
   distributionRate: DistributionRate;
 };
 
 export type CPFIncomeCeiling = {
   effectiveDate: string;
-  ceiling: number;
+  ceilingThreshold: number;
 };
 
 export type IncomeOptions = {
@@ -25,7 +25,7 @@ export type IncomeOptions = {
 };
 
 export type ContributionResult = {
-  total: number;
+  totalContribution: number;
   employer: number;
   employee: number;
 };

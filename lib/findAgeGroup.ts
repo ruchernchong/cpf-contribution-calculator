@@ -2,7 +2,7 @@ import { ageGroups } from "../data";
 
 export const findAgeGroup = (age: number) => {
   for (const group of ageGroups) {
-    if (age >= group.min && (age <= Number(group.max) || !group.max)) {
+    if (age >= group.minAge && (age <= Number(group.maxAge) || !group.maxAge)) {
       return group;
     }
   }

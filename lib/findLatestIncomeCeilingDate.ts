@@ -8,9 +8,9 @@ export const findLatestIncomeCeilingDate = (
   const currentDate = new Date();
 
   const pastDates = dates
-    .map(({ effectiveDate, ceiling }) => ({
+    .map(({ effectiveDate, ceilingThreshold }) => ({
       effectiveDate: parse(effectiveDate, "MM-dd-yyyy", new Date()),
-      ceiling,
+      ceilingThreshold,
     }))
     .filter(({ effectiveDate }) => effectiveDate < currentDate);
 

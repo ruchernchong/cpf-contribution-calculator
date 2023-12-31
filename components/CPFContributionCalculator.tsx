@@ -1,19 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { CalculatedResult } from "./CalculatedResult";
 import { DistributionView } from "./DistributionView";
 import { FAQ } from "./FAQ";
 import { UserInput } from "./UserInput";
 import { faqs } from "../config";
 import { ageGroups, cpfIncomeCeilings } from "../data";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { calculateCpfContribution } from "../lib/calculateCpfContribution";
 import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
+import { resetData, updateData } from "../lib/features/data/dataSlice";
 import { findAgeGroup } from "../lib/findAgeGroup";
 import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate";
+import { useAppDispatch, useAppSelector } from "../lib/hooks";
 import { formatCurrency, formatDate } from "../lib/format";
-import type {
+import { formatDateInput } from "../utils/formatDateInput";
+import {
   AgeGroup,
   ContributionRate,
   ComputedResult,
@@ -22,50 +24,29 @@ import type {
 } from "../types";
 
 export const CPFContributionCalculator = () => {
-  const latestIncomeCeiling = findLatestIncomeCeilingDate(cpfIncomeCeilings);
-  const [currentYearIncomeCeiling, setCurrentYearIncomeCeiling] =
-    useState<string>(latestIncomeCeiling);
+  const dispatch = useAppDispatch();
+  const shouldStoreInput = useAppSelector(({ data }) => data.shouldStoreInput);
+  const monthlyGrossIncome = useAppSelector(
+    ({ data }) => data.monthlyGrossIncome,
+  );
+  const birthDate = useAppSelector(({ data }) => data.birthDate);
+
+  const latestIncomeCeilingDate =
+    findLatestIncomeCeilingDate(cpfIncomeCeilings);
+  const [effectiveDate, setEffectiveDate] = useState<string>(
+    latestIncomeCeilingDate,
+  );
   const [ageGroup, setAgeGroup] = useState<AgeGroup>(ageGroups[0]);
   const [contributionRate, setContributionRate] = useState<ContributionRate>(
     ageGroup.contributionRate,
   );
 
-  const localStorageInitialValue = {
-    storeInput: false,
-    monthlyGrossIncome: null,
-    birthDate: null,
-  };
-  const [dataFromLocalStorage, setDataFromLocalStorage] = useLocalStorage(
-    "data",
-    localStorageInitialValue,
-  );
-  const [storeInputInLocalStorage, setStoreInputInLocalStorage] =
-    useState<boolean>(false);
-  const [monthlyGrossIncome, setMonthlyGrossIncome] = useState<number>(0);
-  const [birthDate, setBirthDate] = useState<string>("");
-
+  const latestIncomeCeiling = cpfIncomeCeilings.find(
+    ({ effectiveDate }) => effectiveDate === latestIncomeCeilingDate,
+  ) as CPFIncomeCeiling;
   const [incomeCeilingOnSelectedYear, setIncomeCeilingOnSelectedYear] =
-    useState<CPFIncomeCeiling | undefined>();
-  const [selectedAge, setSelectedAge] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    setStoreInputInLocalStorage(dataFromLocalStorage.storeInput);
-    setMonthlyGrossIncome(dataFromLocalStorage.monthlyGrossIncome);
-    setBirthDate(dataFromLocalStorage.birthDate);
-  }, []);
-
-  useEffect(() => {
-    if (!storeInputInLocalStorage) {
-      setDataFromLocalStorage(localStorageInitialValue);
-    } else {
-      setDataFromLocalStorage({
-        ...dataFromLocalStorage,
-        storeInput: storeInputInLocalStorage,
-        monthlyGrossIncome,
-        birthDate,
-      });
-    }
-  }, [birthDate, monthlyGrossIncome, storeInputInLocalStorage]);
+    useState<CPFIncomeCeiling>(latestIncomeCeiling);
+  const [selectedAge, setSelectedAge] = useState<number>();
 
   useEffect(() => {
     if (selectedAge) {
@@ -75,43 +56,36 @@ export const CPFContributionCalculator = () => {
     }
 
     const incomeCeilingOnSelectedYear = cpfIncomeCeilings.find(
-      ({ effectiveDate }) => effectiveDate === currentYearIncomeCeiling,
+      ({ effectiveDate }) => effectiveDate === effectiveDate,
     )!;
     setIncomeCeilingOnSelectedYear(incomeCeilingOnSelectedYear);
-  }, [birthDate, currentYearIncomeCeiling, cpfIncomeCeilings]);
+  }, [birthDate, effectiveDate, cpfIncomeCeilings]);
 
   const contributionResult: ComputedResult = calculateCpfContribution(
     monthlyGrossIncome,
-    currentYearIncomeCeiling,
+    effectiveDate,
     {
       ageGroup,
     },
   );
 
+  useEffect(() => {
+    if (!shouldStoreInput) {
+      dispatch(resetData());
+    }
+  }, []);
+
   const distributionResults: DistributionResult[] = Object.entries(
     contributionResult.distribution,
-  ).map(([name, value]) => ({
-    name,
-    value,
-  }));
+  ).map(([name, value]) => ({ name, value }));
 
-  const handleBirthDateChange = (event: { target: { value: string } }) => {
-    let inputValue = event.target.value;
+  const handleBirthDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const rawInput = event.target.value;
+    const formattedBirthDate = formatDateInput(rawInput, birthDate);
+    const age = convertBirthDateToAge(formattedBirthDate);
 
-    if (inputValue.length === 2 && birthDate.length === 3) {
-      inputValue = inputValue.slice(0, 1) + "/";
-    } else {
-      inputValue = inputValue.replace(/[^0-9]/g, "");
-
-      if (inputValue.length > 2) {
-        inputValue = inputValue.substring(0, 2) + "/" + inputValue.substring(2);
-      }
-    }
-
-    const age = convertBirthDateToAge(inputValue);
-
-    setBirthDate(inputValue);
     setSelectedAge(age);
+    dispatch(updateData({ birthDate: formattedBirthDate }));
   };
 
   return (
@@ -127,29 +101,29 @@ export const CPFContributionCalculator = () => {
           <h3>Current CPF Income Ceiling</h3>
           {incomeCeilingOnSelectedYear && (
             <p className="text-4xl font-extrabold text-red-600">
-              {formatCurrency(incomeCeilingOnSelectedYear.ceiling)}
+              {formatCurrency(incomeCeilingOnSelectedYear.ceilingThreshold)}
             </p>
           )}
           <p className="text-2xl">
-            Estimating contributions from {formatDate(currentYearIncomeCeiling)}
+            Estimating contributions from {formatDate(effectiveDate)}
           </p>
         </div>
         <div className="mb-8 gap-x-8 md:flex">
           <UserInput
             birthDate={birthDate}
             monthlyGrossIncome={monthlyGrossIncome}
-            currentYear={latestIncomeCeiling}
-            storeInputInLocalStorage={storeInputInLocalStorage}
+            currentYear={latestIncomeCeilingDate}
+            shouldStoreInput={shouldStoreInput}
             onBirthDateChange={handleBirthDateChange}
-            onStoreInputInLocalStorageChange={(e) =>
-              setStoreInputInLocalStorage(e.target.checked)
+            onShouldStoreInputChange={(e) =>
+              dispatch(updateData({ shouldStoreInput: e.target.checked }))
             }
-            onCurrentIncomeCeilingChange={(e) =>
-              setCurrentYearIncomeCeiling(e.target.value)
+            onEffectiveDateChange={(e) => setEffectiveDate(e.target.value)}
+            onGrossIncomeChange={(e) =>
+              dispatch(
+                updateData({ monthlyGrossIncome: parseFloat(e.target.value) }),
+              )
             }
-            onGrossIncomeChange={(e) => {
-              setMonthlyGrossIncome(parseFloat(e.target.value) || 0);
-            }}
           />
           <CalculatedResult
             result={contributionResult}
