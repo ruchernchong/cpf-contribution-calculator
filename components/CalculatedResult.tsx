@@ -18,12 +18,10 @@ export const CalculatedResult = ({
 
   return (
     <div className="flex flex-auto flex-col gap-y-2">
-      {Boolean(monthlyGrossIncome) && (
-        <div className="flex justify-between text-xl">
-          <div>Gross income</div>
-          <div>{formatCurrency(monthlyGrossIncome)}</div>
-        </div>
-      )}
+      <div className="flex justify-between text-xl">
+        <div>Gross income</div>
+        <div>{formatCurrency(monthlyGrossIncome)}</div>
+      </div>
       {result && (
         <Fragment>
           <div className="flex justify-between text-xl text-teal-600">
