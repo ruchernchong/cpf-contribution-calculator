@@ -135,8 +135,8 @@ const testCases: TestCase[] = [
 
 const testAgeGroup = {
   description: "55 and below",
-  min: 0,
-  max: 35,
+  minAge: 0,
+  maxAge: 35,
   contributionRate: {
     employee: DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
     employer: DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
@@ -162,7 +162,7 @@ describe("calculateCpfContribution", () => {
         useCeilingBeforeSep2023: true,
       }),
     ).toEqual({
-      contribution: { employee: 1200, employer: 1020, total: 2220 },
+      contribution: { employee: 1200, employer: 1020, totalContribution: 2220 },
       distribution: {},
       afterCpfContribution: 4800,
     });
@@ -171,7 +171,7 @@ describe("calculateCpfContribution", () => {
         useCeilingBeforeSep2023: true,
       }),
     ).toEqual({
-      contribution: { employee: 1200, employer: 1020, total: 2220 },
+      contribution: { employee: 1200, employer: 1020, totalContribution: 2220 },
       distribution: {},
       afterCpfContribution: 6800,
     });
@@ -188,7 +188,7 @@ describe("calculateCpfContribution", () => {
         },
       }),
     ).toEqual({
-      contribution: { employee: 300, employer: 450, total: 750 },
+      contribution: { employee: 300, employer: 450, totalContribution: 750 },
       distribution: {
         OA: 60,
         SA: 60,
