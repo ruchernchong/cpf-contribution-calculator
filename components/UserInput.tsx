@@ -8,22 +8,22 @@ type UserInputProps = {
   birthDate: string;
   monthlyGrossIncome: number;
   currentYear: string;
-  storeInputInLocalStorage: boolean;
+  shouldStoreInput: boolean;
   onBirthDateChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onCurrentIncomeCeilingChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onEffectiveDateChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   onGrossIncomeChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onStoreInputInLocalStorageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onShouldStoreInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const UserInput = ({
   birthDate,
   monthlyGrossIncome,
   currentYear,
-  storeInputInLocalStorage,
+  shouldStoreInput,
   onBirthDateChange,
-  onCurrentIncomeCeilingChange,
+  onEffectiveDateChange,
   onGrossIncomeChange,
-  onStoreInputInLocalStorageChange,
+  onShouldStoreInputChange,
 }: UserInputProps) => {
   return (
     <div className="flex flex-col gap-y-4 md:w-1/3">
@@ -38,11 +38,11 @@ export const UserInput = ({
         onChange={onBirthDateChange}
       />
       <SelectBox
-        name="cpf-income-ceiling"
-        id="cpf-income-ceiling"
+        name="effectiveDate"
+        id="effectiveDate"
         labelText="CPF Income Ceiling Effective Date"
         defaultValue={currentYear}
-        onChange={onCurrentIncomeCeilingChange}
+        onChange={onEffectiveDateChange}
       >
         {cpfIncomeCeilings.map(({ effectiveDate }) => {
           return (
@@ -54,8 +54,8 @@ export const UserInput = ({
       </SelectBox>
       <InputField
         type="number"
-        name="gross-income"
-        id="gross-income"
+        name="grossIncome"
+        id="grossIncome"
         inputMode="decimal"
         pattern="\d*"
         placeholder="e.g. 10000"
@@ -63,16 +63,16 @@ export const UserInput = ({
         defaultValue={monthlyGrossIncome}
         onChange={onGrossIncomeChange}
       />
-      <div className="flex items-center gap-x-2">
+      <label htmlFor="shouldStoreInput" className="flex items-center gap-x-2">
         <input
           type="checkbox"
-          id="store-data"
-          checked={storeInputInLocalStorage}
+          id="shouldStoreInput"
+          checked={shouldStoreInput}
           className="rounded-lg text-gray-900 focus:ring-2 focus:ring-teal-600"
-          onChange={onStoreInputInLocalStorageChange}
+          onChange={onShouldStoreInputChange}
         />
-        <label htmlFor="store-data">Store input on this browser?</label>
-      </div>
+        <span>Store input on this browser?</span>
+      </label>
       <div className="text-xs italic text-red-600">
         By ticking the above checkbox, the input will be stored on your own
         browser. No data are being stored on any servers.
