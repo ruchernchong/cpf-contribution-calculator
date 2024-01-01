@@ -21,13 +21,18 @@ const Link = ({ href, children }: LinkProps) => {
 
 export const Footer = () => {
   return (
-    <footer className="flex items-center justify-center gap-x-4 bg-gray-100 p-4">
-      <Link href="https://ruchern.xyz">
-        <span>Chong Ru Chern</span>
-      </Link>
-      <Link href="https://github.com/ruchernchong/cpf-contribution-calculator">
-        <span>Source code</span>
-      </Link>
+    <footer className="flex justify-center gap-x-4 bg-gray-100 px-4 py-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-y-4">
+        <div className="flex gap-x-4">
+          <Link href="https://ruchern.xyz">
+            <span>Chong Ru Chern</span>
+          </Link>
+          <Link href="https://github.com/ruchernchong/cpf-contribution-calculator">
+            <span>Source code</span>
+          </Link>
+        </div>
+        <div>&copy; {new Date().getFullYear()}. All Rights Reserved.</div>
+      </div>
     </footer>
   );
 };
