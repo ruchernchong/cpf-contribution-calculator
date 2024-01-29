@@ -18,14 +18,14 @@ This is a simple calculator to estimate the new "take-home" income after CPF con
 
 ```shell
 # Install packages
-bun install
+pnpm install
 
 # Start the development server
-bun dev
+pnpm dev
 
 # Build the project
-bun run build
+pnpm run build
 
 # Run the unit testing
-bun run test
+pnpm run test
 ```
