@@ -1,47 +1,47 @@
-export type ContributionRate = {
+export interface ContributionRate {
   employee: number;
   employer: number;
-};
+}
 
 export type DistributionRate = Record<string, number>;
 
-export type AgeGroup = {
+export interface AgeGroup {
   description: string;
   minAge: number;
   maxAge?: number;
   contributionRate: ContributionRate;
   distributionRate: DistributionRate;
-};
+}
 
-export type CPFIncomeCeiling = {
+export interface CPFIncomeCeiling {
   effectiveDate: string;
   ceilingThreshold: number;
-};
+}
 
-export type IncomeOptions = {
+export interface IncomeOptions {
   age?: number;
   ageGroup?: AgeGroup;
   useCeilingBeforeSep2023?: boolean;
-};
+}
 
-export type ContributionResult = {
+export interface ContributionResult {
   totalContribution: number;
   employer: number;
   employee: number;
-};
+}
 
-export type DistributionResult = {
+export interface DistributionResult {
   name: string;
   value: number;
-};
+}
 
-export type ComputedResult = {
+export interface ComputedResult {
   contribution: ContributionResult;
   distribution: DistributionRate;
   afterCpfContribution: number;
-};
+}
 
-export type FAQ = {
+export interface FAQ {
   question: string;
   answer: string;
-};
+}
