@@ -1,6 +1,6 @@
 import { closestTo, max, parse } from "date-fns";
 import { formatDate } from "./format";
-import { CPFIncomeCeiling } from "../types";
+import type { CPFIncomeCeiling } from "../types";
 
 export const findLatestIncomeCeilingDate = (
   dates: CPFIncomeCeiling[],

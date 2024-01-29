@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 import { InputField } from "./InputField";
 import { SelectBox } from "./SelectBox";
 import { formatDate } from "../lib/format";

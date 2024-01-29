@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, PropsWithChildren } from "react";
+import type { InputHTMLAttributes, PropsWithChildren } from "react";
 
 interface InputFieldProps
   extends InputHTMLAttributes<HTMLInputElement>,

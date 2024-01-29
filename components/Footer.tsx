@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 interface LinkProps extends PropsWithChildren {

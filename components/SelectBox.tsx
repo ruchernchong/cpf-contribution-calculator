@@ -1,4 +1,4 @@
-import { PropsWithChildren, SelectHTMLAttributes } from "react";
+import type { PropsWithChildren, SelectHTMLAttributes } from "react";
 
 interface SelectBoxProps
   extends SelectHTMLAttributes<HTMLSelectElement>,

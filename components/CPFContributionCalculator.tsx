@@ -1,6 +1,5 @@
 "use client";
-
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { type ChangeEvent, useEffect, useState } from "react";
 import { CalculatedResult } from "./CalculatedResult";
 import { DistributionView } from "./DistributionView";
 import { FAQ } from "./FAQ";
@@ -15,7 +14,7 @@ import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate"
 import { useAppDispatch, useAppSelector } from "../lib/hooks";
 import { formatCurrency, formatDate } from "../lib/format";
 import { formatDateInput } from "../utils/formatDateInput";
-import {
+import type {
   AgeGroup,
   ContributionRate,
   ComputedResult,
