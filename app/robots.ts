@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { BASE_URL } from "../config";
 
 const robots = (): MetadataRoute.Robots => {
   return {
@@ -6,7 +7,7 @@ const robots = (): MetadataRoute.Robots => {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://cpf-contribution-calculator.ruchern.xyz/sitemap.xml",
+    sitemap: `${BASE_URL}/sitemap.xml`,
   };
 };
 

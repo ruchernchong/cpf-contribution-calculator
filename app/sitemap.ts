@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
+import { BASE_URL } from "../config";
 
 const sitemap = (): MetadataRoute.Sitemap => {
   return [
     {
-      url: "https://cpf-contribution-calculator.ruchern.xyz",
-      lastModified: "2023-09-27",
+      url: BASE_URL,
+      lastModified: new Date().toISOString(),
     },
   ];
 };
