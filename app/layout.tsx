@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Footer } from "../components/Footer";
 import { BASE_URL, description, title } from "../config";
-import "./global.css";
+import "./globals.css";
 
 const url = new URL(BASE_URL);
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-900">
+      <body className="bg-white text-black">
         <main className="flex min-h-screen flex-col">{children}</main>
         <Footer />
       </body>
