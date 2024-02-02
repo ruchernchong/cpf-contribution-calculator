@@ -1,5 +1,11 @@
 import { Fragment } from "react";
 import type { FAQ as FAQType } from "../types";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 
 interface FAQProps {
   items: FAQType[];
@@ -9,20 +15,20 @@ export const FAQ = ({ items }: FAQProps) => {
   return (
     <Fragment>
       <h3>Frequently Asked Questions</h3>
-      {items.map(({ question, answer }, index) => {
-        const hasQuestionAndAnswer = Boolean(question && answer);
+      <Accordion type="single" collapsible>
+        {items.map(({ question, answer }, index) => {
+          const key = `${question}-${index}`;
 
-        return (
-          hasQuestionAndAnswer && (
-            <details key={index}>
-              <summary className="cursor-pointer border p-4">
+          return (
+            <AccordionItem key={key} value={question}>
+              <AccordionTrigger className="text-left">
                 {question}
-              </summary>
-              <div className="border bg-gray-100 p-4">{answer}</div>
-            </details>
-          )
-        );
-      })}
+              </AccordionTrigger>
+              <AccordionContent>{answer}</AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
     </Fragment>
   );
 };

@@ -21,6 +21,9 @@
         "name": "next"
       }
     ],
+    "paths": {
+      "@/*": ["./*"]
+    },
     "verbatimModuleSyntax": true
   },
   "include": ["src", ".next/types/**/*.ts"],
