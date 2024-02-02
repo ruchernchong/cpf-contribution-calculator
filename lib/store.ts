@@ -10,16 +10,22 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import dataReducer from "./features/data/dataSlice";
+import incomeCeilingReducer from "./features/incomeCeiling/incomeCeilingSlice";
+import resultReducer from "./features/result/resultSlice";
+import settingReducer from "./features/setting/settingSlice";
+import userInfoReducer from "./features/userInfo/userInfoSlice";
 
 const reducers = combineReducers({
-  data: dataReducer,
+  incomeCeiling: incomeCeilingReducer,
+  result: resultReducer,
+  setting: settingReducer,
+  userInfo: userInfoReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["data"],
+  whitelist: ["setting"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

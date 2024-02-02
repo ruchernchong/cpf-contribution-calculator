@@ -1,11 +1,10 @@
-import { Fragment } from "react";
-import type { FAQ as FAQType } from "../types";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
+import type { FAQ as FAQType } from "../types";
 
 interface FAQProps {
   items: FAQType[];
@@ -13,7 +12,7 @@ interface FAQProps {
 
 export const FAQ = ({ items }: FAQProps) => {
   return (
-    <Fragment>
+    <>
       <h3>Frequently Asked Questions</h3>
       <Accordion type="single" collapsible>
         {items.map(({ question, answer }, index) => {
@@ -29,6 +28,6 @@ export const FAQ = ({ items }: FAQProps) => {
           );
         })}
       </Accordion>
-    </Fragment>
+    </>
   );
 };
