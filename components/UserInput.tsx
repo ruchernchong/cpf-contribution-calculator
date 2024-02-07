@@ -1,4 +1,4 @@
-import { type ChangeEvent, useEffect } from "react";
+import { type ChangeEvent, useCallback, useEffect } from "react";
 import { formatDate } from "@/lib/format";
 import { cpfIncomeCeilings } from "@/data";
 import { Label } from "./ui/label";
@@ -11,34 +11,48 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Checkbox } from "./ui/checkbox";
-import { resetData, updateData } from "../lib/features/data/dataSlice";
+import {
+  resetSetting,
+  updateSetting,
+} from "../lib/features/setting/settingSlice";
+import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
 import { useAppDispatch, useAppSelector } from "../lib/hooks";
+import { updateIncomeCeiling } from "../lib/features/incomeCeiling/incomeCeilingSlice";
+import { updateUserInfo } from "../lib/features/userInfo/userInfoSlice";
+import { formatDateInput } from "../utils/formatDateInput";
+import { findAgeGroup } from "../lib/findAgeGroup";
 
-type UserInputProps = {
-  birthDate: string;
-  currentYear: string;
-  onBirthDateChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onEffectiveDateChange: (value: string) => void;
-};
-
-export const UserInput = ({
-  birthDate,
-  currentYear,
-  onBirthDateChange,
-  onEffectiveDateChange,
-}: UserInputProps) => {
+export const UserInput = () => {
   const dispatch = useAppDispatch();
-
-  const monthlyGrossIncome = useAppSelector(
-    ({ data }) => data.monthlyGrossIncome
+  const { latestIncomeCeilingDate } = useAppSelector(
+    ({ incomeCeiling }) => incomeCeiling
   );
-  const shouldStoreInput = useAppSelector(({ data }) => data.shouldStoreInput);
+  const { birthDate, monthlyGrossIncome, shouldStoreInput } = useAppSelector(
+    ({ setting }) => setting
+  );
+  const { age } = useAppSelector(({ userInfo }) => userInfo);
 
   useEffect(() => {
     if (!shouldStoreInput) {
-      dispatch(resetData());
+      dispatch(resetSetting());
     }
-  }, []);
+  }, [dispatch, shouldStoreInput]);
+
+  const handleBirthDateChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const rawInput = event.target.value;
+      const formattedBirthDate = formatDateInput(rawInput, birthDate);
+      const age = convertBirthDateToAge(formattedBirthDate);
+      dispatch(updateUserInfo({ age }));
+      dispatch(updateSetting({ birthDate: formattedBirthDate }));
+    },
+    [birthDate, dispatch]
+  );
+
+  useEffect(() => {
+    const ageGroup = findAgeGroup(age);
+    dispatch(updateUserInfo({ ageGroup }));
+  }, [age, dispatch]);
 
   return (
     <div className="flex flex-col gap-y-4 md:w-1/3">
@@ -50,10 +64,15 @@ export const UserInput = ({
         placeholder="MM/YYYY"
         maxLength={7}
         value={birthDate}
-        onChange={onBirthDateChange}
+        onChange={handleBirthDateChange}
       />
       <Label htmlFor="effectiveDate">CPF Income Ceiling Effective Date</Label>
-      <Select defaultValue={currentYear} onValueChange={onEffectiveDateChange}>
+      <Select
+        defaultValue={latestIncomeCeilingDate}
+        onValueChange={(value) =>
+          dispatch(updateIncomeCeiling({ latestIncomeCeilingDate: value }))
+        }
+      >
         <SelectTrigger>
           <SelectValue placeholder="Select income ceiling effective date" />
         </SelectTrigger>
@@ -78,7 +97,7 @@ export const UserInput = ({
         value={monthlyGrossIncome}
         onChange={(e) =>
           dispatch(
-            updateData({ monthlyGrossIncome: parseFloat(e.target.value) })
+            updateSetting({ monthlyGrossIncome: parseFloat(e.target.value) })
           )
         }
       />
@@ -87,7 +106,7 @@ export const UserInput = ({
           id="shouldStoreInput"
           checked={shouldStoreInput}
           onCheckedChange={(checked) =>
-            dispatch(updateData({ shouldStoreInput: checked }))
+            dispatch(updateSetting({ shouldStoreInput: checked }))
           }
         />
         <div className="grid gap-1.5 leading-none">

@@ -6,7 +6,7 @@ import type { AgeGroup, CPFIncomeCeiling } from "../types";
 
 export const ageGroups: AgeGroup[] = [
   {
-    description: "55 and below",
+    description: "35 and below",
     minAge: 0,
     maxAge: 35,
     contributionRate: {
@@ -16,7 +16,7 @@ export const ageGroups: AgeGroup[] = [
     distributionRate: { OA: 0.6217, SA: 0.1621, MA: 0.2162 },
   },
   {
-    description: "55 and below",
+    description: "Above 35 to 45",
     minAge: 35,
     maxAge: 45,
     contributionRate: {
@@ -26,7 +26,7 @@ export const ageGroups: AgeGroup[] = [
     distributionRate: { OA: 0.5677, SA: 0.1891, MA: 0.2432 },
   },
   {
-    description: "55 and below",
+    description: "Above 45 to 50",
     minAge: 45,
     maxAge: 50,
     contributionRate: {
@@ -36,7 +36,7 @@ export const ageGroups: AgeGroup[] = [
     distributionRate: { OA: 0.5136, SA: 0.2162, MA: 0.2702 },
   },
   {
-    description: "55 and below",
+    description: "Above 50 to 55",
     minAge: 50,
     maxAge: 55,
     contributionRate: {
