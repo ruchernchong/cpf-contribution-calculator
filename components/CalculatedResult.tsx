@@ -1,34 +1,37 @@
 import { Fragment } from "react";
 import { formatCurrency, formatPercentage } from "../lib/format";
+import { useAppSelector } from "../lib/hooks";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "../config";
-import type { ContributionRate, ComputedResult } from "../types";
 
-type ContributionResultProps = {
-  result: ComputedResult;
-  contributionRate: ContributionRate;
-  monthlyGrossIncome: number;
-};
+export const CalculatedResult = () => {
+  const { contributionRate } = useAppSelector(
+    ({ incomeCeiling }) => incomeCeiling
+  );
+  const { monthlyGrossIncome } = useAppSelector(({ setting }) => setting);
+  const { ageGroup } = useAppSelector(({ userInfo }) => userInfo);
+  const { contributionResult } = useAppSelector(({ result }) => result);
 
-export const CalculatedResult = ({
-  result,
-  contributionRate,
-  monthlyGrossIncome,
-}: ContributionResultProps) => {
   const annualWage = monthlyGrossIncome * 12;
 
   return (
     <div className="flex flex-auto flex-col gap-y-2">
       <div className="flex justify-between text-xl">
+        <div>Age Group</div>
+        <div>{ageGroup.description}</div>
+      </div>
+      <div className="flex justify-between text-xl">
         <div>Gross income</div>
         <div>{formatCurrency(monthlyGrossIncome)}</div>
       </div>
-      {result && (
+      {contributionResult && (
         <Fragment>
           <div className="flex justify-between text-xl text-teal-600">
             <div>
               Your contribution ({formatPercentage(contributionRate.employee)})
             </div>
-            <div>{formatCurrency(result.contribution.employee)}</div>
+            <div>
+              {formatCurrency(contributionResult.contribution.employee)}
+            </div>
           </div>
           <div className="flex justify-between text-xl">
             <div>
@@ -38,7 +41,7 @@ export const CalculatedResult = ({
                 and etc...
               </div>
             </div>
-            <div>{formatCurrency(result.afterCpfContribution)}</div>
+            <div>{formatCurrency(contributionResult.afterCpfContribution)}</div>
           </div>
           {/*{!!incomeDifference && (*/}
           {/*  <div className="flex justify-between text-xl">*/}
@@ -61,14 +64,20 @@ export const CalculatedResult = ({
           {/*)}*/}
           <div className="flex justify-between gap-x-4 text-xl text-teal-600">
             <div>
-              Company's contribution (
+              Company&apos;s contribution (
               {formatPercentage(contributionRate.employer)})
             </div>
-            <div>{formatCurrency(result.contribution.employer)}</div>
+            <div>
+              {formatCurrency(contributionResult.contribution.employer)}
+            </div>
           </div>
           <div className="flex justify-between text-xl text-teal-600">
             <div>Total CPF contribution</div>
-            <div>{formatCurrency(result.contribution.totalContribution)}</div>
+            <div>
+              {formatCurrency(
+                contributionResult.contribution.totalContribution
+              )}
+            </div>
           </div>
           {annualWage < CPF_ADDITIONAL_WAGE_CEILING && (
             <div className="flex justify-between gap-x-4 text-xl text-teal-600">

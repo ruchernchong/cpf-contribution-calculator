@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import StoreProvider from "./StoreProvider";
 import { Footer } from "../components/Footer";
 import { BASE_URL, description, title } from "../config";
 import "./globals.css";
@@ -39,7 +40,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className="bg-white text-black">
-        <main className="flex min-h-screen flex-col">{children}</main>
+        <main className="flex min-h-screen flex-col">
+          <StoreProvider>{children}</StoreProvider>
+        </main>
         <Footer />
       </body>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-4W2DF7BF1S" />

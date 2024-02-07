@@ -1,5 +1,3 @@
-import type { FAQ } from "../types";
-
 export const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ||
   "https://cpf-contribution-calculator.ruchern.xyz";
@@ -9,7 +7,7 @@ export const description: string =
   "A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023";
 
 export const CPF_INCOME_CEILING_BEFORE_SEPT_2023: number = 6000;
-export const CPF_INCOME_CEILING: Record<number | string, number> = {
+export const CPF_INCOME_CEILING: Record<string, number> = {
   "01-01-2023": 6000,
   "09-01-2023": 6300,
   "01-01-2024": 6800,
