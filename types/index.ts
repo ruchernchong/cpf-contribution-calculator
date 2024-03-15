@@ -45,3 +45,9 @@ export interface FAQ {
   question: string;
   answer: string;
 }
+
+export interface Settings {
+  shouldStoreInput: boolean;
+  monthlyGrossIncome: number;
+  birthDate: string;
+}

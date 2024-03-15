@@ -1,76 +1,26 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
+import { useAtomValue } from "jotai";
+import {
+  latestIncomeCeilingAtom,
+  latestIncomeCeilingDateAtom,
+} from "../atoms/incomeCeilingAtom";
+import {
+  distributionResultsAtom,
+  hasCpfContributionAtom,
+} from "../atoms/resultAtom";
 import { formatCurrency, formatDate } from "../lib/format";
 import { UserInput } from "../components/UserInput";
 import faqs from "@/data/faq.json";
 import { CalculatedResult } from "../components/CalculatedResult";
 import DistributionView from "../components/DistributionView";
 import { FAQ } from "../components/FAQ";
-import { useAppDispatch, useAppSelector } from "../lib/hooks";
-import { cpfIncomeCeilings } from "../data";
-import { updateIncomeCeiling } from "../lib/features/incomeCeiling/incomeCeilingSlice";
-import { updateResult } from "../lib/features/result/resultSlice";
-import { calculateCpfContribution } from "../lib/calculateCpfContribution";
-import { findAgeGroup } from "../lib/findAgeGroup";
-import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
-import { updateUserInfo } from "../lib/features/userInfo/userInfoSlice";
 
 const HomePage = () => {
-  const dispatch = useAppDispatch();
-  const { latestIncomeCeilingDate } = useAppSelector(
-    ({ incomeCeiling }) => incomeCeiling
-  );
-  const { birthDate, monthlyGrossIncome } = useAppSelector(
-    ({ setting }) => setting
-  );
-  const { ageGroup } = useAppSelector(({ userInfo }) => userInfo);
-  const { contributionResult, distributionResults } = useAppSelector(
-    ({ result }) => result
-  );
-
-  const latestIncomeCeiling = cpfIncomeCeilings.find(
-    (ceiling) => ceiling.effectiveDate === latestIncomeCeilingDate
-  );
-
-  useEffect(() => {
-    const age = convertBirthDateToAge(birthDate);
-    dispatch(updateUserInfo({ ageGroup: findAgeGroup(age) }));
-  }, [birthDate, dispatch]);
-
-  useEffect(() => {
-    dispatch(
-      updateIncomeCeiling({ contributionRate: ageGroup.contributionRate })
-    );
-  }, [ageGroup.contributionRate, dispatch]);
-
-  useEffect(() => {
-    dispatch(
-      updateResult({
-        contributionResult: calculateCpfContribution(
-          monthlyGrossIncome,
-          latestIncomeCeilingDate,
-          {
-            ageGroup,
-          }
-        ),
-      })
-    );
-  }, [ageGroup, monthlyGrossIncome, latestIncomeCeilingDate, dispatch]);
-
-  useEffect(() => {
-    if (contributionResult) {
-      dispatch(
-        updateResult({
-          distributionResults: Object.entries(
-            contributionResult.distribution
-          ).map(([name, value]) => ({
-            name,
-            value,
-          })),
-        })
-      );
-    }
-  }, [contributionResult, dispatch]);
+  const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
+  const distributionResults = useAtomValue(distributionResultsAtom);
+  const latestIncomeCeilingDate = useAtomValue(latestIncomeCeilingDateAtom);
+  const latestIncomeCeiling = useAtomValue(latestIncomeCeilingAtom);
 
   return (
     <div className="prose mx-auto flex max-w-6xl grow flex-col px-4 py-16">
@@ -95,7 +45,7 @@ const HomePage = () => {
         <UserInput />
         <CalculatedResult />
       </div>
-      {distributionResults && (
+      {hasCpfContribution && (
         <DistributionView distributionResults={distributionResults} />
       )}
       <FAQ items={faqs} />

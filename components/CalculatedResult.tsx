@@ -1,15 +1,16 @@
-import { Fragment } from "react";
+import { useAtomValue } from "jotai";
+import { contributionRateAtom } from "../atoms/incomeCeilingAtom";
+import { contributionResultAtom } from "../atoms/resultAtom";
+import { settingsAtom } from "../atoms/settingAtom";
+import { ageGroupAtom } from "../atoms/userAtom";
 import { formatCurrency, formatPercentage } from "../lib/format";
-import { useAppSelector } from "../lib/hooks";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "../config";
 
 export const CalculatedResult = () => {
-  const { contributionRate } = useAppSelector(
-    ({ incomeCeiling }) => incomeCeiling
-  );
-  const { monthlyGrossIncome } = useAppSelector(({ setting }) => setting);
-  const { ageGroup } = useAppSelector(({ userInfo }) => userInfo);
-  const { contributionResult } = useAppSelector(({ result }) => result);
+  const contributionRate = useAtomValue(contributionRateAtom);
+  const { monthlyGrossIncome } = useAtomValue(settingsAtom);
+  const ageGroup = useAtomValue(ageGroupAtom);
+  const contributionResult = useAtomValue(contributionResultAtom);
 
   const annualWage = monthlyGrossIncome * 12;
 
@@ -24,7 +25,7 @@ export const CalculatedResult = () => {
         <div>{formatCurrency(monthlyGrossIncome)}</div>
       </div>
       {contributionResult && (
-        <Fragment>
+        <>
           <div className="flex justify-between text-xl text-teal-600">
             <div>
               Your contribution ({formatPercentage(contributionRate.employee)})
@@ -107,7 +108,7 @@ export const CalculatedResult = () => {
           {/*</div>*/}
           {/*)}*/}
           {/*</div>*/}
-        </Fragment>
+        </>
       )}
     </div>
   );
