@@ -1,4 +1,4 @@
-import { atomWithStorage, createJSONStorage } from "jotai/utils";
+import { atomWithStorage } from "jotai/utils";
 import type { Settings } from "../types";
 
 const initialValue: Settings = {
@@ -7,10 +7,9 @@ const initialValue: Settings = {
   birthDate: "",
 };
 
-const storage = createJSONStorage<Settings>(() => localStorage);
 export const settingsAtom = atomWithStorage<Settings>(
   "settings",
   initialValue,
-  storage,
+  undefined,
   { getOnInit: true }
 );

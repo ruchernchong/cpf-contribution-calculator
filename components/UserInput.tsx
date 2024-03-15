@@ -37,7 +37,10 @@ export const UserInput = () => {
       const rawInput = event.target.value;
       const formattedBirthDate = formatDateInput(rawInput, birthDate);
 
-      setSettings((setting) => ({ ...setting, birthDate: formattedBirthDate }));
+      void setSettings((setting) => ({
+        ...setting,
+        birthDate: formattedBirthDate,
+      }));
     },
     [birthDate, setSettings]
   );
