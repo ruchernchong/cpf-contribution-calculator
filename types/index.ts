@@ -13,10 +13,7 @@ export interface AgeGroup {
   distributionRate: DistributionRate;
 }
 
-export interface CPFIncomeCeiling {
-  effectiveDate: string;
-  ceilingThreshold: number;
-}
+export type CPFIncomeCeiling = Record<string, number>;
 
 export interface IncomeOptions {
   age?: number;

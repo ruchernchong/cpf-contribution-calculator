@@ -74,25 +74,10 @@ export const ageGroups: AgeGroup[] = [
   },
 ];
 
-export const cpfIncomeCeilings: CPFIncomeCeiling[] = [
-  {
-    effectiveDate: "01-01-2023",
-    ceilingThreshold: 6000,
-  },
-  {
-    effectiveDate: "09-01-2023",
-    ceilingThreshold: 6300,
-  },
-  {
-    effectiveDate: "01-01-2024",
-    ceilingThreshold: 6800,
-  },
-  {
-    effectiveDate: "01-01-2025",
-    ceilingThreshold: 7400,
-  },
-  {
-    effectiveDate: "01-01-2026",
-    ceilingThreshold: 8000,
-  },
-];
+export const cpfIncomeCeilings: CPFIncomeCeiling = {
+  "01-01-2023": 6000,
+  "09-01-2023": 6300,
+  "01-01-2024": 6800,
+  "01-01-2025": 7400,
+  "01-01-2026": 8000,
+};

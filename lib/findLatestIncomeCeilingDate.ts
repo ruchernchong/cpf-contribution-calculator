@@ -5,8 +5,8 @@ import { cpfIncomeCeilings as dates } from "../data";
 export const findLatestIncomeCeilingDate = (): string => {
   const currentDate = new Date();
 
-  const pastDates = dates
-    .map(({ effectiveDate, ceilingThreshold }) => ({
+  const pastDates = Object.entries(dates)
+    .map(([effectiveDate, ceilingThreshold]) => ({
       effectiveDate: parse(effectiveDate, "MM-dd-yyyy", new Date()),
       ceilingThreshold,
     }))

@@ -10,8 +10,6 @@ export const contributionRateAtom = atom<ContributionRate>(
 
 export const latestIncomeCeilingDateAtom = atom(findLatestIncomeCeilingDate());
 
-export const latestIncomeCeilingAtom = atom((get) =>
-  cpfIncomeCeilings.find(
-    (ceiling) => ceiling.effectiveDate === get(latestIncomeCeilingDateAtom)
-  )
+export const latestIncomeCeilingAtom = atom(
+  (get) => cpfIncomeCeilings[get(latestIncomeCeilingDateAtom)]
 );

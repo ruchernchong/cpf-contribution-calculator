@@ -34,7 +34,7 @@ const HomePage = () => {
         <h3>Current CPF Income Ceiling</h3>
         {latestIncomeCeiling && (
           <p className="text-4xl font-extrabold text-red-600">
-            {formatCurrency(latestIncomeCeiling.ceilingThreshold)}
+            {formatCurrency(latestIncomeCeiling)}
           </p>
         )}
         <p className="text-2xl">

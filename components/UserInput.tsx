@@ -66,7 +66,7 @@ export const UserInput = () => {
           <SelectValue placeholder="Select income ceiling effective date" />
         </SelectTrigger>
         <SelectContent>
-          {cpfIncomeCeilings.map(({ effectiveDate }) => {
+          {Object.keys(cpfIncomeCeilings).map((effectiveDate) => {
             return (
               <SelectItem key={effectiveDate} value={effectiveDate}>
                 {formatDate(effectiveDate)}
