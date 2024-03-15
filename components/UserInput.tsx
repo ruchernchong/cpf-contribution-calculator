@@ -1,4 +1,8 @@
 import { type ChangeEvent, useCallback, useEffect } from "react";
+import { useAtom } from "jotai";
+import { useResetAtom } from "jotai/utils";
+import { latestIncomeCeilingDateAtom } from "../atoms/incomeCeilingAtom";
+import { settingsAtom } from "../atoms/settingAtom";
 import { formatDate } from "@/lib/format";
 import { cpfIncomeCeilings } from "@/data";
 import { Label } from "./ui/label";
@@ -11,48 +15,35 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Checkbox } from "./ui/checkbox";
-import {
-  resetSetting,
-  updateSetting,
-} from "../lib/features/setting/settingSlice";
-import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
-import { useAppDispatch, useAppSelector } from "../lib/hooks";
-import { updateIncomeCeiling } from "../lib/features/incomeCeiling/incomeCeilingSlice";
-import { updateUserInfo } from "../lib/features/userInfo/userInfoSlice";
 import { formatDateInput } from "../utils/formatDateInput";
-import { findAgeGroup } from "../lib/findAgeGroup";
 
 export const UserInput = () => {
-  const dispatch = useAppDispatch();
-  const { latestIncomeCeilingDate } = useAppSelector(
-    ({ incomeCeiling }) => incomeCeiling
+  const [latestIncomeCeilingDate, setLatestIncomeCeilingDate] = useAtom(
+    latestIncomeCeilingDateAtom
   );
-  const { birthDate, monthlyGrossIncome, shouldStoreInput } = useAppSelector(
-    ({ setting }) => setting
-  );
-  const { age } = useAppSelector(({ userInfo }) => userInfo);
+  const [settings, setSettings] = useAtom(settingsAtom);
+  const { birthDate, monthlyGrossIncome, shouldStoreInput } = settings;
+
+  const resetSettings = useResetAtom(settingsAtom);
 
   useEffect(() => {
     if (!shouldStoreInput) {
-      dispatch(resetSetting());
+      resetSettings();
     }
-  }, [dispatch, shouldStoreInput]);
+  }, [resetSettings, shouldStoreInput]);
 
   const handleBirthDateChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const rawInput = event.target.value;
       const formattedBirthDate = formatDateInput(rawInput, birthDate);
-      const age = convertBirthDateToAge(formattedBirthDate);
-      dispatch(updateUserInfo({ age }));
-      dispatch(updateSetting({ birthDate: formattedBirthDate }));
-    },
-    [birthDate, dispatch]
-  );
 
-  useEffect(() => {
-    const ageGroup = findAgeGroup(age);
-    dispatch(updateUserInfo({ ageGroup }));
-  }, [age, dispatch]);
+      void setSettings((setting) => ({
+        ...setting,
+        birthDate: formattedBirthDate,
+      }));
+    },
+    [birthDate, setSettings]
+  );
 
   return (
     <div className="flex flex-col gap-y-4 md:w-1/3">
@@ -69,9 +60,7 @@ export const UserInput = () => {
       <Label htmlFor="effectiveDate">CPF Income Ceiling Effective Date</Label>
       <Select
         defaultValue={latestIncomeCeilingDate}
-        onValueChange={(value) =>
-          dispatch(updateIncomeCeiling({ latestIncomeCeilingDate: value }))
-        }
+        onValueChange={(value) => setLatestIncomeCeilingDate(value)}
       >
         <SelectTrigger>
           <SelectValue placeholder="Select income ceiling effective date" />
@@ -96,9 +85,10 @@ export const UserInput = () => {
         placeholder="10000"
         value={monthlyGrossIncome}
         onChange={(e) =>
-          dispatch(
-            updateSetting({ monthlyGrossIncome: parseFloat(e.target.value) })
-          )
+          setSettings((setting) => ({
+            ...setting,
+            monthlyGrossIncome: parseFloat(e.target.value),
+          }))
         }
       />
       <div className="flex items-start gap-x-2">
@@ -106,13 +96,14 @@ export const UserInput = () => {
           id="shouldStoreInput"
           checked={shouldStoreInput}
           onCheckedChange={(checked) =>
-            dispatch(updateSetting({ shouldStoreInput: checked }))
+            setSettings((setting) => ({
+              ...setting,
+              shouldStoreInput: Boolean(checked),
+            }))
           }
         />
         <div className="grid gap-1.5 leading-none">
-          <label htmlFor="shouldStoreInput" className="">
-            Store input on this browser?
-          </label>
+          <label htmlFor="shouldStoreInput">Store input on this browser?</label>
           <p className="text-xs italic text-red-600">
             By ticking the above checkbox, the input will be stored on your own
             browser. No data are being stored on any servers.
