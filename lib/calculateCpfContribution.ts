@@ -1,17 +1,20 @@
 import {
-  CPF_INCOME_CEILING,
-  CPF_INCOME_CEILING_BEFORE_SEPT_2023,
   CPF_TYPE,
   DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
   DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
-} from "../config";
-import type { ComputedResult, DistributionRate, IncomeOptions } from "../types";
+} from "@/config";
+import {
+  CPF_INCOME_CEILING,
+  CPF_INCOME_CEILING_BEFORE_SEPT_2023,
+} from "@/constants";
+import type { ComputedResult, DistributionRate, IncomeOptions } from "@/types";
 
 export const calculateCpfContribution = (
   income: number,
   year: number | string,
   options?: IncomeOptions,
 ): ComputedResult => {
+  console.log(year);
   const { ageGroup, useCeilingBeforeSep2023 } = options || {};
 
   const {

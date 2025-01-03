@@ -1,8 +1,8 @@
 import {
   DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
   DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
-} from "../config";
-import type { AgeGroup, CPFIncomeCeiling } from "../types";
+} from "@/config";
+import type { AgeGroup } from "@/types";
 
 export const ageGroups: AgeGroup[] = [
   {
@@ -73,11 +73,3 @@ export const ageGroups: AgeGroup[] = [
     distributionRate: { OA: 0.08, SA: 0.08, MA: 0.84 },
   },
 ];
-
-export const cpfIncomeCeilings: CPFIncomeCeiling = {
-  "2023-01-01": 6000,
-  "2023-09-01": 6300,
-  "2024-01-01": 6800,
-  "2025-01-01": 7400,
-  "2026-01-01": 8000,
-};

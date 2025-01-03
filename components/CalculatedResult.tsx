@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CPF_ADDITIONAL_WAGE_CEILING } from "@/config";
+import { CPF_ADDITIONAL_WAGE_CEILING } from "@/constants";
 import { formatCurrency } from "@/lib/format";
 import { useAtomValue } from "jotai";
 import React from "react";

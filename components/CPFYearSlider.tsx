@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { cpfIncomeCeilings } from "@/data";
+import { CPF_INCOME_CEILING } from "@/constants";
 import { formatCurrency } from "@/lib/format";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import React, { useState } from "react";
 
 const CPFYearSlider = () => {
@@ -20,7 +20,7 @@ const CPFYearSlider = () => {
 
   const [sliderValue, setSliderValue] = useState(latestIncomeCeilingDate);
 
-  const dateKeys = Object.keys(cpfIncomeCeilings);
+  const dateKeys = Object.keys(CPF_INCOME_CEILING);
 
   return (
     <Card className="mb-4 w-full">
@@ -45,14 +45,13 @@ const CPFYearSlider = () => {
                 min={0}
                 max={dateKeys.length - 1}
                 step={1}
-                className="w-full"
               />
             </div>
             <div className="flex justify-between px-2 text-sm text-gray-500">
               {dateKeys.map((date) => (
                 <div key={date} className="text-center">
                   <div>{date}</div>
-                  <div>{formatCurrency(cpfIncomeCeilings[date])}</div>
+                  <div>{formatCurrency(CPF_INCOME_CEILING[date])}</div>
                 </div>
               ))}
             </div>

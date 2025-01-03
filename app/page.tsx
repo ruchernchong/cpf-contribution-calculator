@@ -10,7 +10,7 @@ import { CalculatedResult } from "@/components/CalculatedResult";
 import DistributionView from "@/components/DistributionView";
 import { UserInput } from "@/components/UserInput";
 import { Card, CardContent } from "@/components/ui/card";
-import { cpfIncomeCeilings } from "@/data";
+import { CPF_INCOME_CEILING } from "@/constants";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { useAtomValue } from "jotai";
 
@@ -18,7 +18,7 @@ const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
   const distributionResults = useAtomValue(distributionResultsAtom);
   const latestIncomeCeilingDate = useAtomValue(latestIncomeCeilingDateAtom);
-  const currentCeiling = cpfIncomeCeilings[latestIncomeCeilingDate];
+  const currentCeiling = CPF_INCOME_CEILING[latestIncomeCeilingDate];
 
   return (
     <>
