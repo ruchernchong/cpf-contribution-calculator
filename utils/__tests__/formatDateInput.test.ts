@@ -1,4 +1,4 @@
-import { formatDateInput } from "./formatDateInput";
+import { formatDateInput } from "../formatDateInput";
 
 describe("formatDateInput", () => {
   it("should return the date in the correct format", () => {

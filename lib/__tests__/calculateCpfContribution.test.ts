@@ -1,9 +1,9 @@
 import {
   DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
   DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
-} from "../config";
-import type { ComputedResult } from "../types";
-import { calculateCpfContribution } from "./calculateCpfContribution";
+} from "../../config";
+import type { ComputedResult } from "../../types";
+import { calculateCpfContribution } from "../calculateCpfContribution";
 
 type TestCase = {
   effectiveDate: string;

@@ -1,4 +1,4 @@
-import { formatCurrency, formatDate, formatPercentage } from "./format";
+import { formatCurrency, formatDate, formatPercentage } from "../format";
 
 describe("formatCurrency", () => {
   it("should return a nicely formatted currency", () => {
