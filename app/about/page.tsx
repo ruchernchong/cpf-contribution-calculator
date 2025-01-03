@@ -42,6 +42,20 @@ export default function AboutPage() {
         </CardContent>
       </Card>
 
+      <Card className="border-orange-200 bg-orange-50">
+        <CardHeader>
+          <CardTitle className="text-orange-800">Important Disclaimer</CardTitle>
+        </CardHeader>
+        <CardContent className="text-orange-800">
+          <p>
+            This calculator is an independent tool created to assist with CPF contribution calculations. It is not affiliated with, endorsed by, or officially connected to the Central Provident Fund Board (CPF Board), Ministry of Manpower (MOM), or any other government agency.
+          </p>
+          <p className="mt-4">
+            While we strive to maintain accuracy, for official information and verification of CPF matters, please refer to the official CPF Board website or contact CPF Board directly.
+          </p>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
           <CardTitle>Frequently Asked Questions</CardTitle>

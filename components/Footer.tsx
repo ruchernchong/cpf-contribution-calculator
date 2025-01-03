@@ -68,6 +68,16 @@ const Footer = () => (
             </li>
           </ul>
         </div>
+
+        {/* Disclaimer */}
+        <div>
+          <h3 className="mb-4 text-sm font-semibold text-gray-900">
+            Disclaimer
+          </h3>
+          <p className="text-sm text-gray-600">
+            This calculator is an independent tool and is not affiliated with, endorsed by, or connected to the CPF Board, Ministry of Manpower, or any government agency.
+          </p>
+        </div>
       </div>
 
       {/* Copyright */}
