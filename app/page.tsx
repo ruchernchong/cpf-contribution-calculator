@@ -14,7 +14,6 @@ import { CPF_INCOME_CEILING } from "@/constants";
 import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { useAtomValue } from "jotai";
-import dynamic from "next/dynamic";
 
 const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
@@ -25,7 +24,7 @@ const HomePage = () => {
   return (
     <>
       {/* Hero Section */}
-      <div className="border-b bg-white py-12">
+      <div className="border-b py-12">
         <div className="mx-auto max-w-4xl px-4">
           <h1 className="mb-4 text-center text-4xl font-bold">
             CPF Income Ceiling
