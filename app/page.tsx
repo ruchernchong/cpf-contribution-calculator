@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { useAtomValue } from "jotai";
 import { latestIncomeCeilingDateAtom } from "@/atoms/incomeCeilingAtom";
@@ -14,6 +15,7 @@ import DistributionView from "../components/DistributionView";
 import { FAQ } from "@/components/FAQ";
 import CPFYearSlider from "../components/CPFYearSlider";
 import { selectedYearAtom, yearCeilingsAtom } from "@/atoms/yearSliderAtom";
+import { Card, CardContent } from "@/components/ui/card";
 
 const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
@@ -24,36 +26,59 @@ const HomePage = () => {
   const currentCeiling = yearCeilings[selectedYear];
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8 px-4 py-16">
-      <div className="space-y-4 text-center">
-        <h1 className="text-4xl font-bold">CPF Income Ceiling Changes</h1>
-        <p className="mx-auto max-w-3xl text-xl text-gray-600">
-          Understanding the progressive increases in CPF Income Ceiling from 2023 to 2026,
-          announced in the Singapore Budget 2023
-        </p>
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold">Current CPF Income Ceiling</h2>
-          <p className="text-4xl font-extrabold text-red-600">
-            {formatCurrency(currentCeiling)}
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div className="border-b bg-white py-12">
+        <div className="mx-auto max-w-4xl px-4">
+          <h1 className="mb-4 text-center text-4xl font-bold">
+            CPF Income Ceiling Changes
+          </h1>
+          <p className="mb-8 text-center text-xl text-gray-600">
+            Understanding the progressive increases in CPF Income Ceiling from
+            2023 to 2026, announced in the Singapore Budget 2023
           </p>
-          <p className="text-xl text-gray-600">
-            Effect on contributions from {formatDate(latestIncomeCeilingDate)}
-          </p>
+
+          {/* Current CPF Income Ceiling Card */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <p className="mb-2 text-lg text-gray-600">
+                  Current CPF Income Ceiling
+                </p>
+                <h2 className="text-4xl font-bold text-red-500">
+                  {formatCurrency(currentCeiling)}
+                </h2>
+                <p className="mt-2 text-sm text-gray-500">
+                  Effect on contributions from{" "}
+                  {formatDate(latestIncomeCeilingDate)}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Year Slider Section */}
+          <CPFYearSlider />
         </div>
       </div>
 
-      <CPFYearSlider />
+      {/* Calculator Section */}
+      <div className="mx-auto max-w-4xl px-4 py-12">
+        <div className="grid gap-8 md:grid-cols-2">
+          <UserInput />
+          <CalculatedResult />
+        </div>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <UserInput />
-        <CalculatedResult />
+        {hasCpfContribution && (
+          <div className="mt-8">
+            <DistributionView distributionResults={distributionResults} />
+          </div>
+        )}
       </div>
 
-      {hasCpfContribution && (
-        <DistributionView distributionResults={distributionResults} />
-      )}
-
-      <FAQ items={faqs} />
+      {/* FAQ Section */}
+      <div className="mx-auto max-w-4xl px-4 py-12">
+        <FAQ items={faqs} />
+      </div>
     </div>
   );
 };
