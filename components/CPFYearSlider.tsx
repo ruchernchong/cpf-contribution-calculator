@@ -8,17 +8,17 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { cpfIncomeCeilings } from "@/data"; // Import the data
+import { cpfIncomeCeilings } from "@/data";
 import { formatCurrency } from "@/lib/format";
-import { useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import React, { useState } from "react";
 
 const CPFYearSlider = () => {
-  const setLatestIncomeCeilingDate = useSetAtom(latestIncomeCeilingDateAtom);
+  const [latestIncomeCeilingDate, setLatestIncomeCeilingDate] = useAtom(
+    latestIncomeCeilingDateAtom,
+  );
 
-  const [sliderValue, setSliderValue] = useState(
-    Object.keys(cpfIncomeCeilings)[0],
-  ); // Use the first date as the default
+  const [sliderValue, setSliderValue] = useState(latestIncomeCeilingDate);
 
   const dateKeys = Object.keys(cpfIncomeCeilings);
 

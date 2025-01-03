@@ -9,7 +9,6 @@ import CPFYearSlider from "@/components/CPFYearSlider";
 import { CalculatedResult } from "@/components/CalculatedResult";
 import DistributionView from "@/components/DistributionView";
 import { UserInput } from "@/components/UserInput";
-import YearOverYearTable from "@/components/YearOverYearTable";
 import { Card, CardContent } from "@/components/ui/card";
 import { cpfIncomeCeilings } from "@/data";
 import { formatCurrency, formatDate } from "@/lib/format";
@@ -61,13 +60,9 @@ const HomePage = () => {
         </div>
 
         {hasCpfContribution && (
-          <>
-            <div className="mt-8">
-              <DistributionView distributionResults={distributionResults} />
-            </div>
-
-            <YearOverYearTable />
-          </>
+          <div className="mt-8">
+            <DistributionView distributionResults={distributionResults} />
+          </div>
         )}
       </div>
     </>
