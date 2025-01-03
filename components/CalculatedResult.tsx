@@ -17,14 +17,29 @@ export const CalculatedResult = () => {
 
   const {
     contribution: {
-      employeeContribution,
-      employerContribution,
-      totalContribution,
+      employeeContribution = 0,
+      employerContribution = 0,
+      totalContribution = 0,
     },
-    grossIncome,
-    takeHomeIncome,
-    remainingAW,
-  } = result;
+    grossIncome = 0,
+    takeHomeIncome = 0,
+    remainingAW = 0,
+  } = result || {};
+
+  // Helper function to safely format currency with fallback
+  const safeCurrency = (value: number | undefined) => {
+    if (!value || isNaN(value)) return formatCurrency(0);
+    return formatCurrency(value);
+  };
+
+  // Helper function to safely format percentage with fallback
+  const safePercent = (value: number | undefined) => {
+    if (!value || isNaN(value)) return '0';
+    return (value * 100).toFixed(0);
+  };
+
+  const employeeRate = ageGroup?.contributionRate?.employee || 0;
+  const employerRate = ageGroup?.contributionRate?.employer || 0;
 
   return (
     <Card>
@@ -37,32 +52,32 @@ export const CalculatedResult = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Age Group</p>
-              <p className="font-medium">{ageGroup.description}</p>
+              <p className="font-medium">{ageGroup?.description || 'Not specified'}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Gross income</p>
-              <p className="font-medium">{formatCurrency(grossIncome)}</p>
+              <p className="font-medium">{safeCurrency(grossIncome)}</p>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Your contribution ({(ageGroup.contributionRate.employee * 100).toFixed(0)}%)</p>
+              <p className="text-sm text-muted-foreground">Your contribution ({safePercent(employeeRate)}%)</p>
               <p className="font-medium text-emerald-600">
-                {formatCurrency(employeeContribution)}
+                {safeCurrency(employeeContribution)}
               </p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Take home income</p>
-              <p className="font-medium">{formatCurrency(takeHomeIncome)}</p>
+              <p className="font-medium">{safeCurrency(takeHomeIncome)}</p>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Company's contribution ({(ageGroup.contributionRate.employer * 100).toFixed(0)}%)</p>
+              <p className="text-sm text-muted-foreground">Company's contribution ({safePercent(employerRate)}%)</p>
               <p className="font-medium text-emerald-600">
-                {formatCurrency(employerContribution)}
+                {safeCurrency(employerContribution)}
               </p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Total CPF contribution</p>
               <p className="font-medium text-emerald-600">
-                {formatCurrency(totalContribution)}
+                {safeCurrency(totalContribution)}
               </p>
             </div>
           </div>
@@ -71,7 +86,7 @@ export const CalculatedResult = () => {
               <p className="text-sm text-muted-foreground">
                 Remaining Additional Wage (AW) for CPF contribution
               </p>
-              <p className="font-medium">{formatCurrency(remainingAW)}</p>
+              <p className="font-medium">{safeCurrency(remainingAW)}</p>
             </div>
           </div>
         </div>
