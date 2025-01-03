@@ -11,6 +11,7 @@ import DistributionView from "@/components/DistributionView";
 import { UserInput } from "@/components/UserInput";
 import { Card, CardContent } from "@/components/ui/card";
 import { CPF_INCOME_CEILING } from "@/constants";
+import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { useAtomValue } from "jotai";
 
@@ -37,7 +38,7 @@ const HomePage = () => {
                   Current CPF Income Ceiling
                 </p>
                 <h2 className="text-4xl font-bold text-red-500">
-                  {formatCurrency(currentCeiling)}
+                  {formatCurrency(useAnimatedNumber(currentCeiling))}
                 </h2>
                 <p className="mt-2 text-sm text-gray-500">
                   Effect on contributions from{" "}

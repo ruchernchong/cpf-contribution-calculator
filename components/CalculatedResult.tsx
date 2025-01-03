@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "@/constants";
+import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency } from "@/lib/format";
 import { useAtomValue } from "jotai";
 import React from "react";
@@ -51,20 +52,26 @@ export const CalculatedResult = () => {
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Gross income</p>
-              <p className="font-medium">{safeCurrency(monthlyGrossIncome)}</p>
+              <p className="font-medium">
+                {safeCurrency(useAnimatedNumber(monthlyGrossIncome))}
+              </p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">
                 Your contribution ({safePercent(contributionRate.employee)}%)
               </p>
               <p className="font-medium text-emerald-600">
-                {safeCurrency(contributionResult.contribution.employee)}
+                {safeCurrency(
+                  useAnimatedNumber(contributionResult.contribution.employee),
+                )}
               </p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Take home income</p>
               <p className="font-medium">
-                {safeCurrency(contributionResult.afterCpfContribution)}
+                {safeCurrency(
+                  useAnimatedNumber(contributionResult.afterCpfContribution),
+                )}
               </p>
             </div>
             <div className="space-y-1">
@@ -74,7 +81,9 @@ export const CalculatedResult = () => {
                 %)
               </p>
               <p className="font-medium text-emerald-600">
-                {safeCurrency(contributionResult.contribution.employer)}
+                {safeCurrency(
+                  useAnimatedNumber(contributionResult.contribution.employer),
+                )}
               </p>
             </div>
             <div className="space-y-1">
@@ -83,7 +92,9 @@ export const CalculatedResult = () => {
               </p>
               <p className="font-medium text-emerald-600">
                 {safeCurrency(
-                  contributionResult.contribution.totalContribution,
+                  useAnimatedNumber(
+                    contributionResult.contribution.totalContribution,
+                  ),
                 )}
               </p>
             </div>
@@ -94,7 +105,9 @@ export const CalculatedResult = () => {
                 Remaining Additional Wage (AW) for CPF contribution
               </p>
               <p className="font-medium">
-                {safeCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
+                {safeCurrency(
+                  useAnimatedNumber(CPF_ADDITIONAL_WAGE_CEILING - annualWage),
+                )}
               </p>
             </div>
           </div>
