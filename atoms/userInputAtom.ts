@@ -1,19 +1,39 @@
 import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
+import { UserInputType, UserInputSchema } from '@/lib/validators/user-input';
 
-export const birthDateAtom = atom('');
-export const effectiveDateAtom = atom('01 January 2025');
-export const grossIncomeAtom = atom(0);
+const defaultUserInput: UserInputType = {
+  birthDate: '',
+  monthlyGrossIncome: 0,
+  effectiveDate: '01 January 2025',
+  shouldStoreInput: false
+};
 
-// Derived atom for storing data in browser
-export const persistentStorageAtom = atom(
-  (get) => ({
-    birthDate: get(birthDateAtom),
-    effectiveDate: get(effectiveDateAtom),
-    grossIncome: get(grossIncomeAtom),
-  }),
-  (get, set, newValue: { birthDate: string; effectiveDate: string; grossIncome: number }) => {
-    set(birthDateAtom, newValue.birthDate);
-    set(effectiveDateAtom, newValue.effectiveDate);
-    set(grossIncomeAtom, newValue.grossIncome);
+export const userInputAtom = atomWithStorage<UserInputType>(
+  'user-input', 
+  defaultUserInput,
+  {
+    getItem: (key) => {
+      const storedValue = localStorage.getItem(key);
+      if (!storedValue) return defaultUserInput;
+      
+      try {
+        const parsed = JSON.parse(storedValue);
+        const validation = UserInputSchema.safeParse(parsed);
+        return validation.success ? parsed : defaultUserInput;
+      } catch {
+        return defaultUserInput;
+      }
+    },
+    setItem: (key, value) => {
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    removeItem: (key) => {
+      localStorage.removeItem(key);
+    }
   }
 );
+
+export const resetUserInputAtom = atom(null, (get, set) => {
+  set(userInputAtom, defaultUserInput);
+});
