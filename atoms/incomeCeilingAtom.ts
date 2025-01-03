@@ -1,6 +1,6 @@
+import { findLatestIncomeCeilingDate } from "@/lib/findLatestIncomeCeilingDate";
+import type { ContributionRate } from "@/types";
 import { atom } from "jotai";
-import { findLatestIncomeCeilingDate } from "../lib/findLatestIncomeCeilingDate";
-import type { ContributionRate } from "../types";
 import { ageGroupAtom } from "./userAtom";
 
 export const contributionRateAtom = atom<ContributionRate>(

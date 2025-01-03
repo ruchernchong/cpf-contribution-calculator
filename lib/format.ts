@@ -1,4 +1,4 @@
-import { format, parse, toDate } from "date-fns";
+import { format, parse } from "date-fns";
 
 type PercentageFormatOptions = {
   decimalPlaces?: number;
@@ -18,7 +18,7 @@ export const formatDate = (
   dateFormat = "dd MMMM yyyy",
 ) => {
   const dateValue =
-    date instanceof Date ? date : parse(date, "MM-dd-yyyy", new Date());
+    date instanceof Date ? date : parse(date, "yyyy-MM-dd", new Date());
   return format(dateValue, dateFormat);
 };
 
