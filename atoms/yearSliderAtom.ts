@@ -1,4 +1,4 @@
-import { atom } from 'jotai';
+import { atom } from "jotai";
 
 // Get current year and ensure it's within valid range
 const getCurrentDefaultYear = () => {
@@ -8,10 +8,3 @@ const getCurrentDefaultYear = () => {
 };
 
 export const selectedYearAtom = atom(getCurrentDefaultYear());
-
-export const yearCeilingsAtom = atom({
-  2023: 6000,
-  2024: 6800,
-  2025: 7400,
-  2026: 8000
-});

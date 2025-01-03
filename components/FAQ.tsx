@@ -1,10 +1,10 @@
+import type { FAQ as FAQType } from "../types";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import type { FAQ as FAQType } from "../types";
 
 interface FAQProps {
   items: FAQType[];

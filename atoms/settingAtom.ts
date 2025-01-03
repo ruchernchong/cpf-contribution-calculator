@@ -11,5 +11,5 @@ export const settingsAtom = atomWithStorage<Settings>(
   "settings",
   initialValue,
   undefined,
-  { getOnInit: true }
+  { getOnInit: true },
 );

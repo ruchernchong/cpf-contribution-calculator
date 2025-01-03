@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 const Header = () => (
   <header className="w-full bg-white border-b border-gray-200">
@@ -9,16 +9,25 @@ const Header = () => (
         <div className="flex-shrink-0">
           <span className="text-xl font-semibold">CPF Calculator</span>
         </div>
-        
+
         <nav className="flex space-x-8 items-center">
-          <Link href="/" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+          <Link
+            href="/"
+            className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
             Home
           </Link>
-          <Link href="/about" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+          <Link
+            href="/about"
+            className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
             About
           </Link>
           <div className="flex items-center">
-            <Link href="/api" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+            <Link
+              href="/api"
+              className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+            >
               API
             </Link>
             <span className="ml-2 bg-yellow-400 text-xs font-bold px-2 py-1 rounded-full">

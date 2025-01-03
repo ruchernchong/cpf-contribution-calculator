@@ -34,7 +34,7 @@ export const calculateCpfContribution = (
   ): DistributionRate | undefined => {
     if (distributionRate) {
       return {
-        [type]: parseFloat(
+        [type]: Number.parseFloat(
           (distributionRate[type] * cpfContribution).toFixed(2),
         ),
       };
@@ -43,13 +43,13 @@ export const calculateCpfContribution = (
 
   const calculateContribution = (income: number): ComputedResult => {
     const cappedIncome = income >= incomeCeiling ? incomeCeiling : income;
-    const employee = parseFloat(
+    const employee = Number.parseFloat(
       (employeeContributionRate * cappedIncome).toFixed(2),
     );
-    const employer = parseFloat(
+    const employer = Number.parseFloat(
       (employerContributionRate * cappedIncome).toFixed(2),
     );
-    const totalCpfContribution = parseFloat(
+    const totalCpfContribution = Number.parseFloat(
       (totalCpfContributionRate * cappedIncome).toFixed(2),
     );
     const afterCpfContribution =

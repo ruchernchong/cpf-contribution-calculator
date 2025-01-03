@@ -1,5 +1,4 @@
-import React, { type ChangeEvent, useCallback, useEffect } from "react";
-import { useAtom } from "jotai";
+import { settingsAtom } from "@/atoms/settingAtom";
 import {
   Card,
   CardContent,
@@ -7,12 +6,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { formatDateInput, isValidDateFormat } from "@/utils/date-utils";
-import { settingsAtom } from "@/atoms/settingAtom";
+import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
+import React, { type ChangeEvent, useCallback, useEffect } from "react";
 
 export const UserInput = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
@@ -25,7 +25,7 @@ export const UserInput = () => {
       resetSettings();
     }
   }, [resetSettings, shouldStoreInput]);
- 
+
   const handleBirthDateChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const rawInput = event.target.value;
@@ -36,7 +36,7 @@ export const UserInput = () => {
         birthDate: formattedBirthDate,
       }));
     },
-    [birthDate, setSettings]
+    [birthDate, setSettings],
   );
 
   return (
@@ -78,7 +78,7 @@ export const UserInput = () => {
             onChange={(e) =>
               setSettings((setting) => ({
                 ...setting,
-                monthlyGrossIncome: parseFloat(e.target.value),
+                monthlyGrossIncome: Number.parseFloat(e.target.value),
               }))
             }
             className="max-w-xs"

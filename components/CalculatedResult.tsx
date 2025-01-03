@@ -1,18 +1,18 @@
-import React from "react";
-import { useAtomValue } from "jotai";
+import { contributionRateAtom } from "@/atoms/incomeCeilingAtom";
+import { contributionResultAtom } from "@/atoms/resultAtom";
+import { settingsAtom } from "@/atoms/settingAtom";
+import { ageGroupAtom } from "@/atoms/userAtom";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
-import { contributionResultAtom } from "@/atoms/resultAtom";
-import { formatCurrency } from "@/lib/format";
-import { ageGroupAtom } from "@/atoms/userAtom";
-import { contributionRateAtom } from "@/atoms/incomeCeilingAtom";
-import { settingsAtom } from "@/atoms/settingAtom";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "@/config";
+import { formatCurrency } from "@/lib/format";
+import { useAtomValue } from "jotai";
+import React from "react";
 
 export const CalculatedResult = () => {
   const contributionRate = useAtomValue(contributionRateAtom);
@@ -83,7 +83,7 @@ export const CalculatedResult = () => {
               </p>
               <p className="font-medium text-emerald-600">
                 {safeCurrency(
-                  contributionResult.contribution.totalContribution
+                  contributionResult.contribution.totalContribution,
                 )}
               </p>
             </div>

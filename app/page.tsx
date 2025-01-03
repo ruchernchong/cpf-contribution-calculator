@@ -1,27 +1,25 @@
-'use client';
+"use client";
 
-import { useAtomValue } from 'jotai';
-import { latestIncomeCeilingDateAtom } from '@/atoms/incomeCeilingAtom';
+import { latestIncomeCeilingDateAtom } from "@/atoms/incomeCeilingAtom";
 import {
   distributionResultsAtom,
   hasCpfContributionAtom,
-} from '@/atoms/resultAtom';
-import { formatCurrency, formatDate } from '@/lib/format';
-import { UserInput } from '@/components/UserInput';
-import { CalculatedResult } from '@/components/CalculatedResult';
-import DistributionView from '@/components/DistributionView';
-import CPFYearSlider from '@/components/CPFYearSlider';
-import YearOverYearTable from '@/components/YearOverYearTable';
-import { selectedYearAtom, yearCeilingsAtom } from '@/atoms/yearSliderAtom';
-import { Card, CardContent } from '@/components/ui/card';
+} from "@/atoms/resultAtom";
+import CPFYearSlider from "@/components/CPFYearSlider";
+import { CalculatedResult } from "@/components/CalculatedResult";
+import DistributionView from "@/components/DistributionView";
+import { UserInput } from "@/components/UserInput";
+import YearOverYearTable from "@/components/YearOverYearTable";
+import { Card, CardContent } from "@/components/ui/card";
+import { cpfIncomeCeilings } from "@/data";
+import { formatCurrency, formatDate } from "@/lib/format";
+import { useAtomValue } from "jotai";
 
 const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
   const distributionResults = useAtomValue(distributionResultsAtom);
   const latestIncomeCeilingDate = useAtomValue(latestIncomeCeilingDateAtom);
-  const selectedYear = useAtomValue(selectedYearAtom);
-  const yearCeilings = useAtomValue(yearCeilingsAtom);
-  const currentCeiling = yearCeilings[selectedYear];
+  const currentCeiling = cpfIncomeCeilings[latestIncomeCeilingDate];
 
   return (
     <>
@@ -43,7 +41,7 @@ const HomePage = () => {
                   {formatCurrency(currentCeiling)}
                 </h2>
                 <p className="mt-2 text-sm text-gray-500">
-                  Effect on contributions from{' '}
+                  Effect on contributions from{" "}
                   {formatDate(latestIncomeCeilingDate)}
                 </p>
               </div>
@@ -67,7 +65,7 @@ const HomePage = () => {
             <div className="mt-8">
               <DistributionView distributionResults={distributionResults} />
             </div>
-            
+
             <YearOverYearTable />
           </>
         )}

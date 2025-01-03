@@ -17,7 +17,7 @@ export const formatCurrency = (value: number | string): string => {
 
 export const formatDate = (
   date: Date | string,
-  dateFormat: string = "dd MMMM yyyy",
+  dateFormat = "dd MMMM yyyy",
 ) => {
   if (date instanceof Date) {
     return format(date, dateFormat);

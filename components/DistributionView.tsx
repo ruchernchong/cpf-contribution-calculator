@@ -1,4 +1,6 @@
 import dynamic from "next/dynamic";
+import { formatCurrency, formatPercentage } from "../lib/format";
+import type { DistributionResult } from "../types";
 import {
   Table,
   TableBody,
@@ -8,8 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { formatCurrency, formatPercentage } from "../lib/format";
-import type { DistributionResult } from "../types";
 
 const DistributionPieChart = dynamic(() => import("./DistributionPieChart"));
 
@@ -22,7 +22,7 @@ export const DistributionView = ({
 }: DistributionViewProps) => {
   const totalCpfContribution = distributionResults.reduce(
     (accum, curr) => accum + curr.value,
-    0
+    0,
   );
 
   return (
