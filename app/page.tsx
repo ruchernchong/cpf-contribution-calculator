@@ -26,7 +26,7 @@ const HomePage = () => {
       <div className="border-b bg-white py-12">
         <div className="mx-auto max-w-4xl px-4">
           <h1 className="mb-4 text-center text-4xl font-bold">
-            CPF Income Ceiling Changes
+            CPF Income Ceiling
           </h1>
 
           {/* Current CPF Income Ceiling Card */}
