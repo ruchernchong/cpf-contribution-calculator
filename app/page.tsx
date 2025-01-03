@@ -26,11 +26,10 @@ const HomePage = () => {
   return (
     <div className="mx-auto max-w-6xl space-y-8 px-4 py-16">
       <div className="space-y-4 text-center">
-        <h1 className="text-4xl font-bold">CPF Contribution Calculator</h1>
+        <h1 className="text-4xl font-bold">CPF Income Ceiling Changes</h1>
         <p className="mx-auto max-w-3xl text-xl text-gray-600">
-          A calculator to compute CPF contributions after the 2023 income
-          ceiling changes following Ministry of Finance announcement at the
-          Singapore Budget 2023
+          Understanding the progressive increases in CPF Income Ceiling from 2023 to 2026,
+          announced in the Singapore Budget 2023
         </p>
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold">Current CPF Income Ceiling</h2>
@@ -38,7 +37,7 @@ const HomePage = () => {
             {formatCurrency(currentCeiling)}
           </p>
           <p className="text-xl text-gray-600">
-            Estimating contributions from {formatDate(latestIncomeCeilingDate)}
+            Effect on contributions from {formatDate(latestIncomeCeilingDate)}
           </p>
         </div>
       </div>
