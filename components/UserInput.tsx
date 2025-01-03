@@ -14,7 +14,7 @@ import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import React, { type ChangeEvent, useCallback, useEffect } from "react";
 
-export const UserInput = () => {
+const UserInput = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
   const { birthDate, monthlyGrossIncome, shouldStoreInput } = settings;
 
@@ -54,7 +54,6 @@ export const UserInput = () => {
           <Input
             type="text"
             name="dateOfBirth"
-            id="dateOfBirth"
             placeholder="MM/YYYY"
             maxLength={7}
             value={birthDate}
@@ -66,12 +65,11 @@ export const UserInput = () => {
             </p>
           )}
         </div>
-
         {/* Gross Income Input */}
+
         <div className="space-y-2">
           <Label htmlFor="grossIncome">Gross Income</Label>
           <Input
-            id="grossIncome"
             type="number"
             placeholder="0.00"
             value={monthlyGrossIncome}
@@ -84,12 +82,11 @@ export const UserInput = () => {
             className="max-w-xs"
             min={0}
           />
+          {/* Remember Input Checkbox */}
         </div>
 
-        {/* Remember Input Checkbox */}
         <div className="flex items-center space-x-2">
           <Checkbox
-            id="remember"
             checked={shouldStoreInput}
             onCheckedChange={(checked) =>
               setSettings((setting) => ({
@@ -110,3 +107,5 @@ export const UserInput = () => {
     </Card>
   );
 };
+
+export default UserInput;

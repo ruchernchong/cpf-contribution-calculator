@@ -8,12 +8,13 @@ import {
 import CPFYearSlider from "@/components/CPFYearSlider";
 import { CalculatedResult } from "@/components/CalculatedResult";
 import DistributionView from "@/components/DistributionView";
-import { UserInput } from "@/components/UserInput";
+import UserInput from "@/components/UserInput";
 import { Card, CardContent } from "@/components/ui/card";
 import { CPF_INCOME_CEILING } from "@/constants";
 import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { useAtomValue } from "jotai";
+import dynamic from "next/dynamic";
 
 const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);

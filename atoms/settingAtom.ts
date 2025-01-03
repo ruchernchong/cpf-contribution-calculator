@@ -1,5 +1,5 @@
+import type { Settings } from "@/types";
 import { atomWithStorage } from "jotai/utils";
-import type { Settings } from "../types";
 
 const initialValue: Settings = {
   shouldStoreInput: false,

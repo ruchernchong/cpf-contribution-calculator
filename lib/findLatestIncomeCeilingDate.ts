@@ -16,7 +16,6 @@ export const findLatestIncomeCeilingDate = (): string => {
     currentDate,
     pastDates.map(({ effectiveDate }) => effectiveDate),
   );
-  console.log(closestPastDate);
 
   if (closestPastDate) {
     return formatDate(closestPastDate, "yyyy-MM-dd");
