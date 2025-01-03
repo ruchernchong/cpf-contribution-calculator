@@ -8,10 +8,8 @@ import {
 } from '@/atoms/resultAtom';
 import { formatCurrency, formatDate } from '@/lib/format';
 import { UserInput } from '@/components/UserInput';
-import faqs from '@/data/faq.json';
 import { CalculatedResult } from '@/components/CalculatedResult';
 import DistributionView from '@/components/DistributionView';
-import { FAQ } from '@/components/FAQ';
 import CPFYearSlider from '@/components/CPFYearSlider';
 import { selectedYearAtom, yearCeilingsAtom } from '@/atoms/yearSliderAtom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -72,11 +70,6 @@ const HomePage = () => {
             <DistributionView distributionResults={distributionResults} />
           </div>
         )}
-      </div>
-
-      {/* FAQ Section */}
-      <div className="mx-auto max-w-4xl px-4 py-12">
-        <FAQ items={faqs} />
       </div>
     </>
   );
