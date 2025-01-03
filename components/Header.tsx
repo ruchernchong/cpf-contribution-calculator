@@ -23,17 +23,12 @@ const Header = () => (
           >
             About
           </Link>
-          <div className="flex items-center">
-            <Link
-              href="/api"
-              className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-            >
-              API
-            </Link>
-            <span className="ml-2 bg-yellow-400 text-xs font-bold px-2 py-1 rounded-full">
-              Coming Soon!
-            </span>
-          </div>
+          <Link
+            href="/api"
+            className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
+            API
+          </Link>
         </nav>
       </div>
     </div>

@@ -14,7 +14,6 @@ export const calculateCpfContribution = (
   year: number | string,
   options?: IncomeOptions,
 ): ComputedResult => {
-  console.log(year);
   const { ageGroup, useCeilingBeforeSep2023 } = options || {};
 
   const {
