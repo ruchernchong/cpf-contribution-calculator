@@ -1,5 +1,4 @@
-import { DEFAULT_CPF_INCOME_CEILING } from "@/constants";
-import { cpfIncomeCeilings } from "@/data";
+import { CPF_INCOME_CEILING, DEFAULT_CPF_INCOME_CEILING } from "@/constants";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
@@ -12,7 +11,7 @@ export const GET = async (req: NextRequest) => {
     date = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
   }
 
-  const sortedDates = Object.keys(cpfIncomeCeilings)
+  const sortedDates = Object.keys(CPF_INCOME_CEILING)
     .map((dateString) => {
       // Attempt to create a new Date object from each key
       const date = new Date(dateString);
@@ -35,7 +34,7 @@ export const GET = async (req: NextRequest) => {
 
   for (const keyDate of sortedDates) {
     if (new Date(keyDate) <= new Date(date)) {
-      ceiling = cpfIncomeCeilings[keyDate];
+      ceiling = CPF_INCOME_CEILING[keyDate];
     } else {
       break;
     }
