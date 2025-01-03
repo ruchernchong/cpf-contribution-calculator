@@ -1,6 +1,6 @@
+import { formatCurrency, formatPercentage } from "@/lib/format";
 import { type PropsWithChildren, useState } from "react";
 import { Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
-import { formatCurrency, formatPercentage } from "../lib/format";
 
 interface DistributionPieChartProps extends PropsWithChildren {
   data: any;
