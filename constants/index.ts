@@ -1,0 +1,1 @@
+export const DEFAULT_CPF_INCOME_CEILING = 6000;
