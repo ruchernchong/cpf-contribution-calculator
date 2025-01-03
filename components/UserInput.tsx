@@ -1,115 +1,86 @@
-import { type ChangeEvent, useCallback, useEffect } from "react";
-import { useAtom } from "jotai";
-import { useResetAtom } from "jotai/utils";
-import { latestIncomeCeilingDateAtom } from "../atoms/incomeCeilingAtom";
-import { settingsAtom } from "../atoms/settingAtom";
-import { formatDate } from "@/lib/format";
-import { cpfIncomeCeilings } from "@/data";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+import React from 'react';
+import { useAtom } from 'jotai';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import { Checkbox } from "./ui/checkbox";
-import { formatDateInput } from "../utils/formatDateInput";
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { birthDateAtom, effectiveDateAtom, grossIncomeAtom } from '@/atoms/userInputAtom';
+import { formatDate } from '@/lib/format';
 
 export const UserInput = () => {
-  const [latestIncomeCeilingDate, setLatestIncomeCeilingDate] = useAtom(
-    latestIncomeCeilingDateAtom
-  );
-  const [settings, setSettings] = useAtom(settingsAtom);
-  const { birthDate, monthlyGrossIncome, shouldStoreInput } = settings;
-
-  const resetSettings = useResetAtom(settingsAtom);
-
-  useEffect(() => {
-    if (!shouldStoreInput) {
-      resetSettings();
-    }
-  }, [resetSettings, shouldStoreInput]);
-
-  const handleBirthDateChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const rawInput = event.target.value;
-      const formattedBirthDate = formatDateInput(rawInput, birthDate);
-
-      void setSettings((setting) => ({
-        ...setting,
-        birthDate: formattedBirthDate,
-      }));
-    },
-    [birthDate, setSettings]
-  );
+  const [birthDate, setBirthDate] = useAtom(birthDateAtom);
+  const [effectiveDate, setEffectiveDate] = useAtom(effectiveDateAtom);
+  const [grossIncome, setGrossIncome] = useAtom(grossIncomeAtom);
 
   return (
-    <div className="flex flex-col gap-y-4 md:w-1/3">
-      <Label htmlFor="dateOfBirth">Birth month and year</Label>
-      <Input
-        type="text"
-        name="dateOfBirth"
-        id="dateOfBirth"
-        placeholder="MM/YYYY"
-        maxLength={7}
-        value={birthDate}
-        onChange={handleBirthDateChange}
-      />
-      <Label htmlFor="effectiveDate">CPF Income Ceiling Effective Date</Label>
-      <Select
-        defaultValue={latestIncomeCeilingDate}
-        onValueChange={(value) => setLatestIncomeCeilingDate(value)}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="Select income ceiling effective date" />
-        </SelectTrigger>
-        <SelectContent>
-          {Object.keys(cpfIncomeCeilings).map((effectiveDate) => {
-            return (
-              <SelectItem key={effectiveDate} value={effectiveDate}>
-                {formatDate(effectiveDate)}
-              </SelectItem>
-            );
-          })}
-        </SelectContent>
-      </Select>
-      <Label htmlFor="grossIncome">Gross Income</Label>
-      <Input
-        type="number"
-        name="grossIncome"
-        id="grossIncome"
-        inputMode="decimal"
-        pattern="\d*"
-        placeholder="10000"
-        value={monthlyGrossIncome}
-        onChange={(e) =>
-          setSettings((setting) => ({
-            ...setting,
-            monthlyGrossIncome: parseFloat(e.target.value),
-          }))
-        }
-      />
-      <div className="flex items-start gap-x-2">
-        <Checkbox
-          id="shouldStoreInput"
-          checked={shouldStoreInput}
-          onCheckedChange={(checked) =>
-            setSettings((setting) => ({
-              ...setting,
-              shouldStoreInput: Boolean(checked),
-            }))
-          }
-        />
-        <div className="grid gap-1.5 leading-none">
-          <label htmlFor="shouldStoreInput">Store input on this browser?</label>
-          <p className="text-xs italic text-red-600">
-            By ticking the above checkbox, the input will be stored on your own
-            browser. No data are being stored on any servers.
-          </p>
+    <Card>
+      <CardHeader>
+        <CardTitle>Personal Information</CardTitle>
+        <CardDescription>Enter your details for CPF calculation</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {/* Birth Date Input */}
+        <div className="space-y-2">
+          <Label htmlFor="birthDate">Birth month and year</Label>
+          <Input
+            id="birthDate"
+            placeholder="MM/YYYY"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+            className="max-w-xs"
+          />
         </div>
-      </div>
-    </div>
+
+        {/* Effective Date Select */}
+        <div className="space-y-2">
+          <Label htmlFor="effectiveDate">CPF Income Ceiling Effective Date</Label>
+          <Select
+            value={effectiveDate}
+            onValueChange={setEffectiveDate}
+          >
+            <SelectTrigger className="max-w-xs">
+              <SelectValue placeholder="Select date" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="01 January 2025">
+                {formatDate(new Date('2025-01-01'))}
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Gross Income Input */}
+        <div className="space-y-2">
+          <Label htmlFor="grossIncome">Gross Income</Label>
+          <Input
+            id="grossIncome"
+            type="number"
+            placeholder="0.00"
+            value={grossIncome || ''}
+            onChange={(e) => setGrossIncome(parseFloat(e.target.value) || 0)}
+            className="max-w-xs"
+          />
+        </div>
+
+        {/* Remember Input Checkbox */}
+        <div className="flex items-center space-x-2">
+          <Checkbox id="remember" />
+          <Label htmlFor="remember" className="text-sm text-gray-600">
+            Store input on this browser?
+          </Label>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          By ticking the above checkbox, the input will be stored on your own browser. 
+          No data are being stored on any servers.
+        </p>
+      </CardContent>
+    </Card>
   );
 };

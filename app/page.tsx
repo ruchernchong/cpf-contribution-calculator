@@ -24,32 +24,36 @@ const HomePage = () => {
   const currentCeiling = yearCeilings[selectedYear];
 
   return (
-    <div className="prose mx-auto flex max-w-6xl grow flex-col px-4 py-16">
-      <div className="text-center">
-        <h1>CPF Contribution Calculator</h1>
-        <h2>
+    <div className="mx-auto max-w-6xl space-y-8 px-4 py-16">
+      <div className="space-y-4 text-center">
+        <h1 className="text-4xl font-bold">CPF Contribution Calculator</h1>
+        <p className="mx-auto max-w-3xl text-xl text-gray-600">
           A calculator to compute CPF contributions after the 2023 income
           ceiling changes following Ministry of Finance announcement at the
           Singapore Budget 2023
-        </h2>
-        <h3>Current CPF Income Ceiling</h3>
-        <p className="text-4xl font-extrabold text-red-600">
-          {formatCurrency(currentCeiling)}
         </p>
-        <p className="text-2xl">
-          Estimating contributions from {formatDate(latestIncomeCeilingDate)}
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold">Current CPF Income Ceiling</h2>
+          <p className="text-4xl font-extrabold text-red-600">
+            {formatCurrency(currentCeiling)}
+          </p>
+          <p className="text-xl text-gray-600">
+            Estimating contributions from {formatDate(latestIncomeCeilingDate)}
+          </p>
+        </div>
       </div>
 
       <CPFYearSlider />
 
-      <div className="mb-8 gap-x-8 md:flex">
+      <div className="grid gap-8 md:grid-cols-2">
         <UserInput />
         <CalculatedResult />
       </div>
+
       {hasCpfContribution && (
         <DistributionView distributionResults={distributionResults} />
       )}
+
       <FAQ items={faqs} />
     </div>
   );
