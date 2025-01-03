@@ -5,13 +5,14 @@ import Link from "next/link";
 const Footer = () => (
   <footer className="border-t border-gray-200 bg-white">
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-        {/* About Section */}
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Disclaimer */}
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-gray-900">About</h3>
+          <h3 className="mb-4 text-sm font-semibold text-gray-900">
+            Disclaimer
+          </h3>
           <p className="text-sm text-gray-600">
-            CPF Calculator helps Singaporeans understand and plan their CPF
-            contributions with the latest income ceiling changes.
+            This calculator is an independent tool and is not affiliated with, endorsed by, or connected to the CPF Board, Ministry of Manpower, or any government agency.
           </p>
         </div>
 
@@ -67,16 +68,6 @@ const Footer = () => (
               </a>
             </li>
           </ul>
-        </div>
-
-        {/* Disclaimer */}
-        <div>
-          <h3 className="mb-4 text-sm font-semibold text-gray-900">
-            Disclaimer
-          </h3>
-          <p className="text-sm text-gray-600">
-            This calculator is an independent tool and is not affiliated with, endorsed by, or connected to the CPF Board, Ministry of Manpower, or any government agency.
-          </p>
         </div>
       </div>
 
