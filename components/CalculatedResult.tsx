@@ -24,13 +24,13 @@ export const CalculatedResult = () => {
 
   // Helper function to safely format currency with fallback
   const safeCurrency = (value: number | undefined) => {
-    if (!value || isNaN(value)) return formatCurrency(0);
+    if (!value || Number.isNaN(value)) return formatCurrency(0);
     return formatCurrency(value);
   };
 
   // Helper function to safely format percentage with fallback
   const safePercent = (value: number | undefined) => {
-    if (!value || isNaN(value)) return "0";
+    if (!value || Number.isNaN(value)) return "0";
     return (value * 100).toFixed(0);
   };
 

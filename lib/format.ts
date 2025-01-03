@@ -5,37 +5,31 @@ type PercentageFormatOptions = {
 };
 
 export const formatCurrency = (value: number | string): string => {
-  if (typeof value === "string") {
-    value = Number(value);
-  }
+  const numericValue = typeof value === "string" ? Number(value) : value;
 
   return new Intl.NumberFormat("en-SG", {
     style: "currency",
     currency: "SGD",
-  }).format(value);
+  }).format(numericValue);
 };
 
 export const formatDate = (
   date: Date | string,
   dateFormat = "dd MMMM yyyy",
 ) => {
-  if (date instanceof Date) {
-    return format(date, dateFormat);
-  }
-
-  return format(parse(date, "MM-dd-yyyy", new Date()), dateFormat);
+  const dateValue =
+    date instanceof Date ? date : parse(date, "MM-dd-yyyy", new Date());
+  return format(dateValue, dateFormat);
 };
 
 export const formatPercentage = (
   value: number | string,
   options?: PercentageFormatOptions,
 ): string => {
-  if (typeof value === "string") {
-    value = Number(value);
-  }
+  const numericValue = typeof value === "string" ? Number(value) : value;
 
   return new Intl.NumberFormat("en-SG", {
     style: "percent",
     maximumFractionDigits: options?.decimalPlaces || 2,
-  }).format(value);
+  }).format(numericValue);
 };

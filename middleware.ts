@@ -57,9 +57,9 @@ export const middleware = (request: NextRequest) => {
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
-  securityHeaders.forEach(({ key, value }) => {
+  for (const { key, value } of securityHeaders) {
     requestHeaders.set(key, value);
-  });
+  }
 
   const response = NextResponse.next({
     headers: requestHeaders,

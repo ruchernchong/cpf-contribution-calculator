@@ -11,11 +11,11 @@ export const formatDateInput = (
   // Format input
   if (trimmedInput.length <= 2) {
     return trimmedInput;
-  } else if (trimmedInput.length <= 4) {
-    return `${trimmedInput.slice(0, 2)}/${trimmedInput.slice(2)}`;
-  } else {
-    return `${trimmedInput.slice(0, 2)}/${trimmedInput.slice(2, 6)}`;
   }
+  if (trimmedInput.length <= 4) {
+    return `${trimmedInput.slice(0, 2)}/${trimmedInput.slice(2)}`;
+  }
+  return `${trimmedInput.slice(0, 2)}/${trimmedInput.slice(2, 6)}`;
 };
 
 export const isValidDateFormat = (date: string): boolean => {

@@ -9,15 +9,16 @@ export const formatDateInput = (
   rawInput: string,
   birthDate: string,
 ): string => {
-  if (rawInput.length === 2 && birthDate.length === 3) {
-    rawInput = rawInput.slice(0, 1) + "/";
+  let formattedInput = rawInput;
+  if (formattedInput.length === 2 && birthDate.length === 3) {
+    formattedInput = `${formattedInput.slice(0, 1)}/`;
   } else {
-    rawInput = rawInput.replace(/[^0-9]/g, "");
+    formattedInput = formattedInput.replace(/[^0-9]/g, "");
 
-    if (rawInput.length > 2) {
-      rawInput = rawInput.substring(0, 2) + "/" + rawInput.substring(2);
+    if (formattedInput.length > 2) {
+      formattedInput = `${formattedInput.substring(0, 2)}/${formattedInput.substring(2)}`;
     }
   }
 
-  return rawInput;
+  return formattedInput;
 };
