@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useAtomValue } from 'jotai';
-import { latestIncomeCeilingDateAtom } from '@/atoms/incomeCeilingAtom';
+import { useAtomValue } from "jotai";
+import { latestIncomeCeilingDateAtom } from "@/atoms/incomeCeilingAtom";
 import {
   distributionResultsAtom,
   hasCpfContributionAtom,
-} from '@/atoms/resultAtom';
-import { formatCurrency, formatDate } from '@/lib/format';
-import { UserInput } from '@/components/UserInput';
-import { CalculatedResult } from '@/components/CalculatedResult';
-import DistributionView from '@/components/DistributionView';
-import CPFYearSlider from '@/components/CPFYearSlider';
-import { selectedYearAtom, yearCeilingsAtom } from '@/atoms/yearSliderAtom';
-import { Card, CardContent } from '@/components/ui/card';
+} from "@/atoms/resultAtom";
+import { formatCurrency, formatDate } from "@/lib/format";
+import { UserInput } from "@/components/UserInput";
+import { CalculatedResult } from "@/components/CalculatedResult";
+import DistributionView from "@/components/DistributionView";
+import CPFYearSlider from "@/components/CPFYearSlider";
+import { selectedYearAtom, yearCeilingsAtom } from "@/atoms/yearSliderAtom";
+import { Card, CardContent } from "@/components/ui/card";
 
 const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
@@ -28,12 +28,8 @@ const HomePage = () => {
       <div className="border-b bg-white py-12">
         <div className="mx-auto max-w-4xl px-4">
           <h1 className="mb-4 text-center text-4xl font-bold">
-            CPF Income Ceiling Changes
+            CPF Income Ceiling
           </h1>
-          <p className="mb-8 text-center text-xl text-gray-600">
-            Understanding the progressive increases in CPF Income Ceiling from
-            2023 to 2026, announced in the Singapore Budget 2023
-          </p>
 
           {/* Current CPF Income Ceiling Card */}
           <Card className="mb-8">
@@ -46,7 +42,7 @@ const HomePage = () => {
                   {formatCurrency(currentCeiling)}
                 </h2>
                 <p className="mt-2 text-sm text-gray-500">
-                  Effect on contributions from{' '}
+                  Effect on contributions from{" "}
                   {formatDate(latestIncomeCeilingDate)}
                 </p>
               </div>
