@@ -1,29 +1,56 @@
-import React from 'react';
-import { useAtom } from 'jotai';
+import React, { type ChangeEvent, useCallback } from "react";
+import { useAtom } from "jotai";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { birthDateAtom, effectiveDateAtom, grossIncomeAtom } from '@/atoms/userInputAtom';
-import { formatDate } from '@/lib/format';
+import { effectiveDateAtom, grossIncomeAtom } from "@/atoms/userInputAtom";
+import { formatDate } from "@/lib/format";
+import { latestIncomeCeilingDateAtom } from "@/atoms/incomeCeilingAtom";
+import { settingsAtom } from "@/atoms/settingAtom";
+import { formatDateInput } from "@/utils/formatDateInput";
+import { useResetAtom } from "jotai/utils";
 
 export const UserInput = () => {
-  const [birthDate, setBirthDate] = useAtom(birthDateAtom);
+  const [settings, setSettings] = useAtom(settingsAtom);
+  const { birthDate, monthlyGrossIncome, shouldStoreInput } = settings;
+
+  const resetSettings = useResetAtom(settingsAtom);
   const [effectiveDate, setEffectiveDate] = useAtom(effectiveDateAtom);
-  const [grossIncome, setGrossIncome] = useAtom(grossIncomeAtom);
+
+  const handleBirthDateChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const rawInput = event.target.value;
+      const formattedBirthDate = formatDateInput(rawInput, birthDate);
+
+      void setSettings((setting) => ({
+        ...setting,
+        birthDate: formattedBirthDate,
+      }));
+    },
+    [birthDate, setSettings]
+  );
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Personal Information</CardTitle>
-        <CardDescription>Enter your details for CPF calculation</CardDescription>
+        <CardDescription>
+          Enter your details for CPF calculation
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Birth Date Input */}
@@ -33,24 +60,23 @@ export const UserInput = () => {
             id="birthDate"
             placeholder="MM/YYYY"
             value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
+            onChange={handleBirthDateChange}
             className="max-w-xs"
           />
         </div>
 
         {/* Effective Date Select */}
         <div className="space-y-2">
-          <Label htmlFor="effectiveDate">CPF Income Ceiling Effective Date</Label>
-          <Select
-            value={effectiveDate}
-            onValueChange={setEffectiveDate}
-          >
+          <Label htmlFor="effectiveDate">
+            CPF Income Ceiling Effective Date
+          </Label>
+          <Select value={effectiveDate} onValueChange={setEffectiveDate}>
             <SelectTrigger className="max-w-xs">
               <SelectValue placeholder="Select date" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="01 January 2025">
-                {formatDate(new Date('2025-01-01'))}
+                {formatDate(new Date("2025-01-01"))}
               </SelectItem>
             </SelectContent>
           </Select>
@@ -63,8 +89,13 @@ export const UserInput = () => {
             id="grossIncome"
             type="number"
             placeholder="0.00"
-            value={grossIncome || ''}
-            onChange={(e) => setGrossIncome(parseFloat(e.target.value) || 0)}
+            value={monthlyGrossIncome}
+            onChange={(e) =>
+              setSettings((setting) => ({
+                ...setting,
+                monthlyGrossIncome: parseFloat(e.target.value),
+              }))
+            }
             className="max-w-xs"
           />
         </div>
@@ -77,8 +108,8 @@ export const UserInput = () => {
           </Label>
         </div>
         <p className="text-xs text-muted-foreground">
-          By ticking the above checkbox, the input will be stored on your own browser. 
-          No data are being stored on any servers.
+          By ticking the above checkbox, the input will be stored on your own
+          browser. No data are being stored on any servers.
         </p>
       </CardContent>
     </Card>

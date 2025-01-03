@@ -1,5 +1,5 @@
-import React from 'react';
-import { useAtomValue } from 'jotai';
+import React from "react";
+import { useAtomValue } from "jotai";
 import {
   Card,
   CardContent,
@@ -7,24 +7,20 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { contributionResultAtom } from '@/atoms/resultAtom';
-import { formatCurrency } from '@/lib/format';
-import { ageGroupAtom } from '@/atoms/userAtom';
+import { contributionResultAtom } from "@/atoms/resultAtom";
+import { formatCurrency } from "@/lib/format";
+import { ageGroupAtom } from "@/atoms/userAtom";
+import { contributionRateAtom } from "@/atoms/incomeCeilingAtom";
+import { settingsAtom } from "@/atoms/settingAtom";
+import { CPF_ADDITIONAL_WAGE_CEILING } from "@/config";
 
 export const CalculatedResult = () => {
-  const result = useAtomValue(contributionResultAtom);
+  const contributionRate = useAtomValue(contributionRateAtom);
+  const { monthlyGrossIncome } = useAtomValue(settingsAtom);
   const ageGroup = useAtomValue(ageGroupAtom);
+  const contributionResult = useAtomValue(contributionResultAtom);
 
-  const {
-    contribution: {
-      employeeContribution = 0,
-      employerContribution = 0,
-      totalContribution = 0,
-    },
-    grossIncome = 0,
-    takeHomeIncome = 0,
-    remainingAW = 0,
-  } = result || {};
+  const annualWage = monthlyGrossIncome * 12;
 
   // Helper function to safely format currency with fallback
   const safeCurrency = (value: number | undefined) => {
@@ -34,12 +30,9 @@ export const CalculatedResult = () => {
 
   // Helper function to safely format percentage with fallback
   const safePercent = (value: number | undefined) => {
-    if (!value || isNaN(value)) return '0';
+    if (!value || isNaN(value)) return "0";
     return (value * 100).toFixed(0);
   };
-
-  const employeeRate = ageGroup?.contributionRate?.employee || 0;
-  const employerRate = ageGroup?.contributionRate?.employer || 0;
 
   return (
     <Card>
@@ -52,41 +45,56 @@ export const CalculatedResult = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Age Group</p>
-              <p className="font-medium">{ageGroup?.description || 'Not specified'}</p>
+              <p className="font-medium">
+                {ageGroup?.description || "Not specified"}
+              </p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Gross income</p>
-              <p className="font-medium">{safeCurrency(grossIncome)}</p>
+              <p className="font-medium">{safeCurrency(monthlyGrossIncome)}</p>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Your contribution ({safePercent(employeeRate)}%)</p>
+              <p className="text-sm text-muted-foreground">
+                Your contribution ({safePercent(contributionRate.employee)}%)
+              </p>
               <p className="font-medium text-emerald-600">
-                {safeCurrency(employeeContribution)}
+                {safeCurrency(contributionResult.contribution.employee)}
               </p>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Take home income</p>
-              <p className="font-medium">{safeCurrency(takeHomeIncome)}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Company's contribution ({safePercent(employerRate)}%)</p>
-              <p className="font-medium text-emerald-600">
-                {safeCurrency(employerContribution)}
+              <p className="font-medium">
+                {safeCurrency(contributionResult.afterCpfContribution)}
               </p>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Total CPF contribution</p>
+              <p className="text-sm text-muted-foreground">
+                Company's contribution ({safePercent(contributionRate.employer)}
+                %)
+              </p>
               <p className="font-medium text-emerald-600">
-                {safeCurrency(totalContribution)}
+                {safeCurrency(contributionResult.contribution.employer)}
+              </p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground">
+                Total CPF contribution
+              </p>
+              <p className="font-medium text-emerald-600">
+                {safeCurrency(
+                  contributionResult.contribution.totalContribution
+                )}
               </p>
             </div>
           </div>
-          <div className="pt-4 border-t">
+          <div className="border-t pt-4">
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">
                 Remaining Additional Wage (AW) for CPF contribution
               </p>
-              <p className="font-medium">{safeCurrency(remainingAW)}</p>
+              <p className="font-medium">
+                {safeCurrency(CPF_ADDITIONAL_WAGE_CEILING - annualWage)}
+              </p>
             </div>
           </div>
         </div>
