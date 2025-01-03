@@ -69,7 +69,8 @@ export const CalculatedResult = () => {
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">
-                Company&apos;s contribution ({safePercent(contributionRate.employer)}
+                Company&apos;s contribution (
+                {safePercent(contributionRate.employer)}
                 %)
               </p>
               <p className="font-medium text-emerald-600">

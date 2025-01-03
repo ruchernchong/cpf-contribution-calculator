@@ -1,51 +1,42 @@
-import React, { useCallback } from "react";
+import React, { type ChangeEvent, useCallback, useEffect } from "react";
 import { useAtom } from "jotai";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { userInputAtom, resetUserInputAtom } from "@/atoms/userInputAtom";
 import { formatDateInput, isValidDateFormat } from "@/utils/date-utils";
-import { formatDate } from "@/lib/format";
+import { settingsAtom } from "@/atoms/settingAtom";
+import { useResetAtom } from "jotai/utils";
 
 export const UserInput = () => {
-  const [userInput, setUserInput] = useAtom(userInputAtom);
-  const [, resetUserInput] = useAtom(resetUserInputAtom);
+  const [settings, setSettings] = useAtom(settingsAtom);
+  const { birthDate, monthlyGrossIncome, shouldStoreInput } = settings;
 
+  const resetSettings = useResetAtom(settingsAtom);
+
+  useEffect(() => {
+    if (!shouldStoreInput) {
+      resetSettings();
+    }
+  }, [resetSettings, shouldStoreInput]);
+ 
   const handleBirthDateChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       const rawInput = event.target.value;
-      const formattedBirthDate = formatDateInput(rawInput, userInput.birthDate);
+      const formattedBirthDate = formatDateInput(rawInput, birthDate);
 
-      setUserInput(prev => ({
-        ...prev,
-        birthDate: formattedBirthDate
+      void setSettings((setting) => ({
+        ...setting,
+        birthDate: formattedBirthDate,
       }));
     },
-    [userInput.birthDate, setUserInput]
-  );
-
-  const handleIncomeChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const income = parseFloat(event.target.value) || 0;
-
-      setUserInput(prev => ({
-        ...prev,
-        monthlyGrossIncome: income
-      }));
-    },
-    [setUserInput]
-  );
-
-  const handleStoreInputToggle = useCallback(
-    (checked: boolean) => {
-      setUserInput(prev => ({
-        ...prev,
-        shouldStoreInput: checked
-      }));
-    },
-    [setUserInput]
+    [birthDate, setSettings]
   );
 
   return (
@@ -61,41 +52,19 @@ export const UserInput = () => {
         <div className="space-y-2">
           <Label htmlFor="birthDate">Birth month and year</Label>
           <Input
-            id="birthDate"
+            type="text"
+            name="dateOfBirth"
+            id="dateOfBirth"
             placeholder="MM/YYYY"
-            value={userInput.birthDate}
-            onChange={handleBirthDateChange}
-            className="max-w-xs"
             maxLength={7}
+            value={birthDate}
+            onChange={handleBirthDateChange}
           />
-          {!isValidDateFormat(userInput.birthDate) && userInput.birthDate && (
+          {!isValidDateFormat(birthDate) && birthDate && (
             <p className="text-xs text-red-500">
               Please enter a valid date in MM/YYYY format
             </p>
           )}
-        </div>
-
-        {/* Effective Date Select */}
-        <div className="space-y-2">
-          <Label htmlFor="effectiveDate">
-            CPF Income Ceiling Effective Date
-          </Label>
-          <Select 
-            value={userInput.effectiveDate}
-            onValueChange={(value) => setUserInput(prev => ({
-              ...prev,
-              effectiveDate: value
-            }))}
-          >
-            <SelectTrigger className="max-w-xs">
-              <SelectValue placeholder="Select date" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="01 January 2025">
-                {formatDate(new Date("2025-01-01"))}
-              </SelectItem>
-            </SelectContent>
-          </Select>
         </div>
 
         {/* Gross Income Input */}
@@ -105,8 +74,13 @@ export const UserInput = () => {
             id="grossIncome"
             type="number"
             placeholder="0.00"
-            value={userInput.monthlyGrossIncome || ''}
-            onChange={handleIncomeChange}
+            value={monthlyGrossIncome}
+            onChange={(e) =>
+              setSettings((setting) => ({
+                ...setting,
+                monthlyGrossIncome: parseFloat(e.target.value),
+              }))
+            }
             className="max-w-xs"
             min={0}
           />
@@ -114,10 +88,15 @@ export const UserInput = () => {
 
         {/* Remember Input Checkbox */}
         <div className="flex items-center space-x-2">
-          <Checkbox 
+          <Checkbox
             id="remember"
-            checked={userInput.shouldStoreInput}
-            onCheckedChange={handleStoreInputToggle}
+            checked={shouldStoreInput}
+            onCheckedChange={(checked) =>
+              setSettings((setting) => ({
+                ...setting,
+                shouldStoreInput: Boolean(checked),
+              }))
+            }
           />
           <Label htmlFor="remember" className="text-sm text-gray-600">
             Store input on this browser?
