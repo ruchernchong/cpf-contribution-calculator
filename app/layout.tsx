@@ -1,60 +1,25 @@
 import type { Metadata } from "next";
-import Script from "next/script";
-import { Providers } from "./Providers";
-import { Footer } from "../components/Footer";
-import { BASE_URL, description, title } from "../config";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-const url = new URL(BASE_URL);
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: url,
-  title: {
-    template: `%s | ${title}`,
-    default: title,
-  },
-  description,
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title,
-    description,
-    siteName: title,
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
-    url,
-    locale: "en_SG",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [{ url: "/twitter-image.png", width: 1200, height: 630 }],
-    creator: "@ruchernchong",
-  },
+  title: "CPF Calculator",
+  description:
+    "Calculate your CPF contributions with the latest income ceiling changes",
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className="bg-white text-black">
-        <main className="flex min-h-screen flex-col">
-          <Providers>{children}</Providers>
-        </main>
+      <body className={`${inter.className} flex min-h-screen flex-col`}>
+        <Header />
+        <main className="flex-grow bg-gray-50">{children}</main>
         <Footer />
       </body>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-4W2DF7BF1S" />
-      <Script id="google-analytics">
-        {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            
-            gtag('config', 'G-4W2DF7BF1S');
-        `}
-      </Script>
     </html>
   );
 };
