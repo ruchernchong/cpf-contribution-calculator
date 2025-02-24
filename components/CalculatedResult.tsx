@@ -37,6 +37,9 @@ export const CalculatedResult = () => {
     return (value * 100).toFixed(0);
   };
 
+  const additionalWageGap = CPF_ADDITIONAL_WAGE_CEILING - annualWage;
+  const remainingAdditionalWage = Math.max(0, additionalWageGap);
+
   return (
     <Card>
       <CardHeader>
@@ -107,9 +110,7 @@ export const CalculatedResult = () => {
                 Remaining Additional Wage (AW) for CPF contribution
               </p>
               <p className="font-medium">
-                {safeCurrency(
-                  useAnimatedNumber(CPF_ADDITIONAL_WAGE_CEILING - annualWage),
-                )}
+                {safeCurrency(useAnimatedNumber(remainingAdditionalWage), 0)}
               </p>
             </div>
           </div>
