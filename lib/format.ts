@@ -4,12 +4,17 @@ type PercentageFormatOptions = {
   decimalPlaces?: number;
 };
 
-export const formatCurrency = (value: number | string): string => {
+export const formatCurrency = (
+  value: number | string,
+  decimalPlaces = 2,
+): string => {
   const numericValue = typeof value === "string" ? Number(value) : value;
 
   return new Intl.NumberFormat("en-SG", {
     style: "currency",
     currency: "SGD",
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
   }).format(numericValue);
 };
 

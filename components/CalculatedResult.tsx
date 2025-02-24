@@ -24,9 +24,11 @@ export const CalculatedResult = () => {
   const annualWage = monthlyGrossIncome * 12;
 
   // Helper function to safely format currency with fallback
-  const safeCurrency = (value: number | undefined) => {
-    if (!value || Number.isNaN(value)) return formatCurrency(0);
-    return formatCurrency(value);
+  const safeCurrency = (value: number | undefined, decimalPlaces = 2) => {
+    if (!value || Number.isNaN(value)) {
+      return formatCurrency(0, decimalPlaces);
+    }
+    return formatCurrency(value, decimalPlaces);
   };
 
   // Helper function to safely format percentage with fallback
