@@ -2,63 +2,42 @@ import dynamic from "next/dynamic";
 import { formatCurrency, formatPercentage } from "@/lib/format";
 import type { DistributionResult } from "@/types";
 import { Card, CardContent } from "./ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "./ui/table";
 
 const DistributionPieChart = dynamic(() => import("./DistributionPieChart"));
 
-interface Props {
+interface DistributionViewProps {
   distributionResults: DistributionResult[];
 }
 
-export const DistributionView = ({ distributionResults }: Props) => {
+export const DistributionView = ({
+  distributionResults,
+}: DistributionViewProps) => {
   const totalCpfContribution = distributionResults.reduce(
     (accum, curr) => accum + curr.value,
     0,
   );
 
   return (
-    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <Card className="shadow-md">
         <CardContent className="pt-6">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                {distributionResults.map(({ name, value }) => {
-                  return (
-                    <TableHead key={name} className="text-center">
-                      {name} ({formatPercentage(value / totalCpfContribution)})
-                    </TableHead>
-                  );
-                })}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                {distributionResults.map(({ name, value }) => {
-                  return (
-                    <TableCell
-                      key={name}
-                      className="text-center font-medium text-primary"
-                    >
-                      {formatCurrency(value)}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            </TableBody>
-          </Table>
+          <div className="space-y-0">
+            {distributionResults.map(({ name, value }) => (
+              <div
+                key={name}
+                className="py-4 flex justify-between items-center border-b last:border-0"
+              >
+                <p className="text-gray-500 font-medium">
+                  {name} ({formatPercentage(value / totalCpfContribution)})
+                </p>
+                <p className="font-semibold text-xl">{formatCurrency(value)}</p>
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
-
-      <Card className="shadow-md h-[450px] flex flex-col justify-center">
-        <CardContent className="pt-6 h-full">
+      <Card className="shadow-md">
+        <CardContent className="h-[300px] flex items-center justify-center pt-6">
           <DistributionPieChart
             data={distributionResults}
             className="block w-full h-full"

@@ -6,9 +6,9 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "@/constants";
@@ -16,7 +16,7 @@ import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency } from "@/lib/format";
 import { useAtomValue } from "jotai";
 import React from "react";
-import { FileIcon, ShareIcon } from "lucide-react";
+import { FileText, Share } from "lucide-react";
 
 export const CalculatedResult = () => {
   const contributionRate = useAtomValue(contributionRateAtom);
@@ -49,83 +49,81 @@ export const CalculatedResult = () => {
         <CardTitle>Contribution Summary</CardTitle>
         <CardDescription>Your calculated CPF contributions</CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Age Group</p>
-              <p className="font-medium">
-                {ageGroup?.description || "Not specified"}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Gross Income</p>
-              <p className="font-medium">
-                {safeCurrency(useAnimatedNumber(monthlyGrossIncome))}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Take Home Income</p>
-              <p className="font-medium">
-                {safeCurrency(
-                  useAnimatedNumber(contributionResult.afterCpfContribution),
-                )}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">
-                Your contribution ({safePercent(contributionRate.employee)}%)
-              </p>
-              <p className="font-medium text-emerald-600">
-                {safeCurrency(
-                  useAnimatedNumber(contributionResult.contribution.employee),
-                )}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">
-                Company&apos;s contribution (
-                {safePercent(contributionRate.employer)}
-                %)
-              </p>
-              <p className="font-medium text-emerald-600">
-                {safeCurrency(
-                  useAnimatedNumber(contributionResult.contribution.employer),
-                )}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">
-                Total CPF contribution
-              </p>
-              <p className="font-medium text-emerald-600 text-lg">
-                {safeCurrency(
-                  useAnimatedNumber(
-                    contributionResult.contribution.totalContribution,
-                  ),
-                )}
-              </p>
-            </div>
+      <CardContent className="space-y-4">
+        <div className="space-y-0">
+          <div className="py-4 flex justify-between items-center border-b">
+            <p className="text-sm text-muted-foreground">Age Group</p>
+            <p className="font-medium text-right">
+              {ageGroup?.description || "Not specified"}
+            </p>
           </div>
-          <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-md">
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">
-                Remaining Additional Wage (AW) for CPF contribution
-              </p>
-              <p className="font-medium text-lg">
-                {safeCurrency(useAnimatedNumber(remainingAdditionalWage), 0)}
-              </p>
-            </div>
+          <div className="py-4 flex justify-between items-center border-b">
+            <p className="text-sm text-muted-foreground">Gross Income</p>
+            <p className="font-medium text-right">
+              {safeCurrency(useAnimatedNumber(monthlyGrossIncome))}
+            </p>
+          </div>
+          <div className="py-4 flex justify-between items-center border-b">
+            <p className="text-sm text-muted-foreground">Take-home Income</p>
+            <p className="font-medium text-right">
+              {safeCurrency(
+                useAnimatedNumber(contributionResult.afterCpfContribution),
+              )}
+            </p>
+          </div>
+          <div className="py-4 flex justify-between items-center border-b">
+            <p className="text-sm text-muted-foreground">
+              Your contribution ({safePercent(contributionRate.employee)}%)
+            </p>
+            <p className="font-medium text-emerald-600 text-right">
+              {safeCurrency(
+                useAnimatedNumber(contributionResult.contribution.employee),
+              )}
+            </p>
+          </div>
+          <div className="py-4 flex justify-between items-center border-b">
+            <p className="text-sm text-muted-foreground">
+              Company&apos;s contribution (
+              {safePercent(contributionRate.employer)}
+              %)
+            </p>
+            <p className="font-medium text-emerald-600 text-right">
+              {safeCurrency(
+                useAnimatedNumber(contributionResult.contribution.employer),
+              )}
+            </p>
+          </div>
+          <div className="py-4 flex justify-between items-center">
+            <p className="text-sm text-muted-foreground">
+              Total CPF contribution
+            </p>
+            <p className="font-medium text-emerald-600 text-right">
+              {safeCurrency(
+                useAnimatedNumber(
+                  contributionResult.contribution.totalContribution,
+                ),
+              )}
+            </p>
+          </div>
+        </div>
+        <div className="mt-4 p-4 border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950 dark:text-orange-200 rounded-md">
+          <div className="space-y-1">
+            <p className="text-sm text-muted-foreground">
+              Remaining Additional Wage (AW) for CPF contribution
+            </p>
+            <p className="font-medium text-lg">
+              {safeCurrency(useAnimatedNumber(remainingAdditionalWage), 0)}
+            </p>
           </div>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="outline" size="sm" className="gap-2">
-          <FileIcon className="h-4 w-4" />
+          <FileText className="h-4 w-4" />
           Download PDF
         </Button>
         <Button variant="outline" size="sm" className="gap-2">
-          <ShareIcon className="h-4 w-4" />
+          <Share className="h-4 w-4" />
           Share Results
         </Button>
       </CardFooter>
