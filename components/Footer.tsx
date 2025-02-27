@@ -38,14 +38,6 @@ const Footer = () => (
                 API Documentation
               </Link>
             </li>
-            <li>
-              <Link
-                href="#"
-                className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 hover:dark:text-zinc-200 transition-colors"
-              >
-                FAQ
-              </Link>
-            </li>
           </ul>
         </div>
         <div>
