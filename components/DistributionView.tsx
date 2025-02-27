@@ -1,6 +1,6 @@
-import dynamic from "next/dynamic";
 import { formatCurrency, formatPercentage } from "@/lib/format";
 import type { DistributionResult } from "@/types";
+import dynamic from "next/dynamic";
 import { Card, CardContent } from "./ui/card";
 
 const DistributionPieChart = dynamic(() => import("./DistributionPieChart"));
@@ -27,7 +27,7 @@ export const DistributionView = ({
                 key={name}
                 className="py-4 flex justify-between items-center border-b last:border-0"
               >
-                <p className="text-gray-500 font-medium">
+                <p className="text-zinc-500 font-medium">
                   {name} ({formatPercentage(value / totalCpfContribution)})
                 </p>
                 <p className="font-semibold text-xl">{formatCurrency(value)}</p>

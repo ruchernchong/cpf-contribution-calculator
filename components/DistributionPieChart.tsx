@@ -24,7 +24,6 @@ export const DistributionPieChart = ({ data, ...props }: Props) => {
     const {
       cx,
       cy,
-      midAngle,
       innerRadius,
       outerRadius,
       startAngle,
@@ -34,16 +33,6 @@ export const DistributionPieChart = ({ data, ...props }: Props) => {
       percent,
       value,
     } = props;
-    const RADIAN = Math.PI / 180;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 10) * cos;
-    const sy = cy + (outerRadius + 10) * sin;
-    const mx = cx + (outerRadius + 30) * cos;
-    const my = cy + (outerRadius + 30) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-    const ey = my;
-    const textAnchor = cos >= 0 ? "start" : "end";
 
     return (
       <g>
@@ -102,10 +91,10 @@ export const DistributionPieChart = ({ data, ...props }: Props) => {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white dark:bg-gray-800 p-2 border border-gray-200 dark:border-gray-700 rounded shadow text-sm">
+        <div className="bg-white dark:bg-zinc-800 p-2 border border-zinc-200 dark:border-zinc-700 rounded shadow text-sm">
           <p className="font-medium">{payload[0].name}</p>
           <p className="text-primary">{formatCurrency(payload[0].value)}</p>
-          <p className="text-gray-500">
+          <p className="text-zinc-500">
             {formatPercentage(payload[0].payload.percent)}
           </p>
         </div>

@@ -2,6 +2,7 @@ import { contributionRateAtom } from "@/atoms/incomeCeilingAtom";
 import { contributionResultAtom } from "@/atoms/resultAtom";
 import { settingsAtom } from "@/atoms/settingAtom";
 import { ageGroupAtom } from "@/atoms/userAtom";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,13 +11,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "@/constants";
 import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency } from "@/lib/format";
 import { useAtomValue } from "jotai";
-import React from "react";
 import { FileText, Share } from "lucide-react";
+import React from "react";
 
 export const CalculatedResult = () => {
   const contributionRate = useAtomValue(contributionRateAtom);

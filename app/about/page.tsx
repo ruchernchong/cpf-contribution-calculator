@@ -82,7 +82,7 @@ const AboutPage = () => (
                 <AccordionTrigger className="text-left">
                   {question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300">
+                <AccordionContent className="text-zinc-600 dark:text-zinc-300">
                   {answer}
                 </AccordionContent>
               </AccordionItem>
