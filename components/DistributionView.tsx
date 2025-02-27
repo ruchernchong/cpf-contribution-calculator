@@ -1,4 +1,5 @@
-import { formatCurrency, formatPercentage } from "@/lib/format";
+import { CPF_ACCOUNT_MAP } from "@/constants";
+import { formatCurrency } from "@/lib/format";
 import type { DistributionResult } from "@/types";
 import dynamic from "next/dynamic";
 import { Card, CardContent } from "./ui/card";
@@ -22,13 +23,17 @@ export const DistributionView = ({
       <Card className="shadow-md">
         <CardContent className="pt-6">
           <div className="space-y-0">
+            <div className="py-4 flex justify-between items-center border-b last:border-0 font-semibold text-xl">
+              <p>Total Contribution</p>
+              <p>{formatCurrency(totalCpfContribution)}</p>
+            </div>
             {distributionResults.map(({ name, value }) => (
               <div
                 key={name}
                 className="py-4 flex justify-between items-center border-b last:border-0"
               >
                 <p className="text-zinc-500 font-medium">
-                  {name} ({formatPercentage(value / totalCpfContribution)})
+                  {CPF_ACCOUNT_MAP[name]} ({name})
                 </p>
                 <p className="font-semibold text-xl">{formatCurrency(value)}</p>
               </div>

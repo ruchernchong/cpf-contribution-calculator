@@ -11,3 +11,10 @@ export const CPF_INCOME_CEILING: CPFIncomeCeiling = {
   "2025-01-01": 7400,
   "2026-01-01": 8000,
 };
+
+export const CPF_ACCOUNT_MAP: Record<string, string> = {
+  OA: "Ordinary Account",
+  SA: "Special Account",
+  MA: "Medisave Account",
+  RA: "Retirement Account",
+};
