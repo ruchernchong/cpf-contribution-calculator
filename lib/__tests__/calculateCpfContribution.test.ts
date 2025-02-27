@@ -1,9 +1,33 @@
 import {
   DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
   DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
-} from "../../config";
-import type { ComputedResult } from "../../types";
+} from "@/config";
+import type { ComputedResult } from "@/types";
+import { describe, expect, it, vi } from "vitest";
 import { calculateCpfContribution } from "../calculateCpfContribution";
+
+// Mock the config and constants modules
+vi.mock("@/config", () => ({
+  DEFAULT_EMPLOYEE_CONTRIBUTION_RATE: 0.2,
+  DEFAULT_EMPLOYER_CONTRIBUTION_RATE: 0.17,
+  CPF_TYPE: {
+    OA: "OA",
+    SA: "SA",
+    MA: "MA",
+  },
+}));
+
+vi.mock("@/constants", () => ({
+  CPF_INCOME_CEILING: {
+    "2023-01-01": 6000,
+    "2023-09-01": 6300,
+    "2024-01-01": 6800,
+    "2025-01-01": 7400,
+    "2026-01-01": 8000,
+  },
+  CPF_INCOME_CEILING_BEFORE_SEPT_2023: 6000,
+  DEFAULT_CPF_INCOME_CEILING: 6000,
+}));
 
 type TestCase = {
   effectiveDate: string;
@@ -13,7 +37,7 @@ type TestCase = {
 
 const testCases: TestCase[] = [
   {
-    effectiveDate: "01-01-2023",
+    effectiveDate: "2023-01-01",
     income: 4000,
     expected: {
       contribution: {
@@ -30,7 +54,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-01-2023",
+    effectiveDate: "2023-01-01",
     income: 6000,
     expected: {
       contribution: {
@@ -47,7 +71,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-01-2023",
+    effectiveDate: "2023-01-01",
     income: 8000,
     expected: {
       contribution: {
@@ -64,7 +88,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-01-2026",
+    effectiveDate: "2026-01-01",
     income: 4000,
     expected: {
       contribution: {
@@ -81,7 +105,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-01-2026",
+    effectiveDate: "2026-01-01",
     income: 6000,
     expected: {
       contribution: {
@@ -98,7 +122,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-01-2026",
+    effectiveDate: "2026-01-01",
     income: 8000,
     expected: {
       contribution: {
@@ -115,7 +139,7 @@ const testCases: TestCase[] = [
     },
   },
   {
-    effectiveDate: "01-01-2026",
+    effectiveDate: "2026-01-01",
     income: 10000,
     expected: {
       contribution: {
@@ -158,7 +182,7 @@ describe("calculateCpfContribution", () => {
 
   it("should return the income after CPF contribution before the ceiling changes", () => {
     expect(
-      calculateCpfContribution(6000, "01-01-2023", {
+      calculateCpfContribution(6000, "2023-01-01", {
         useCeilingBeforeSep2023: true,
       }),
     ).toEqual({
@@ -167,7 +191,7 @@ describe("calculateCpfContribution", () => {
       afterCpfContribution: 4800,
     });
     expect(
-      calculateCpfContribution(8000, "01-01-2023", {
+      calculateCpfContribution(8000, "2023-01-01", {
         useCeilingBeforeSep2023: true,
       }),
     ).toEqual({
@@ -179,7 +203,7 @@ describe("calculateCpfContribution", () => {
 
   it("should return the result correctly for a certain age group", () => {
     expect(
-      calculateCpfContribution(6000, "01-01-2023", {
+      calculateCpfContribution(6000, "2023-01-01", {
         ageGroup: {
           description: "Above 70",
           minAge: 70,

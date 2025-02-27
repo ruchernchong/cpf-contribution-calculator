@@ -22,8 +22,24 @@ export const formatDate = (
   date: Date | string,
   dateFormat = "dd MMMM yyyy",
 ) => {
-  const dateValue =
-    date instanceof Date ? date : parse(date, "yyyy-MM-dd", new Date());
+  let dateValue: Date;
+  
+  if (date instanceof Date) {
+    dateValue = date;
+  } else {
+    // Try different date formats
+    try {
+      dateValue = parse(date, "yyyy-MM-dd", new Date());
+    } catch (e) {
+      try {
+        dateValue = parse(date, "MM-dd-yyyy", new Date());
+      } catch (e) {
+        // Last resort, use the JS Date constructor
+        dateValue = new Date(date);
+      }
+    }
+  }
+  
   return format(dateValue, dateFormat);
 };
 

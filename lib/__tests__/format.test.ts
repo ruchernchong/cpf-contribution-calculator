@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { formatCurrency, formatDate, formatPercentage } from "../format";
 
 describe("formatCurrency", () => {
@@ -9,16 +10,16 @@ describe("formatCurrency", () => {
 
 describe("formatDate", () => {
   it("should return a formatted date of DD MMMM YYYY by default", () => {
-    expect(formatDate("09-01-2023")).toBe("01 September 2023");
+    expect(formatDate("2023-09-01")).toBe("01 September 2023");
   });
 
   it("should return the date formatted to the expected output", () => {
-    expect(formatDate("09-01-2023")).toBe("01 September 2023");
-    expect(formatDate("01-01-2024", "dd-MM-yyyy")).toBe("01-01-2024");
+    expect(formatDate("2023-09-01")).toBe("01 September 2023");
+    expect(formatDate("2024-01-01", "dd-MM-yyyy")).toBe("01-01-2024");
   });
 
   it("should return the date formatted to the expected output for a instanceof Date provided", () => {
-    expect(formatDate(new Date("01-01-2023"))).toBe("01 January 2023");
+    expect(formatDate(new Date("2023-01-01"))).toBe("01 January 2023");
   });
 });
 

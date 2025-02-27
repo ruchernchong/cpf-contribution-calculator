@@ -13,7 +13,16 @@ vi.mock("@/data", () => ({
   },
 }));
 
-vi.mock("@/constants", () => ({ DEFAULT_CPF_INCOME_CEILING: 6000 }));
+vi.mock("@/constants", () => ({ 
+  DEFAULT_CPF_INCOME_CEILING: 6000,
+  CPF_INCOME_CEILING: {
+    "2023-01-01": 6000,
+    "2023-09-01": 6300,
+    "2024-01-01": 6800,
+    "2025-01-01": 7400,
+    "2026-01-01": 8000,
+  }
+}));
 
 describe("GET /api/cpf/ceiling", () => {
   const createRequest = (url: string) => {

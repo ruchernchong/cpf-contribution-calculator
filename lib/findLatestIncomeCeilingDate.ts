@@ -10,7 +10,7 @@ export const findLatestIncomeCeilingDate = (): string => {
       effectiveDate: parse(effectiveDate, "yyyy-MM-dd", new Date()),
       ceilingThreshold,
     }))
-    .filter(({ effectiveDate }) => effectiveDate < currentDate);
+    .filter(({ effectiveDate }) => effectiveDate <= currentDate);
 
   const closestPastDate = closestTo(
     currentDate,

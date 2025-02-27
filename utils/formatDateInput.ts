@@ -11,7 +11,7 @@ export const formatDateInput = (
 ): string => {
   let formattedInput = rawInput;
   if (formattedInput.length === 2 && birthDate.length === 3) {
-    formattedInput = `${formattedInput.slice(0, 1)}/`;
+    formattedInput = `${formattedInput.slice(0, 1)}/${formattedInput.slice(1, 2)}`;
   } else {
     formattedInput = formattedInput.replace(/[^0-9]/g, "");
 
