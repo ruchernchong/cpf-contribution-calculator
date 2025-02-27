@@ -9,6 +9,7 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { CPF_INCOME_CEILING } from "@/constants";
 import { formatCurrency, formatDate } from "@/lib/format";
+import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import React, { useState } from "react";
 
@@ -58,7 +59,11 @@ const CPFYearSlider = () => {
                   }`}
                 >
                   <div className="mb-1">{formatDate(date)}</div>
-                  <div className={isActive ? "font-semibold" : ""}>
+                  <div
+                    className={cn("hidden lg:block", {
+                      "font-semibold": isActive,
+                    })}
+                  >
                     {formatCurrency(CPF_INCOME_CEILING[date])}
                   </div>
                 </div>
