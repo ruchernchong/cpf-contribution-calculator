@@ -28,29 +28,42 @@ const CPFYearSlider = () => {
   };
 
   return (
-    <Card className="mb-4 w-full">
-      <CardHeader>
+    <Card className="mb-4 w-full shadow-md">
+      <CardHeader className="pb-2">
         <CardTitle className="text-lg">CPF Income Ceiling by Year</CardTitle>
         <CardDescription>
           Compare income ceilings across different dates
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="space-y-2">
+        <div className="space-y-6">
           <Slider
             value={[dateKeys.indexOf(sliderValue)]}
             onValueChange={handleValueChange}
             min={0}
             max={dateKeys.length - 1}
             step={1}
+            className="py-4"
           />
-          <div className="flex justify-between gap-2 text-sm text-gray-500">
-            {dateKeys.map((date) => (
-              <div key={date} className="text-center">
-                <div>{formatDate(date)}</div>
-                <div>{formatCurrency(CPF_INCOME_CEILING[date])}</div>
-              </div>
-            ))}
+          <div className="flex justify-between text-sm">
+            {dateKeys.map((date) => {
+              const isActive = date === sliderValue;
+              return (
+                <div
+                  key={date}
+                  className={`text-center transition-colors ${
+                    isActive
+                      ? "text-primary font-medium"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  <div className="mb-1">{formatDate(date)}</div>
+                  <div className={isActive ? "font-semibold" : ""}>
+                    {formatCurrency(CPF_INCOME_CEILING[date])}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </CardContent>

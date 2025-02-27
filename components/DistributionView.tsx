@@ -2,9 +2,12 @@ import dynamic from "next/dynamic";
 import { formatCurrency, formatPercentage } from "../lib/format";
 import type { DistributionResult } from "../types";
 import {
+  Card,
+  CardContent
+} from "./ui/card";
+import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -26,37 +29,45 @@ export const DistributionView = ({
   );
 
   return (
-    <>
-      <Table>
-        <TableCaption> CPF Account Type Distribution</TableCaption>
-        <TableHeader>
-          <TableRow>
-            {distributionResults.map(({ name, value }) => {
-              return (
-                <TableHead key={name} className="text-center">
-                  {name} ({formatPercentage(value / totalCpfContribution)})
-                </TableHead>
-              );
-            })}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            {distributionResults.map(({ name, value }) => {
-              return (
-                <TableCell key={name} className="text-center">
-                  {formatCurrency(value)}
-                </TableCell>
-              );
-            })}
-          </TableRow>
-        </TableBody>
-      </Table>
-      {/*<DistributionPieChart*/}
-      {/*  data={distributionResults}*/}
-      {/*  className="hidden md:block"*/}
-      {/*/>*/}
-    </>
+    <div className="grid gap-8 md:grid-cols-2">
+      <Card className="shadow-md">
+        <CardContent className="pt-6">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                {distributionResults.map(({ name, value }) => {
+                  return (
+                    <TableHead key={name} className="text-center">
+                      {name} ({formatPercentage(value / totalCpfContribution)})
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                {distributionResults.map(({ name, value }) => {
+                  return (
+                    <TableCell key={name} className="text-center font-medium text-primary">
+                      {formatCurrency(value)}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+      
+      <Card className="shadow-md">
+        <CardContent className="pt-6">
+          <DistributionPieChart
+            data={distributionResults}
+            className="block w-full h-full"
+          />
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

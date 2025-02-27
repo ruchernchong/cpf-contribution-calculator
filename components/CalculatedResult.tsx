@@ -8,12 +8,15 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { CPF_ADDITIONAL_WAGE_CEILING } from "@/constants";
 import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency } from "@/lib/format";
 import { useAtomValue } from "jotai";
 import React from "react";
+import { FileIcon, ShareIcon } from "lucide-react";
 
 export const CalculatedResult = () => {
   const contributionRate = useAtomValue(contributionRateAtom);
@@ -41,7 +44,7 @@ export const CalculatedResult = () => {
   const remainingAdditionalWage = Math.max(0, additionalWageGap);
 
   return (
-    <Card>
+    <Card className="shadow-md">
       <CardHeader>
         <CardTitle>Contribution Summary</CardTitle>
         <CardDescription>Your calculated CPF contributions</CardDescription>
@@ -56,9 +59,17 @@ export const CalculatedResult = () => {
               </p>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Gross income</p>
+              <p className="text-sm text-muted-foreground">Gross Income</p>
               <p className="font-medium">
                 {safeCurrency(useAnimatedNumber(monthlyGrossIncome))}
+              </p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground">Take Home Income</p>
+              <p className="font-medium">
+                {safeCurrency(
+                  useAnimatedNumber(contributionResult.afterCpfContribution),
+                )}
               </p>
             </div>
             <div className="space-y-1">
@@ -68,14 +79,6 @@ export const CalculatedResult = () => {
               <p className="font-medium text-emerald-600">
                 {safeCurrency(
                   useAnimatedNumber(contributionResult.contribution.employee),
-                )}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">Take home income</p>
-              <p className="font-medium">
-                {safeCurrency(
-                  useAnimatedNumber(contributionResult.afterCpfContribution),
                 )}
               </p>
             </div>
@@ -95,7 +98,7 @@ export const CalculatedResult = () => {
               <p className="text-sm text-muted-foreground">
                 Total CPF contribution
               </p>
-              <p className="font-medium text-emerald-600">
+              <p className="font-medium text-emerald-600 text-lg">
                 {safeCurrency(
                   useAnimatedNumber(
                     contributionResult.contribution.totalContribution,
@@ -104,18 +107,28 @@ export const CalculatedResult = () => {
               </p>
             </div>
           </div>
-          <div className="border-t pt-4">
+          <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-md">
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">
                 Remaining Additional Wage (AW) for CPF contribution
               </p>
-              <p className="font-medium">
+              <p className="font-medium text-lg">
                 {safeCurrency(useAnimatedNumber(remainingAdditionalWage), 0)}
               </p>
             </div>
           </div>
         </div>
       </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline" size="sm" className="gap-2">
+          <FileIcon className="h-4 w-4" />
+          Download PDF
+        </Button>
+        <Button variant="outline" size="sm" className="gap-2">
+          <ShareIcon className="h-4 w-4" />
+          Share Results
+        </Button>
+      </CardFooter>
     </Card>
   );
 };

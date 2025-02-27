@@ -1,33 +1,62 @@
-import type { FAQ as FAQType } from "../types";
+"use client";
+
+import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion";
+} from "@/components/ui/accordion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface FAQProps {
-  items: FAQType[];
-}
+const faqItems = [
+  {
+    question: "What is the CPF Income Ceiling?",
+    answer:
+      "The CPF Income Ceiling is the maximum amount of monthly ordinary wages on which CPF contributions are payable. The current CPF Income Ceiling is $7,400 per month, effective from January 2025.",
+  },
+  {
+    question: "How is the CPF contribution calculated?",
+    answer:
+      "CPF contributions are calculated based on your monthly ordinary wages, up to the prevailing CPF Income Ceiling. Both employees and employers make contributions at rates that vary according to the employee's age group and citizenship status.",
+  },
+  {
+    question: "What are the different CPF accounts?",
+    answer:
+      "The CPF consists of three main accounts: Ordinary Account (OA) for housing, education, and investment needs; Special Account (SA) for retirement and investment in retirement-related financial products; and MediSave Account (MA) for medical expenses, including hospitalization and certain outpatient treatments.",
+  },
+  {
+    question: "What is Additional Wage (AW)?",
+    answer:
+      "Additional Wage refers to non-regular income such as annual bonuses, leave pay, and incentives. CPF contributions on Additional Wage are subject to an Additional Wage Ceiling, which is calculated as (CPF Annual Limit - Ordinary Wage subject to CPF contributions for the year).",
+  },
+  {
+    question: "How accurate is this calculator?",
+    answer:
+      "This calculator provides estimates based on the official CPF contribution rates and ceilings. While we strive for accuracy, it's always advisable to refer to the official CPF website or consult CPF Board for your specific situation.",
+  },
+];
 
-export const FAQ = ({ items }: FAQProps) => {
+const FAQ = () => {
   return (
-    <>
-      <h3>Frequently Asked Questions</h3>
-      <Accordion type="single" collapsible>
-        {items.map(({ question, answer }, index) => {
-          const key = `${question}-${index}`;
-
-          return (
-            <AccordionItem key={key} value={question}>
+    <Card className="shadow-md">
+      <CardHeader>
+        <CardTitle className="text-center">Frequently Asked Questions</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Accordion type="single" collapsible className="w-full">
+          {faqItems.map((item, index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="text-left">
-                {question}
+                {item.question}
               </AccordionTrigger>
-              <AccordionContent>{answer}</AccordionContent>
+              <AccordionContent>{item.answer}</AccordionContent>
             </AccordionItem>
-          );
-        })}
-      </Accordion>
-    </>
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
   );
 };
+
+export default FAQ;

@@ -1,11 +1,14 @@
 import { formatCurrency, formatPercentage } from "@/lib/format";
 import { type PropsWithChildren, useState } from "react";
-import { Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer, Sector, Legend, Tooltip } from "recharts";
 
 interface DistributionPieChartProps extends PropsWithChildren {
   data: any;
   className: string;
 }
+
+// Custom colors for the pie chart segments
+const COLORS = ['#3b82f6', '#10b981', '#ef4444'];
 
 export const DistributionPieChart = ({
   data,
@@ -22,7 +25,7 @@ export const DistributionPieChart = ({
       outerRadius,
       startAngle,
       endAngle,
-      className,
+      fill,
       payload,
       percent,
       value,
@@ -40,8 +43,35 @@ export const DistributionPieChart = ({
 
     return (
       <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" className={className}>
-          {payload.name.toUpperCase()}
+        <text 
+          x={cx} 
+          y={cy} 
+          dy={-20} 
+          textAnchor="middle" 
+          fill="currentColor"
+          className="text-lg font-medium"
+        >
+          {payload.name}
+        </text>
+        <text 
+          x={cx} 
+          y={cy} 
+          dy={10} 
+          textAnchor="middle" 
+          fill="currentColor"
+          className="text-xl font-bold"
+        >
+          {formatCurrency(value)}
+        </text>
+        <text 
+          x={cx} 
+          y={cy} 
+          dy={30} 
+          textAnchor="middle" 
+          fill="currentColor"
+          className="text-sm"
+        >
+          {formatPercentage(percent)}
         </text>
         <Sector
           cx={cx}
@@ -50,7 +80,7 @@ export const DistributionPieChart = ({
           outerRadius={outerRadius}
           startAngle={startAngle}
           endAngle={endAngle}
-          className={className}
+          fill={fill}
         />
         <Sector
           cx={cx}
@@ -59,40 +89,49 @@ export const DistributionPieChart = ({
           endAngle={endAngle}
           innerRadius={outerRadius + 6}
           outerRadius={outerRadius + 10}
-          className={className}
+          fill={fill}
         />
-        <path
-          d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-          className="stroke-teal-600"
-          fill="none"
-        />
-        <circle cx={ex} cy={ey} r={2} fill={"fill-teal-600"} stroke="none" />
-        <text
-          x={ex + (cos >= 0 ? 1 : -1) * 12}
-          y={ey}
-          textAnchor={textAnchor}
-          className={className}
-        >
-          {formatCurrency(value)}
-        </text>
-        <text
-          x={ex + (cos >= 0 ? 1 : -1) * 12}
-          y={ey}
-          dy={18}
-          textAnchor={textAnchor}
-          className={className}
-        >
-          {formatPercentage(percent)}
-        </text>
       </g>
     );
   };
 
+  const customizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="#fff"
+        textAnchor="middle"
+        dominantBaseline="central"
+        className="text-xs font-medium"
+      >
+        {formatPercentage(percent)}
+      </text>
+    );
+  };
+
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white dark:bg-gray-800 p-2 border border-gray-200 dark:border-gray-700 rounded shadow text-sm">
+          <p className="font-medium">{payload[0].name}</p>
+          <p className="text-primary">{formatCurrency(payload[0].value)}</p>
+          <p className="text-gray-500">{formatPercentage(payload[0].payload.percent)}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <ResponsiveContainer
-      width="50%"
-      aspect={16 / 9}
-      style={{ margin: "0 auto" }}
+      width="100%"
+      height={300}
       className={props.className}
     >
       <PieChart>
@@ -102,13 +141,20 @@ export const DistributionPieChart = ({
           data={data}
           cx="50%"
           cy="50%"
-          innerRadius={60}
-          outerRadius={80}
+          innerRadius={70}
+          outerRadius={90}
           nameKey="name"
           dataKey="value"
-          className="cursor-pointer fill-teal-600"
+          label={customizedLabel}
+          labelLine={false}
+          className="cursor-pointer"
           onMouseEnter={(_, index) => setActiveIndex(index)}
-        />
+        >
+          {data.map((entry: any, index: number) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip content={<CustomTooltip />} />
       </PieChart>
     </ResponsiveContainer>
   );
