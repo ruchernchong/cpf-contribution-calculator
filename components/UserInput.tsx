@@ -3,9 +3,9 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -153,11 +153,10 @@ const UserInput = () => {
           browser. No data are being stored on any servers.
         </p>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-end">
         <Button variant="outline" onClick={handleReset}>
           Reset
         </Button>
-        <Button>Calculate</Button>
       </CardFooter>
     </Card>
   );
