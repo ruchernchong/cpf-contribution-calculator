@@ -1,10 +1,7 @@
 import dynamic from "next/dynamic";
-import { formatCurrency, formatPercentage } from "../lib/format";
-import type { DistributionResult } from "../types";
-import {
-  Card,
-  CardContent
-} from "./ui/card";
+import { formatCurrency, formatPercentage } from "@/lib/format";
+import type { DistributionResult } from "@/types";
+import { Card, CardContent } from "./ui/card";
 import {
   Table,
   TableBody,
@@ -16,20 +13,18 @@ import {
 
 const DistributionPieChart = dynamic(() => import("./DistributionPieChart"));
 
-interface DistributionViewProps {
+interface Props {
   distributionResults: DistributionResult[];
 }
 
-export const DistributionView = ({
-  distributionResults,
-}: DistributionViewProps) => {
+export const DistributionView = ({ distributionResults }: Props) => {
   const totalCpfContribution = distributionResults.reduce(
     (accum, curr) => accum + curr.value,
     0,
   );
 
   return (
-    <div className="grid gap-8 md:grid-cols-2">
+    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
       <Card className="shadow-md">
         <CardContent className="pt-6">
           <Table>
@@ -48,7 +43,10 @@ export const DistributionView = ({
               <TableRow>
                 {distributionResults.map(({ name, value }) => {
                   return (
-                    <TableCell key={name} className="text-center font-medium text-primary">
+                    <TableCell
+                      key={name}
+                      className="text-center font-medium text-primary"
+                    >
                       {formatCurrency(value)}
                     </TableCell>
                   );
@@ -58,9 +56,9 @@ export const DistributionView = ({
           </Table>
         </CardContent>
       </Card>
-      
-      <Card className="shadow-md">
-        <CardContent className="pt-6">
+
+      <Card className="shadow-md h-[450px] flex flex-col justify-center">
+        <CardContent className="pt-6 h-full">
           <DistributionPieChart
             data={distributionResults}
             className="block w-full h-full"
