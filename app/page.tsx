@@ -32,7 +32,7 @@ const HomePage = () => {
   return (
     <>
       <div className="border-b py-12 bg-zinc-50 dark:bg-zinc-900">
-        <div className="mx-auto max-w-4xl px-4">
+        <div className="mx-auto max-w-7xl px-4">
           <h1 className="mb-4 text-center text-4xl font-bold">
             CPF Income Ceiling
           </h1>
@@ -74,7 +74,7 @@ const HomePage = () => {
           <CPFYearSlider />
         </div>
       </div>
-      <div className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-12">
         <div className="grid gap-8 md:grid-cols-2">
           <UserInput />
           <CalculatedResult />
