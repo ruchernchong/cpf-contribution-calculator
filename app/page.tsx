@@ -8,7 +8,6 @@ import {
 import CPFYearSlider from "@/components/CPFYearSlider";
 import { CalculatedResult } from "@/components/CalculatedResult";
 import DistributionView from "@/components/DistributionView";
-import FAQ from "@/components/FAQ";
 import UserInput from "@/components/UserInput";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -22,6 +21,7 @@ import useAnimatedNumber from "@/hooks/useAnimatedNumber";
 import { formatCurrency, formatDate } from "@/lib/format";
 import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { useAtomValue } from "jotai";
+import Script from "next/script";
 
 const HomePage = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
@@ -31,6 +31,33 @@ const HomePage = () => {
 
   return (
     <>
+      <Script
+        id="calculator-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FinancialCalculator",
+            name: "CPF Contribution Estimator",
+            description:
+              "Calculate CPF contributions based on income and ceiling",
+            keywords:
+              "CPF, contribution, calculator, Singapore, income ceiling",
+            url: "https://cpf-contribution-estimator.vercel.app",
+            mainEntity: {
+              "@type": "SoftwareApplication",
+              name: "CPF Contribution Estimator",
+              applicationCategory: "FinanceApplication",
+              featureList: [
+                "Calculate CPF contributions",
+                "View distribution across OA, SA, MA accounts",
+                "Adjust income ceiling based on year",
+              ],
+            },
+            inLanguage: "en-SG",
+          }),
+        }}
+      />
       <div className="border-b py-12 bg-zinc-50 dark:bg-zinc-900">
         <div className="mx-auto max-w-7xl px-4">
           <h1 className="mb-4 text-center text-4xl font-bold">

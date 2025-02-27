@@ -9,9 +9,35 @@ import type { ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CPF Calculator",
+  title: "CPF Contribution Estimator | Calculate Singapore CPF Contributions",
   description:
-    "Calculate your CPF contributions with the latest income ceiling changes",
+    "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
+  keywords:
+    "CPF, contributions, Singapore, calculator, estimator, income ceiling, 2023",
+  authors: [{ name: "Ru Chern Chong" }],
+  openGraph: {
+    title: "CPF Contribution Estimator",
+    description:
+      "Calculate your CPF contributions with the latest income ceiling changes",
+    url: "https://cpf-contribution-estimator.vercel.app",
+    siteName: "CPF Contribution Estimator",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_SG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CPF Contribution Estimator",
+    description:
+      "Calculate your CPF contributions with the latest income ceiling changes",
+    images: ["/twitter-image.png"],
+  },
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
@@ -24,6 +50,31 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <main className="flex-grow">{children}</main>
         <Footer />
         <Script defer src="https://assets.onedollarstats.com/tracker.js" />
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "CPF Contribution Estimator",
+              url: "https://cpf-contribution-estimator.vercel.app",
+              description:
+                "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
+              applicationCategory: "FinanceApplication",
+              operatingSystem: "All",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "SGD",
+              },
+              author: {
+                "@type": "Person",
+                name: "Ru Chern Chong",
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   );

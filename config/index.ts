@@ -1,10 +1,10 @@
 export const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ||
-  "https://cpf-contribution-calculator.ruchern.xyz";
+  "https://cpf-contribution-estimator.vercel.app";
 
-export const title: string = "CPF Contribution Calculator";
+export const title: string = "CPF Contribution Estimator";
 export const description: string =
-  "A calculator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023";
+  "Calculate your CPF contributions after the 2023 income ceiling changes. Updated with the latest Ministry of Finance announcements from Singapore Budget 2023.";
 
 export const CPF_TYPE = {
   OA: "OA",
