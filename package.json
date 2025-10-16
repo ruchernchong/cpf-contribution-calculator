@@ -3,13 +3,15 @@
   "description": "An estimator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023",
   "private": true,
   "version": "1.7.0",
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -40,6 +42,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^6.6.3",
@@ -50,10 +54,12 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "3.0.5",
     "autoprefixer": "^10.4.16",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.3.3",
     "vitest": "^3.0.5"
-  }
+  },
+  "packageManager": "pnpm@10.16.1"
 }
