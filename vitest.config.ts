@@ -14,14 +14,14 @@ export default defineConfig({
         ".next/**",
         "**/*.d.ts",
         "*.config.{js,mjs,ts}",
-        "middleware.ts",
-        "components/ui/**",
+        "src/middleware.ts",
+        "src/components/ui/**",
       ],
     },
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname),
+      "@": path.resolve(__dirname, "src"),
     },
   },
 });
