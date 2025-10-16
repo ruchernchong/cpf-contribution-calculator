@@ -1,3 +1,9 @@
+## <small>1.8.1 (2025-10-16)</small>
+
+* ci: update pnpm packageManager version to 10.18.3 ([7c9b3f0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/7c9b3f0))
+* fix: address CVE-2025-7783 ([435885f](https://github.com/ruchernchong/cpf-contribution-calculator/commit/435885f))
+* chore: update pnpm to 10.18.3 ([024f2a0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/024f2a0))
+
 ## 1.8.0 (2025-10-16)
 
 * feat: add disclaimers to Footer and About page ([e3186c9](https://github.com/ruchernchong/cpf-contribution-calculator/commit/e3186c9))
