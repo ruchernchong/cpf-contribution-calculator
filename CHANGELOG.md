@@ -1,3 +1,15 @@
+## 1.9.0 (2025-10-16)
+
+* refactor: rename all files to kebab-case ([3097fc0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/3097fc0))
+* docs: enhance CLAUDE.md and README.md ([b764deb](https://github.com/ruchernchong/cpf-contribution-calculator/commit/b764deb))
+* chore: add AGENTS.md symlink to CLAUDE.md ([6950fc3](https://github.com/ruchernchong/cpf-contribution-calculator/commit/6950fc3))
+* chore: update pnpm to 10.18.3 ([024f2a0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/024f2a0))
+* chore: upgrade Next.js to v16 beta ([49d1019](https://github.com/ruchernchong/cpf-contribution-calculator/commit/49d1019))
+* chore(release): 1.8.1 [skip ci] ([dbba726](https://github.com/ruchernchong/cpf-contribution-calculator/commit/dbba726))
+* feat: add CPF distribution rates table by age group ([a2d4e5c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/a2d4e5c))
+* ci: update pnpm packageManager version to 10.18.3 ([7c9b3f0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/7c9b3f0))
+* fix: address CVE-2025-7783 ([435885f](https://github.com/ruchernchong/cpf-contribution-calculator/commit/435885f))
+
 ## <small>1.8.1 (2025-10-16)</small>
 
 * ci: update pnpm packageManager version to 10.18.3 ([7c9b3f0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/7c9b3f0))
