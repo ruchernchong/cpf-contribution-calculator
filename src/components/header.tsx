@@ -2,7 +2,7 @@
 
 import { CodeIcon, HomeIcon, InfoIcon } from "lucide-react";
 import Link from "next/link";
-import ThemeToggle from "@/components/ThemeToggle";
+import ThemeToggle from "@/components/theme-toggle";
 
 const Header = () => (
   <header className="w-full bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 z-10">

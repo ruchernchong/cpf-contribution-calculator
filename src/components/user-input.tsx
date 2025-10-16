@@ -2,7 +2,7 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import React, { type ChangeEvent, useCallback, useEffect } from "react";
-import { settingsAtom } from "@/atoms/settingAtom";
+import { settingsAtom } from "@/atoms/setting-atom";
 import { Button } from "@/components/ui/button";
 import {
   Card,

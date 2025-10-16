@@ -3,16 +3,16 @@
 import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { useAtomValue } from "jotai";
 import Script from "next/script";
-import { latestIncomeCeilingDateAtom } from "@/atoms/incomeCeilingAtom";
+import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import {
   distributionResultsAtom,
   hasCpfContributionAtom,
-} from "@/atoms/resultAtom";
-import { CalculatedResult } from "@/components/CalculatedResult";
-import CPFYearSlider from "@/components/CPFYearSlider";
-import DistributionRatesTable from "@/components/DistributionRatesTable";
-import DistributionView from "@/components/DistributionView";
-import UserInput from "@/components/UserInput";
+} from "@/atoms/result-atom";
+import { CalculatedResult } from "@/components/calculated-result";
+import CPFYearSlider from "@/components/cpf-year-slider";
+import DistributionRatesTable from "@/components/distribution-rates-table";
+import DistributionView from "@/components/distribution-view";
+import UserInput from "@/components/user-input";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Tooltip,
@@ -21,7 +21,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CPF_INCOME_CEILING } from "@/constants";
-import useAnimatedNumber from "@/hooks/useAnimatedNumber";
+import useAnimatedNumber from "@/hooks/use-animated-number";
 import { formatCurrency, formatDate } from "@/lib/format";
 
 const HomePage = () => {

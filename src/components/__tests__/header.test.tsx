@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
-import Header from "../Header";
+import Header from "../header";
 
 // Mock dependencies
-vi.mock("@/components/ThemeToggle", () => ({
+vi.mock("@/components/theme-toggle", () => ({
   __esModule: true,
   default: () => <div data-testid="theme-toggle">Theme Toggle</div>,
 }));

@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
-import { latestIncomeCeilingDateAtom } from "@/atoms/incomeCeilingAtom";
+import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import {
   Card,
   CardContent,

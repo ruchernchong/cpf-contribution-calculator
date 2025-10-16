@@ -1,7 +1,7 @@
 "use client";
 
 import { useAtomValue } from "jotai";
-import { ageGroupAtom } from "@/atoms/userAtom";
+import { ageGroupAtom } from "@/atoms/user-atom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ageGroups } from "@/data";
 import { formatPercentage } from "@/lib/format";

@@ -1,10 +1,10 @@
 import { atom } from "jotai";
 import { selectAtom } from "jotai/utils";
-import { calculateCpfContribution } from "@/lib/calculateCpfContribution";
+import { calculateCpfContribution } from "@/lib/calculate-cpf-contribution";
 import type { ComputedResult, DistributionResult } from "@/types";
-import { latestIncomeCeilingDateAtom } from "./incomeCeilingAtom";
-import { settingsAtom } from "./settingAtom";
-import { ageGroupAtom } from "./userAtom";
+import { latestIncomeCeilingDateAtom } from "./income-ceiling-atom";
+import { settingsAtom } from "./setting-atom";
+import { ageGroupAtom } from "./user-atom";
 
 export const contributionResultAtom = atom<ComputedResult>((get) =>
   calculateCpfContribution(

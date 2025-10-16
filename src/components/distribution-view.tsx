@@ -4,7 +4,7 @@ import { formatCurrency } from "@/lib/format";
 import type { DistributionResult } from "@/types";
 import { Card, CardContent } from "./ui/card";
 
-const DistributionPieChart = dynamic(() => import("./DistributionPieChart"));
+const DistributionPieChart = dynamic(() => import("./distribution-pie-chart"));
 
 interface DistributionViewProps {
   distributionResults: DistributionResult[];

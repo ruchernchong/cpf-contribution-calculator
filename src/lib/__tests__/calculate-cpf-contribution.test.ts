@@ -4,7 +4,7 @@ import {
   DEFAULT_EMPLOYER_CONTRIBUTION_RATE,
 } from "@/config";
 import type { ComputedResult } from "@/types";
-import { calculateCpfContribution } from "../calculateCpfContribution";
+import { calculateCpfContribution } from "../calculate-cpf-contribution";
 
 // Mock the config and constants modules
 vi.mock("@/config", () => ({

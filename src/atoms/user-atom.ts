@@ -1,8 +1,8 @@
 import { atom } from "jotai";
-import { convertBirthDateToAge } from "../lib/convertBirthDateToAge";
-import { findAgeGroup } from "../lib/findAgeGroup";
+import { convertBirthDateToAge } from "../lib/convert-birth-date-to-age";
+import { findAgeGroup } from "../lib/find-age-group";
 import type { AgeGroup } from "../types";
-import { settingsAtom } from "./settingAtom";
+import { settingsAtom } from "./setting-atom";
 
 export const ageAtom = atom<number>(
   (get) => convertBirthDateToAge(get(settingsAtom).birthDate) || 0,

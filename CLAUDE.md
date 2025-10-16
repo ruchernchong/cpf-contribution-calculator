@@ -16,12 +16,14 @@ A Next.js application that calculates CPF (Central Provident Fund) contributions
 - `pnpm test:coverage` - Run tests with coverage report
 
 ## Code Style
+- **Language**: Use English (Singapore) spelling across documentation and copy
 - **Formatting**: Biome for formatting with 2-space indentation and double quotes
-- **Imports**: Organized via Biome, absolute imports with `@/` prefix
+- **Imports**: Organised via Biome, absolute imports with `@/` prefix
 - **TypeScript**: Full type coverage, avoid `any` and `as` casts
 - **State Management**: Jotai atoms for global state
 - **Component Structure**: Functional components with explicit return types
-- **Naming**: PascalCase for components, camelCase for functions/variables
+- **File Naming**: kebab-case for all files (e.g., `user-input.tsx`, `calculate-cpf-contribution.ts`)
+- **Variable/Function Naming**: camelCase for functions/variables, PascalCase for React component names
 - **Error Handling**: Try/catch with helpful error messages, use optional chaining
 - **Testing**: Vitest with descriptive test names, use `it.each` for data variations
 
@@ -29,15 +31,15 @@ A Next.js application that calculates CPF (Central Provident Fund) contributions
 
 ### State Management (Jotai Atoms)
 State is managed through Jotai atoms in `src/atoms/`:
-- `resultAtom.ts` - Core derived atoms for CPF calculations (`contributionResultAtom`, `distributionResultsAtom`)
-- `userAtom.ts` - User-specific data (age, birth date)
-- `userInputAtom.ts` - Form input state
-- `settingAtom.ts` - User settings (income, storage preferences)
-- `incomeCeilingAtom.ts` - Income ceiling data by year
-- `yearSliderAtom.ts` - Year slider state
+- `result-atom.ts` - Core derived atoms for CPF calculations (`contributionResultAtom`, `distributionResultsAtom`)
+- `user-atom.ts` - User-specific data (age, birth date)
+- `user-input-atom.ts` - Form input state
+- `setting-atom.ts` - User settings (income, storage preferences)
+- `income-ceiling-atom.ts` - Income ceiling data by year
+- `year-slider-atom.ts` - Year slider state
 
 ### CPF Calculation Logic
-The core calculation happens in `src/lib/calculateCpfContribution.ts`:
+The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
 - Takes income, year, and optional age group/ceiling preferences
 - Uses age groups from `src/data/index.ts` which define contribution and distribution rates by age brackets
 - Returns `ComputedResult` with employee/employer contributions and OA/SA/MA distributions
@@ -57,4 +59,4 @@ The core calculation happens in `src/lib/calculateCpfContribution.ts`:
 ### UI Components
 - UI components in `src/components/ui/` are from shadcn/ui (excluded from Biome linting)
 - Custom components use Radix UI primitives with Tailwind CSS
-- Charts use Recharts library for data visualization
+- Charts use Recharts library for data visualisation

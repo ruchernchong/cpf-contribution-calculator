@@ -1,6 +1,6 @@
 import * as dateFns from "date-fns";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { findLatestIncomeCeilingDate } from "../findLatestIncomeCeilingDate";
+import { findLatestIncomeCeilingDate } from "../find-latest-income-ceiling-date";
 import * as formatModule from "../format";
 
 // Mock constants import

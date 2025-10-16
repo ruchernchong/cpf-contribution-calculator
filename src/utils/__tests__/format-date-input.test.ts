@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDateInput } from "../formatDateInput";
+import { formatDateInput } from "../format-date-input";
 
 describe("formatDateInput", () => {
   it("should format inputs with 6 digits correctly (MMYYYY)", () => {

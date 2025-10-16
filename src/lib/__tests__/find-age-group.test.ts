@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { ageGroups } from "../../data";
-import { findAgeGroup } from "../findAgeGroup";
+import { findAgeGroup } from "../find-age-group";
 
 // Mock the ageGroups to avoid test dependency on data changes
 vi.mock("../../data", () => ({
