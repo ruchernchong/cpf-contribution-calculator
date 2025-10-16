@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import Footer from "@/components/Footer";
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html lang="en" className={geist.className}>
       <body
@@ -49,7 +50,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
-        <Script defer src="https://assets.onedollarstats.com/tracker.js" />
+        <Analytics />
         <Script
           id="schema-org"
           type="application/ld+json"
