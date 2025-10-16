@@ -10,8 +10,8 @@ import {
 } from "@/atoms/resultAtom";
 import { CalculatedResult } from "@/components/CalculatedResult";
 import CPFYearSlider from "@/components/CPFYearSlider";
-import DistributionView from "@/components/DistributionView";
 import DistributionRatesTable from "@/components/DistributionRatesTable";
+import DistributionView from "@/components/DistributionView";
 import UserInput from "@/components/UserInput";
 import { Card, CardContent } from "@/components/ui/card";
 import {
