@@ -1,12 +1,14 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
+  "root": true,
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": true
+    "ignoreUnknown": true,
+    "includes": ["**", "!src/components/ui"]
   },
   "formatter": {
     "enabled": true,
@@ -15,7 +17,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noUnknownAtRules": "off"
+      }
     }
   },
   "javascript": {
@@ -26,6 +31,7 @@
   "assist": {
     "enabled": true,
     "actions": {
+      "recommended": true,
       "source": {
         "organizeImports": "on"
       }
