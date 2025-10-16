@@ -48,9 +48,11 @@ export const formatPercentage = (
   options?: PercentageFormatOptions,
 ): string => {
   const numericValue = typeof value === "string" ? Number(value) : value;
+  const decimalPlaces = options?.decimalPlaces ?? 2;
 
   return new Intl.NumberFormat("en-SG", {
     style: "percent",
-    maximumFractionDigits: options?.decimalPlaces || 2,
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
   }).format(numericValue);
 };

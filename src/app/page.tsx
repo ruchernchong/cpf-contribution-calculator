@@ -11,6 +11,7 @@ import {
 import { CalculatedResult } from "@/components/CalculatedResult";
 import CPFYearSlider from "@/components/CPFYearSlider";
 import DistributionView from "@/components/DistributionView";
+import DistributionRatesTable from "@/components/DistributionRatesTable";
 import UserInput from "@/components/UserInput";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -114,6 +115,12 @@ const HomePage = () => {
             <DistributionView distributionResults={distributionResults} />
           </div>
         )}
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold mb-6 text-center">
+            Distribution Rates by Age Group
+          </h2>
+          <DistributionRatesTable />
+        </div>
       </div>
     </>
   );
