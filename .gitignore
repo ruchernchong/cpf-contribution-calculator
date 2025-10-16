@@ -33,3 +33,6 @@ dist-ssr
 
 # open-next
 .open-next
+
+# Turborepo
+.turbo
