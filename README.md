@@ -30,5 +30,5 @@ pnpm dev
 pnpm run build
 
 # Run the unit testing
-pnpm run test
+pnpm run test 
 ```
