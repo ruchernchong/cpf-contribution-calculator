@@ -2,7 +2,6 @@
 
 import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
@@ -19,15 +18,9 @@ import { QuarterlyRatesTable } from "./quarterly-rates-table";
 
 export const CPFInterestRatesSection = () => {
   return (
-    <Tabs defaultValue="overview" className="w-full">
-      <TabsList className="grid w-full grid-cols-3">
-        <TabsTrigger value="overview">Overview</TabsTrigger>
-        <TabsTrigger value="trend">Trend Chart</TabsTrigger>
-        <TabsTrigger value="quarterly">Quarterly Rates</TabsTrigger>
-      </TabsList>
-
-      {/* Overview Tab */}
-      <TabsContent value="overview" className="space-y-6">
+    <div className="space-y-12">
+      {/* Overview Section */}
+      <div className="space-y-6">
         <Card className="shadow-md">
         <CardHeader>
           <CardTitle className="text-center">
@@ -135,18 +128,24 @@ export const CPFInterestRatesSection = () => {
           </div>
         </CardContent>
       </Card>
-      </TabsContent>
+      </div>
 
-      {/* Trend Chart Tab */}
-      <TabsContent value="trend">
+      {/* Trend Chart Section */}
+      <div>
+        <h3 className="mb-6 text-center font-semibold text-2xl">
+          Interest Rate Trend
+        </h3>
         <InterestRateTrendChart />
-      </TabsContent>
+      </div>
 
-      {/* Quarterly Rates Tab */}
-      <TabsContent value="quarterly">
+      {/* Quarterly Rates Section */}
+      <div>
+        <h3 className="mb-6 text-center font-semibold text-2xl">
+          Quarterly Interest Rates
+        </h3>
         <QuarterlyRatesTable />
-      </TabsContent>
-    </Tabs>
+      </div>
+    </div>
   );
 };
 

@@ -9,9 +9,10 @@ import {
 import { CalculatedResult } from "@/components/calculated-result";
 import CPFIncomeCeilingTimeline from "@/components/cpf-income-ceiling-timeline";
 import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
+import CPFInvestmentComparison from "@/components/cpf-investment-comparison";
 import DistributionRatesTable from "@/components/distribution-rates-table";
 import DistributionView from "@/components/distribution-view";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserInput from "@/components/user-input";
 
 const HomePage = () => {
@@ -48,32 +49,58 @@ const HomePage = () => {
         }}
       />
 
-      <CPFIncomeCeilingTimeline />
       <div className="mx-auto px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-2">
-          <UserInput />
-          <CalculatedResult />
-        </div>
-        {hasCpfContribution && (
-          <div className="mt-12">
-            <h2 className="mb-6 text-center font-semibold text-2xl">
-              CPF Account Type Distribution
-            </h2>
-            <DistributionView distributionResults={distributionResults} />
-          </div>
-        )}
-        <div className="mt-12">
-          <h2 className="mb-6 text-center font-semibold text-2xl">
-            Distribution Rates by Age Group
-          </h2>
-          <DistributionRatesTable />
-        </div>
-        <div className="mt-12">
-          <h2 className="mb-6 text-center font-semibold text-2xl">
-            CPF Interest Rates
-          </h2>
-          <CPFInterestRatesSection />
-        </div>
+        <Tabs defaultValue="income-ceiling" className="w-full">
+          <TabsList className="mb-8 grid w-full grid-cols-4">
+            <TabsTrigger value="income-ceiling">Income Ceiling</TabsTrigger>
+            <TabsTrigger value="overview">Calculator</TabsTrigger>
+            <TabsTrigger value="interest-rates">Interest Rates</TabsTrigger>
+            <TabsTrigger value="investments">Investments</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview" className="space-y-12">
+            <div className="grid gap-8 md:grid-cols-2">
+              <UserInput />
+              <CalculatedResult />
+            </div>
+            {hasCpfContribution && (
+              <div>
+                <h2 className="mb-6 text-center font-semibold text-2xl">
+                  CPF Account Type Distribution
+                </h2>
+                <DistributionView distributionResults={distributionResults} />
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="income-ceiling">
+            <CPFIncomeCeilingTimeline />
+          </TabsContent>
+
+          <TabsContent value="interest-rates" className="space-y-12">
+            <div>
+              <h2 className="mb-6 text-center font-semibold text-2xl">
+                CPF Interest Rates
+              </h2>
+              <CPFInterestRatesSection />
+            </div>
+            <div>
+              <h2 className="mb-6 text-center font-semibold text-2xl">
+                Distribution Rates by Age Group
+              </h2>
+              <DistributionRatesTable />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="investments">
+            <div>
+              <h2 className="mb-6 text-center font-semibold text-2xl">
+                Investment Comparison
+              </h2>
+              <CPFInvestmentComparison />
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </>
   );

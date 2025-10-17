@@ -37,15 +37,16 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white dark:bg-zinc-800 p-3 border border-zinc-200 dark:border-zinc-700 rounded shadow-md">
-        <p className="font-medium mb-2">{label}</p>
+      <div className="rounded border border-zinc-200 bg-white p-3 shadow-md dark:border-zinc-700 dark:bg-zinc-800">
+        <p className="mb-2 font-medium">{label}</p>
         {payload.map((entry: any) => (
           <p
             key={entry.name}
             className="text-sm"
             style={{ color: entry.color }}
           >
-            {entry.name}: {formatPercentage(entry.value / 100, { decimalPlaces: 2 })}
+            {entry.name}:{" "}
+            {formatPercentage(entry.value / 100, { decimalPlaces: 2 })}
           </p>
         ))}
       </div>
@@ -143,23 +144,23 @@ export const InterestRateTrendChart = () => {
         </ResponsiveContainer>
 
         <div className="mt-6 space-y-3">
-          <div className="p-4 bg-amber-50 dark:bg-amber-950 rounded-md">
-            <p className="text-sm text-amber-900 dark:text-amber-100">
+          <div className="rounded-md bg-amber-50 p-4 dark:bg-amber-950">
+            <p className="text-amber-900 text-sm dark:text-amber-100">
               <span className="font-semibold">How it works:</span> The SMRA
-              (Special, MediSave & Retirement Accounts) interest rate is pegged to
-              the 12-month average of 10-year Singapore Government Securities (SGS)
-              yield plus 1%. When this pegged rate falls below 4%, members receive
-              the floor rate of 4% instead.
+              (Special, MediSave & Retirement Accounts) interest rate is pegged
+              to the 12-month average of 10-year Singapore Government Securities
+              (SGS) yield plus 1%. When this pegged rate falls below 4%, members
+              receive the floor rate of 4% instead.
             </p>
           </div>
 
-          <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-md">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <span className="font-semibold">Why floor rates matter:</span> Floor
-              rates protect your CPF savings during periods of low interest rates.
-              Even when market rates fall below the floor, your CPF accounts
-              continue to earn the guaranteed minimum rate, ensuring consistent
-              growth of your retirement savings.
+          <div className="rounded-md bg-blue-50 p-4 dark:bg-blue-950">
+            <p className="text-blue-900 text-sm dark:text-blue-100">
+              <span className="font-semibold">Why floor rates matter:</span>{" "}
+              Floor rates protect your CPF savings during periods of low
+              interest rates. Even when market rates fall below the floor, your
+              CPF accounts continue to earn the guaranteed minimum rate,
+              ensuring consistent growth of your retirement savings.
             </p>
           </div>
         </div>
