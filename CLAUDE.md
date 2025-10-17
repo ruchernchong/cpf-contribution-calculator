@@ -28,6 +28,21 @@ A Next.js application that calculates CPF (Central Provident Fund) contributions
 - **Error Handling**: Try/catch with helpful error messages, use optional chaining
 - **Testing**: Vitest with descriptive test names, use `it.each` for data variations
 
+## Documentation Maintenance
+Keep documentation in sync with code changes:
+- **Update CLAUDE.md** when making:
+  - Architectural changes (new state management patterns, data flow modifications)
+  - New build/test commands or workflow changes
+  - Changes to code style guidelines or conventions
+  - Updates to key data structures or calculation logic
+  - Additions of significant new features or components
+- **Update README.md** when making:
+  - User-facing feature additions or removals
+  - Changes to setup/installation instructions
+  - Updates to usage examples or API changes
+  - Modifications to project description or scope
+- **Both files** should be updated together for changes that affect both development workflow and user experience
+
 ## Architecture
 
 ### State Management (Jotai Atoms)
