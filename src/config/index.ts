@@ -1,6 +1,5 @@
 export const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  "https://cpf-contribution-estimator.vercel.app";
+  `https://${process.env.VERCEL_URL}` || "http://localhost:3000";
 
 export const title: string = "CPF Contribution Estimator";
 export const description: string =

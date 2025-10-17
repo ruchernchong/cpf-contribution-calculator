@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
     description:
       "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase affects your CPF contributions.",
-    url: "https://cpf-contribution-estimator.vercel.app",
+    url: `https://${process.env.VERCEL_URL}`,
   },
 };
 
@@ -24,7 +24,7 @@ const HomePage = () => {
     name: "CPF Contribution Estimator",
     description: "Calculate CPF contributions based on income and ceiling",
     keywords: "CPF, contribution, calculator, Singapore, income ceiling",
-    url: "https://cpf-contribution-estimator.vercel.app",
+    url: `https://${process.env.VERCEL_URL}`,
     applicationCategory: "FinanceApplication",
     featureList: [
       "Calculate CPF contributions",

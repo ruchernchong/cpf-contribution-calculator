@@ -29,7 +29,7 @@ const About = () => {
     name: "About CPF Contribution Estimator",
     description:
       "Information about the CPF Contribution Estimator and frequently asked questions",
-    url: "https://cpf-contribution-estimator.vercel.app/about",
+    url: `https://${process.env.VERCEL_URL}/about`,
     mainEntity: {
       "@type": "FAQPage",
       mainEntity: faqData.map(({ question, answer }) => ({

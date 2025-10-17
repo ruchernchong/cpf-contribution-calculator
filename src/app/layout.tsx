@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "CPF Contribution Estimator",
     description:
       "Calculate your CPF contributions with the latest income ceiling changes",
-    url: "https://cpf-contribution-estimator.vercel.app",
+    url: `https://${process.env.VERCEL_URL}`,
     siteName: "CPF Contribution Estimator",
     images: [
       {
@@ -49,7 +49,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "CPF Contribution Estimator",
-    url: "https://cpf-contribution-estimator.vercel.app",
+    url: `https://${process.env.VERCEL_URL}`,
     description:
       "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
     applicationCategory: "FinanceApplication",

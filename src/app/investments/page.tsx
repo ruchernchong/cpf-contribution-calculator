@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "CPF Investment Comparison | Compare Investment Returns",
     description:
       "Compare investment strategies and returns using your CPF accounts. Understand different investment options and their potential growth.",
-    url: "https://cpf-contribution-estimator.vercel.app/investments",
+    url: `https://${process.env.VERCEL_URL}/investments`,
   },
   twitter: {
     card: "summary_large_image",
@@ -30,7 +30,7 @@ const InvestmentsPage = () => {
     name: "CPF Investment Comparison",
     description:
       "Compare investment strategies and returns using your CPF accounts. Understand different investment options and their potential growth over time.",
-    url: "https://cpf-contribution-estimator.vercel.app/investments",
+    url: `https://${process.env.VERCEL_URL}/investments`,
     inLanguage: "en-SG",
     keywords:
       "CPF investment, CPF investment scheme, CPFIS, investment comparison, CPF returns, Singapore investment",
