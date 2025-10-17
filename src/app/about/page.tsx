@@ -73,7 +73,7 @@ const About = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-950 dark:text-orange-200">
+        <Card className="border-orange-200 bg-orange-50">
           <CardHeader>
             <CardTitle>Important Disclaimer</CardTitle>
           </CardHeader>
@@ -109,7 +109,7 @@ const About = () => {
                     <AccordionTrigger className="text-left">
                       {question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-zinc-600 dark:text-zinc-300">
+                    <AccordionContent className="text-zinc-600">
                       {answer}
                     </AccordionContent>
                   </AccordionItem>

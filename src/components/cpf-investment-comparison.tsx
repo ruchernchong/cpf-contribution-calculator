@@ -89,7 +89,7 @@ const calculateGrowth = (
   rate: number,
   years: number,
 ): number => {
-  return principal * Math.pow(1 + rate / 100, years);
+  return principal * (1 + rate / 100) ** years;
 };
 
 export const CPFInvestmentComparison = () => {
@@ -102,10 +102,11 @@ export const CPFInvestmentComparison = () => {
   ]);
 
   const toggleScenario = (name: string) => {
-    setSelectedScenarios((prev) =>
-      prev.includes(name)
-        ? prev.filter((s) => s !== name)
-        : [...prev, name].slice(0, 4), // Limit to 4 scenarios for chart readability
+    setSelectedScenarios(
+      (prev) =>
+        prev.includes(name)
+          ? prev.filter((s) => s !== name)
+          : [...prev, name].slice(0, 4), // Limit to 4 scenarios for chart readability
     );
   };
 
@@ -137,9 +138,9 @@ export const CPFInvestmentComparison = () => {
   return (
     <div className="space-y-6">
       {/* Disclaimer Banner */}
-      <Card className="border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30">
+      <Card className="border-amber-200 bg-amber-50">
         <CardContent className="pt-6">
-          <p className="text-sm text-amber-900 dark:text-amber-200">
+          <p className="text-amber-900 text-sm">
             <strong>Disclaimer:</strong> The investment returns shown are
             historical averages and do not guarantee future performance.
             Investments carry risks including potential loss of principal. CPF
@@ -193,26 +194,29 @@ export const CPFInvestmentComparison = () => {
                   key={scenario.name}
                   type="button"
                   onClick={() => toggleScenario(scenario.name)}
-                  className={`p-3 rounded-lg border-2 text-left transition-all ${
+                  className={`rounded-lg border-2 p-3 text-left transition-all ${
                     selectedScenarios.includes(scenario.name)
-                      ? "border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-950/30"
-                      : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
+                      ? "border-blue-500 bg-blue-50"
+                      : "border-zinc-200 hover:border-zinc-300"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
                       <p className="font-semibold text-sm">{scenario.name}</p>
-                      <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
-                        {formatPercentage(scenario.rate / 100, { decimalPlaces: 1 })} p.a.
+                      <p className="mt-1 text-xs text-zinc-600">
+                        {formatPercentage(scenario.rate / 100, {
+                          decimalPlaces: 1,
+                        })}{" "}
+                        p.a.
                       </p>
                     </div>
                     <span
-                      className={`text-xs px-2 py-1 rounded ${
+                      className={`rounded px-2 py-1 text-xs ${
                         scenario.riskLevel === "Low"
-                          ? "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300"
+                          ? "bg-green-100 text-green-700"
                           : scenario.riskLevel === "Medium"
-                            ? "bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300"
-                            : "bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300"
+                            ? "bg-amber-100 text-amber-700"
+                            : "bg-red-100 text-red-700"
                       }`}
                     >
                       {scenario.riskLevel}
@@ -225,16 +229,24 @@ export const CPFInvestmentComparison = () => {
 
           {/* Growth Chart */}
           <div className="mt-6">
-            <h3 className="font-semibold text-lg mb-4">Growth Over Time</h3>
+            <h3 className="mb-4 font-semibold text-lg">Growth Over Time</h3>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="year"
-                  label={{ value: "Years", position: "insideBottom", offset: -5 }}
+                  label={{
+                    value: "Years",
+                    position: "insideBottom",
+                    offset: -5,
+                  }}
                 />
                 <YAxis
-                  label={{ value: "Value (S$)", angle: -90, position: "insideLeft" }}
+                  label={{
+                    value: "Value (S$)",
+                    angle: -90,
+                    position: "insideLeft",
+                  }}
                   tickFormatter={(value) => formatCurrency(value, 0)}
                 />
                 <Tooltip
@@ -279,9 +291,8 @@ export const CPFInvestmentComparison = () => {
             </TableHeader>
             <TableBody>
               {finalValues.map((item) => {
-                const cpfOaGain = finalValues.find(
-                  (v) => v.name === "CPF OA",
-                )?.totalGain || 0;
+                const cpfOaGain =
+                  finalValues.find((v) => v.name === "CPF OA")?.totalGain || 0;
                 const gainVsCpfOa = item.totalGain - cpfOaGain;
 
                 return (
@@ -292,12 +303,12 @@ export const CPFInvestmentComparison = () => {
                     </TableCell>
                     <TableCell>
                       <span
-                        className={`text-xs px-2 py-1 rounded ${
+                        className={`rounded px-2 py-1 text-xs ${
                           item.riskLevel === "Low"
-                            ? "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300"
+                            ? "bg-green-100 text-green-700"
                             : item.riskLevel === "Medium"
-                              ? "bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300"
-                              : "bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300"
+                              ? "bg-amber-100 text-amber-700"
+                              : "bg-red-100 text-red-700"
                         }`}
                       >
                         {item.riskLevel}
@@ -312,9 +323,9 @@ export const CPFInvestmentComparison = () => {
                     <TableCell
                       className={`text-right font-medium ${
                         gainVsCpfOa > 0
-                          ? "text-green-600 dark:text-green-400"
+                          ? "text-green-600"
                           : gainVsCpfOa < 0
-                            ? "text-red-600 dark:text-red-400"
+                            ? "text-red-600"
                             : ""
                       }`}
                     >
@@ -336,11 +347,11 @@ export const CPFInvestmentComparison = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-3 text-sm">
-            <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
-              <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+            <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
+              <h4 className="mb-2 font-semibold text-blue-900">
                 CPF Advantages
               </h4>
-              <ul className="space-y-1 text-blue-800 dark:text-blue-200">
+              <ul className="space-y-1 text-blue-800">
                 <li>• Guaranteed returns by Singapore Government</li>
                 <li>• No market volatility risk</li>
                 <li>• Tax-free interest earnings</li>
@@ -348,11 +359,11 @@ export const CPFInvestmentComparison = () => {
               </ul>
             </div>
 
-            <div className="p-3 bg-amber-50 dark:bg-amber-950/30 rounded-lg border border-amber-200 dark:border-amber-800">
-              <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+            <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+              <h4 className="mb-2 font-semibold text-amber-900">
                 Investment Advantages
               </h4>
-              <ul className="space-y-1 text-amber-800 dark:text-amber-200">
+              <ul className="space-y-1 text-amber-800">
                 <li>• Potential for higher returns (with higher risk)</li>
                 <li>• More liquidity and flexibility</li>
                 <li>• Diversification opportunities</li>
@@ -360,15 +371,17 @@ export const CPFInvestmentComparison = () => {
               </ul>
             </div>
 
-            <div className="p-3 bg-red-50 dark:bg-red-950/30 rounded-lg border border-red-200 dark:border-red-800">
-              <h4 className="font-semibold text-red-900 dark:text-red-100 mb-2">
+            <div className="/30 rounded-lg border border-red-200 bg-red-50 p-3">
+              <h4 className="mb-2 font-semibold text-red-900">
                 Investment Risks
               </h4>
-              <ul className="space-y-1 text-red-800 dark:text-red-200">
+              <ul className="space-y-1 text-red-800">
                 <li>• Market volatility can lead to losses</li>
                 <li>• No guaranteed returns</li>
                 <li>• Requires knowledge and active management</li>
-                <li>• Historical returns do not guarantee future performance</li>
+                <li>
+                  • Historical returns do not guarantee future performance
+                </li>
               </ul>
             </div>
           </div>

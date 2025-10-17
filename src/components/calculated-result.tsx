@@ -51,53 +51,53 @@ export const CalculatedResult = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-0">
-          <div className="py-4 flex justify-between items-center border-b">
-            <p className="text-sm text-muted-foreground">Age Group</p>
-            <p className="font-medium text-right">
+          <div className="flex items-center justify-between border-b py-4">
+            <p className="text-muted-foreground text-sm">Age Group</p>
+            <p className="text-right font-medium">
               {ageGroup?.description || "Not specified"}
             </p>
           </div>
-          <div className="py-4 flex justify-between items-center border-b">
-            <p className="text-sm text-muted-foreground">Gross Income</p>
-            <p className="font-medium text-right">
+          <div className="flex items-center justify-between border-b py-4">
+            <p className="text-muted-foreground text-sm">Gross Income</p>
+            <p className="text-right font-medium">
               {safeCurrency(useAnimatedNumber(monthlyGrossIncome))}
             </p>
           </div>
-          <div className="py-4 flex justify-between items-center border-b">
-            <p className="text-sm text-muted-foreground">Take-home Income</p>
-            <p className="font-medium text-right">
+          <div className="flex items-center justify-between border-b py-4">
+            <p className="text-muted-foreground text-sm">Take-home Income</p>
+            <p className="text-right font-medium">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.afterCpfContribution),
               )}
             </p>
           </div>
-          <div className="py-4 flex justify-between items-center border-b">
-            <p className="text-sm text-muted-foreground">
+          <div className="flex items-center justify-between border-b py-4">
+            <p className="text-muted-foreground text-sm">
               Your contribution ({safePercent(contributionRate.employee)}%)
             </p>
-            <p className="font-medium text-emerald-600 text-right">
+            <p className="text-right font-medium text-emerald-600">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.contribution.employee),
               )}
             </p>
           </div>
-          <div className="py-4 flex justify-between items-center border-b">
-            <p className="text-sm text-muted-foreground">
+          <div className="flex items-center justify-between border-b py-4">
+            <p className="text-muted-foreground text-sm">
               Company&apos;s contribution (
               {safePercent(contributionRate.employer)}
               %)
             </p>
-            <p className="font-medium text-emerald-600 text-right">
+            <p className="text-right font-medium text-emerald-600">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.contribution.employer),
               )}
             </p>
           </div>
-          <div className="py-4 flex justify-between items-center">
-            <p className="text-sm text-muted-foreground">
+          <div className="flex items-center justify-between py-4">
+            <p className="text-muted-foreground text-sm">
               Total CPF contribution
             </p>
-            <p className="font-medium text-emerald-600 text-right">
+            <p className="text-right font-medium text-emerald-600">
               {safeCurrency(
                 useAnimatedNumber(
                   contributionResult.contribution.totalContribution,
@@ -106,9 +106,9 @@ export const CalculatedResult = () => {
             </p>
           </div>
         </div>
-        <div className="mt-4 p-4 border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950 dark:text-orange-200 rounded-md">
+        <div className="mt-4 rounded-md border-orange-200 bg-orange-50 p-4">
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Remaining Additional Wage (AW) for CPF contribution
             </p>
             <p className="font-medium text-lg">

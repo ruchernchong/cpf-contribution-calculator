@@ -37,7 +37,7 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded border border-zinc-200 bg-white p-3 shadow-md dark:border-zinc-700 dark:bg-zinc-800">
+      <div className="rounded border border-zinc-200 bg-white p-3 shadow-md">
         <p className="mb-2 font-medium">{label}</p>
         {payload.map((entry: any) => (
           <p
@@ -80,21 +80,18 @@ export const InterestRateTrendChart = () => {
             data={chartData}
             margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              className="stroke-zinc-200 dark:stroke-zinc-700"
-            />
+            <CartesianGrid strokeDasharray="3 3" className="stroke-zinc-200" />
             <XAxis
               dataKey="month"
               tick={{ fontSize: 12 }}
-              className="text-zinc-600 dark:text-zinc-400"
+              className="text-zinc-600"
             />
             <YAxis
               tickFormatter={(value) =>
                 formatPercentage(value / 100, { decimalPlaces: 1 })
               }
               tick={{ fontSize: 12 }}
-              className="text-zinc-600 dark:text-zinc-400"
+              className="text-zinc-600"
               domain={[2, 5]}
             />
             <Tooltip content={<CustomTooltip />} />
@@ -144,8 +141,8 @@ export const InterestRateTrendChart = () => {
         </ResponsiveContainer>
 
         <div className="mt-6 space-y-3">
-          <div className="rounded-md bg-amber-50 p-4 dark:bg-amber-950">
-            <p className="text-amber-900 text-sm dark:text-amber-100">
+          <div className="rounded-md bg-amber-50 p-4">
+            <p className="text-amber-900 text-sm">
               <span className="font-semibold">How it works:</span> The SMRA
               (Special, MediSave & Retirement Accounts) interest rate is pegged
               to the 12-month average of 10-year Singapore Government Securities
@@ -154,8 +151,8 @@ export const InterestRateTrendChart = () => {
             </p>
           </div>
 
-          <div className="rounded-md bg-blue-50 p-4 dark:bg-blue-950">
-            <p className="text-blue-900 text-sm dark:text-blue-100">
+          <div className="rounded-md bg-blue-50 p-4">
+            <p className="text-blue-900 text-sm">
               <span className="font-semibold">Why floor rates matter:</span>{" "}
               Floor rates protect your CPF savings during periods of low
               interest rates. Even when market rates fall below the floor, your

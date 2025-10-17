@@ -21,8 +21,8 @@ interface DistributionRowProps {
 const DesktopRow = ({ group, isCurrentGroup }: DistributionRowProps) => (
   <div
     className={cn(
-      "grid grid-cols-4 gap-4 py-4 px-4 -mx-4 border-b last:border-0",
-      isCurrentGroup && "bg-emerald-50 dark:bg-emerald-950",
+      "-mx-4 grid grid-cols-4 gap-4 border-b px-4 py-4 last:border-0",
+      isCurrentGroup && "bg-emerald-50",
     )}
   >
     <p className="font-medium">{group.description}</p>
@@ -37,8 +37,8 @@ const DesktopRow = ({ group, isCurrentGroup }: DistributionRowProps) => (
 const MobileRow = ({ group, isCurrentGroup }: DistributionRowProps) => (
   <div
     className={cn(
-      "py-4 px-4 -mx-4 border-b last:border-0 space-y-2",
-      isCurrentGroup && "bg-emerald-50 dark:bg-emerald-950",
+      "-mx-4 space-y-2 border-b px-4 py-4 last:border-0",
+      isCurrentGroup && "bg-emerald-50",
     )}
   >
     <p className="font-semibold text-lg">{group.description}</p>
@@ -71,7 +71,7 @@ export const DistributionRatesTable = () => {
       <CardContent>
         {/* Desktop: Table-like grid */}
         <div className="hidden md:block">
-          <div className="grid grid-cols-4 gap-4 pb-4 border-b font-semibold">
+          <div className="grid grid-cols-4 gap-4 border-b pb-4 font-semibold">
             <p>Age Group</p>
             {ACCOUNT_KEYS.map((key) => (
               <p key={key} className="text-right">
@@ -89,7 +89,7 @@ export const DistributionRatesTable = () => {
         </div>
 
         {/* Mobile: Stacked list */}
-        <div className="md:hidden space-y-4">
+        <div className="space-y-4 md:hidden">
           {ageGroups.map((group) => (
             <MobileRow
               key={group.description}

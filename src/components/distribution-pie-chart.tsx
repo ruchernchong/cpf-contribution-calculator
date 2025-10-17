@@ -42,7 +42,7 @@ export const DistributionPieChart = ({ data, ...props }: Props) => {
           dy={-20}
           textAnchor="middle"
           fill="currentColor"
-          className="text-lg font-medium"
+          className="font-medium text-lg"
         >
           {payload.name}
         </text>
@@ -52,7 +52,7 @@ export const DistributionPieChart = ({ data, ...props }: Props) => {
           dy={10}
           textAnchor="middle"
           fill="currentColor"
-          className="text-xl font-bold"
+          className="font-bold text-xl"
         >
           {formatCurrency(value)}
         </text>
@@ -91,7 +91,7 @@ export const DistributionPieChart = ({ data, ...props }: Props) => {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white dark:bg-zinc-800 p-2 border border-zinc-200 dark:border-zinc-700 rounded shadow text-sm">
+        <div className="rounded border border-zinc-200 bg-white p-2 text-sm shadow">
           <p className="font-medium">{payload[0].name}</p>
           <p className="text-primary">{formatCurrency(payload[0].value)}</p>
           <p className="text-zinc-500">

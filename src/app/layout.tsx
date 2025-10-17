@@ -67,9 +67,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
 
   return (
     <html lang="en" className={geist.className}>
-      <body
-        className={`flex min-h-screen flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50`}
-      >
+      <body className={`flex min-h-screen flex-col bg-zinc-50 text-zinc-900`}>
         <Header />
         <Banner />
         <main className="container mx-auto flex flex-col gap-8 px-4 py-8">

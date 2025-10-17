@@ -22,8 +22,8 @@ interface RateRowProps {
 const DesktopRow = ({ rate, isFloorApplied }: RateRowProps) => (
   <div
     className={cn(
-      "grid grid-cols-5 gap-4 py-4 px-4 -mx-4 border-b last:border-0",
-      isFloorApplied && "bg-amber-50 dark:bg-amber-950",
+      "-mx-4 grid grid-cols-5 gap-4 border-b px-4 py-4 last:border-0",
+      isFloorApplied && "bg-amber-50",
     )}
   >
     <p className="font-medium">{rate.quarter}</p>
@@ -38,14 +38,14 @@ const DesktopRow = ({ rate, isFloorApplied }: RateRowProps) => (
 const MobileRow = ({ rate, isFloorApplied }: RateRowProps) => (
   <div
     className={cn(
-      "py-4 px-4 -mx-4 border-b last:border-0 space-y-2",
-      isFloorApplied && "bg-amber-50 dark:bg-amber-950",
+      "-mx-4 space-y-2 border-b px-4 py-4 last:border-0",
+      isFloorApplied && "bg-amber-50",
     )}
   >
     <div className="flex items-center justify-between">
       <p className="font-semibold text-lg">{rate.quarter}</p>
       {isFloorApplied && (
-        <span className="text-xs text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900 px-2 py-1 rounded">
+        <span className="rounded bg-amber-100 px-2 py-1 text-amber-700 text-xs">
           Floor Applied
         </span>
       )}
@@ -56,7 +56,9 @@ const MobileRow = ({ rate, isFloorApplied }: RateRowProps) => (
           <p className="text-muted-foreground">
             {CPF_ACCOUNT_INTEREST_MAP[key.toUpperCase()]}
           </p>
-          <p className="font-medium font-mono">{formatInterestRate(rate[key])}</p>
+          <p className="font-medium font-mono">
+            {formatInterestRate(rate[key])}
+          </p>
         </div>
       ))}
     </div>
@@ -78,7 +80,7 @@ export const QuarterlyRatesTable = () => {
       <CardContent>
         {/* Desktop: Table-like grid */}
         <div className="hidden md:block">
-          <div className="grid grid-cols-5 gap-4 pb-4 border-b font-semibold">
+          <div className="grid grid-cols-5 gap-4 border-b pb-4 font-semibold">
             <p>Quarter</p>
             {ACCOUNT_KEYS.map((key) => (
               <p key={key} className="text-right">
@@ -96,7 +98,7 @@ export const QuarterlyRatesTable = () => {
         </div>
 
         {/* Mobile: Stacked list */}
-        <div className="md:hidden space-y-4">
+        <div className="space-y-4 md:hidden">
           {QUARTERLY_CPF_RATES.map((rate) => (
             <MobileRow
               key={rate.quarter}
@@ -107,8 +109,8 @@ export const QuarterlyRatesTable = () => {
         </div>
 
         {/* Legend */}
-        <div className="mt-6 p-3 bg-blue-50 dark:bg-blue-950 rounded-md">
-          <p className="text-sm text-blue-900 dark:text-blue-100">
+        <div className="mt-6 rounded-md bg-blue-50 p-3">
+          <p className="text-blue-900 text-sm">
             <span className="font-semibold">Note:</span> Quarters highlighted in
             amber indicate when the 4% floor rate was applied because the pegged
             rate (10-year SGS + 1%) fell below the floor.

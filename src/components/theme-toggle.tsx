@@ -1,7 +1,7 @@
 "use client";
 
 import { Monitor, Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -31,28 +31,7 @@ const themeOptions = [
 const ThemeToggle = () => {
   const [theme, setTheme] = useState("system");
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-    const savedTheme = localStorage.getItem("theme") || "system";
-    setTheme(savedTheme);
-    applyTheme(savedTheme, root);
-
-    // Set up a listener for system theme changes
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-      if (theme === "system") {
-        applyTheme(e.matches ? "dark" : "light", root);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleSystemThemeChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleSystemThemeChange);
-    };
-  }, [theme]);
-
-  const applyTheme = (selectedTheme: string, root: HTMLElement) => {
+  const applyTheme = useCallback((selectedTheme: string, root: HTMLElement) => {
     switch (selectedTheme) {
       case "dark":
         root.classList.add("dark");
@@ -75,7 +54,28 @@ const ThemeToggle = () => {
         root.classList.remove("dark");
         break;
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    const savedTheme = localStorage.getItem("theme") || "system";
+    setTheme(savedTheme);
+    applyTheme(savedTheme, root);
+
+    // Set up a listener for system theme changes
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      if (theme === "system") {
+        applyTheme(e.matches ? "dark" : "light", root);
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleSystemThemeChange);
+    };
+  }, [theme, applyTheme]);
 
   const handleThemeChange = (newTheme: string) => {
     const root = window.document.documentElement;
@@ -93,7 +93,7 @@ const ThemeToggle = () => {
         <SelectContent>
           {themeOptions.map(({ value, icon: Icon }) => (
             <SelectItem key={value} value={value}>
-              <div className="flex items-center gap-2 mr-2">
+              <div className="mr-2 flex items-center gap-2">
                 <Icon />
               </div>
             </SelectItem>
