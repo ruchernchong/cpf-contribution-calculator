@@ -9,8 +9,8 @@ import {
   hasCpfContributionAtom,
 } from "@/atoms/result-atom";
 import { CalculatedResult } from "@/components/calculated-result";
+import CPFIncomeCeilingTimeline from "@/components/cpf-income-ceiling-timeline";
 import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
-import CPFYearSlider from "@/components/cpf-year-slider";
 import DistributionRatesTable from "@/components/distribution-rates-table";
 import DistributionView from "@/components/distribution-view";
 import UserInput from "@/components/user-input";
@@ -100,7 +100,7 @@ const HomePage = () => {
               </div>
             </CardContent>
           </Card>
-          <CPFYearSlider />
+          <CPFIncomeCeilingTimeline />
         </div>
       </div>
       <div className="mx-auto max-w-7xl px-4 py-12">

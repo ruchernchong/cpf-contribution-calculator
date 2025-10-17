@@ -12,6 +12,7 @@ A modern web application to calculate CPF (Central Provident Fund) contributions
 - 💰 **Accurate CPF Calculations** - Compute employee and employer contributions based on current income ceilings
 - 📊 **Age-Based Rates** - Automatic calculation using 8 different age brackets with varying contribution rates
 - 📈 **Distribution Breakdown** - View OA (Ordinary Account), SA (Special Account), and MA (MediSave Account) allocations
+- 🕒 **Interactive Timeline** - Visualise CPF income ceiling changes from 2023 to 2026 with an interactive timeline
 - 📱 **Mobile-Friendly** - Responsive design with PWA support for offline use
 - 🎨 **Modern UI** - Built with Next.js 16, React 19, and Tailwind CSS
 - ⚡ **Fast & Lightweight** - Optimized performance with Turbopack
@@ -28,9 +29,9 @@ This calculator helps Singaporeans estimate their take-home income after CPF con
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (Beta) with React 19
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS 4.x with shadcn/ui components
+- **Styling**: Tailwind CSS 4.x with shadcn/ui and DaisyUI components
 - **State Management**: [Jotai](https://jotai.org/)
-- **UI Components**: Radix UI primitives
+- **UI Components**: Radix UI primitives, DaisyUI
 - **Charts**: Recharts
 - **Testing**: Vitest with React Testing Library
 - **Linting**: Biome

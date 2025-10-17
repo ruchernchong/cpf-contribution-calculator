@@ -19,6 +19,7 @@ A Next.js application that calculates CPF (Central Provident Fund) contributions
 - **Language**: Use English (Singapore) spelling across documentation and copy
 - **Formatting**: Biome for formatting with 2-space indentation and double quotes
 - **Imports**: Organised via Biome, absolute imports with `@/` prefix
+- **Tailwind Classes**: Automatically sorted using Biome's `useSortedClasses` rule with `cn`, `clsx`, `cva`, and `tw` functions
 - **TypeScript**: Full type coverage, avoid `any` and `as` casts
 - **State Management**: Jotai atoms for global state
 - **Component Structure**: Functional components with explicit return types
@@ -35,8 +36,7 @@ State is managed through Jotai atoms in `src/atoms/`:
 - `user-atom.ts` - User-specific data (age, birth date)
 - `user-input-atom.ts` - Form input state
 - `setting-atom.ts` - User settings (income, storage preferences)
-- `income-ceiling-atom.ts` - Income ceiling data by year
-- `year-slider-atom.ts` - Year slider state
+- `income-ceiling-atom.ts` - Income ceiling data and selected timeline date (`latestIncomeCeilingDateAtom`)
 
 ### CPF Calculation Logic
 The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
@@ -59,4 +59,8 @@ The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
 ### UI Components
 - UI components in `src/components/ui/` are from shadcn/ui (excluded from Biome linting)
 - Custom components use Radix UI primitives with Tailwind CSS
+- Timeline components use DaisyUI for interactive timeline visualisation
 - Charts use Recharts library for data visualisation
+
+### Key Components
+- **CPF Income Ceiling Timeline** (`cpf-income-ceiling-timeline.tsx`): Interactive timeline showing the progression of CPF income ceiling changes from pre-2023 to final 2026 ceiling, using DaisyUI timeline components
