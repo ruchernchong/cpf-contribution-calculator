@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import CPFIncomeCeilingTimeline from "@/components/cpf-income-ceiling-timeline";
-import { PageNavigation } from "@/components/page-navigation";
 
 export const metadata: Metadata = {
   title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
@@ -47,7 +46,6 @@ const HomePage = () => {
           }),
         }}
       />
-      <PageNavigation />
       <CPFIncomeCeilingTimeline />
     </>
   );

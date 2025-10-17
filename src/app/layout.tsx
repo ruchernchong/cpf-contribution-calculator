@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { NavigationTabs } from "@/components/navigation-tabs";
 
 const geist = Geist({ subsets: ["latin"] });
 
@@ -50,7 +51,10 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       >
         <Header />
         <Banner />
-        <main className="container mx-auto px-4 py-8">{children}</main>
+        <main className="container mx-auto px-4 py-8">
+          <NavigationTabs />
+          {children}
+        </main>
         <Footer />
         <Analytics />
         <Script

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import CalculatorContent from "@/components/calculator-content";
-import { PageNavigation } from "@/components/page-navigation";
 
 export const metadata: Metadata = {
   title: "CPF Calculator | Calculate Your CPF Contributions",
@@ -23,12 +22,7 @@ export const metadata: Metadata = {
 };
 
 const CalculatorPage = () => {
-  return (
-    <>
-      <PageNavigation />
-      <CalculatorContent />
-    </>
-  );
+  return <CalculatorContent />;
 };
 
 export default CalculatorPage;

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import CPFInvestmentComparison from "@/components/cpf-investment-comparison";
-import { PageNavigation } from "@/components/page-navigation";
 
 export const metadata: Metadata = {
   title: "CPF Investment Comparison | Compare Investment Returns",
@@ -24,15 +23,12 @@ export const metadata: Metadata = {
 
 const InvestmentsPage = () => {
   return (
-    <>
-      <PageNavigation />
-      <div>
-        <h2 className="mb-6 text-center font-semibold text-2xl">
-          Investment Comparison
-        </h2>
-        <CPFInvestmentComparison />
-      </div>
-    </>
+    <div>
+      <h2 className="mb-6 text-center font-semibold text-2xl">
+        Investment Comparison
+      </h2>
+      <CPFInvestmentComparison />
+    </div>
   );
 };
 

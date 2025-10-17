@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
 import DistributionRatesTable from "@/components/distribution-rates-table";
-import { PageNavigation } from "@/components/page-navigation";
 
 export const metadata: Metadata = {
   title: "CPF Interest Rates | OA, SA, MA Interest Rates & Distribution",
@@ -25,9 +24,7 @@ export const metadata: Metadata = {
 
 const InterestRatesPage = () => {
   return (
-    <>
-      <PageNavigation />
-      <div className="space-y-12">
+    <div className="space-y-12">
         <div>
           <h2 className="mb-6 text-center font-semibold text-2xl">
             CPF Interest Rates
@@ -41,7 +38,6 @@ const InterestRatesPage = () => {
           <DistributionRatesTable />
         </div>
       </div>
-    </>
   );
 };
 
