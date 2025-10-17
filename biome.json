@@ -8,7 +8,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!src/components/ui"]
+    "includes": ["**", "!src/components/ui", "!**/*.test.ts", "!**/*.test.tsx"]
   },
   "formatter": {
     "enabled": true,

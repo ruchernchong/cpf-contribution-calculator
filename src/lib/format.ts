@@ -30,10 +30,10 @@ export const formatDate = (
     // Try different date formats
     try {
       dateValue = parse(date, "yyyy-MM-dd", new Date());
-    } catch (e) {
+    } catch (_e) {
       try {
         dateValue = parse(date, "MM-dd-yyyy", new Date());
-      } catch (e) {
+      } catch (_e) {
         // Last resort, use the JS Date constructor
         dateValue = new Date(date);
       }

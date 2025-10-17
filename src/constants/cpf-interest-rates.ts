@@ -25,7 +25,7 @@ export const SGS_YIELDS_MONTHLY: MonthlyYield[] = [
   { month: "2024-11", yield: 2.88 },
   { month: "2024-12", yield: 2.92 },
   { month: "2025-01", yield: 2.85 },
-  { month: "2025-02", yield: 2.90 },
+  { month: "2025-02", yield: 2.9 },
   { month: "2025-03", yield: 2.87 },
   { month: "2025-04", yield: 2.83 },
   { month: "2025-05", yield: 2.79 },

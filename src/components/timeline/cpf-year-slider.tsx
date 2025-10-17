@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import React, { useState } from "react";
+import { useState } from "react";
 import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import {
   Card,
@@ -54,7 +54,7 @@ const CPFYearSlider = () => {
                   key={date}
                   className={`text-center transition-colors ${
                     isActive
-                      ? "text-primary font-medium"
+                      ? "font-medium text-primary"
                       : "text-muted-foreground"
                   }`}
                 >

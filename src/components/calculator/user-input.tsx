@@ -1,7 +1,7 @@
 import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
-import React, { type ChangeEvent, useCallback, useEffect } from "react";
+import { type ChangeEvent, useCallback, useEffect } from "react";
 import { settingsAtom } from "@/atoms/setting-atom";
 import { Button } from "@/components/ui/button";
 import {
@@ -68,7 +68,7 @@ const UserInput = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <QuestionMarkCircleIcon className="h-4 w-4 text-muted-foreground cursor-help" />
+                  <QuestionMarkCircleIcon className="h-4 w-4 cursor-help text-muted-foreground" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="max-w-xs">
@@ -93,7 +93,7 @@ const UserInput = () => {
             }
           />
           {!isValidDateFormat(birthDate) && birthDate && (
-            <p className="text-xs text-red-500">
+            <p className="text-red-500 text-xs">
               Please enter a valid date in MM/YYYY format
             </p>
           )}
@@ -106,7 +106,7 @@ const UserInput = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <QuestionMarkCircleIcon className="h-4 w-4 text-muted-foreground cursor-help" />
+                  <QuestionMarkCircleIcon className="h-4 w-4 cursor-help text-muted-foreground" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="max-w-xs">
@@ -148,7 +148,7 @@ const UserInput = () => {
             Store input on this browser?
           </Label>
         </div>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-muted-foreground text-xs">
           By ticking the above checkbox, the input will be stored on your own
           browser. No data are being stored on any servers.
         </p>

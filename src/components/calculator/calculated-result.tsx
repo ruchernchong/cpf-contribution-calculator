@@ -1,6 +1,5 @@
 import { useAtomValue } from "jotai";
 import { FileText, Share } from "lucide-react";
-import React from "react";
 import { contributionRateAtom } from "@/atoms/income-ceiling-atom";
 import { contributionResultAtom } from "@/atoms/result-atom";
 import { settingsAtom } from "@/atoms/setting-atom";

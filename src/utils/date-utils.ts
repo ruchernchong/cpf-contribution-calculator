@@ -1,6 +1,6 @@
 export const formatDateInput = (
   rawInput: string,
-  existingValue?: string,
+  _existingValue?: string,
 ): string => {
   // Remove any non-digit characters
   const cleanedInput = rawInput.replace(/\D/g, "");

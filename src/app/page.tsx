@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { SoftwareApplication, WithContext } from "schema-dts";
-import CPFIncomeCeilingTimeline from "@/components/timeline/cpf-income-ceiling-timeline";
 import { StructuredData } from "@/components/seo/structured-data";
+import CPFIncomeCeilingTimeline from "@/components/timeline/cpf-income-ceiling-timeline";
 
 export const metadata: Metadata = {
   title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",

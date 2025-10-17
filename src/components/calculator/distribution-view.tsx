@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
+import { Card, CardContent } from "@/components/ui/card";
 import { CPF_ACCOUNT_MAP } from "@/constants";
 import { formatCurrency } from "@/lib/format";
 import type { DistributionResult } from "@/types";
-import { Card, CardContent } from "@/components/ui/card";
 
 const DistributionPieChart = dynamic(() => import("./distribution-pie-chart"));
 
@@ -19,20 +19,20 @@ export const DistributionView = ({
   );
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       <Card className="shadow-md">
         <CardContent className="pt-6">
           <div className="space-y-0">
-            <div className="py-4 flex justify-between items-center border-b last:border-0 font-semibold text-xl">
+            <div className="flex items-center justify-between border-b py-4 font-semibold text-xl last:border-0">
               <p>Total Contribution</p>
               <p>{formatCurrency(totalCpfContribution)}</p>
             </div>
             {distributionResults.map(({ name, value }) => (
               <div
                 key={name}
-                className="py-4 flex justify-between items-center border-b last:border-0"
+                className="flex items-center justify-between border-b py-4 last:border-0"
               >
-                <p className="text-zinc-500 font-medium">
+                <p className="font-medium text-zinc-500">
                   {CPF_ACCOUNT_MAP[name]} ({name})
                 </p>
                 <p className="font-semibold text-xl">{formatCurrency(value)}</p>
@@ -42,10 +42,10 @@ export const DistributionView = ({
         </CardContent>
       </Card>
       <Card className="shadow-md">
-        <CardContent className="h-[300px] flex items-center justify-center pt-6">
+        <CardContent className="flex h-[300px] items-center justify-center pt-6">
           <DistributionPieChart
             data={distributionResults}
-            className="block w-full h-full"
+            className="block h-full w-full"
           />
         </CardContent>
       </Card>

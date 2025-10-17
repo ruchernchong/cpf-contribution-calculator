@@ -30,6 +30,6 @@ export const userInputAtom = atomWithStorage("user-input", defaultUserInput, {
   },
 });
 
-export const resetUserInputAtom = atom(null, (get, set) => {
+export const resetUserInputAtom = atom(null, (_get, set) => {
   set(userInputAtom, defaultUserInput);
 });
