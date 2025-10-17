@@ -20,17 +20,17 @@ const Banner = () => {
   );
 
   return (
-    <div className="sticky top-0 bg-zinc-800 py-2 text-zinc-50 backdrop-blur-md">
+    <div className="sticky top-0 z-50 bg-zinc-800 py-2 text-zinc-50 backdrop-blur-md">
       <div className="container mx-auto px-4 py-2">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center md:flex-row md:gap-4">
+          <div className="flex items-center md:gap-2">
             <span className="font-semibold">Current Income Ceiling</span>
           </div>
-          <span>•</span>
+          <span className="hidden md:inline-block">•</span>
           <span className="font-bold text-xl">
             {formatCurrency(useAnimatedNumber(currentCeiling))}
           </span>
-          <span>•</span>
+          <span className="hidden md:inline-block">•</span>
           <span className="text-sm text-zinc-200">
             Effective from {formattedDate}
           </span>
