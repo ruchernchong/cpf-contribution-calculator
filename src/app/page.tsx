@@ -9,6 +9,7 @@ import {
   hasCpfContributionAtom,
 } from "@/atoms/result-atom";
 import { CalculatedResult } from "@/components/calculated-result";
+import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
 import CPFYearSlider from "@/components/cpf-year-slider";
 import DistributionRatesTable from "@/components/distribution-rates-table";
 import DistributionView from "@/components/distribution-view";
@@ -120,6 +121,12 @@ const HomePage = () => {
             Distribution Rates by Age Group
           </h2>
           <DistributionRatesTable />
+        </div>
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold mb-6 text-center">
+            CPF Interest Rates
+          </h2>
+          <CPFInterestRatesSection />
         </div>
       </div>
     </>

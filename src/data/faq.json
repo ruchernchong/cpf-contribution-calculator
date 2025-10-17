@@ -22,5 +22,21 @@
   {
     "question": "I am a developer and I wish to contribute changes to this. How may I do so?",
     "answer": "This is an open-source project. All contributions are welcomed. Feel free to clone/fork the repository and create a pull request."
+  },
+  {
+    "question": "How are CPF interest rates determined?",
+    "answer": "CPF interest rates vary by account type. The Ordinary Account (OA) has a fixed floor rate of 2.5% per annum. The Special, MediSave, and Retirement Accounts (SMRA) have their rates pegged to the 12-month average yield of 10-year Singapore Government Securities (SGS) plus 1%, with a minimum floor rate of 4% per annum. You always receive the higher of the pegged rate or the floor rate."
+  },
+  {
+    "question": "What is the difference between floor rate and pegged rate?",
+    "answer": "The floor rate is the minimum guaranteed interest rate your CPF accounts will earn regardless of market conditions. For SMRA accounts, the pegged rate is calculated as the 12-month average of 10-year SGS yield plus 1%. When the pegged rate falls below the floor rate (4%), you receive the floor rate instead. This ensures your CPF savings continue to grow even during periods of low interest rates."
+  },
+  {
+    "question": "Why does my SMRA earn more than 4% sometimes?",
+    "answer": "Your SMRA (Special, MediSave & Retirement Accounts) earns more than 4% when the pegged rate exceeds the floor rate. The pegged rate is calculated as the 12-month average of 10-year Singapore Government Securities (SGS) yield plus 1%. When this calculated rate is higher than the 4% floor, you receive the higher pegged rate. This allows your CPF savings to benefit from higher market interest rates."
+  },
+  {
+    "question": "How does the 10-year Singapore Government Securities (SGS) yield affect my CPF?",
+    "answer": "The 10-year SGS yield directly affects the interest rate for your Special, MediSave, and Retirement Accounts (SMRA). The SMRA interest rate is pegged to the 12-month average of the 10-year SGS yield plus 1%. When SGS yields are high, your SMRA earns more. When SGS yields are low and the calculated rate falls below 4%, the floor rate of 4% applies to protect your savings. This pegging mechanism ensures your CPF interest rates reflect market conditions while maintaining a safety net."
   }
 ]

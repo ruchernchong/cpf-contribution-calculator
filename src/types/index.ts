@@ -58,3 +58,26 @@ export interface Settings {
   monthlyGrossIncome: number;
   birthDate: string;
 }
+
+// Interface for quarterly CPF interest rates
+export interface QuarterlyRate {
+  quarter: string;
+  oa: number;
+  sa: number;
+  ma: number;
+  ra: number;
+}
+
+// Interface for monthly SGS yield data
+export interface MonthlyYield {
+  month: string;
+  yield: number;
+}
+
+// Interface for interest rate trend data (computed)
+export interface InterestRateTrendData {
+  month: string;
+  sgsYield: number;
+  peggedRate: number;
+  actualRate: number;
+}
