@@ -1,5 +1,5 @@
+import type { Metadata } from "next";
 import Script from "next/script";
-import React from "react";
 import {
   Accordion,
   AccordionContent,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/card";
 import faqData from "@/data/faq.json";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About - CPF Contribution Estimator",
   description:
     "About the CPF Contribution Estimator and frequently asked questions",
@@ -48,7 +48,7 @@ const AboutPage = () => (
         }),
       }}
     />
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <div className="space-y-8 p-6">
       <Card>
         <CardHeader>
           <CardTitle>About CPF Contribution Estimator</CardTitle>
@@ -75,7 +75,7 @@ const AboutPage = () => (
         </CardContent>
       </Card>
 
-      <Card className="border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950 dark:text-orange-200">
+      <Card className="border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-950 dark:text-orange-200">
         <CardHeader>
           <CardTitle>Important Disclaimer</CardTitle>
         </CardHeader>

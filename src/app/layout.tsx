@@ -45,7 +45,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html lang="en" className={geist.className}>
       <body
-        className={`flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50`}
+        className={`flex min-h-screen flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50`}
       >
         <Header />
         <main className="flex-grow">{children}</main>
