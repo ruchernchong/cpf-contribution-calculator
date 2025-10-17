@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import type { WebPage, WithContext } from "schema-dts";
 import CalculatorContent from "@/components/calculator-content";
+import { StructuredData } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "CPF Calculator | Calculate Your CPF Contributions",
@@ -22,7 +24,24 @@ export const metadata: Metadata = {
 };
 
 const CalculatorPage = () => {
-  return <CalculatorContent />;
+  const schema: WithContext<WebPage> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "CPF Contribution Calculator",
+    description:
+      "Calculate your CPF employee and employer contributions with instant results. View account distributions across Ordinary, Special, and MediSave accounts based on your age group.",
+    url: "https://cpf-contribution-estimator.vercel.app/calculator",
+    inLanguage: "en-SG",
+    keywords:
+      "CPF calculator, CPF contribution calculator, employee contribution, employer contribution, OA, SA, MA, Singapore CPF",
+  };
+
+  return (
+    <>
+      <StructuredData data={schema} />
+      <CalculatorContent />
+    </>
+  );
 };
 
 export default CalculatorPage;

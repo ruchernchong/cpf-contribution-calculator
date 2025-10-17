@@ -13,7 +13,7 @@ importers:
         version: 2.1.1(react@19.2.0)
       '@next/third-parties':
         specifier: 16.0.0-beta.0
-        version: 16.0.0-beta.0(next@16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 16.0.0-beta.0(next@16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -46,7 +46,7 @@ importers:
         version: 4.1.14
       '@vercel/analytics':
         specifier: ^1.5.0
-        version: 1.5.0(next@16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 1.5.0(next@16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -70,7 +70,7 @@ importers:
         version: 0.320.0(react@19.2.0)
       next:
         specifier: ^16.0.0-beta.0
-        version: 16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -159,6 +159,9 @@ importers:
       postcss:
         specifier: ^8.4.32
         version: 8.4.49
+      schema-dts:
+        specifier: ^1.1.5
+        version: 1.1.5
       semantic-release:
         specifier: ^24.2.0
         version: 24.2.9(typescript@5.3.3)
@@ -4708,6 +4711,9 @@ packages:
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
+  schema-dts@1.1.5:
+    resolution: {integrity: sha512-RJr9EaCmsLzBX2NDiO5Z3ux2BVosNZN5jo0gWgsyKvxKIUL5R3swNvoorulAeL9kLB0iTSX7V6aokhla2m7xbg==}
+
   semantic-release@24.2.9:
     resolution: {integrity: sha512-phCkJ6pjDi9ANdhuF5ElS10GGdAKY6R1Pvt9lT3SFhOwM4T7QZE7MLpBDbNruUx/Q3gFD92/UOFringGipRqZA==}
     engines: {node: '>=20.8.1'}
@@ -6347,9 +6353,9 @@ snapshots:
   '@next/swc-win32-x64-msvc@16.0.0-beta.0':
     optional: true
 
-  '@next/third-parties@16.0.0-beta.0(next@16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+  '@next/third-parties@16.0.0-beta.0(next@16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
     dependencies:
-      next: 16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
       third-party-capital: 1.0.20
 
@@ -7633,9 +7639,9 @@ snapshots:
 
   '@types/statuses@2.0.6': {}
 
-  '@vercel/analytics@1.5.0(next@16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+  '@vercel/analytics@1.5.0(next@16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
     optionalDependencies:
-      next: 16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
 
   '@vitejs/plugin-react@4.3.4(vite@7.1.10(@types/node@20.11.10)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.8.1))':
@@ -9340,7 +9346,7 @@ snapshots:
 
   nerf-dart@1.0.0: {}
 
-  next@16.0.0-beta.0(@babel/core@7.26.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  next@16.0.0-beta.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@next/env': 16.0.0-beta.0
       '@swc/helpers': 0.5.15
@@ -9348,7 +9354,7 @@ snapshots:
       postcss: 8.4.31
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-      styled-jsx: 5.1.6(@babel/core@7.26.9)(react@19.2.0)
+      styled-jsx: 5.1.6(@babel/core@7.28.4)(react@19.2.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.0.0-beta.0
       '@next/swc-darwin-x64': 16.0.0-beta.0
@@ -9868,6 +9874,8 @@ snapshots:
 
   scheduler@0.27.0: {}
 
+  schema-dts@1.1.5: {}
+
   semantic-release@24.2.9(typescript@5.3.3):
     dependencies:
       '@semantic-release/commit-analyzer': 13.0.1(semantic-release@24.2.9(typescript@5.3.3))
@@ -10201,12 +10209,12 @@ snapshots:
     dependencies:
       js-tokens: 9.0.1
 
-  styled-jsx@5.1.6(@babel/core@7.26.9)(react@19.2.0):
+  styled-jsx@5.1.6(@babel/core@7.28.4)(react@19.2.0):
     dependencies:
       client-only: 0.0.1
       react: 19.2.0
     optionalDependencies:
-      '@babel/core': 7.26.9
+      '@babel/core': 7.28.4
 
   super-regex@1.0.0:
     dependencies:

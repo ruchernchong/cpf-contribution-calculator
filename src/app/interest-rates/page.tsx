@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import type { WebPage, WithContext } from "schema-dts";
 import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
 import DistributionRatesTable from "@/components/distribution-rates-table";
+import { StructuredData } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "CPF Interest Rates | OA, SA, MA Interest Rates & Distribution",
@@ -23,8 +25,22 @@ export const metadata: Metadata = {
 };
 
 const InterestRatesPage = () => {
+  const schema: WithContext<WebPage> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "CPF Interest Rates",
+    description:
+      "View current CPF interest rates for Ordinary Account (OA), Special Account (SA), and MediSave Account (MA). Learn about CPF contribution distribution rates by age group.",
+    url: "https://cpf-contribution-estimator.vercel.app/interest-rates",
+    inLanguage: "en-SG",
+    keywords:
+      "CPF interest rates, OA interest, SA interest, MA interest, CPF distribution rates, age group CPF, Singapore CPF rates",
+  };
+
   return (
-    <div className="space-y-12">
+    <>
+      <StructuredData data={schema} />
+      <div className="space-y-12">
         <div>
           <h2 className="mb-6 text-center font-semibold text-2xl">
             CPF Interest Rates
@@ -38,6 +54,7 @@ const InterestRatesPage = () => {
           <DistributionRatesTable />
         </div>
       </div>
+    </>
   );
 };
 

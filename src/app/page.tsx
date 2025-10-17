@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import type { SoftwareApplication, WithContext } from "schema-dts";
 import CPFIncomeCeilingTimeline from "@/components/cpf-income-ceiling-timeline";
+import { StructuredData } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
@@ -17,35 +18,25 @@ export const metadata: Metadata = {
 };
 
 const HomePage = () => {
+  const schema: WithContext<SoftwareApplication> = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "CPF Contribution Estimator",
+    description: "Calculate CPF contributions based on income and ceiling",
+    keywords: "CPF, contribution, calculator, Singapore, income ceiling",
+    url: "https://cpf-contribution-estimator.vercel.app",
+    applicationCategory: "FinanceApplication",
+    featureList: [
+      "Calculate CPF contributions",
+      "View distribution across OA, SA, MA accounts",
+      "Adjust income ceiling based on year",
+    ],
+    inLanguage: "en-SG",
+  };
+
   return (
     <>
-      <Script
-        id="calculator-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FinancialCalculator",
-            name: "CPF Contribution Estimator",
-            description:
-              "Calculate CPF contributions based on income and ceiling",
-            keywords:
-              "CPF, contribution, calculator, Singapore, income ceiling",
-            url: "https://cpf-contribution-estimator.vercel.app",
-            mainEntity: {
-              "@type": "SoftwareApplication",
-              name: "CPF Contribution Estimator",
-              applicationCategory: "FinanceApplication",
-              featureList: [
-                "Calculate CPF contributions",
-                "View distribution across OA, SA, MA accounts",
-                "Adjust income ceiling based on year",
-              ],
-            },
-            inLanguage: "en-SG",
-          }),
-        }}
-      />
+      <StructuredData data={schema} />
       <CPFIncomeCeilingTimeline />
     </>
   );

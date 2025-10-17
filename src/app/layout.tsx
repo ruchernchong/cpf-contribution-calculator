@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
 import type { ReactNode } from "react";
+import type { WebApplication, WithContext } from "schema-dts";
 import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { NavigationTabs } from "@/components/navigation-tabs";
+import { StructuredData } from "@/components/structured-data";
 
 const geist = Geist({ subsets: ["latin"] });
 
@@ -44,6 +45,26 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
+  const schema: WithContext<WebApplication> = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "CPF Contribution Estimator",
+    url: "https://cpf-contribution-estimator.vercel.app",
+    description:
+      "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "All",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "SGD",
+    },
+    author: {
+      "@type": "Person",
+      name: "Ru Chern Chong",
+    },
+  };
+
   return (
     <html lang="en" className={geist.className}>
       <body
@@ -57,31 +78,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
         </main>
         <Footer />
         <Analytics />
-        <Script
-          id="schema-org"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "CPF Contribution Estimator",
-              url: "https://cpf-contribution-estimator.vercel.app",
-              description:
-                "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
-              applicationCategory: "FinanceApplication",
-              operatingSystem: "All",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "SGD",
-              },
-              author: {
-                "@type": "Person",
-                name: "Ru Chern Chong",
-              },
-            }),
-          }}
-        />
+        <StructuredData data={schema} />
       </body>
     </html>
   );

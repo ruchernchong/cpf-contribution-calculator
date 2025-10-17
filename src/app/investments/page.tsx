@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import type { WebPage, WithContext } from "schema-dts";
 import CPFInvestmentComparison from "@/components/cpf-investment-comparison";
+import { StructuredData } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "CPF Investment Comparison | Compare Investment Returns",
@@ -22,13 +24,28 @@ export const metadata: Metadata = {
 };
 
 const InvestmentsPage = () => {
+  const schema: WithContext<WebPage> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "CPF Investment Comparison",
+    description:
+      "Compare investment strategies and returns using your CPF accounts. Understand different investment options and their potential growth over time.",
+    url: "https://cpf-contribution-estimator.vercel.app/investments",
+    inLanguage: "en-SG",
+    keywords:
+      "CPF investment, CPF investment scheme, CPFIS, investment comparison, CPF returns, Singapore investment",
+  };
+
   return (
-    <div>
-      <h2 className="mb-6 text-center font-semibold text-2xl">
-        Investment Comparison
-      </h2>
-      <CPFInvestmentComparison />
-    </div>
+    <>
+      <StructuredData data={schema} />
+      <div>
+        <h2 className="mb-6 text-center font-semibold text-2xl">
+          Investment Comparison
+        </h2>
+        <CPFInvestmentComparison />
+      </div>
+    </>
   );
 };
 
