@@ -72,7 +72,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       >
         <Header />
         <Banner />
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto flex flex-col gap-8 px-4 py-8">
           <NavigationTabs />
           {children}
         </main>
