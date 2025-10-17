@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import type { ReactNode } from "react";
+import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
@@ -48,7 +49,8 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
         className={`flex min-h-screen flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50`}
       >
         <Header />
-        <main className="flex-grow">{children}</main>
+        <Banner />
+        <main className="container mx-auto px-4 py-8">{children}</main>
         <Footer />
         <Analytics />
         <Script
