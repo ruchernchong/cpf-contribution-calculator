@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { CPF_ACCOUNT_MAP } from "@/constants";
 import { formatCurrency } from "@/lib/format";
 import type { DistributionResult } from "@/types";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 const DistributionPieChart = dynamic(() => import("./distribution-pie-chart"));
 

@@ -5,9 +5,9 @@ import {
   distributionResultsAtom,
   hasCpfContributionAtom,
 } from "@/atoms/result-atom";
-import { CalculatedResult } from "@/components/calculated-result";
-import DistributionView from "@/components/distribution-view";
-import UserInput from "@/components/user-input";
+import { CalculatedResult } from "@/components/calculator/calculated-result";
+import DistributionView from "@/components/calculator/distribution-view";
+import UserInput from "@/components/calculator/user-input";
 
 const CalculatorContent = () => {
   const hasCpfContribution = useAtomValue(hasCpfContributionAtom);

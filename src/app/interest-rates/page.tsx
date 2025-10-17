@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import type { WebPage, WithContext } from "schema-dts";
-import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
-import DistributionRatesTable from "@/components/distribution-rates-table";
-import { StructuredData } from "@/components/structured-data";
+import CPFInterestRatesSection from "@/components/interest-rates/cpf-interest-rates-section";
+import DistributionRatesTable from "@/components/interest-rates/distribution-rates-table";
+import { StructuredData } from "@/components/seo/structured-data";
 
 export const metadata: Metadata = {
   title: "CPF Interest Rates | OA, SA, MA Interest Rates & Distribution",

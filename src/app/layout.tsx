@@ -4,11 +4,11 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import type { ReactNode } from "react";
 import type { WebApplication, WithContext } from "schema-dts";
-import Banner from "@/components/banner";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import { NavigationTabs } from "@/components/navigation-tabs";
-import { StructuredData } from "@/components/structured-data";
+import Banner from "@/components/layout/banner";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import { NavigationTabs } from "@/components/layout/navigation-tabs";
+import { StructuredData } from "@/components/seo/structured-data";
 
 const geist = Geist({ subsets: ["latin"] });
 

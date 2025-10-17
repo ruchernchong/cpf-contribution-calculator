@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import Header from "../header";
 
 // Mock dependencies
-vi.mock("@/components/theme-toggle", () => ({
+vi.mock("@/components/layout/theme-toggle", () => ({
   __esModule: true,
   default: () => <div data-testid="theme-toggle">Theme Toggle</div>,
 }));

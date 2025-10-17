@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { AboutPage, WithContext } from "schema-dts";
-import { StructuredData } from "@/components/structured-data";
+import { StructuredData } from "@/components/seo/structured-data";
 import {
   Accordion,
   AccordionContent,

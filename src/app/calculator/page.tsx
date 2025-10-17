@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { WebPage, WithContext } from "schema-dts";
-import CalculatorContent from "@/components/calculator-content";
-import { StructuredData } from "@/components/structured-data";
+import CalculatorContent from "@/components/calculator/calculator-content";
+import { StructuredData } from "@/components/seo/structured-data";
 
 export const metadata: Metadata = {
   title: "CPF Calculator | Calculate Your CPF Contributions",
