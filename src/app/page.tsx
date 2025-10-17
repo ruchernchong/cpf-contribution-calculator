@@ -1,24 +1,23 @@
-"use client";
-
-import { useAtomValue } from "jotai";
+import type { Metadata } from "next";
 import Script from "next/script";
-import {
-  distributionResultsAtom,
-  hasCpfContributionAtom,
-} from "@/atoms/result-atom";
-import { CalculatedResult } from "@/components/calculated-result";
 import CPFIncomeCeilingTimeline from "@/components/cpf-income-ceiling-timeline";
-import CPFInterestRatesSection from "@/components/cpf-interest-rates-section";
-import CPFInvestmentComparison from "@/components/cpf-investment-comparison";
-import DistributionRatesTable from "@/components/distribution-rates-table";
-import DistributionView from "@/components/distribution-view";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import UserInput from "@/components/user-input";
+import { PageNavigation } from "@/components/page-navigation";
+
+export const metadata: Metadata = {
+  title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
+  description:
+    "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase from $6,000 to $8,000 affects your CPF contributions.",
+  keywords:
+    "CPF income ceiling, CPF ceiling 2023, CPF ceiling 2026, income ceiling increase, CPF contribution limit, Singapore CPF ceiling",
+  openGraph: {
+    title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
+    description:
+      "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase affects your CPF contributions.",
+    url: "https://cpf-contribution-estimator.vercel.app",
+  },
+};
 
 const HomePage = () => {
-  const hasCpfContribution = useAtomValue(hasCpfContributionAtom);
-  const distributionResults = useAtomValue(distributionResultsAtom);
-
   return (
     <>
       <Script
@@ -50,57 +49,8 @@ const HomePage = () => {
       />
 
       <div className="mx-auto px-4 py-12">
-        <Tabs defaultValue="income-ceiling" className="w-full">
-          <TabsList className="mb-8 grid w-full grid-cols-4">
-            <TabsTrigger value="income-ceiling">Income Ceiling</TabsTrigger>
-            <TabsTrigger value="overview">Calculator</TabsTrigger>
-            <TabsTrigger value="interest-rates">Interest Rates</TabsTrigger>
-            <TabsTrigger value="investments">Investments</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="overview" className="space-y-12">
-            <div className="grid gap-8 md:grid-cols-2">
-              <UserInput />
-              <CalculatedResult />
-            </div>
-            {hasCpfContribution && (
-              <div>
-                <h2 className="mb-6 text-center font-semibold text-2xl">
-                  CPF Account Type Distribution
-                </h2>
-                <DistributionView distributionResults={distributionResults} />
-              </div>
-            )}
-          </TabsContent>
-
-          <TabsContent value="income-ceiling">
-            <CPFIncomeCeilingTimeline />
-          </TabsContent>
-
-          <TabsContent value="interest-rates" className="space-y-12">
-            <div>
-              <h2 className="mb-6 text-center font-semibold text-2xl">
-                CPF Interest Rates
-              </h2>
-              <CPFInterestRatesSection />
-            </div>
-            <div>
-              <h2 className="mb-6 text-center font-semibold text-2xl">
-                Distribution Rates by Age Group
-              </h2>
-              <DistributionRatesTable />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="investments">
-            <div>
-              <h2 className="mb-6 text-center font-semibold text-2xl">
-                Investment Comparison
-              </h2>
-              <CPFInvestmentComparison />
-            </div>
-          </TabsContent>
-        </Tabs>
+        <PageNavigation />
+        <CPFIncomeCeilingTimeline />
       </div>
     </>
   );

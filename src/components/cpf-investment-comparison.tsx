@@ -235,7 +235,7 @@ export const CPFInvestmentComparison = () => {
                 />
                 <YAxis
                   label={{ value: "Value (S$)", angle: -90, position: "insideLeft" }}
-                  tickFormatter={(value) => formatCurrency(value, { compact: true })}
+                  tickFormatter={(value) => formatCurrency(value, 0)}
                 />
                 <Tooltip
                   formatter={(value) => formatCurrency(Number(value))}

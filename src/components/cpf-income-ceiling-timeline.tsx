@@ -1,3 +1,5 @@
+"use client";
+
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useAtom } from "jotai";
 import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
