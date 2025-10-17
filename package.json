@@ -1,7 +1,7 @@
 {
   "name": "cpf-contribution-estimator",
   "description": "An estimator to compute CPF contributions after the 2023 income ceiling changes following Ministry of Finance announcement at the Singapore Budget 2023",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",

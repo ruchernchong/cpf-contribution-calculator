@@ -1,3 +1,20 @@
+## 1.11.0 (2025-10-17)
+
+* refactor: clean up folder structure ([c79c567](https://github.com/ruchernchong/cpf-contribution-calculator/commit/c79c567))
+* refactor: convert tabs to page-based routing ([94b6079](https://github.com/ruchernchong/cpf-contribution-calculator/commit/94b6079))
+* refactor: extract structured data to component ([39aa3c8](https://github.com/ruchernchong/cpf-contribution-calculator/commit/39aa3c8))
+* refactor: remove dark theme styling ([ffba01a](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ffba01a))
+* refactor: restore SEO metadata to page files ([a7b200e](https://github.com/ruchernchong/cpf-contribution-calculator/commit/a7b200e))
+* refactor: use shadcn tabs for navigation ([aa41243](https://github.com/ruchernchong/cpf-contribution-calculator/commit/aa41243))
+* style: fix banner detail on mobile viewport ([90241c0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/90241c0))
+* style: fix gap between navigation tabs and content ([ab905b1](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ab905b1))
+* style: fix tabs overflow on mobile viewport ([3768ad4](https://github.com/ruchernchong/cpf-contribution-calculator/commit/3768ad4))
+* feat: add investment comparison calculator ([e6fda4c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/e6fda4c))
+* feat: replace absolute URLs with VERCEL_URL ([aa9f0e8](https://github.com/ruchernchong/cpf-contribution-calculator/commit/aa9f0e8))
+* docs: add documentation maintenance guidelines ([cc0d482](https://github.com/ruchernchong/cpf-contribution-calculator/commit/cc0d482))
+* chore: add shadcn MCP server config ([34ebe01](https://github.com/ruchernchong/cpf-contribution-calculator/commit/34ebe01))
+* chore: migrate commitlint to json and add rules ([931427c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/931427c))
+
 ## 1.10.0 (2025-10-17)
 
 * refactor: streamline home page ([b9f8606](https://github.com/ruchernchong/cpf-contribution-calculator/commit/b9f8606))
