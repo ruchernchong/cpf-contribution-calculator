@@ -1,3 +1,11 @@
+## 1.10.0 (2025-10-17)
+
+* refactor: streamline home page ([b9f8606](https://github.com/ruchernchong/cpf-contribution-calculator/commit/b9f8606))
+* refactor: tidy layout ([94790ee](https://github.com/ruchernchong/cpf-contribution-calculator/commit/94790ee))
+* feat: add CPF interest rates with SGS yields ([70966ac](https://github.com/ruchernchong/cpf-contribution-calculator/commit/70966ac))
+* feat: add DaisyUI timeline for income ceiling ([0a2070d](https://github.com/ruchernchong/cpf-contribution-calculator/commit/0a2070d))
+* feat: add income ceiling banner ([be960ed](https://github.com/ruchernchong/cpf-contribution-calculator/commit/be960ed))
+
 ## 1.9.0 (2025-10-16)
 
 * refactor: rename all files to kebab-case ([3097fc0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/3097fc0))
