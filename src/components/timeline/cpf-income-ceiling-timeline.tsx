@@ -2,6 +2,7 @@
 
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useAtom } from "jotai";
+import { useTransition } from "react";
 import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import {
   Card,
@@ -16,12 +17,15 @@ import { formatCurrency, formatDate } from "@/lib/format";
 
 const CPFIncomeCeilingTimeline = () => {
   const [selectedDate, setSelectedDate] = useAtom(latestIncomeCeilingDateAtom);
+  const [isPending, startTransition] = useTransition();
 
   const dateKeys = Object.keys(CPF_INCOME_CEILING);
   const currentIncomeCeilingDate = findLatestIncomeCeilingDate();
 
   const handleTimelineItemClick = (date: string) => {
-    setSelectedDate(date);
+    startTransition(() => {
+      setSelectedDate(date);
+    });
   };
 
   return (
@@ -51,6 +55,8 @@ const CPFIncomeCeilingTimeline = () => {
                   type="button"
                   className={`${index % 2 === 0 ? "timeline-start" : "timeline-end"} mb-10 cursor-pointer text-left transition-all hover:scale-105 ${isActive ? "scale-105" : ""} ${isCurrent ? "rounded-lg border-2 border-primary bg-primary/5 p-3" : ""}`}
                   onClick={() => handleTimelineItemClick(date)}
+                  disabled={isPending}
+                  aria-busy={isPending}
                 >
                   <time
                     className={`font-mono text-sm transition-colors ${isActive ? "font-semibold text-primary" : "text-muted-foreground"} ${isCurrent ? "font-bold text-primary" : ""}`}

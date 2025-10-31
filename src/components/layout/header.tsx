@@ -1,7 +1,7 @@
 import { CodeIcon, HomeIcon, InfoIcon } from "lucide-react";
 import Link from "next/link";
 
-const Header = () => (
+export const Header = () => (
   <header className="z-10 w-full border-zinc-200 border-b bg-zinc-50">
     <div className="container mx-auto px-4">
       <div className="flex h-16 items-center justify-between">
@@ -40,4 +40,4 @@ const Header = () => (
   </header>
 );
 
-export default Header;
+export default Header as unknown as typeof Header;

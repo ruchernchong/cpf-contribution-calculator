@@ -25,10 +25,10 @@ describe("formatDate", () => {
 
 describe("formatPercentage", () => {
   it("should return a nicely formatted value in percentage", () => {
-    expect(formatPercentage(0.125)).toEqual("12.5%");
-    expect(formatPercentage(1)).toEqual("100%");
-    expect(formatPercentage("0.125")).toEqual("12.5%");
-    expect(formatPercentage("1")).toEqual("100%");
+    expect(formatPercentage(0.125)).toEqual("12.50%");
+    expect(formatPercentage(1)).toEqual("100.00%");
+    expect(formatPercentage("0.125")).toEqual("12.50%");
+    expect(formatPercentage("1")).toEqual("100.00%");
   });
 
   it("should return a nicely formatted value in percentage based on the number of decimal places specified", () => {

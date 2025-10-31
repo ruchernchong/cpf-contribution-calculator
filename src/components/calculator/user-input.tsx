@@ -1,7 +1,7 @@
 import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
-import { type ChangeEvent, useCallback, useEffect } from "react";
+import { type ChangeEvent, useCallback, useEffect, useTransition } from "react";
 import { settingsAtom } from "@/atoms/setting-atom";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +26,7 @@ import { formatDateInput, isValidDateFormat } from "@/utils/date-utils";
 const UserInput = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
   const { birthDate, monthlyGrossIncome, shouldStoreInput } = settings;
+  const [isPending, startTransition] = useTransition();
 
   const resetSettings = useResetAtom(settingsAtom);
 
@@ -40,16 +41,20 @@ const UserInput = () => {
       const rawInput = event.target.value;
       const formattedBirthDate = formatDateInput(rawInput, birthDate);
 
-      void setSettings((setting) => ({
-        ...setting,
-        birthDate: formattedBirthDate,
-      }));
+      startTransition(() => {
+        void setSettings((setting) => ({
+          ...setting,
+          birthDate: formattedBirthDate,
+        }));
+      });
     },
     [birthDate, setSettings],
   );
 
   const handleReset = () => {
-    resetSettings();
+    startTransition(() => {
+      resetSettings();
+    });
   };
 
   return (
@@ -122,13 +127,16 @@ const UserInput = () => {
             placeholder="0.00"
             value={monthlyGrossIncome || ""}
             onChange={(e) =>
-              setSettings((setting) => ({
-                ...setting,
-                monthlyGrossIncome: Number.parseFloat(e.target.value) || 0,
-              }))
+              startTransition(() => {
+                setSettings((setting) => ({
+                  ...setting,
+                  monthlyGrossIncome: Number.parseFloat(e.target.value) || 0,
+                }));
+              })
             }
             className="max-w-xs"
             min={0}
+            disabled={isPending}
           />
           {/* Remember Input Checkbox */}
         </div>
@@ -138,11 +146,14 @@ const UserInput = () => {
             id="remember"
             checked={shouldStoreInput}
             onCheckedChange={(checked) =>
-              setSettings((setting) => ({
-                ...setting,
-                shouldStoreInput: Boolean(checked),
-              }))
+              startTransition(() => {
+                setSettings((setting) => ({
+                  ...setting,
+                  shouldStoreInput: Boolean(checked),
+                }));
+              })
             }
+            disabled={isPending}
           />
           <Label htmlFor="remember" className="text-sm">
             Store input on this browser?
@@ -154,7 +165,7 @@ const UserInput = () => {
         </p>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button variant="outline" onClick={handleReset}>
+        <Button variant="outline" onClick={handleReset} disabled={isPending}>
           Reset
         </Button>
       </CardFooter>
