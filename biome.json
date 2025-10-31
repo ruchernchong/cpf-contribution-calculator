@@ -1,5 +1,5 @@
 {
-  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "root": true,
   "vcs": {
     "enabled": true,
@@ -8,19 +8,25 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!src/components/ui", "!**/*.test.ts", "!**/*.test.tsx"]
+    "includes": [
+      "**",
+      "!src/components/ui",
+      "!**/*.test.ts",
+      "!**/*.test.tsx",
+      "!!**/.next",
+      "!!**/coverage",
+      "!!/node_modules"
+    ]
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space"
+    "indentStyle": "space",
+    "lineEnding": "auto"
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noUnknownAtRules": "off"
-      },
       "nursery": {
         "useSortedClasses": {
           "fix": "safe",
@@ -36,6 +42,11 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "double"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   },
   "assist": {
