@@ -37,7 +37,7 @@ export const DistributionPieChart = ({ data }: Props) => {
 
   const chartConfig = useMemo(
     () =>
-      data.reduce(
+      data.reduce<ChartConfig>(
         (config, entry, index) => {
           config[entry.name] = {
             label: CPF_ACCOUNT_MAP[entry.name] ?? entry.name,
@@ -47,7 +47,7 @@ export const DistributionPieChart = ({ data }: Props) => {
         },
         {
           value: { label: "Contribution" },
-        } satisfies ChartConfig,
+        },
       ),
     [data],
   );
