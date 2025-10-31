@@ -1,3 +1,16 @@
+## <small>1.11.1 (2025-10-31)</small>
+
+* fix: typescript error in distribution pie chart reduce type ([1be8798](https://github.com/ruchernchong/cpf-contribution-calculator/commit/1be8798))
+* chore: upgrade Biome to 2.3 ([6195243](https://github.com/ruchernchong/cpf-contribution-calculator/commit/6195243))
+* chore(deps): bump actions/checkout from 4 to 5 ([db30ffb](https://github.com/ruchernchong/cpf-contribution-calculator/commit/db30ffb))
+* chore(deps): bump actions/setup-node from 4 to 6 ([72a028b](https://github.com/ruchernchong/cpf-contribution-calculator/commit/72a028b))
+* chore(deps): bump the npm_and_yarn group across 1 directory with 3 updates ([083b8f3](https://github.com/ruchernchong/cpf-contribution-calculator/commit/083b8f3))
+* Change package-ecosystem to 'github-actions' ([0a6dc1a](https://github.com/ruchernchong/cpf-contribution-calculator/commit/0a6dc1a))
+* Merge pull request #69 from ruchernchong/dependabot/github_actions/actions/checkout-5 ([ced22b6](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ced22b6)), closes [#69](https://github.com/ruchernchong/cpf-contribution-calculator/issues/69)
+* Merge pull request #70 from ruchernchong/dependabot/github_actions/actions/setup-node-6 ([31ab825](https://github.com/ruchernchong/cpf-contribution-calculator/commit/31ab825)), closes [#70](https://github.com/ruchernchong/cpf-contribution-calculator/issues/70)
+* Merge pull request #71 from ruchernchong/dependabot/npm_and_yarn/npm_and_yarn-250d5178dd ([66d2640](https://github.com/ruchernchong/cpf-contribution-calculator/commit/66d2640)), closes [#71](https://github.com/ruchernchong/cpf-contribution-calculator/issues/71)
+* refactor: distribution pie charts ([70b0d5f](https://github.com/ruchernchong/cpf-contribution-calculator/commit/70b0d5f))
+
 ## 1.11.0 (2025-10-17)
 
 * refactor: clean up folder structure ([c79c567](https://github.com/ruchernchong/cpf-contribution-calculator/commit/c79c567))
