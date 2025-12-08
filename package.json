@@ -84,7 +84,7 @@
       "@types/react-dom": "19.2.2"
     }
   },
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.22.0",
   "lint-staged": {
     "*.{js,ts,tsx,jsx,json}": [
       "pnpm biome check --write"
