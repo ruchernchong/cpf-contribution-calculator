@@ -58,21 +58,16 @@ export const proxy = (request: NextRequest) => {
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
-  for (const { key, value } of securityHeaders) {
-    requestHeaders.set(key, value);
-  }
 
   const response = NextResponse.next({
-    headers: requestHeaders,
     request: {
       headers: requestHeaders,
     },
   });
 
-  response.headers.set(
-    "Content-Security-Policy",
-    contentSecurityPolicyHeaderValue,
-  );
+  for (const { key, value } of securityHeaders) {
+    response.headers.set(key, value);
+  }
 
   return response;
 };
