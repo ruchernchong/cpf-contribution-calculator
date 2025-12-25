@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { Footer } from "../footer";
 
 // Mock the current year to make tests deterministic

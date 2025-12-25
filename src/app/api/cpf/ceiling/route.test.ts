@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { GET } from "./route";
 
 // Mock data for cpfIncomeCeilings

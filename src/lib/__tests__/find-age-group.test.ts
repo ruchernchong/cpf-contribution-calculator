@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { findAgeGroup } from "../find-age-group";
 
 // Mock the ageGroups to avoid test dependency on data changes

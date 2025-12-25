@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { findLatestIncomeCeilingDate } from "../find-latest-income-ceiling-date";
 import * as formatModule from "../format";
 

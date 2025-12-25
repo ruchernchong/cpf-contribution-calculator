@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import { convertBirthDateToAge } from "../convert-birth-date-to-age";
 
 describe("convertBirthDateToAge", () => {

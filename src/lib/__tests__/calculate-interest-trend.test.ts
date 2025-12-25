@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import type { MonthlyYield } from "@/types";
 import {
   calculateInterestTrend,

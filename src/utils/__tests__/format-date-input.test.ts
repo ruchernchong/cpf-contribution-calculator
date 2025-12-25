@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import { formatDateInput } from "../format-date-input";
 
 describe("formatDateInput", () => {

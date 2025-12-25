@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import { formatDateInput, isValidDateFormat } from "../date-utils";
 
 describe("formatDateInput", () => {

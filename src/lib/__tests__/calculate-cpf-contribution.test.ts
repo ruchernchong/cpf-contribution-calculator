@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { vi } from "vitest";
 import {
   DEFAULT_EMPLOYEE_CONTRIBUTION_RATE,
   DEFAULT_EMPLOYER_CONTRIBUTION_RATE,

@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import { cn } from "../utils";
 
 describe("cn utility function", () => {
@@ -35,11 +34,11 @@ describe("cn utility function", () => {
   });
 
   it("should properly merge tailwind classes", () => {
-    // Testing tailwind-merge functionality
+    // Testing tailwind-merge functionality - last conflicting class wins
     const result = cn(
-      "p-2 p-4", // should use p-4
-      "text-blue-500 text-red-500", // should use text-blue-500
+      "p-2 p-4", // should use p-4 (last wins)
+      "text-blue-500 text-red-500", // should use text-red-500 (last wins)
     );
-    expect(result).toBe("p-4 text-blue-500");
+    expect(result).toBe("p-4 text-red-500");
   });
 });

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
-import FAQ from "../faq";
+import { vi } from "vitest";
+import { FAQ } from "../faq";
 
 // Mock the UI components
 vi.mock("@/components/ui/accordion", () => ({
