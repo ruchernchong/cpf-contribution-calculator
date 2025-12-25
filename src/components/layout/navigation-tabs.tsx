@@ -23,6 +23,7 @@ export function NavigationTabs() {
             <TabsTrigger
               key={item.href}
               value={item.href}
+              nativeButton={false}
               render={<Link href={item.href as Route} />}
             >
               {item.label}
