@@ -73,9 +73,8 @@ const CPFIncomeCeilingTimeline = () => {
                   type="button"
                   className={cn(
                     "mb-6 flex cursor-pointer flex-col gap-1 text-left transition-all hover:scale-105",
-                    isActive && "scale-105",
-                    isCurrent &&
-                      "rounded-lg border-2 border-accent bg-accent/5 p-3",
+                    isActive &&
+                      "scale-105 rounded-lg border-2 border-accent bg-accent/5 p-3",
                   )}
                   onClick={() => handleTimelineItemClick(date)}
                   disabled={isPending}
@@ -95,7 +94,7 @@ const CPFIncomeCeilingTimeline = () => {
                   <div
                     className={cn(
                       "font-bold text-lg text-foreground transition-colors",
-                      isCurrent && "text-xl",
+                      isActive && "text-xl",
                     )}
                   >
                     {formatCurrency(CPF_INCOME_CEILING[date])}
