@@ -5,8 +5,8 @@ import { Analytics } from "@vercel/analytics/next";
 import type { ReactNode } from "react";
 import type { WebApplication, WithContext } from "schema-dts";
 import Banner from "@/components/layout/banner";
-import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import { NavigationTabs } from "@/components/layout/navigation-tabs";
 import { StructuredData } from "@/components/seo/structured-data";
 

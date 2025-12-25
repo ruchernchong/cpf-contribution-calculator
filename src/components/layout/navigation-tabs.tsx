@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Route } from "next";
 
 const navigationItems = [
   { href: "/", label: "Income Ceiling" },
@@ -11,7 +12,7 @@ const navigationItems = [
   { href: "/investments", label: "Investments" },
 ];
 
-export const NavigationTabs = () => {
+export function NavigationTabs() {
   const pathname = usePathname();
 
   return (
@@ -20,11 +21,11 @@ export const NavigationTabs = () => {
         <TabsList>
           {navigationItems.map((item) => (
             <TabsTrigger key={item.href} value={item.href} asChild>
-              <Link href={item.href}>{item.label}</Link>
+              <Link href={item.href as Route}>{item.label}</Link>
             </TabsTrigger>
           ))}
         </TabsList>
       </Tabs>
     </div>
   );
-};
+}
