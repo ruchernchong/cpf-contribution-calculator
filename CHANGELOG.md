@@ -1,3 +1,32 @@
+## <small>1.11.2 (2025-12-25)</small>
+
+* chore: remove turbo.json ([b7ecf78](https://github.com/ruchernchong/cpf-contribution-calculator/commit/b7ecf78))
+* chore: update Biome config and fix lint issues ([7b845eb](https://github.com/ruchernchong/cpf-contribution-calculator/commit/7b845eb))
+* chore: update package manager version in package.json ([9a83025](https://github.com/ruchernchong/cpf-contribution-calculator/commit/9a83025))
+* chore: update pnpm version and pin action hash ([69b7623](https://github.com/ruchernchong/cpf-contribution-calculator/commit/69b7623))
+* chore: update project node version ([52ad2e7](https://github.com/ruchernchong/cpf-contribution-calculator/commit/52ad2e7))
+* chore: upgrade to Next.js 16.1 ([3f8d22c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/3f8d22c))
+* chore: upgrade to Vitest 4 with auto thresholds ([28ef88a](https://github.com/ruchernchong/cpf-contribution-calculator/commit/28ef88a))
+* chore(deps): bump actions/checkout from 5 to 6 ([f17fa20](https://github.com/ruchernchong/cpf-contribution-calculator/commit/f17fa20))
+* chore(deps): bump body-parser ([fc9a56b](https://github.com/ruchernchong/cpf-contribution-calculator/commit/fc9a56b))
+* chore(deps): bump dependencies to latest ([5831a27](https://github.com/ruchernchong/cpf-contribution-calculator/commit/5831a27))
+* chore(deps): bump glob in the npm_and_yarn group across 1 directory ([e02418c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/e02418c))
+* chore(deps): bump js-yaml in the npm_and_yarn group across 1 directory ([272477e](https://github.com/ruchernchong/cpf-contribution-calculator/commit/272477e))
+* chore(deps): bump the npm_and_yarn group across 1 directory with 2 updates ([ab5e29a](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ab5e29a))
+* chore(deps): fix CVE-2025-66478 ([89cd357](https://github.com/ruchernchong/cpf-contribution-calculator/commit/89cd357))
+* fix: allow Vercel Analytics in CSP ([81d4239](https://github.com/ruchernchong/cpf-contribution-calculator/commit/81d4239))
+* fix: set security headers on response ([9e3a827](https://github.com/ruchernchong/cpf-contribution-calculator/commit/9e3a827))
+* fix: suppress Base UI button warning ([26d453b](https://github.com/ruchernchong/cpf-contribution-calculator/commit/26d453b))
+* refactor: add React 19.2 & Next.js 16 features ([4e431fc](https://github.com/ruchernchong/cpf-contribution-calculator/commit/4e431fc))
+* refactor: migrate to Base UI primitives ([288258d](https://github.com/ruchernchong/cpf-contribution-calculator/commit/288258d))
+* Delete .github/dependabot.yml ([dc4fc0f](https://github.com/ruchernchong/cpf-contribution-calculator/commit/dc4fc0f))
+* Merge branch 'main' of https://github.com/ruchernchong/cpf-contribution-calculator ([397c7e0](https://github.com/ruchernchong/cpf-contribution-calculator/commit/397c7e0))
+* Merge pull request #72 from ruchernchong/dependabot/npm_and_yarn/npm_and_yarn-3c67cbb9cd ([79063c5](https://github.com/ruchernchong/cpf-contribution-calculator/commit/79063c5)), closes [#72](https://github.com/ruchernchong/cpf-contribution-calculator/issues/72)
+* Merge pull request #73 from ruchernchong/dependabot/npm_and_yarn/npm_and_yarn-bdc76aff73 ([ae630ac](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ae630ac)), closes [#73](https://github.com/ruchernchong/cpf-contribution-calculator/issues/73)
+* Merge pull request #74 from ruchernchong/dependabot/github_actions/actions/checkout-6 ([d61863a](https://github.com/ruchernchong/cpf-contribution-calculator/commit/d61863a)), closes [#74](https://github.com/ruchernchong/cpf-contribution-calculator/issues/74)
+* Merge pull request #75 from ruchernchong/dependabot/npm_and_yarn/npm_and_yarn-42c243e405 ([2498812](https://github.com/ruchernchong/cpf-contribution-calculator/commit/2498812)), closes [#75](https://github.com/ruchernchong/cpf-contribution-calculator/issues/75)
+* Merge pull request #76 from ruchernchong/dependabot/npm_and_yarn/npm_and_yarn-6cd352a169 ([ea8741d](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ea8741d)), closes [#76](https://github.com/ruchernchong/cpf-contribution-calculator/issues/76)
+
 ## <small>1.11.1 (2025-10-31)</small>
 
 * fix: typescript error in distribution pie chart reduce type ([1be8798](https://github.com/ruchernchong/cpf-contribution-calculator/commit/1be8798))
