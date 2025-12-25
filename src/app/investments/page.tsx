@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { WebPage, WithContext } from "schema-dts";
-import CPFInvestmentComparison from "@/components/investments/cpf-investment-comparison";
+import { CPFInvestmentComparison } from "@/components/investments/cpf-investment-comparison";
 import { StructuredData } from "@/components/seo/structured-data";
 
 export const metadata: Metadata = {

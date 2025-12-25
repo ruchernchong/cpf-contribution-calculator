@@ -92,7 +92,7 @@ const calculateGrowth = (
   return principal * (1 + rate / 100) ** years;
 };
 
-export const CPFInvestmentComparison = () => {
+export function CPFInvestmentComparison() {
   const [principal, setPrincipal] = useState<number>(50000);
   const [years, setYears] = useState<number>(20);
   const [selectedScenarios, setSelectedScenarios] = useState<string[]>([
@@ -102,11 +102,10 @@ export const CPFInvestmentComparison = () => {
   ]);
 
   const toggleScenario = (name: string) => {
-    setSelectedScenarios(
-      (prev) =>
-        prev.includes(name)
-          ? prev.filter((s) => s !== name)
-          : [...prev, name].slice(0, 4), // Limit to 4 scenarios for chart readability
+    setSelectedScenarios((prev) =>
+      prev.includes(name)
+        ? prev.filter((s) => s !== name)
+        : [...prev, name].slice(0, 4),
     );
   };
 
@@ -139,7 +138,7 @@ export const CPFInvestmentComparison = () => {
     <div className="space-y-6">
       {/* Disclaimer Banner */}
       <Card className="border-amber-200 bg-amber-50">
-        <CardContent className="pt-6">
+        <CardContent>
           <p className="text-amber-900 text-sm">
             <strong>Disclaimer:</strong> The investment returns shown are
             historical averages and do not guarantee future performance.
@@ -391,6 +390,4 @@ export const CPFInvestmentComparison = () => {
       </Card>
     </div>
   );
-};
-
-export default CPFInvestmentComparison;
+}
