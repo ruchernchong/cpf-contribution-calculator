@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
+import type { MonthlyYield } from "@/types";
 import {
   calculateInterestTrend,
   calculateSmraRate,
   isFloorRateApplied,
 } from "../calculate-interest-trend";
-import type { MonthlyYield } from "@/types";
 
 describe("calculateSmraRate", () => {
   it("should return floor rate when pegged rate is below 4%", () => {

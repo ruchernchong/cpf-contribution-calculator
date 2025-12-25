@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -36,7 +34,7 @@ const faqItems = [
   },
 ];
 
-const FAQ = () => {
+export function FAQ() {
   return (
     <Card className="shadow-md">
       <CardHeader>
@@ -46,18 +44,18 @@ const FAQ = () => {
       </CardHeader>
       <CardContent>
         <Accordion className="w-full">
-          {faqItems.map((item, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left">
-                {item.question}
-              </AccordionTrigger>
-              <AccordionContent>{item.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
+          {faqItems.map((item, index) => {
+            return (
+              <AccordionItem key={item.question} value={`item-${index}`}>
+                <AccordionTrigger className="text-left">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent>{item.answer}</AccordionContent>
+              </AccordionItem>
+            );
+          })}
         </Accordion>
       </CardContent>
     </Card>
   );
-};
-
-export default FAQ;
+}

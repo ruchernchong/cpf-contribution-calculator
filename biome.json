@@ -8,15 +8,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": [
-      "**",
-      "!src/components/ui",
-      "!**/*.test.ts",
-      "!**/*.test.tsx",
-      "!!**/.next",
-      "!!**/coverage",
-      "!!/node_modules"
-    ]
+    "includes": ["**", "!!**/components/ui"]
   },
   "formatter": {
     "enabled": true,

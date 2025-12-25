@@ -1,16 +1,19 @@
 import { render, screen } from "@testing-library/react";
-import React from "react";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { Footer } from "../footer";
 
 // Mock the current year to make tests deterministic
-const mockDate = new Date(2024, 0, 1);
+const _mockDate = new Date(2024, 0, 1);
 const originalDate = global.Date;
 
 vi.mock("@hugeicons/react", () => ({
-  HugeiconsIcon: ({ icon, ...props }: { icon: unknown; "data-testid"?: string }) => (
-    <div data-testid={props["data-testid"] || "hugeicon"}>Icon</div>
-  ),
+  HugeiconsIcon: ({
+    icon,
+    ...props
+  }: {
+    icon: unknown;
+    "data-testid"?: string;
+  }) => <div data-testid={props["data-testid"] || "hugeicon"}>Icon</div>,
 }));
 
 vi.mock("@hugeicons/core-free-icons", () => ({
@@ -22,10 +25,6 @@ describe("Footer", () => {
   beforeAll(() => {
     // @ts-expect-error
     global.Date = class extends Date {
-      constructor() {
-        super();
-        return mockDate;
-      }
       getFullYear() {
         return 2024;
       }

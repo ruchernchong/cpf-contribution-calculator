@@ -38,7 +38,7 @@ describe("cn utility function", () => {
     // Testing tailwind-merge functionality
     const result = cn(
       "p-2 p-4", // should use p-4
-      "text-red-500 text-blue-500", // should use text-blue-500
+      "text-blue-500 text-red-500", // should use text-blue-500
     );
     expect(result).toBe("p-4 text-blue-500");
   });

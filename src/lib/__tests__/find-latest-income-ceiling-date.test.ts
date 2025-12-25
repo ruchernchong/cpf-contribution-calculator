@@ -1,4 +1,3 @@
-import * as dateFns from "date-fns";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { findLatestIncomeCeilingDate } from "../find-latest-income-ceiling-date";
 import * as formatModule from "../format";
@@ -46,7 +45,7 @@ describe("findLatestIncomeCeilingDate", () => {
 
   it("should return the closest past date", () => {
     // Mock formatDate implementation to return expected results for specific dates
-    vi.mocked(formatModule.formatDate).mockImplementation((date, format) => {
+    vi.mocked(formatModule.formatDate).mockImplementation((date, _format) => {
       // Check if date is a Date for September 1, 2023
       if (
         date instanceof Date &&
@@ -70,7 +69,7 @@ describe("findLatestIncomeCeilingDate", () => {
 
   it("should find the latest date before current date", () => {
     // Mock formatDate implementation to return expected results for specific dates
-    vi.mocked(formatModule.formatDate).mockImplementation((date, format) => {
+    vi.mocked(formatModule.formatDate).mockImplementation((date, _format) => {
       // Check if date is a Date for January 1, 2024
       if (
         date instanceof Date &&

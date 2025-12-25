@@ -1,3 +1,13 @@
+# Dependencies
+node_modules
+
+# Build output
+.next
+dev-dist
+dist
+dist-ssr
+*.local
+
 # Logs
 logs
 *.log
@@ -7,11 +17,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dev-dist
-dist
-dist-ssr
-*.local
+# Testing
+coverage
 
 # Editor directories and files
 .vscode/*
@@ -24,16 +31,10 @@ dist-ssr
 *.sln
 *.sw?
 
-# env
+# Environment
+.env
 .env.*
 !.env.example
 
-# sst
-.sst
-
-# open-next
-.open-next
-
-# Turborepo
-.turbo
+# Vercel
 .vercel
