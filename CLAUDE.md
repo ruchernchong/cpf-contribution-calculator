@@ -85,7 +85,7 @@ See `SKILL.md` for complete design system documentation.
 
 ### Key Principles
 
-- **Aesthetic:** Refined Financial + Singapore Identity (navy, gold, red)
+- **Aesthetic:** Refined Financial Simplicity (slate, teal)
 - **Colours:** OKLCH colour space via CSS variables in `globals.css`
 - **Typography:** Geist font family
 

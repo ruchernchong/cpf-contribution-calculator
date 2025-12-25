@@ -75,7 +75,7 @@ export const CalculatedResult = () => {
             <p className="text-sm text-muted-foreground">
               Your contribution ({safePercent(contributionRate.employee)}%)
             </p>
-            <p className="text-right font-mono font-medium text-secondary">
+            <p className="text-right font-mono font-medium text-accent">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.contribution.employee),
               )}
@@ -87,7 +87,7 @@ export const CalculatedResult = () => {
               {safePercent(contributionRate.employer)}
               %)
             </p>
-            <p className="text-right font-mono font-medium text-secondary">
+            <p className="text-right font-mono font-medium text-accent">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.contribution.employer),
               )}
@@ -97,7 +97,7 @@ export const CalculatedResult = () => {
             <p className="text-sm text-muted-foreground">
               Total CPF contribution
             </p>
-            <p className="text-right font-mono font-semibold text-secondary">
+            <p className="text-right font-mono font-semibold text-accent">
               {safeCurrency(
                 useAnimatedNumber(
                   contributionResult.contribution.totalContribution,
@@ -106,7 +106,7 @@ export const CalculatedResult = () => {
             </p>
           </div>
         </div>
-        <div className="rounded-md border border-secondary/30 bg-secondary/5 p-4">
+        <div className="rounded-md border border-accent/30 bg-accent/5 p-4">
           <div className="flex flex-col gap-1">
             <p className="text-sm text-muted-foreground">
               Remaining Additional Wage (AW) for CPF contribution

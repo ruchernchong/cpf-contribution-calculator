@@ -63,17 +63,17 @@ export const CPFInterestRatesSection = () => {
                 </p>
               </div>
 
-              {/* SMRA Floor + Pegged Rate Card - Gold theme */}
-              <div className="flex flex-col gap-2 rounded-lg border border-secondary/20 bg-secondary/5 p-4">
+              {/* SMRA Floor + Pegged Rate Card - Slate theme */}
+              <div className="flex flex-col gap-2 rounded-lg border border-primary/20 bg-primary/5 p-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-secondary">
+                  <h3 className="font-semibold text-primary">
                     {CPF_ACCOUNT_INTEREST_MAP.SMRA}
                   </h3>
                   <Tooltip>
                     <TooltipTrigger className="cursor-help">
                       <HugeiconsIcon
                         icon={HelpCircleIcon}
-                        className="size-5 text-secondary"
+                        className="size-5 text-primary"
                         strokeWidth={2}
                       />
                     </TooltipTrigger>
@@ -86,7 +86,7 @@ export const CPFInterestRatesSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <p className="font-mono text-3xl font-bold text-secondary">
+                <p className="font-mono text-3xl font-bold text-primary">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.SMRA / 100, {
                     decimalPlaces: 1,
                   })}{" "}

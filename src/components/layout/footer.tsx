@@ -39,7 +39,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-muted-foreground transition-colors hover:text-secondary"
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
                 >
                   About Us
                 </Link>
@@ -47,7 +47,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/calculator"
-                  className="text-sm text-muted-foreground transition-colors hover:text-secondary"
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
                 >
                   Calculator
                 </Link>
@@ -64,7 +64,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://www.cpf.gov.sg"
-                  className="text-sm text-muted-foreground transition-colors hover:text-secondary"
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -74,7 +74,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://www.mom.gov.sg"
-                  className="text-sm text-muted-foreground transition-colors hover:text-secondary"
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -93,7 +93,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/ruchernchong/cpf-contribution-estimator"
-              className="text-muted-foreground transition-colors hover:text-secondary"
+              className="text-muted-foreground transition-colors hover:text-accent"
               target="_blank"
               rel="noopener noreferrer"
             >

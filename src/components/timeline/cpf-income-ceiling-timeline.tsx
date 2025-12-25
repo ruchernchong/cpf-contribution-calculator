@@ -54,7 +54,7 @@ const CPFIncomeCeilingTimeline = () => {
                     icon={CheckmarkCircle01Icon}
                     className={cn(
                       "size-6 flex-shrink-0 transition-colors",
-                      isCurrent ? "text-secondary" : "text-muted-foreground"
+                      isCurrent ? "text-accent" : "text-muted-foreground",
                     )}
                     strokeWidth={2}
                   />
@@ -62,7 +62,7 @@ const CPFIncomeCeilingTimeline = () => {
                     <div
                       className={cn(
                         "w-0.5 grow",
-                        isPast || isActive ? "bg-secondary" : "bg-border"
+                        isPast || isActive ? "bg-accent" : "bg-border",
                       )}
                     />
                   )}
@@ -75,7 +75,7 @@ const CPFIncomeCeilingTimeline = () => {
                     "mb-6 flex cursor-pointer flex-col gap-1 text-left transition-all hover:scale-105",
                     isActive && "scale-105",
                     isCurrent &&
-                      "rounded-lg border-2 border-secondary bg-secondary/5 p-3"
+                      "rounded-lg border-2 border-accent bg-accent/5 p-3",
                   )}
                   onClick={() => handleTimelineItemClick(date)}
                   disabled={isPending}
@@ -85,9 +85,9 @@ const CPFIncomeCeilingTimeline = () => {
                     className={cn(
                       "font-mono text-sm transition-colors",
                       isActive
-                        ? "font-semibold text-secondary"
+                        ? "font-semibold text-accent"
                         : "text-muted-foreground",
-                      isCurrent && "font-bold text-secondary"
+                      isCurrent && "font-bold text-accent",
                     )}
                   >
                     {formatDate(date)}
@@ -95,7 +95,7 @@ const CPFIncomeCeilingTimeline = () => {
                   <div
                     className={cn(
                       "font-bold text-lg text-foreground transition-colors",
-                      isCurrent && "text-xl"
+                      isCurrent && "text-xl",
                     )}
                   >
                     {formatCurrency(CPF_INCOME_CEILING[date])}
@@ -106,8 +106,8 @@ const CPFIncomeCeilingTimeline = () => {
                     </p>
                   )}
                   {isCurrent && (
-                    <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-secondary">
-                      <span className="inline-block size-2 animate-pulse rounded-full bg-secondary" />
+                    <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+                      <span className="inline-block size-2 animate-pulse rounded-full bg-accent" />
                       Current ceiling
                     </p>
                   )}
