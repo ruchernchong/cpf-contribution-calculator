@@ -27,8 +27,9 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-semibold text-foreground">Disclaimer</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              This calculator is an independent tool and is not affiliated with
-              the CPF Board or any government agency.
+              This calculator is an independent tool and is not affiliated with,
+              endorsed by, or connected to the CPF Board, Ministry of Manpower,
+              or any government agency.
             </p>
           </div>
 
