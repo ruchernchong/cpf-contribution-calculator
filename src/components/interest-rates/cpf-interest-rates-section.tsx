@@ -18,28 +18,28 @@ import { QuarterlyRatesTable } from "./quarterly-rates-table";
 
 export const CPFInterestRatesSection = () => {
   return (
-    <div className="space-y-12">
+    <div className="flex flex-col gap-12">
       {/* Overview Section */}
-      <div className="space-y-6">
+      <div className="flex flex-col gap-6">
         <Card className="shadow-md">
           <CardHeader>
             <CardTitle className="text-center">
               Understanding CPF Interest Rates
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="flex flex-col gap-6">
             <div className="grid gap-6 md:grid-cols-2">
-              {/* OA Floor Rate Card */}
-              <div className="rounded-lg border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="font-semibold text-blue-900">
+              {/* OA Floor Rate Card - Navy theme */}
+              <div className="flex flex-col gap-2 rounded-lg border border-chart-1/20 bg-chart-1/5 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-chart-1">
                     {CPF_ACCOUNT_INTEREST_MAP.OA}
                   </h3>
                   <Tooltip>
                     <TooltipTrigger className="cursor-help">
                       <HugeiconsIcon
                         icon={HelpCircleIcon}
-                        className="size-5 text-blue-600"
+                        className="size-5 text-chart-1"
                         strokeWidth={2}
                       />
                     </TooltipTrigger>
@@ -52,28 +52,28 @@ export const CPFInterestRatesSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <p className="mb-2 font-bold text-3xl text-blue-700">
+                <p className="font-mono text-3xl font-bold text-chart-1">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.OA / 100, {
                     decimalPlaces: 1,
                   })}{" "}
                   p.a.
                 </p>
-                <p className="text-blue-800 text-sm">
+                <p className="text-sm text-muted-foreground">
                   Fixed floor rate (not pegged to SGS)
                 </p>
               </div>
 
-              {/* SMRA Floor + Pegged Rate Card */}
-              <div className="rounded-lg border border-emerald-200 bg-gradient-to-br from-emerald-50 to-emerald-100 p-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="font-semibold text-emerald-900">
+              {/* SMRA Floor + Pegged Rate Card - Gold theme */}
+              <div className="flex flex-col gap-2 rounded-lg border border-secondary/20 bg-secondary/5 p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-secondary">
                     {CPF_ACCOUNT_INTEREST_MAP.SMRA}
                   </h3>
                   <Tooltip>
                     <TooltipTrigger className="cursor-help">
                       <HugeiconsIcon
                         icon={HelpCircleIcon}
-                        className="size-5 text-emerald-600"
+                        className="size-5 text-secondary"
                         strokeWidth={2}
                       />
                     </TooltipTrigger>
@@ -86,20 +86,20 @@ export const CPFInterestRatesSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <p className="mb-2 font-bold text-3xl text-emerald-700">
+                <p className="font-mono text-3xl font-bold text-secondary">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.SMRA / 100, {
                     decimalPlaces: 1,
                   })}{" "}
                   p.a.
                 </p>
-                <p className="mb-2 text-emerald-800 text-sm">
+                <p className="text-sm text-muted-foreground">
                   Floor rate (minimum guaranteed)
                 </p>
-                <div className="rounded bg-white/50 p-2">
-                  <p className="font-medium text-emerald-900 text-xs">
+                <div className="rounded bg-background/50 p-2">
+                  <p className="text-xs font-medium text-foreground">
                     Pegged Formula:
                   </p>
-                  <p className="text-emerald-800 text-xs">
+                  <p className="text-xs text-muted-foreground">
                     10-year SGS yield + 1% OR floor rate, whichever is higher
                   </p>
                 </div>
@@ -108,10 +108,10 @@ export const CPFInterestRatesSection = () => {
 
             {/* Key Differences Explanation */}
             <div className="rounded-lg border border-border bg-muted/50 p-4">
-              <h4 className="mb-3 font-semibold text-foreground">
+              <h4 className="pb-3 font-semibold text-foreground">
                 Floor Rate vs Pegged Rate
               </h4>
-              <div className="space-y-2 text-muted-foreground text-sm">
+              <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                 <div className="flex gap-2">
                   <span className="min-w-[120px] font-semibold">
                     Floor Rate:
@@ -148,7 +148,7 @@ export const CPFInterestRatesSection = () => {
 
       {/* Trend Chart Section */}
       <div>
-        <h3 className="mb-6 text-center font-semibold text-2xl">
+        <h3 className="pb-6 text-center text-2xl font-semibold">
           Interest Rate Trend
         </h3>
         <InterestRateTrendChart />
@@ -156,7 +156,7 @@ export const CPFInterestRatesSection = () => {
 
       {/* Quarterly Rates Section */}
       <div>
-        <h3 className="mb-6 text-center font-semibold text-2xl">
+        <h3 className="pb-6 text-center text-2xl font-semibold">
           Quarterly Interest Rates
         </h3>
         <QuarterlyRatesTable />

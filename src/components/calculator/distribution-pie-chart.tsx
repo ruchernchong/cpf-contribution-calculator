@@ -87,7 +87,7 @@ export const DistributionPieChart = ({ data }: Props) => {
                   <tspan
                     x={cx}
                     y={cy}
-                    className="fill-foreground font-bold text-3xl"
+                    className="fill-foreground font-mono text-2xl font-bold"
                   >
                     {formatCurrency(totalValue)}
                   </tspan>

@@ -20,21 +20,39 @@ const Banner = () => {
   );
 
   return (
-    <div className="sticky top-0 z-50 bg-zinc-800 py-2 text-zinc-50 backdrop-blur-md">
-      <div className="container mx-auto px-4 py-2">
-        <div className="flex flex-col items-center md:flex-row md:gap-4">
-          <div className="flex items-center md:gap-2">
-            <span className="font-semibold">Current Income Ceiling</span>
+    <div className="sticky top-16 z-40 overflow-hidden">
+      {/* Gradient background - Deep navy */}
+      <div className="relative bg-primary py-3">
+        {/* Subtle gold accent line at top */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-secondary to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center justify-center gap-2 md:flex-row md:gap-6">
+            {/* Label */}
+            <span className="text-sm font-medium uppercase tracking-wider text-primary-foreground/80">
+              Current Income Ceiling
+            </span>
+
+            {/* Divider - Gold dot */}
+            <span className="hidden size-1.5 rounded-full bg-secondary md:block" />
+
+            {/* Value - Large number in gold */}
+            <span className="font-mono text-2xl font-bold text-secondary">
+              {formatCurrency(useAnimatedNumber(currentCeiling))}
+            </span>
+
+            {/* Divider */}
+            <span className="hidden size-1.5 rounded-full bg-secondary/50 md:block" />
+
+            {/* Effective date */}
+            <span className="text-sm text-primary-foreground/70">
+              Effective from {formattedDate}
+            </span>
           </div>
-          <span className="hidden md:inline-block">•</span>
-          <span className="font-bold text-xl">
-            {formatCurrency(useAnimatedNumber(currentCeiling))}
-          </span>
-          <span className="hidden md:inline-block">•</span>
-          <span className="text-sm text-zinc-200">
-            Effective from {formattedDate}
-          </span>
         </div>
+
+        {/* Subtle gold accent line at bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
       </div>
     </div>
   );

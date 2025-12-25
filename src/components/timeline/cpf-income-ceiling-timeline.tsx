@@ -46,44 +46,44 @@ const CPFIncomeCeilingTimeline = () => {
 
             return (
               <li key={date}>
-                {index > 0 && <hr className={isActive ? "bg-primary" : ""} />}
+                {index > 0 && <hr className={isActive ? "bg-secondary" : ""} />}
                 <div className="timeline-middle">
                   <HugeiconsIcon
                     icon={CheckmarkCircle01Icon}
-                    className={`size-6 transition-colors ${isCurrent ? "text-primary" : ""}`}
+                    className={`size-6 transition-colors ${isCurrent ? "text-secondary" : ""}`}
                     strokeWidth={2}
                   />
                 </div>
                 <button
                   type="button"
-                  className={`${index % 2 === 0 ? "timeline-start" : "timeline-end"} mb-10 cursor-pointer text-left transition-all hover:scale-105 ${isActive ? "scale-105" : ""} ${isCurrent ? "rounded-lg border-2 border-primary bg-primary/5 p-3" : ""}`}
+                  className={`${index % 2 === 0 ? "timeline-start" : "timeline-end"} mb-10 flex cursor-pointer flex-col gap-1 text-left transition-all hover:scale-105 ${isActive ? "scale-105" : ""} ${isCurrent ? "rounded-lg border-2 border-secondary bg-secondary/5 p-3" : ""}`}
                   onClick={() => handleTimelineItemClick(date)}
                   disabled={isPending}
                   aria-busy={isPending}
                 >
                   <time
-                    className={`font-mono text-sm transition-colors ${isActive ? "font-semibold text-primary" : "text-muted-foreground"} ${isCurrent ? "font-bold text-primary" : ""}`}
+                    className={`font-mono text-sm transition-colors ${isActive ? "font-semibold text-secondary" : "text-muted-foreground"} ${isCurrent ? "font-bold text-secondary" : ""}`}
                   >
                     {formatDate(date)}
                   </time>
                   <div
-                    className={`font-bold text-lg transition-colors ${isActive ? "text-primary" : "text-foreground"} ${isCurrent ? "text-primary text-xl" : ""}`}
+                    className={`font-bold text-lg transition-colors ${isActive ? "text-foreground" : "text-foreground"} ${isCurrent ? "text-xl" : ""}`}
                   >
                     {formatCurrency(CPF_INCOME_CEILING[date])}
                   </div>
                   {index === 0 && (
-                    <p className="mt-1 text-muted-foreground text-xs">
+                    <p className="text-xs text-muted-foreground">
                       Pre-Budget 2023
                     </p>
                   )}
                   {isCurrent && (
-                    <p className="mt-1 flex items-center gap-1 font-semibold text-primary text-xs uppercase tracking-wide">
-                      <span className="inline-block size-2 animate-pulse rounded-full bg-primary" />
+                    <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-secondary">
+                      <span className="inline-block size-2 animate-pulse rounded-full bg-secondary" />
                       Current ceiling
                     </p>
                   )}
                   {isLast && (
-                    <p className="mt-1 text-muted-foreground text-xs">
+                    <p className="text-xs text-muted-foreground">
                       Final ceiling
                     </p>
                   )}
@@ -91,7 +91,9 @@ const CPFIncomeCeilingTimeline = () => {
                 {!isLast && (
                   <hr
                     className={
-                      index < dateKeys.indexOf(selectedDate) ? "bg-primary" : ""
+                      index < dateKeys.indexOf(selectedDate)
+                        ? "bg-secondary"
+                        : ""
                     }
                   />
                 )}

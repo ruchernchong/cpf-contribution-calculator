@@ -65,9 +65,9 @@ const UserInput = () => {
           Enter your details for CPF calculation
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="flex flex-col gap-6">
         {/* Birth Date Input */}
-        <div className="space-y-2">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <Label htmlFor="birthDate">Birth month and year</Label>
             <Tooltip>
@@ -95,19 +95,19 @@ const UserInput = () => {
             onChange={handleBirthDateChange}
             className={
               !isValidDateFormat(birthDate) && birthDate
-                ? "border-red-500 focus-visible:ring-red-500"
+                ? "border-accent focus-visible:ring-accent"
                 : ""
             }
           />
           {!isValidDateFormat(birthDate) && birthDate && (
-            <p className="text-red-500 text-xs">
+            <p className="text-xs text-accent">
               Please enter a valid date in MM/YYYY format
             </p>
           )}
         </div>
-        {/* Gross Income Input */}
 
-        <div className="space-y-2">
+        {/* Gross Income Input */}
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <Label htmlFor="grossIncome">Gross Monthly Income</Label>
             <Tooltip>
@@ -142,31 +142,33 @@ const UserInput = () => {
             min={0}
             disabled={isPending}
           />
-          {/* Remember Input Checkbox */}
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="remember"
-            checked={shouldStoreInput}
-            onCheckedChange={(checked) =>
-              startTransition(() => {
-                setSettings((setting) => ({
-                  ...setting,
-                  shouldStoreInput: Boolean(checked),
-                }));
-              })
-            }
-            disabled={isPending}
-          />
-          <Label htmlFor="remember" className="text-sm">
-            Store input on this browser?
-          </Label>
+        {/* Remember Input Checkbox */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="remember"
+              checked={shouldStoreInput}
+              onCheckedChange={(checked) =>
+                startTransition(() => {
+                  setSettings((setting) => ({
+                    ...setting,
+                    shouldStoreInput: Boolean(checked),
+                  }));
+                })
+              }
+              disabled={isPending}
+            />
+            <Label htmlFor="remember" className="text-sm">
+              Store input on this browser?
+            </Label>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            By ticking the above checkbox, the input will be stored on your own
+            browser. No data are being stored on any servers.
+          </p>
         </div>
-        <p className="text-muted-foreground text-xs">
-          By ticking the above checkbox, the input will be stored on your own
-          browser. No data are being stored on any servers.
-        </p>
       </CardContent>
       <CardFooter className="flex justify-end">
         <Button variant="outline" onClick={handleReset} disabled={isPending}>

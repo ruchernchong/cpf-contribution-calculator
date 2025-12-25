@@ -79,3 +79,30 @@ The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
 
 ### Key Components
 - **CPF Income Ceiling Timeline** (`cpf-income-ceiling-timeline.tsx`): Interactive timeline showing the progression of CPF income ceiling changes from pre-2023 to final 2026 ceiling, using DaisyUI timeline components
+
+## Design System
+
+See `SKILL.md` for complete design system documentation.
+
+### Key Principles
+
+- **Aesthetic:** Refined Financial + Singapore Identity (navy, gold, red)
+- **Colours:** OKLCH colour space via CSS variables in `globals.css`
+- **Typography:** Geist font family
+
+### Spacing Rules (IMPORTANT)
+
+- **NO margin-top or padding-top** - Use `mb-*`, `pb-*`, and `gap-*` instead
+- **Prefer `gap-*`** over `space-*` for flex/grid containers
+- Elements push content down, not pull from above
+
+### Tailwind CSS v4 Conventions
+
+- Use `size-*` instead of `w-* h-*` for square elements
+- Use `gap-*` instead of `space-*` where possible
+- CSS-first configuration in `globals.css` with `@theme inline`
+
+### Off-Limits
+
+- **DO NOT modify** `src/components/ui/*` - shadcn/ui components are styled via CSS variables
+- **Dark mode** - Currently out of scope, do not modify `.dark` selector styles
