@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CPF_INCOME_CEILING } from "@/constants";
+import { cn } from "@/lib/utils";
 import { findLatestIncomeCeilingDate } from "@/lib/find-latest-income-ceiling-date";
 import { formatCurrency, formatDate } from "@/lib/format";
 
@@ -38,36 +39,64 @@ const CPFIncomeCeilingTimeline = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+        <div className="flex flex-col">
           {dateKeys.map((date, index) => {
             const isActive = date === selectedDate;
             const isCurrent = date === currentIncomeCeilingDate;
             const isLast = index === dateKeys.length - 1;
+            const isPast = index < dateKeys.indexOf(selectedDate);
 
             return (
-              <li key={date}>
-                {index > 0 && <hr className={isActive ? "bg-secondary" : ""} />}
-                <div className="timeline-middle">
+              <div key={date} className="flex gap-4">
+                {/* Timeline track */}
+                <div className="flex flex-col items-center">
                   <HugeiconsIcon
                     icon={CheckmarkCircle01Icon}
-                    className={`size-6 transition-colors ${isCurrent ? "text-secondary" : ""}`}
+                    className={cn(
+                      "size-6 flex-shrink-0 transition-colors",
+                      isCurrent ? "text-secondary" : "text-muted-foreground"
+                    )}
                     strokeWidth={2}
                   />
+                  {!isLast && (
+                    <div
+                      className={cn(
+                        "w-0.5 grow",
+                        isPast || isActive ? "bg-secondary" : "bg-border"
+                      )}
+                    />
+                  )}
                 </div>
+
+                {/* Content */}
                 <button
                   type="button"
-                  className={`${index % 2 === 0 ? "timeline-start" : "timeline-end"} mb-10 flex cursor-pointer flex-col gap-1 text-left transition-all hover:scale-105 ${isActive ? "scale-105" : ""} ${isCurrent ? "rounded-lg border-2 border-secondary bg-secondary/5 p-3" : ""}`}
+                  className={cn(
+                    "mb-6 flex cursor-pointer flex-col gap-1 text-left transition-all hover:scale-105",
+                    isActive && "scale-105",
+                    isCurrent &&
+                      "rounded-lg border-2 border-secondary bg-secondary/5 p-3"
+                  )}
                   onClick={() => handleTimelineItemClick(date)}
                   disabled={isPending}
                   aria-busy={isPending}
                 >
                   <time
-                    className={`font-mono text-sm transition-colors ${isActive ? "font-semibold text-secondary" : "text-muted-foreground"} ${isCurrent ? "font-bold text-secondary" : ""}`}
+                    className={cn(
+                      "font-mono text-sm transition-colors",
+                      isActive
+                        ? "font-semibold text-secondary"
+                        : "text-muted-foreground",
+                      isCurrent && "font-bold text-secondary"
+                    )}
                   >
                     {formatDate(date)}
                   </time>
                   <div
-                    className={`font-bold text-lg transition-colors ${isActive ? "text-foreground" : "text-foreground"} ${isCurrent ? "text-xl" : ""}`}
+                    className={cn(
+                      "font-bold text-lg text-foreground transition-colors",
+                      isCurrent && "text-xl"
+                    )}
                   >
                     {formatCurrency(CPF_INCOME_CEILING[date])}
                   </div>
@@ -88,19 +117,10 @@ const CPFIncomeCeilingTimeline = () => {
                     </p>
                   )}
                 </button>
-                {!isLast && (
-                  <hr
-                    className={
-                      index < dateKeys.indexOf(selectedDate)
-                        ? "bg-secondary"
-                        : ""
-                    }
-                  />
-                )}
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </CardContent>
     </Card>
   );

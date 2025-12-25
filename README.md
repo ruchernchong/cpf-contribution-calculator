@@ -29,9 +29,9 @@ This calculator helps Singaporeans estimate their take-home income after CPF con
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (Beta) with React 19
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS 4.x with shadcn/ui and DaisyUI components
+- **Styling**: Tailwind CSS 4.x with shadcn/ui components
 - **State Management**: [Jotai](https://jotai.org/)
-- **UI Components**: Radix UI primitives, DaisyUI
+- **UI Components**: Base UI primitives
 - **Charts**: Recharts
 - **Testing**: Vitest with React Testing Library
 - **Linting**: Biome

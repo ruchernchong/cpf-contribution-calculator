@@ -73,12 +73,11 @@ The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
 
 ### UI Components
 - UI components in `src/components/ui/` are from shadcn/ui (excluded from Biome linting)
-- Custom components use Radix UI primitives with Tailwind CSS
-- Timeline components use DaisyUI for interactive timeline visualisation
+- Custom components use Base UI primitives with Tailwind CSS
 - Charts use Recharts library for data visualisation
 
 ### Key Components
-- **CPF Income Ceiling Timeline** (`cpf-income-ceiling-timeline.tsx`): Interactive timeline showing the progression of CPF income ceiling changes from pre-2023 to final 2026 ceiling, using DaisyUI timeline components
+- **CPF Income Ceiling Timeline** (`cpf-income-ceiling-timeline.tsx`): Interactive timeline showing the progression of CPF income ceiling changes from pre-2023 to final 2026 ceiling
 
 ## Design System
 
