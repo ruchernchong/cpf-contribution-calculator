@@ -1,6 +1,11 @@
 "use client";
 
-import { Monitor, Moon, Sun } from "lucide-react";
+import {
+  ComputerIcon,
+  Moon01Icon,
+  Sun01Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useCallback, useEffect, useState } from "react";
 import {
   Select,
@@ -14,19 +19,19 @@ const themeOptions = [
   {
     value: "light",
     label: "Light",
-    icon: Sun,
+    icon: Sun01Icon,
   },
   {
     value: "dark",
     label: "Dark",
-    icon: Moon,
+    icon: Moon01Icon,
   },
   {
     value: "system",
     label: "System",
-    icon: Monitor,
+    icon: ComputerIcon,
   },
-];
+] as const;
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState("system");
@@ -77,7 +82,8 @@ const ThemeToggle = () => {
     };
   }, [theme, applyTheme]);
 
-  const handleThemeChange = (newTheme: string) => {
+  const handleThemeChange = (newTheme: string | null) => {
+    if (!newTheme) return;
     const root = window.document.documentElement;
     setTheme(newTheme);
     applyTheme(newTheme, root);
@@ -88,14 +94,13 @@ const ThemeToggle = () => {
     <div>
       <Select value={theme} onValueChange={handleThemeChange}>
         <SelectTrigger aria-label="Select Theme">
-          <SelectValue placeholder="Select Theme" />
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {themeOptions.map(({ value, icon: Icon }) => (
+          {themeOptions.map(({ value, label, icon }) => (
             <SelectItem key={value} value={value}>
-              <div className="mr-2 flex items-center gap-2">
-                <Icon />
-              </div>
+              <HugeiconsIcon icon={icon} className="size-4" strokeWidth={2} />
+              <span>{label}</span>
             </SelectItem>
           ))}
         </SelectContent>

@@ -1,11 +1,11 @@
 "use client";
 
-import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
+import { HelpCircleIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
@@ -35,20 +35,22 @@ export const CPFInterestRatesSection = () => {
                   <h3 className="font-semibold text-blue-900">
                     {CPF_ACCOUNT_INTEREST_MAP.OA}
                   </h3>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <QuestionMarkCircleIcon className="h-5 w-5 cursor-help text-blue-600" />
-                      </TooltipTrigger>
-                      <TooltipContent className="max-w-xs">
-                        <p>
-                          The Ordinary Account (OA) has a fixed floor rate and
-                          is not pegged to SGS yields. It earns a minimum of
-                          2.5% per annum.
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="cursor-help">
+                      <HugeiconsIcon
+                        icon={HelpCircleIcon}
+                        className="size-5 text-blue-600"
+                        strokeWidth={2}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>
+                        The Ordinary Account (OA) has a fixed floor rate and is
+                        not pegged to SGS yields. It earns a minimum of 2.5% per
+                        annum.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
                 <p className="mb-2 font-bold text-3xl text-blue-700">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.OA / 100, {
@@ -67,20 +69,22 @@ export const CPFInterestRatesSection = () => {
                   <h3 className="font-semibold text-emerald-900">
                     {CPF_ACCOUNT_INTEREST_MAP.SMRA}
                   </h3>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <QuestionMarkCircleIcon className="h-5 w-5 cursor-help text-emerald-600" />
-                      </TooltipTrigger>
-                      <TooltipContent className="max-w-xs">
-                        <p>
-                          SMRA (Special, MediSave & Retirement Accounts)
-                          interest rate is pegged to the 12-month average of
-                          10-year SGS yield plus 1%, with a minimum floor of 4%.
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="cursor-help">
+                      <HugeiconsIcon
+                        icon={HelpCircleIcon}
+                        className="size-5 text-emerald-600"
+                        strokeWidth={2}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>
+                        SMRA (Special, MediSave & Retirement Accounts) interest
+                        rate is pegged to the 12-month average of 10-year SGS
+                        yield plus 1%, with a minimum floor of 4%.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
                 <p className="mb-2 font-bold text-3xl text-emerald-700">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.SMRA / 100, {
@@ -103,11 +107,11 @@ export const CPFInterestRatesSection = () => {
             </div>
 
             {/* Key Differences Explanation */}
-            <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
-              <h4 className="mb-3 font-semibold text-zinc-900">
+            <div className="rounded-lg border border-border bg-muted/50 p-4">
+              <h4 className="mb-3 font-semibold text-foreground">
                 Floor Rate vs Pegged Rate
               </h4>
-              <div className="space-y-2 text-sm text-zinc-700">
+              <div className="space-y-2 text-muted-foreground text-sm">
                 <div className="flex gap-2">
                   <span className="min-w-[120px] font-semibold">
                     Floor Rate:

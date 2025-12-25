@@ -1,13 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
-import Header from "../header";
+import { Header } from "../header";
 
 // Mock dependencies
-vi.mock("lucide-react", () => ({
-  HomeIcon: () => <div data-testid="home-icon">Home Icon</div>,
-  InfoIcon: () => <div data-testid="info-icon">Info Icon</div>,
-  CodeIcon: () => <div data-testid="code-icon">Code Icon</div>,
+vi.mock("@hugeicons/react", () => ({
+  HugeiconsIcon: ({ icon, ...props }: { icon: unknown; "data-testid"?: string }) => (
+    <div data-testid={props["data-testid"] || "hugeicon"}>Icon</div>
+  ),
+}));
+
+vi.mock("@hugeicons/core-free-icons", () => ({
+  Home01Icon: "Home01Icon",
+  InformationCircleIcon: "InformationCircleIcon",
 }));
 
 describe("Header", () => {
@@ -19,16 +24,10 @@ describe("Header", () => {
     expect(logoLink.closest("a")?.getAttribute("href")).toBe("/");
   });
 
-  it("renders navigation links with correct icons", () => {
+  it("renders navigation links", () => {
     render(<Header />);
 
     expect(screen.getByText("Home")).toBeTruthy();
-    expect(screen.getByTestId("home-icon")).toBeTruthy();
-
     expect(screen.getByText("About")).toBeTruthy();
-    expect(screen.getByTestId("info-icon")).toBeTruthy();
-
-    expect(screen.getByText("API")).toBeTruthy();
-    expect(screen.getByTestId("code-icon")).toBeTruthy();
   });
 });

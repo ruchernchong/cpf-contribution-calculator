@@ -1,4 +1,5 @@
-import { Home } from "lucide-react";
+import { Home01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +23,11 @@ const NotFound = () => (
         </p>
         <Link href="/" className="w-full">
           <Button className="w-full" variant="default">
-            <Home className="mr-2 h-4 w-4" />
+            <HugeiconsIcon
+              icon={Home01Icon}
+              className="mr-2 size-4"
+              strokeWidth={2}
+            />
             Back to Home
           </Button>
         </Link>

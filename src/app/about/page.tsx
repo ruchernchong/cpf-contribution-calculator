@@ -101,7 +101,7 @@ const About = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion className="w-full">
               {faqData.map(({ question, answer }) => {
                 const index = `${question}-${answer}`;
                 return (
@@ -109,7 +109,7 @@ const About = () => {
                     <AccordionTrigger className="text-left">
                       {question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-zinc-600">
+                    <AccordionContent className="text-muted-foreground">
                       {answer}
                     </AccordionContent>
                   </AccordionItem>

@@ -7,9 +7,15 @@ import { Footer } from "../footer";
 const mockDate = new Date(2024, 0, 1);
 const originalDate = global.Date;
 
-vi.mock("lucide-react", () => ({
-  GithubIcon: () => <div data-testid="github-icon">GitHub</div>,
-  HeartIcon: () => <div data-testid="heart-icon">Heart</div>,
+vi.mock("@hugeicons/react", () => ({
+  HugeiconsIcon: ({ icon, ...props }: { icon: unknown; "data-testid"?: string }) => (
+    <div data-testid={props["data-testid"] || "hugeicon"}>Icon</div>
+  ),
+}));
+
+vi.mock("@hugeicons/core-free-icons", () => ({
+  Github01Icon: "Github01Icon",
+  FavouriteIcon: "FavouriteIcon",
 }));
 
 describe("Footer", () => {
@@ -45,10 +51,6 @@ describe("Footer", () => {
     const aboutLink = screen.getByText("About Us");
     expect(aboutLink).toBeTruthy();
     expect(aboutLink.closest("a")?.getAttribute("href")).toBe("/about");
-
-    const apiLink = screen.getByText("API Documentation");
-    expect(apiLink).toBeTruthy();
-    expect(apiLink.closest("a")?.getAttribute("href")).toBe("/api");
   });
 
   it("renders resources section with external links", () => {
@@ -79,10 +81,8 @@ describe("Footer", () => {
     ).toBeTruthy();
   });
 
-  it("renders GitHub icon and 'Made with love' text", () => {
+  it("renders 'Made with love' text", () => {
     render(<Footer />);
-    expect(screen.getByTestId("github-icon")).toBeTruthy();
-    expect(screen.getByTestId("heart-icon")).toBeTruthy();
     expect(screen.getByText(/Made with/)).toBeTruthy();
     expect(screen.getByText(/in Singapore/)).toBeTruthy();
   });

@@ -1,6 +1,7 @@
 "use client";
 
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import { CheckmarkCircle01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtom } from "jotai";
 import { useTransition } from "react";
 import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
@@ -47,8 +48,10 @@ const CPFIncomeCeilingTimeline = () => {
               <li key={date}>
                 {index > 0 && <hr className={isActive ? "bg-primary" : ""} />}
                 <div className="timeline-middle">
-                  <CheckCircleIcon
+                  <HugeiconsIcon
+                    icon={CheckmarkCircle01Icon}
                     className={`size-6 transition-colors ${isCurrent ? "text-primary" : ""}`}
+                    strokeWidth={2}
                   />
                 </div>
                 <button

@@ -179,7 +179,9 @@ export const CPFInvestmentComparison = () => {
                 max={40}
                 step={1}
                 value={[years]}
-                onValueChange={([value]) => setYears(value)}
+                onValueChange={(value) =>
+                  setYears(Array.isArray(value) ? value[0] : value)
+                }
                 className="mt-2"
               />
             </div>

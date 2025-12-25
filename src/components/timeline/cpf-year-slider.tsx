@@ -22,8 +22,9 @@ const CPFYearSlider = () => {
 
   const dateKeys = Object.keys(CPF_INCOME_CEILING);
 
-  const handleValueChange = (value: number[]) => {
-    const selectedDate = dateKeys[value[0]];
+  const handleValueChange = (value: number | readonly number[]) => {
+    const index = Array.isArray(value) ? value[0] : value;
+    const selectedDate = dateKeys[index];
     setSliderValue(selectedDate);
     setLatestIncomeCeilingDate(selectedDate);
   };

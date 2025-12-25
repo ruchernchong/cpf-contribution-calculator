@@ -1,6 +1,7 @@
 "use client";
 
-import { AlertCircle, RefreshCw } from "lucide-react";
+import { AlertCircleIcon, RefreshIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { type ReactNode, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +27,11 @@ const RootError = ({ error, reset }: ErrorProps): ReactNode => {
       <Card className="w-full max-w-md">
         <CardHeader>
           <div className="flex items-center gap-2">
-            <AlertCircle className="h-6 w-6 text-red-500" />
+            <HugeiconsIcon
+              icon={AlertCircleIcon}
+              className="size-6 text-red-500"
+              strokeWidth={2}
+            />
             <CardTitle>Application Error</CardTitle>
           </div>
           <CardDescription>
@@ -43,7 +48,11 @@ const RootError = ({ error, reset }: ErrorProps): ReactNode => {
             </p>
           )}
           <Button onClick={reset} className="w-full" variant="default">
-            <RefreshCw className="mr-2 h-4 w-4" />
+            <HugeiconsIcon
+              icon={RefreshIcon}
+              className="mr-2 size-4"
+              strokeWidth={2}
+            />
             Try Again
           </Button>
         </CardContent>

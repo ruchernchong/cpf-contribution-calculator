@@ -1,4 +1,5 @@
-import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
+import { HelpCircleIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import { type ChangeEvent, useCallback, useEffect, useTransition } from "react";
@@ -18,7 +19,6 @@ import { Label } from "@/components/ui/label";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { formatDateInput, isValidDateFormat } from "@/utils/date-utils";
@@ -70,18 +70,20 @@ const UserInput = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Label htmlFor="birthDate">Birth month and year</Label>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <QuestionMarkCircleIcon className="h-4 w-4 cursor-help text-muted-foreground" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-xs">
-                    Your birth date affects your contribution rates
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger className="cursor-help">
+                <HugeiconsIcon
+                  icon={HelpCircleIcon}
+                  className="size-4 text-muted-foreground"
+                  strokeWidth={2}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="max-w-xs">
+                  Your birth date affects your contribution rates
+                </p>
+              </TooltipContent>
+            </Tooltip>
           </div>
           <Input
             type="text"
@@ -108,18 +110,20 @@ const UserInput = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Label htmlFor="grossIncome">Gross Monthly Income</Label>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <QuestionMarkCircleIcon className="h-4 w-4 cursor-help text-muted-foreground" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-xs">
-                    Your total monthly salary before any deductions
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger className="cursor-help">
+                <HugeiconsIcon
+                  icon={HelpCircleIcon}
+                  className="size-4 text-muted-foreground"
+                  strokeWidth={2}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="max-w-xs">
+                  Your total monthly salary before any deductions
+                </p>
+              </TooltipContent>
+            </Tooltip>
           </div>
           <Input
             id="grossIncome"
