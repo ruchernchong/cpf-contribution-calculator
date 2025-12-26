@@ -18,10 +18,10 @@ export default defineConfig({
       exclude: ["src/**/*.d.ts", "src/middleware.ts", "src/components/ui/**"],
       thresholds: {
         autoUpdate: (threshold) => Math.floor(threshold / 5) * 5,
-        statements: 20,
-        branches: 25,
+        statements: 25,
+        branches: 30,
         functions: 15,
-        lines: 20,
+        lines: 25,
       },
     },
   },

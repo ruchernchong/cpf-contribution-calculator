@@ -54,7 +54,7 @@ describe("Footer", () => {
 
   it("renders resources section with external links", () => {
     render(<Footer />);
-    expect(screen.getByText("Resources")).toBeTruthy();
+    expect(screen.getByText("Official Resources")).toBeTruthy();
 
     const cpfLink = screen.getByText("CPF Official Website");
     expect(cpfLink).toBeTruthy();
@@ -82,7 +82,15 @@ describe("Footer", () => {
 
   it("renders 'Made with love' text", () => {
     render(<Footer />);
-    expect(screen.getByText(/Made with/)).toBeTruthy();
-    expect(screen.getByText(/in Singapore/)).toBeTruthy();
+    // The text is split by an icon element, so use a function matcher
+    expect(
+      screen.getByText((_, element) => {
+        return (
+          element?.tagName === "SPAN" &&
+          element?.textContent?.includes("Made with") &&
+          element?.textContent?.includes("in Singapore")
+        );
+      }),
+    ).toBeTruthy();
   });
 });
