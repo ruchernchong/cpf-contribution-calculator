@@ -1,3 +1,20 @@
+## [1.12.0](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.11.2...v1.12.0) (2025-12-26)
+
+### Features
+
+* add 9 new CPF API endpoints with nuqs ([c0fcd5c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/c0fcd5ca32b1736448bc0ae10f2893e6d7b09d9d))
+* add age-groups and calculate endpoints ([dc9558d](https://github.com/ruchernchong/cpf-contribution-calculator/commit/dc9558d558c946cd6c02d1d635ebd7ffdefd6a71))
+* add developer portal with docs ([714fd7d](https://github.com/ruchernchong/cpf-contribution-calculator/commit/714fd7d404bf682a509eacfd20c336ec47926d38))
+
+### Bug Fixes
+
+* footer test failures ([986ab0d](https://github.com/ruchernchong/cpf-contribution-calculator/commit/986ab0d27fef06dd0583aee061dd20cecbd73497))
+* timeline selection visual feedback ([107df47](https://github.com/ruchernchong/cpf-contribution-calculator/commit/107df47cf1e3e058434fa9dfd02d2cb3b0b49960))
+
+### Reverts
+
+* restore full disclaimer text ([616d264](https://github.com/ruchernchong/cpf-contribution-calculator/commit/616d2647cb62d6c4e17466e0689ff1633b46579e))
+
 ## <small>1.11.2 (2025-12-25)</small>
 
 * chore: remove turbo.json ([b7ecf78](https://github.com/ruchernchong/cpf-contribution-calculator/commit/b7ecf78))
