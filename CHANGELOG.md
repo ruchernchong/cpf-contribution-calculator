@@ -1,3 +1,9 @@
+## [1.13.0](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.12.1...v1.13.0) (2025-12-26)
+
+### Features
+
+* add Fumadocs OpenAPI integration ([1050b65](https://github.com/ruchernchong/cpf-contribution-calculator/commit/1050b657554d7e7b85ff910f1cb6590fd34c188e))
+
 ## [1.12.1](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.12.0...v1.12.1) (2025-12-26)
 
 ### Bug Fixes
