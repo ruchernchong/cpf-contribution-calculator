@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { ReactNode } from "react";
 import type { WebApplication, WithContext } from "schema-dts";
 import Banner from "@/components/layout/banner";
@@ -68,15 +69,17 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html lang="en" className={geist.className}>
       <body className="flex min-h-screen flex-col bg-background text-foreground">
-        <Header />
-        <Banner />
-        <main className="container mx-auto flex flex-col gap-8 px-4 py-8">
-          <NavigationTabs />
-          {children}
-        </main>
-        <Footer />
-        <Analytics />
-        <StructuredData data={schema} />
+        <NuqsAdapter>
+          <Header />
+          <Banner />
+          <main className="container mx-auto flex flex-col gap-8 px-4 py-8">
+            <NavigationTabs />
+            {children}
+          </main>
+          <Footer />
+          <Analytics />
+          <StructuredData data={schema} />
+        </NuqsAdapter>
       </body>
     </html>
   );
