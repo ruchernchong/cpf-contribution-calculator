@@ -102,7 +102,7 @@ RESTful API endpoints under `/api/cpf/` provide programmatic access to CPF calcu
 
 ## Design System
 
-See `SKILL.md` for complete design system documentation.
+See `.claude/skills/design-language-system.md` for complete design system documentation.
 
 ### Key Principles
 
