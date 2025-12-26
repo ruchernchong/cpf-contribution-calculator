@@ -11,6 +11,7 @@ A Next.js application that calculates CPF (Central Provident Fund) contributions
 - `pnpm build` - Build for production
 - `pnpm start` - Start production server
 - `pnpm lint` - Run Biome linting
+- `pnpm format` - Format code with Biome
 - `pnpm test` - Run tests once with coverage
 - `pnpm test:watch` - Run tests in watch mode
 - `pnpm test:coverage` - Run tests with coverage report
@@ -52,6 +53,7 @@ State is managed through Jotai atoms in `src/atoms/`:
 - `user-input-atom.ts` - Form input state
 - `setting-atom.ts` - User settings (income, storage preferences)
 - `income-ceiling-atom.ts` - Income ceiling data and selected timeline date (`latestIncomeCeilingDateAtom`)
+- `year-slider-atom.ts` - Timeline year slider state
 
 ### CPF Calculation Logic
 The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
@@ -75,6 +77,25 @@ The core calculation happens in `src/lib/calculate-cpf-contribution.ts`:
 - UI components in `src/components/ui/` are from shadcn/ui (excluded from Biome linting)
 - Custom components use Base UI primitives with Tailwind CSS
 - Charts use Recharts library for data visualisation
+
+### Route Groups
+The application uses Next.js route groups for organisation:
+- `(main)` - Main application routes (calculator, about, interest-rates, investments)
+- `(docs)` - Developer portal routes powered by Fumadocs
+
+### Developer Portal
+Documentation site powered by Fumadocs at `/developer`:
+- **Configuration**: `source.config.ts` defines MDX processing with Twoslash support
+- **Content**: MDX files in `content/docs/` organised by category (api, examples, changelog)
+- **Features**: Interactive API documentation with TypeScript code examples, syntax highlighting with Twoslash
+
+### API Routes
+RESTful API endpoints under `/api/cpf/` provide programmatic access to CPF calculations:
+- **Calculation**: `/calculate`, `/calculate/batch`, `/projection`
+- **Age Groups**: `/age-groups`, `/age-group/find`, `/age/from-birthdate`
+- **Income Ceiling**: `/ceiling`, `/ceiling/timeline`
+- **Interest Rates**: `/interest-rates`, `/interest-rates/smra`, `/interest-rates/trend`
+- **Investment**: `/investment-comparison`
 
 ### Key Components
 - **CPF Income Ceiling Timeline** (`cpf-income-ceiling-timeline.tsx`): Interactive timeline showing the progression of CPF income ceiling changes from pre-2023 to final 2026 ceiling
