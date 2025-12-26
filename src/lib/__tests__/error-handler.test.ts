@@ -1,4 +1,4 @@
-import { AppError, handleError, captureError } from "../error-handler";
+import { AppError, captureError, handleError } from "../error-handler";
 
 describe("AppError", () => {
   it("should create an error with message", () => {
