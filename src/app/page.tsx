@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import type { SoftwareApplication, WithContext } from "schema-dts";
+import HeroSection from "@/components/home/hero-section";
+import InsightBanner from "@/components/home/insight-banner";
+import QuickActions from "@/components/home/quick-actions";
 import { StructuredData } from "@/components/seo/structured-data";
 import CPFIncomeCeilingTimeline from "@/components/timeline/cpf-income-ceiling-timeline";
 
@@ -37,7 +40,16 @@ const HomePage = () => {
   return (
     <>
       <StructuredData data={schema} />
-      <CPFIncomeCeilingTimeline />
+      <div className="flex flex-col gap-6">
+        <HeroSection />
+        <div className="grid gap-6 md:grid-cols-2">
+          <CPFIncomeCeilingTimeline />
+          <div className="flex flex-col gap-6">
+            <InsightBanner />
+            <QuickActions />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

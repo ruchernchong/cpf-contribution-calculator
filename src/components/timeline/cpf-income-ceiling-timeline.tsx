@@ -31,7 +31,7 @@ const CPFIncomeCeilingTimeline = () => {
   };
 
   return (
-    <Card className="mb-4 w-full shadow-md">
+    <Card className="h-fit shadow-md">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg">CPF Income Ceiling Timeline</CardTitle>
         <CardDescription>
