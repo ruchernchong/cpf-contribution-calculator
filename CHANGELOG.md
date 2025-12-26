@@ -1,3 +1,9 @@
+## [1.12.1](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.12.0...v1.12.1) (2025-12-26)
+
+### Bug Fixes
+
+* import errors in docs ([ba7b095](https://github.com/ruchernchong/cpf-contribution-calculator/commit/ba7b09516054679272f95f6029e827db9f6d9206))
+
 ## [1.12.0](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.11.2...v1.12.0) (2025-12-26)
 
 ### Features
