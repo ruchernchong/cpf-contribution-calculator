@@ -14,6 +14,7 @@ vi.mock("@hugeicons/react", () => ({
 }));
 
 vi.mock("@hugeicons/core-free-icons", () => ({
+  CodeIcon: "CodeIcon",
   Home01Icon: "Home01Icon",
   InformationCircleIcon: "InformationCircleIcon",
 }));
