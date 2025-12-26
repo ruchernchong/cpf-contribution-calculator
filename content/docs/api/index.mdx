@@ -1,0 +1,51 @@
+---
+title: API Reference
+description: Complete API documentation for all CPF endpoints
+---
+
+The CPF Contribution Estimator API provides 12 endpoints organised into 5 categories.
+
+## Base URL
+
+```
+https://cpf-contribution-estimator.vercel.app/api/cpf
+```
+
+## Endpoints Overview
+
+### Calculation
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/calculate` | Calculate CPF contributions for a single income |
+| POST | `/calculate/batch` | Batch calculation for multiple scenarios |
+| POST | `/projection` | Multi-year contribution projection |
+
+### Age Groups
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/age-groups` | List all 8 age groups with rates |
+| GET | `/age-group/find` | Find age group for a specific age |
+| GET | `/age/from-birthdate` | Convert birth date to age |
+
+### Income Ceiling
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/ceiling` | Get income ceiling for a specific date |
+| GET | `/ceiling/timeline` | Historical ceiling changes |
+
+### Interest Rates
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/interest-rates` | All CPF rates and SGS yields |
+| GET | `/interest-rates/smra` | Calculate SMRA rate |
+| GET | `/interest-rates/trend` | Historical rate trends |
+
+### Investment
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/investment-comparison` | Compare investment scenarios |

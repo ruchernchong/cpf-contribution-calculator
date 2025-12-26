@@ -1,4 +1,4 @@
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { POST } from "./route";
 
 const createRequest = (body: unknown): NextRequest => {

@@ -12,14 +12,14 @@ export const GET = async (request: Request): Promise<NextResponse> => {
   if (!sgsYield && sgsYield !== 0) {
     return NextResponse.json(
       { error: "sgsYield is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (sgsYield < 0) {
     return NextResponse.json(
       { error: "sgsYield must be a non-negative number" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -34,6 +34,6 @@ export const GET = async (request: Request): Promise<NextResponse> => {
       floorApplied,
       actualRate,
     },
-    { status: 200 }
+    { status: 200 },
   );
 };

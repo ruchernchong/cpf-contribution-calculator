@@ -1,4 +1,4 @@
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { POST } from "./route";
 
 const createRequest = (body: unknown): NextRequest => {
@@ -129,7 +129,7 @@ describe("POST /api/cpf/projection", () => {
     expect(secondYear.cumulative.totalContribution).toBeCloseTo(
       firstYear.cumulative.totalContribution +
         secondYear.contribution.totalContribution,
-      2
+      2,
     );
   });
 });

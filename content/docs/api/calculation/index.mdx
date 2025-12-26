@@ -1,0 +1,149 @@
+---
+title: Calculation
+description: Calculate CPF contributions and projections
+---
+
+Endpoints for calculating CPF contributions for single income, batch scenarios, and multi-year projections.
+
+## POST /calculate
+
+Calculate CPF contributions for a single income amount.
+
+### Request Body
+
+```typescript twoslash
+interface CalculateRequest {
+  income: number;    // Required - Monthly gross income (non-negative)
+  date?: string;     // Optional - Date in YYYY-MM-DD format (defaults to today)
+  age?: number;      // Optional - Age for age-group lookup
+}
+```
+
+### Response
+
+```typescript twoslash
+interface CalculateResponse {
+  contribution: {
+    totalContribution: number;
+    employer: number;
+    employee: number;
+  };
+  distribution: {
+    OA: number;
+    SA: number;
+    MA: number;
+  };
+  afterCpfContribution: number;
+}
+```
+
+### Example
+
+```bash
+curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"income": 5000, "age": 30}'
+```
+
+```json
+{
+  "contribution": {
+    "totalContribution": 1850,
+    "employer": 850,
+    "employee": 1000
+  },
+  "distribution": {
+    "OA": 1085.5,
+    "SA": 277.5,
+    "MA": 487
+  },
+  "afterCpfContribution": 4000
+}
+```
+
+---
+
+## POST /calculate/batch
+
+Calculate CPF contributions for multiple income scenarios (up to 100).
+
+### Request Body
+
+```typescript twoslash
+interface BatchCalculateRequest {
+  scenarios: Array<{
+    income: number;    // Required - Monthly income
+    date?: string;     // Optional - Date in YYYY-MM-DD
+    age?: number;      // Optional - Age for age-group lookup
+  }>;
+}
+```
+
+### Constraints
+
+- Maximum 100 scenarios per request
+- Array cannot be empty
+
+### Response
+
+Returns an array of `ComputedResult` objects matching input scenarios.
+
+### Example
+
+```bash
+curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/calculate/batch \
+  -H "Content-Type: application/json" \
+  -d '{"scenarios": [{"income": 4000}, {"income": 6000}, {"income": 8000}]}'
+```
+
+---
+
+## POST /projection
+
+Generate multi-year CPF contribution projection with cumulative totals.
+
+### Request Body
+
+```typescript twoslash
+interface ProjectionRequest {
+  income: number;    // Required - Monthly income (non-negative)
+  age: number;       // Required - Starting age
+  years: number;     // Required - Number of years to project (1-50)
+}
+```
+
+### Constraints
+
+- Maximum 50 years per request
+- All fields are required
+
+### Response
+
+```typescript twoslash
+interface ProjectionResponse {
+  input: { income: number; age: number; years: number };
+  projections: Array<{
+    year: number;
+    age: number;
+    ageGroup: string;
+    contribution: {
+      employee: number;
+      employer: number;
+      totalContribution: number;
+    };
+    cumulative: {
+      employee: number;
+      employer: number;
+      totalContribution: number;
+    };
+  }>;
+}
+```
+
+### Example
+
+```bash
+curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/projection \
+  -H "Content-Type: application/json" \
+  -d '{"income": 5000, "age": 30, "years": 5}'
+```

@@ -43,14 +43,14 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     if (income === undefined || income === null) {
       return NextResponse.json(
         { error: "income is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (typeof income !== "number" || income < 0) {
       return NextResponse.json(
         { error: "income must be a non-negative number" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -61,7 +61,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     if (typeof age !== "number" || age < 0) {
       return NextResponse.json(
         { error: "age must be a non-negative number" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -72,14 +72,14 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     if (typeof years !== "number" || years < 1) {
       return NextResponse.json(
         { error: "years must be a positive number" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (years > MAX_YEARS) {
       return NextResponse.json(
         { error: `Maximum ${MAX_YEARS} years allowed` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -98,7 +98,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
       const result = calculateCpfContribution(
         income,
         projectedYear.toString(),
-        { ageGroup }
+        { ageGroup },
       );
 
       const yearlyEmployee = result.contribution.employee * 12;
@@ -131,12 +131,12 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
         input: { income, age, years },
         projections,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch {
     return NextResponse.json(
       { error: "Invalid request body" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 };

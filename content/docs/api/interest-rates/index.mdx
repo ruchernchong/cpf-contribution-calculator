@@ -1,0 +1,107 @@
+---
+title: Interest Rates
+description: Access CPF interest rates and SGS yield data
+---
+
+Endpoints for retrieving CPF interest rate information.
+
+## GET /interest-rates
+
+Get all CPF interest rates and SGS yield data.
+
+### Response
+
+```typescript
+{
+  quarterlyRates: Array<{
+    quarter: string;
+    OA: number;
+    SA: number;
+    MA: number;
+    RA: number;
+  }>;
+  sgsYields: Array<{
+    month: string;
+    yield: number;
+  }>;
+}
+```
+
+### Example
+
+```bash
+curl https://cpf-contribution-estimator.vercel.app/api/cpf/interest-rates
+```
+
+---
+
+## GET /interest-rates/smra
+
+Calculate the SMRA (Special/MediSave/Retirement Account) rate based on SGS yield.
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `sgsYield` | float | Yes | SGS bond yield percentage (non-negative) |
+
+### Response
+
+```typescript
+{
+  sgsYield: number;       // Input SGS yield
+  peggedRate: number;     // SGS yield + pegged rate markup
+  floorApplied: boolean;  // Whether minimum floor rate was applied
+  actualRate: number;     // Final calculated SMRA rate
+}
+```
+
+### Example
+
+```bash
+curl "https://cpf-contribution-estimator.vercel.app/api/cpf/interest-rates/smra?sgsYield=3.5"
+```
+
+```json
+{
+  "sgsYield": 3.5,
+  "peggedRate": 4.5,
+  "floorApplied": false,
+  "actualRate": 4.5
+}
+```
+
+### Errors
+
+| Status | Error |
+|--------|-------|
+| 400 | Missing or invalid sgsYield parameter |
+
+---
+
+## GET /interest-rates/trend
+
+Calculate historical interest rate trends based on SGS yields.
+
+### Response
+
+```typescript
+Array<{
+  month: string;
+  sgsYield: number;
+  peggedRate: number;
+  actualRate: number;
+}>
+```
+
+### Example
+
+```bash
+curl https://cpf-contribution-estimator.vercel.app/api/cpf/interest-rates/trend
+```
+
+## CPF Interest Rate Information
+
+- **Ordinary Account (OA)**: Pegged to market rates, minimum 2.5% p.a.
+- **Special/MediSave/Retirement Accounts**: Higher rates, pegged to SGS yields + 1%
+- First $60,000 of combined CPF balances earns an extra 1% interest

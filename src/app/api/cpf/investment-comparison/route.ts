@@ -30,14 +30,14 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     if (principal === undefined || principal === null) {
       return NextResponse.json(
         { error: "principal is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (typeof principal !== "number" || principal < 0) {
       return NextResponse.json(
         { error: "principal must be a non-negative number" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -48,35 +48,35 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     if (typeof years !== "number" || years < 1) {
       return NextResponse.json(
         { error: "years must be a positive number" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (years > MAX_YEARS) {
       return NextResponse.json(
         { error: `Maximum ${MAX_YEARS} years allowed` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!scenarios || !Array.isArray(scenarios)) {
       return NextResponse.json(
         { error: "scenarios array is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (scenarios.length === 0) {
       return NextResponse.json(
         { error: "scenarios array cannot be empty" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (scenarios.length > MAX_SCENARIOS) {
       return NextResponse.json(
         { error: `Maximum ${MAX_SCENARIOS} scenarios allowed` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -86,20 +86,20 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
       if (!scenario.name || typeof scenario.name !== "string") {
         return NextResponse.json(
           { error: `Scenario ${i}: name is required` },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
       if (scenario.rate === undefined || typeof scenario.rate !== "number") {
         return NextResponse.json(
           { error: `Scenario ${i}: rate is required and must be a number` },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
 
     const results: ScenarioResult[] = scenarios.map((scenario) => {
-      const finalValue = principal * Math.pow(1 + scenario.rate / 100, years);
+      const finalValue = principal * (1 + scenario.rate / 100) ** years;
       const totalGrowth = finalValue - principal;
       const growthPercentage =
         principal > 0 ? (totalGrowth / principal) * 100 : 0;
@@ -118,12 +118,12 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
         input: { principal, years },
         results,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch {
     return NextResponse.json(
       { error: "Invalid request body" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 };

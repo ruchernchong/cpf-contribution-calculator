@@ -1,0 +1,13 @@
+{
+  "title": "Developer Portal",
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "getting-started",
+    "---API Reference---",
+    "api",
+    "---Resources---",
+    "examples",
+    "changelog"
+  ]
+}

@@ -1,4 +1,4 @@
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { POST } from "./route";
 
 const createRequest = (body: unknown): NextRequest => {
@@ -106,7 +106,9 @@ describe("POST /api/cpf/investment-comparison", () => {
     const data = await response.json();
 
     expect(response.status).toBe(400);
-    expect(data.error).toBe("Scenario 0: rate is required and must be a number");
+    expect(data.error).toBe(
+      "Scenario 0: rate is required and must be a number",
+    );
   });
 
   it("should return comparison results with correct structure", async () => {
@@ -152,7 +154,7 @@ describe("POST /api/cpf/investment-comparison", () => {
     const principal = 10000;
     const years = 10;
     const rate = 5;
-    const expectedFinalValue = principal * Math.pow(1 + rate / 100, years);
+    const expectedFinalValue = principal * (1 + rate / 100) ** years;
 
     const request = createRequest({
       principal,
@@ -166,7 +168,7 @@ describe("POST /api/cpf/investment-comparison", () => {
     expect(data.results[0].finalValue).toBeCloseTo(expectedFinalValue, 2);
     expect(data.results[0].totalGrowth).toBeCloseTo(
       expectedFinalValue - principal,
-      2
+      2,
     );
   });
 });

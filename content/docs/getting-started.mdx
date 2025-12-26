@@ -1,0 +1,97 @@
+---
+title: Getting Started
+description: Learn how to use the CPF Contribution Estimator API
+---
+
+This guide will help you get started with the CPF Contribution Estimator API.
+
+## Prerequisites
+
+No authentication is required. All endpoints are publicly accessible.
+
+## Making Your First Request
+
+### Using curl
+
+```bash
+curl https://cpf-contribution-estimator.vercel.app/api/cpf/age-groups
+```
+
+### Using JavaScript/TypeScript
+
+```typescript twoslash
+const response = await fetch(
+  "https://cpf-contribution-estimator.vercel.app/api/cpf/calculate",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ income: 5000, age: 30 }),
+  }
+);
+
+const data = await response.json();
+console.log(data);
+```
+
+### Using Python
+
+```python
+import requests
+
+response = requests.post(
+    "https://cpf-contribution-estimator.vercel.app/api/cpf/calculate",
+    json={"income": 5000, "age": 30}
+)
+
+data = response.json()
+print(data)
+```
+
+## Response Format
+
+All successful responses return JSON with the following structure:
+
+```json
+{
+  "contribution": {
+    "employee": 1000,
+    "employer": 850,
+    "totalContribution": 1850
+  },
+  "distribution": {
+    "OA": 1085.5,
+    "SA": 277.5,
+    "MA": 487
+  },
+  "afterCpfContribution": 4000
+}
+```
+
+## Error Handling
+
+When an error occurs, the API returns an appropriate HTTP status code with an error message:
+
+```json
+{
+  "error": "Income must be a non-negative number"
+}
+```
+
+### Common Status Codes
+
+| Status | Description |
+|--------|-------------|
+| 200 | Success |
+| 400 | Bad Request - Invalid parameters |
+| 404 | Not Found - Endpoint does not exist |
+| 500 | Internal Server Error |
+
+## Rate Limits
+
+There are currently no rate limits on the API. However, please use the API responsibly.
+
+## Next Steps
+
+- Explore the [API Reference](/developer/api) for detailed endpoint documentation
+- Check out [Examples](/developer/examples) for common use cases
+- View the [Changelog](/developer/changelog) for recent updates

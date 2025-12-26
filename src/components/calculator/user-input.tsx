@@ -100,7 +100,7 @@ const UserInput = () => {
             }
           />
           {!isValidDateFormat(birthDate) && birthDate && (
-            <p className="text-xs text-accent">
+            <p className="text-accent text-xs">
               Please enter a valid date in MM/YYYY format
             </p>
           )}
@@ -164,7 +164,7 @@ const UserInput = () => {
               Store input on this browser?
             </Label>
           </div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             By ticking the above checkbox, the input will be stored on your own
             browser. No data are being stored on any servers.
           </p>

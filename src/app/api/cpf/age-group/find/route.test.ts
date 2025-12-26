@@ -61,6 +61,6 @@ describe("GET /api/cpf/age-group/find", () => {
 
       expect(response.status).toBe(200);
       expect(data.description).toBe(expectedDescription);
-    }
+    },
   );
 });

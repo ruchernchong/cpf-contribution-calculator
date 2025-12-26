@@ -8,7 +8,7 @@ export const GET = async (request: Request): Promise<NextResponse> => {
   if (!birthDate) {
     return NextResponse.json(
       { error: "birthDate is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -16,7 +16,7 @@ export const GET = async (request: Request): Promise<NextResponse> => {
   if (!birthDatePattern.test(birthDate)) {
     return NextResponse.json(
       { error: "birthDate must be in MM/YYYY format" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -26,7 +26,7 @@ export const GET = async (request: Request): Promise<NextResponse> => {
     if (age < 0) {
       return NextResponse.json(
         { error: "birthDate cannot be in the future" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -34,7 +34,7 @@ export const GET = async (request: Request): Promise<NextResponse> => {
   } catch {
     return NextResponse.json(
       { error: "Invalid birthDate format" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 };

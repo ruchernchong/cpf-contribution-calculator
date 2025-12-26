@@ -1,0 +1,139 @@
+---
+title: Age Groups
+description: Retrieve CPF contribution and distribution rates by age bracket
+---
+
+Endpoints for accessing age group information and rates.
+
+## GET /age-groups
+
+Retrieve all available CPF age groups with contribution and distribution rates.
+
+### Response
+
+```typescript twoslash
+type AgeGroupsResponse = Array<{
+  description: string;           // e.g., "35 and below"
+  minAge: number;
+  maxAge?: number;
+  contributionRate: {
+    employee: number;            // Percentage as decimal
+    employer: number;
+  };
+  distributionRate: {
+    OA: number;                  // Ordinary Account %
+    SA: number;                  // Special Account %
+    MA: number;                  // MediSave Account %
+  };
+}>
+```
+
+### Example
+
+```bash
+curl https://cpf-contribution-estimator.vercel.app/api/cpf/age-groups
+```
+
+```json
+[
+  {
+    "description": "35 and below",
+    "minAge": 0,
+    "maxAge": 35,
+    "contributionRate": {
+      "employee": 0.2,
+      "employer": 0.17
+    },
+    "distributionRate": {
+      "OA": 0.6217,
+      "SA": 0.1621,
+      "MA": 0.2162
+    }
+  }
+]
+```
+
+---
+
+## GET /age-group/find
+
+Find the applicable age group for a specific age.
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `age` | integer | Yes | Age in years (non-negative) |
+
+### Response
+
+Returns a single `AgeGroup` object.
+
+### Example
+
+```bash
+curl "https://cpf-contribution-estimator.vercel.app/api/cpf/age-group/find?age=45"
+```
+
+```json
+{
+  "description": "Above 35 to 45",
+  "minAge": 36,
+  "maxAge": 45,
+  "contributionRate": {
+    "employee": 0.2,
+    "employer": 0.17
+  },
+  "distributionRate": {
+    "OA": 0.5677,
+    "SA": 0.1891,
+    "MA": 0.2432
+  }
+}
+```
+
+### Errors
+
+| Status | Error |
+|--------|-------|
+| 400 | Missing or invalid age parameter |
+
+---
+
+## GET /age/from-birthdate
+
+Convert a birth date to current age.
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `birthDate` | string | Yes | Date in MM/YYYY format (e.g., "03/1990") |
+
+### Response
+
+```typescript twoslash
+interface AgeFromBirthdateResponse {
+  birthDate: string;    // Input birth date
+  age: number;          // Calculated current age
+}
+```
+
+### Example
+
+```bash
+curl "https://cpf-contribution-estimator.vercel.app/api/cpf/age/from-birthdate?birthDate=03/1990"
+```
+
+```json
+{
+  "birthDate": "03/1990",
+  "age": 34
+}
+```
+
+### Errors
+
+| Status | Error |
+|--------|-------|
+| 400 | Invalid format, future date, or parse errors |

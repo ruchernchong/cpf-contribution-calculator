@@ -13,9 +13,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CPF_INCOME_CEILING } from "@/constants";
-import { cn } from "@/lib/utils";
 import { findLatestIncomeCeilingDate } from "@/lib/find-latest-income-ceiling-date";
 import { formatCurrency, formatDate } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 const CPFIncomeCeilingTimeline = () => {
   const [selectedDate, setSelectedDate] = useAtom(latestIncomeCeilingDateAtom);
@@ -93,25 +93,25 @@ const CPFIncomeCeilingTimeline = () => {
                   </time>
                   <div
                     className={cn(
-                      "font-bold text-lg text-foreground transition-colors",
+                      "font-bold text-foreground text-lg transition-colors",
                       isActive && "text-xl",
                     )}
                   >
                     {formatCurrency(CPF_INCOME_CEILING[date])}
                   </div>
                   {index === 0 && (
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       Pre-Budget 2023
                     </p>
                   )}
                   {isCurrent && (
-                    <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+                    <p className="flex items-center gap-2 font-semibold text-accent text-xs uppercase tracking-wide">
                       <span className="inline-block size-2 animate-pulse rounded-full bg-accent" />
                       Current ceiling
                     </p>
                   )}
                   {isLast && (
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       Final ceiling
                     </p>
                   )}

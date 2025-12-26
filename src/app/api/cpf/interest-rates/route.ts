@@ -10,6 +10,6 @@ export const GET = async (): Promise<NextResponse> => {
       quarterlyRates: QUARTERLY_CPF_RATES,
       sgsYields: SGS_YIELDS_MONTHLY,
     },
-    { status: 200 }
+    { status: 200 },
   );
 };

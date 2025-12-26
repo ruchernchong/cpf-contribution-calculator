@@ -1,12 +1,10 @@
-"use client";
-
 import { FavouriteIcon, Github01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
+    <footer className="border-border border-t bg-muted/30">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand Section */}
@@ -17,7 +15,7 @@ export function Footer() {
               </div>
               <span className="font-semibold text-lg">CPF Calculator</span>
             </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               Your trusted companion for CPF contribution calculations in
               Singapore.
             </p>
@@ -26,7 +24,7 @@ export function Footer() {
           {/* Disclaimer */}
           <div>
             <h3 className="mb-4 font-semibold text-foreground">Disclaimer</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               This calculator is an independent tool and is not affiliated with,
               endorsed by, or connected to the CPF Board, Ministry of Manpower,
               or any government agency.
@@ -40,7 +38,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
+                  className="text-muted-foreground text-sm transition-colors hover:text-accent"
                 >
                   About Us
                 </Link>
@@ -48,7 +46,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/calculator"
-                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
+                  className="text-muted-foreground text-sm transition-colors hover:text-accent"
                 >
                   Calculator
                 </Link>
@@ -65,7 +63,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://www.cpf.gov.sg"
-                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
+                  className="text-muted-foreground text-sm transition-colors hover:text-accent"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -75,7 +73,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://www.mom.gov.sg"
-                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
+                  className="text-muted-foreground text-sm transition-colors hover:text-accent"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -87,8 +85,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-border border-t pt-8 md:flex-row">
+          <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} CPF Calculator. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
@@ -105,7 +103,7 @@ export function Footer() {
               />
               <span className="sr-only">GitHub</span>
             </a>
-            <span className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="flex items-center gap-2 text-muted-foreground text-sm">
               Made with
               <HugeiconsIcon
                 icon={FavouriteIcon}

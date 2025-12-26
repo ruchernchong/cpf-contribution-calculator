@@ -1,4 +1,10 @@
+import { isMarkdownPreferred, rewritePath } from "fumadocs-core/negotiation";
 import { type NextRequest, NextResponse } from "next/server";
+
+const { rewrite: rewriteLLM } = rewritePath(
+  "/developer/*path",
+  "/developer/llms.mdx/*path",
+);
 
 export const proxy = (request: NextRequest) => {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
@@ -67,6 +73,13 @@ export const proxy = (request: NextRequest) => {
 
   for (const { key, value } of securityHeaders) {
     response.headers.set(key, value);
+  }
+
+  if (isMarkdownPreferred(request)) {
+    const result = rewriteLLM(request.nextUrl.pathname);
+    if (result) {
+      return NextResponse.rewrite(new URL(result, request.nextUrl));
+    }
   }
 
   return response;

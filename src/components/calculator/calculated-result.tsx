@@ -52,49 +52,49 @@ export const CalculatedResult = () => {
       <CardContent className="flex flex-col gap-4">
         <div>
           <div className="flex items-center justify-between border-b py-4">
-            <p className="text-sm text-muted-foreground">Age Group</p>
+            <p className="text-muted-foreground text-sm">Age Group</p>
             <p className="text-right font-medium">
               {ageGroup?.description || "Not specified"}
             </p>
           </div>
           <div className="flex items-center justify-between border-b py-4">
-            <p className="text-sm text-muted-foreground">Gross Income</p>
-            <p className="text-right font-mono font-medium">
+            <p className="text-muted-foreground text-sm">Gross Income</p>
+            <p className="text-right font-medium font-mono">
               {safeCurrency(useAnimatedNumber(monthlyGrossIncome))}
             </p>
           </div>
           <div className="flex items-center justify-between border-b py-4">
-            <p className="text-sm text-muted-foreground">Take-home Income</p>
-            <p className="text-right font-mono font-medium">
+            <p className="text-muted-foreground text-sm">Take-home Income</p>
+            <p className="text-right font-medium font-mono">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.afterCpfContribution),
               )}
             </p>
           </div>
           <div className="flex items-center justify-between border-b py-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Your contribution ({safePercent(contributionRate.employee)}%)
             </p>
-            <p className="text-right font-mono font-medium text-accent">
+            <p className="text-right font-medium font-mono text-accent">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.contribution.employee),
               )}
             </p>
           </div>
           <div className="flex items-center justify-between border-b py-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Company&apos;s contribution (
               {safePercent(contributionRate.employer)}
               %)
             </p>
-            <p className="text-right font-mono font-medium text-accent">
+            <p className="text-right font-medium font-mono text-accent">
               {safeCurrency(
                 useAnimatedNumber(contributionResult.contribution.employer),
               )}
             </p>
           </div>
           <div className="flex items-center justify-between py-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Total CPF contribution
             </p>
             <p className="text-right font-mono font-semibold text-accent">
@@ -108,10 +108,10 @@ export const CalculatedResult = () => {
         </div>
         <div className="rounded-md border border-accent/30 bg-accent/5 p-4">
           <div className="flex flex-col gap-1">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Remaining Additional Wage (AW) for CPF contribution
             </p>
-            <p className="font-mono text-lg font-medium">
+            <p className="font-medium font-mono text-lg">
               {safeCurrency(useAnimatedNumber(remainingAdditionalWage), 0)}
             </p>
           </div>

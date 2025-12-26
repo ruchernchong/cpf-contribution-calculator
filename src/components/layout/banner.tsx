@@ -29,7 +29,7 @@ const Banner = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-center gap-2 md:flex-row md:gap-6">
             {/* Label */}
-            <span className="text-sm font-medium uppercase tracking-wider text-primary-foreground/80">
+            <span className="font-medium text-primary-foreground/80 text-sm uppercase tracking-wider">
               Current Income Ceiling
             </span>
 
@@ -37,7 +37,7 @@ const Banner = () => {
             <span className="hidden size-1.5 rounded-full bg-accent md:block" />
 
             {/* Value - Large number */}
-            <span className="font-mono text-2xl font-bold text-primary-foreground">
+            <span className="font-bold font-mono text-2xl text-primary-foreground">
               {formatCurrency(useAnimatedNumber(currentCeiling))}
             </span>
 
@@ -45,7 +45,7 @@ const Banner = () => {
             <span className="hidden size-1.5 rounded-full bg-accent/50 md:block" />
 
             {/* Effective date */}
-            <span className="text-sm text-primary-foreground/70">
+            <span className="text-primary-foreground/70 text-sm">
               Effective from {formattedDate}
             </span>
           </div>

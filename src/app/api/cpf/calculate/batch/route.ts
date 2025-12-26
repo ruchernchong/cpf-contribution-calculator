@@ -31,21 +31,21 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     if (!scenarios || !Array.isArray(scenarios)) {
       return NextResponse.json(
         { error: "scenarios array is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (scenarios.length === 0) {
       return NextResponse.json(
         { error: "scenarios array cannot be empty" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (scenarios.length > MAX_SCENARIOS) {
       return NextResponse.json(
         { error: `Maximum ${MAX_SCENARIOS} scenarios allowed per request` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -55,14 +55,14 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
       if (scenario.income === undefined || scenario.income === null) {
         return NextResponse.json(
           { error: `Scenario ${i}: income is required` },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
       if (typeof scenario.income !== "number" || scenario.income < 0) {
         return NextResponse.json(
           { error: `Scenario ${i}: income must be a non-negative number` },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
@@ -72,7 +72,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
       ) {
         return NextResponse.json(
           { error: `Scenario ${i}: age must be a non-negative number` },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -89,7 +89,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
   } catch {
     return NextResponse.json(
       { error: "Invalid request body" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 };

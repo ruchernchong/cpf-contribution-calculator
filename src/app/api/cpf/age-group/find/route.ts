@@ -12,7 +12,7 @@ export const GET = async (request: Request): Promise<NextResponse> => {
   if (age < 0) {
     return NextResponse.json(
       { error: "age must be a non-negative number" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

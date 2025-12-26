@@ -1,4 +1,7 @@
+import { createMDX } from "fumadocs-mdx/next";
 import type { NextConfig } from "next";
+
+const withMDX = createMDX();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -8,12 +11,21 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+  serverExternalPackages: ["typescript", "twoslash"],
   typedRoutes: true,
   experimental: {
     mcpServer: true,
     turbopackFileSystemCacheForBuild: true,
     typedEnv: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/developer/:path*.mdx",
+        destination: "/developer/llms.mdx/:path*",
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

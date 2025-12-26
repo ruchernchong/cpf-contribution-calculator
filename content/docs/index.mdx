@@ -1,0 +1,43 @@
+---
+title: Developer Portal
+description: Build applications with the CPF Contribution Estimator API
+---
+
+Welcome to the CPF Contribution Estimator Developer Portal. This documentation provides everything you need to integrate CPF contribution calculations into your applications.
+
+## Getting Started
+
+The CPF API provides programmatic access to Singapore CPF contribution calculations, age group rates, income ceiling data, and interest rate information.
+
+### Base URL
+
+All API endpoints are available at:
+
+```
+https://cpf-contribution-estimator.vercel.app/api/cpf
+```
+
+### Quick Example
+
+Calculate CPF contributions for a monthly income:
+
+```bash
+curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"income": 5000}'
+```
+
+## API Categories
+
+- **[Calculation](/developer/api/calculation)** - Calculate CPF contributions, batch processing, and multi-year projections
+- **[Age Groups](/developer/api/age-groups)** - Retrieve contribution and distribution rates by age bracket
+- **[Income Ceiling](/developer/api/ceiling)** - Get current and historical CPF income ceiling values
+- **[Interest Rates](/developer/api/interest-rates)** - Access CPF interest rates and SGS yield data
+- **[Investment](/developer/api/investment)** - Compare investment scenarios with compound interest
+
+## Features
+
+- **No Authentication Required** - All endpoints are publicly accessible
+- **JSON Responses** - All endpoints return JSON data
+- **Comprehensive Validation** - Clear error messages for invalid requests
+- **Up-to-date Data** - Reflects the latest CPF rates and ceiling changes

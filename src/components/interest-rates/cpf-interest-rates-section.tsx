@@ -52,13 +52,13 @@ export const CPFInterestRatesSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <p className="font-mono text-3xl font-bold text-chart-1">
+                <p className="font-bold font-mono text-3xl text-chart-1">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.OA / 100, {
                     decimalPlaces: 1,
                   })}{" "}
                   p.a.
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Fixed floor rate (not pegged to SGS)
                 </p>
               </div>
@@ -86,20 +86,20 @@ export const CPFInterestRatesSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <p className="font-mono text-3xl font-bold text-primary">
+                <p className="font-bold font-mono text-3xl text-primary">
                   {formatPercentage(CPF_INTEREST_FLOOR_RATES.SMRA / 100, {
                     decimalPlaces: 1,
                   })}{" "}
                   p.a.
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Floor rate (minimum guaranteed)
                 </p>
                 <div className="rounded bg-background/50 p-2">
-                  <p className="text-xs font-medium text-foreground">
+                  <p className="font-medium text-foreground text-xs">
                     Pegged Formula:
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     10-year SGS yield + 1% OR floor rate, whichever is higher
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export const CPFInterestRatesSection = () => {
               <h4 className="pb-3 font-semibold text-foreground">
                 Floor Rate vs Pegged Rate
               </h4>
-              <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <div className="flex flex-col gap-2 text-muted-foreground text-sm">
                 <div className="flex gap-2">
                   <span className="min-w-[120px] font-semibold">
                     Floor Rate:
@@ -148,7 +148,7 @@ export const CPFInterestRatesSection = () => {
 
       {/* Trend Chart Section */}
       <div>
-        <h3 className="pb-6 text-center text-2xl font-semibold">
+        <h3 className="pb-6 text-center font-semibold text-2xl">
           Interest Rate Trend
         </h3>
         <InterestRateTrendChart />
@@ -156,7 +156,7 @@ export const CPFInterestRatesSection = () => {
 
       {/* Quarterly Rates Section */}
       <div>
-        <h3 className="pb-6 text-center text-2xl font-semibold">
+        <h3 className="pb-6 text-center font-semibold text-2xl">
           Quarterly Interest Rates
         </h3>
         <QuarterlyRatesTable />

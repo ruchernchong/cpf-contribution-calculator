@@ -86,11 +86,31 @@ pnpm test:watch
 pnpm test:coverage
 ```
 
+## Developer Portal
+
+The application includes a comprehensive API documentation portal at `/developer` with:
+
+- **Getting Started** - Quick start guide for developers
+- **API Reference** - Complete documentation for all 12 endpoints
+- **Examples** - Code samples in JavaScript/TypeScript and Python
+- **Changelog** - Version history and updates
+
+### API Endpoints
+
+| Category | Endpoints |
+|----------|-----------|
+| Calculation | `/calculate`, `/calculate/batch`, `/projection` |
+| Age Groups | `/age-groups`, `/age-group/find`, `/age/from-birthdate` |
+| Income Ceiling | `/ceiling`, `/ceiling/timeline` |
+| Interest Rates | `/interest-rates`, `/interest-rates/smra`, `/interest-rates/trend` |
+| Investment | `/investment-comparison` |
+
 ## Project Structure
 
 ```
 src/
 ├── app/              # Next.js app directory (routes, layouts)
+│   └── developer/   # Developer portal (Fumadocs)
 ├── atoms/            # Jotai state atoms
 ├── components/       # React components
 │   └── ui/          # shadcn/ui components
@@ -99,6 +119,8 @@ src/
 ├── types/           # TypeScript type definitions
 ├── constants/       # CPF income ceilings by year
 └── utils/           # Utility functions
+content/
+└── docs/            # Developer portal MDX content
 ```
 
 ## Contributing

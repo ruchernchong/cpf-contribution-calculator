@@ -56,6 +56,6 @@ describe("GET /api/cpf/interest-rates/smra", () => {
       expect(data.peggedRate).toBe(peggedRate);
       expect(data.floorApplied).toBe(floorApplied);
       expect(data.actualRate).toBe(actualRate);
-    }
+    },
   );
 });
