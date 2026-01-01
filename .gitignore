@@ -3,6 +3,7 @@ node_modules
 
 # Build output
 .next
+next-env.d.ts
 .source
 dev-dist
 dist
