@@ -1,12 +1,27 @@
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { ReactNode } from "react";
 import type { WebApplication, WithContext } from "schema-dts";
 import { StructuredData } from "@/components/seo/structured-data";
 
 const geist = Geist({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "CPF Contribution Estimator | Calculate Singapore CPF Contributions",
+  description:
+    "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
+  keywords:
+    "CPF, contributions, Singapore, calculator, estimator, income ceiling, 2023",
+  authors: [
+    {
+      name: "Ru Chern Chong",
+      url: "https://ruchern.dev",
+    },
+  ],
+};
 
 const schema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
@@ -30,7 +45,7 @@ const schema: WithContext<WebApplication> = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: ReactNode }>): ReactNode {
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={geist.className}>
       <body className="flex min-h-screen flex-col">

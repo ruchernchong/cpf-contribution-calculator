@@ -7,7 +7,7 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export default function TwitterImage(): ImageResponse {
+export default async function Image() {
   return new ImageResponse(
     <div
       style={{
