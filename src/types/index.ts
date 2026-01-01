@@ -46,6 +46,13 @@ export interface ComputedResult {
   afterCpfContribution: number;
 }
 
+// Interface for ceiling comparison result
+export interface CeilingComparisonResult {
+  preSept2023Result: ComputedResult;
+  takeHomePayDifference: number; // positive = old ceiling gave more take-home
+  totalContributionDifference: number; // negative = new ceiling contributes more CPF
+}
+
 // Interface for FAQ structure
 export interface FAQ {
   question: string;

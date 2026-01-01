@@ -7,8 +7,13 @@ import {
   hasCpfContributionAtom,
 } from "@/atoms/result-atom";
 import { CalculatedResult } from "@/components/calculator/calculated-result";
+import CeilingComparisonCard from "@/components/calculator/ceiling-comparison-card";
 import DistributionView from "@/components/calculator/distribution-view";
 import UserInput from "@/components/calculator/user-input";
+
+const ComparisonFallback = () => (
+  <div className="h-64 w-full animate-pulse rounded-lg bg-zinc-200" />
+);
 
 const DistributionFallback = () => (
   <div>
@@ -23,7 +28,7 @@ const CalculatorContent = () => {
 
   return (
     <div>
-      <div className="mb-12 grid gap-8 md:grid-cols-2">
+      <div className="mb-8 grid gap-8 md:grid-cols-2">
         <Suspense
           fallback={
             <div className="h-96 animate-pulse rounded-lg bg-zinc-200" />
@@ -37,6 +42,11 @@ const CalculatorContent = () => {
           }
         >
           <CalculatedResult />
+        </Suspense>
+      </div>
+      <div className="mb-8">
+        <Suspense fallback={<ComparisonFallback />}>
+          <CeilingComparisonCard />
         </Suspense>
       </div>
       {hasCpfContribution && (
