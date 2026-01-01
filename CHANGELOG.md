@@ -1,3 +1,9 @@
+## [1.15.1](https://github.com/ruchernchong/simplycpf/compare/v1.15.0...v1.15.1) (2026-01-01)
+
+### Bug Fixes
+
+* seo metadata and icon conflicts ([72825fe](https://github.com/ruchernchong/simplycpf/commit/72825fe8a8ad1898c4d333d69e88334922b51268))
+
 ## [1.15.0](https://github.com/ruchernchong/simplycpf/compare/v1.14.1...v1.15.0) (2026-01-01)
 
 ### Features
