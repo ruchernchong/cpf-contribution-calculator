@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { WebPage, WithContext } from "schema-dts";
 import CalculatorContent from "@/components/calculator/calculator-content";
 import { StructuredData } from "@/components/seo/structured-data";
+import { BASE_URL } from "@/config";
 
 export const metadata: Metadata = {
   title: "Calculator",
@@ -22,7 +23,7 @@ const CalculatorPage = () => {
     name: "SimplyCPF Calculator",
     description:
       "Calculate your CPF employee and employer contributions with instant results. View account distributions across Ordinary, Special, and MediSave accounts based on your age group.",
-    url: `https://${process.env.VERCEL_URL}/calculator`,
+    url: `${BASE_URL}/calculator`,
     inLanguage: "en-SG",
   };
 

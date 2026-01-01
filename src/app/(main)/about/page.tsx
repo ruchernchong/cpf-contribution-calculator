@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { AboutPage, WithContext } from "schema-dts";
 import { StructuredData } from "@/components/seo/structured-data";
+import { BASE_URL } from "@/config";
 import {
   Accordion,
   AccordionContent,
@@ -27,7 +28,7 @@ const About = () => {
     "@type": "AboutPage",
     name: "About SimplyCPF",
     description: "Information about SimplyCPF and frequently asked questions",
-    url: `https://${process.env.VERCEL_URL}/about`,
+    url: `${BASE_URL}/about`,
     mainEntity: {
       "@type": "FAQPage",
       mainEntity: faqData.map(({ question, answer }) => ({

@@ -1,7 +1,5 @@
 export const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  `https://${process.env.VERCEL_URL}` ||
-  `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  process.env.NEXT_PUBLIC_BASE_URL || `https://${process.env.VERCEL_URL}`;
 
 export const title = "SimplyCPF";
 export const description =

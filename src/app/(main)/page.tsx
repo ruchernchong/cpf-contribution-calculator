@@ -5,6 +5,7 @@ import InsightBanner from "@/components/home/insight-banner";
 import QuickActions from "@/components/home/quick-actions";
 import { StructuredData } from "@/components/seo/structured-data";
 import CPFIncomeCeilingTimeline from "@/components/timeline/cpf-income-ceiling-timeline";
+import { BASE_URL } from "@/config";
 
 export const metadata: Metadata = {
   title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
@@ -18,7 +19,7 @@ const HomePage = () => {
     "@type": "SoftwareApplication",
     name: "SimplyCPF",
     description: "Calculate CPF contributions based on income and ceiling",
-    url: `https://${process.env.VERCEL_URL}`,
+    url: BASE_URL,
     applicationCategory: "FinanceApplication",
     featureList: [
       "Calculate CPF contributions",

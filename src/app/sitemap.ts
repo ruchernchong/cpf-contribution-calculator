@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 import { BASE_URL } from "@/config";
-import { Metadata } from "next";
 
-export default async function sitemap(): Metadata.Sitemap {
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: BASE_URL,

@@ -6,6 +6,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { ReactNode } from "react";
 import type { WebApplication, WithContext } from "schema-dts";
 import { StructuredData } from "@/components/seo/structured-data";
+import { BASE_URL } from "@/config";
 
 const geist = Geist({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ const schema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "SimplyCPF",
-  url: `https://${process.env.VERCEL_URL}`,
+  url: BASE_URL,
   description:
     "Calculate your CPF contributions with the latest income ceiling changes. Your CPF, simplified.",
   applicationCategory: "FinanceApplication",
