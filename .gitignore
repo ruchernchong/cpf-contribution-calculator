@@ -5,10 +5,14 @@ node_modules
 .next
 next-env.d.ts
 .source
-dev-dist
+/out/
 dist
-dist-ssr
 *.local
+
+# Cache
+*.tsbuildinfo
+.swc/
+.turbo
 
 # Logs
 logs
@@ -27,6 +31,7 @@ coverage
 !.vscode/extensions.json
 .idea
 .DS_Store
+*.pem
 *.suo
 *.ntvs*
 *.njsproj
