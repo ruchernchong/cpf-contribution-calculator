@@ -2,6 +2,7 @@
 
 import { ArrowDown01Icon, ArrowUp01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { type Variants, motion } from "motion/react";
 import { useAtomValue } from "jotai";
 import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import { ceilingComparisonAtom } from "@/atoms/result-atom";
@@ -19,6 +20,8 @@ import {
 import useAnimatedNumber from "@/hooks/use-animated-number";
 import { formatCurrency } from "@/lib/format";
 import { cn } from "@/lib/utils";
+
+const MotionCard = motion.create(Card);
 
 const CeilingComparisonCard = () => {
   const comparison = useAtomValue(ceilingComparisonAtom);
@@ -49,13 +52,55 @@ const CeilingComparisonCard = () => {
     return null;
   }
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  };
+
+  const timelineVariants: Variants = {
+    hidden: { scaleX: 0 },
+    visible: {
+      scaleX: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <Card className="shadow-md">
+    <MotionCard
+      className="shadow-md"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <CardHeader>
-        <CardTitle>Ceiling Comparison</CardTitle>
-        <CardDescription>Impact of income ceiling changes</CardDescription>
+        <motion.div variants={itemVariants}>
+          <CardTitle>Ceiling Comparison</CardTitle>
+          <CardDescription>Impact of income ceiling changes</CardDescription>
+        </motion.div>
         {/* Timeline visual */}
-        <div className="mt-4 flex items-center gap-3">
+        <motion.div className="mt-4 flex items-center gap-3" variants={itemVariants}>
           <div className="flex flex-col items-center">
             <span className="font-mono font-semibold text-muted-foreground">
               {formatCurrency(CPF_INCOME_CEILING_BEFORE_SEPT_2023, 0)}
@@ -63,8 +108,16 @@ const CeilingComparisonCard = () => {
             <span className="text-muted-foreground text-xs">Pre-Sept 2023</span>
           </div>
           <div className="relative flex-1">
-            <div className="border-muted-foreground/40 border-t-2 border-dashed" />
-            <div className="-translate-y-1/2 absolute top-1/2 right-0 size-0 border-y-4 border-y-transparent border-l-6 border-l-muted-foreground/40" />
+            <motion.div
+              className="border-muted-foreground/40 border-t-2 border-dashed origin-left"
+              variants={timelineVariants}
+            />
+            <motion.div
+              className="-translate-y-1/2 absolute top-1/2 right-0 size-0 border-y-4 border-y-transparent border-l-6 border-l-muted-foreground/40"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
+            />
           </div>
           <div className="flex flex-col items-center">
             <span className="font-mono font-semibold text-accent">
@@ -72,25 +125,35 @@ const CeilingComparisonCard = () => {
             </span>
             <span className="text-muted-foreground text-xs">Current</span>
           </div>
-        </div>
+        </motion.div>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         {/* Comparison Grid */}
         <div className="grid gap-4 sm:grid-cols-2">
           {/* Take-home Pay Impact */}
-          <div className="rounded-lg border bg-muted/30 p-4">
+          <motion.div
+            className="rounded-lg border bg-muted/30 p-4"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          >
             <p className="mb-2 text-muted-foreground text-sm">
               Take-home pay impact
             </p>
             <div className="flex items-center gap-2">
-              <HugeiconsIcon
-                icon={takeHomeImpact >= 0 ? ArrowUp01Icon : ArrowDown01Icon}
-                className={cn(
-                  "size-5",
-                  takeHomeImpact >= 0 ? "text-emerald-600" : "text-amber-600",
-                )}
-                strokeWidth={2}
-              />
+              <motion.div
+                initial={{ rotate: takeHomeImpact >= 0 ? -90 : 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+              >
+                <HugeiconsIcon
+                  icon={takeHomeImpact >= 0 ? ArrowUp01Icon : ArrowDown01Icon}
+                  className={cn(
+                    "size-5",
+                    takeHomeImpact >= 0 ? "text-emerald-600" : "text-amber-600",
+                  )}
+                  strokeWidth={2}
+                />
+              </motion.div>
               <p
                 className={cn(
                   "font-mono font-semibold text-lg",
@@ -107,22 +170,32 @@ const CeilingComparisonCard = () => {
                   ? "More take-home under current ceiling"
                   : "No difference in take-home pay"}
             </p>
-          </div>
+          </motion.div>
 
           {/* CPF Contribution Impact */}
-          <div className="rounded-lg border bg-muted/30 p-4">
+          <motion.div
+            className="rounded-lg border bg-muted/30 p-4"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          >
             <p className="mb-2 text-muted-foreground text-sm">
               CPF contribution impact
             </p>
             <div className="flex items-center gap-2">
-              <HugeiconsIcon
-                icon={cpfImpact >= 0 ? ArrowUp01Icon : ArrowDown01Icon}
-                className={cn(
-                  "size-5",
-                  cpfImpact >= 0 ? "text-accent" : "text-muted-foreground",
-                )}
-                strokeWidth={2}
-              />
+              <motion.div
+                initial={{ rotate: cpfImpact >= 0 ? -90 : 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+              >
+                <HugeiconsIcon
+                  icon={cpfImpact >= 0 ? ArrowUp01Icon : ArrowDown01Icon}
+                  className={cn(
+                    "size-5",
+                    cpfImpact >= 0 ? "text-accent" : "text-muted-foreground",
+                  )}
+                  strokeWidth={2}
+                />
+              </motion.div>
               <p
                 className={cn(
                   "font-mono font-semibold text-lg",
@@ -139,12 +212,15 @@ const CeilingComparisonCard = () => {
                   ? "Less CPF under current ceiling"
                   : "No difference in CPF contributions"}
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Explanatory Note */}
         {ceilingHasIncreased && (
-          <div className="rounded-md bg-muted/50 p-3">
+          <motion.div
+            className="rounded-md bg-muted/50 p-3"
+            variants={itemVariants}
+          >
             <p className="text-muted-foreground text-sm">
               The CPF income ceiling increased from{" "}
               <span className="font-medium text-foreground">
@@ -158,10 +234,10 @@ const CeilingComparisonCard = () => {
               contributions, increasing retirement savings but reducing
               take-home pay.
             </p>
-          </div>
+          </motion.div>
         )}
       </CardContent>
-    </Card>
+    </MotionCard>
   );
 };
 
