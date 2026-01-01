@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { BASE_URL } from "@/config";
+import { Metadata } from "next";
 
-const sitemap = (): MetadataRoute.Sitemap => {
+export default async function sitemap(): Metadata.Sitemap {
   return [
     {
       url: BASE_URL,
@@ -34,6 +35,4 @@ const sitemap = (): MetadataRoute.Sitemap => {
       priority: 0.7,
     },
   ];
-};
-
-export default sitemap;
+}
