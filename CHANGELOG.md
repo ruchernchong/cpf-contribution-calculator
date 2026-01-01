@@ -1,3 +1,9 @@
+## [1.15.0](https://github.com/ruchernchong/simplycpf/compare/v1.14.1...v1.15.0) (2026-01-01)
+
+### Features
+
+* add llms.txt route ([d992a5a](https://github.com/ruchernchong/simplycpf/commit/d992a5ab9aaf79a0ac077e2775195943325a7fbf))
+
 ## [1.14.1](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.14.0...v1.14.1) (2026-01-01)
 
 ### Bug Fixes
