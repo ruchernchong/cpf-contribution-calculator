@@ -17,7 +17,7 @@ export function Header() {
             <Link href="/" className="group flex items-center gap-3">
               <Logo className="size-9 shadow-sm" />
               <span className="font-semibold text-foreground text-xl tracking-tight transition-colors group-hover:text-primary">
-                CPF Calculator
+                SimplyCPF
               </span>
             </Link>
 

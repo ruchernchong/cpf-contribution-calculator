@@ -10,17 +10,14 @@ export const metadata: Metadata = {
   title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
   description:
     "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase from $6,000 to $8,000 affects your CPF contributions.",
-  keywords:
-    "CPF income ceiling, CPF ceiling 2023, CPF ceiling 2026, income ceiling increase, CPF contribution limit, Singapore CPF ceiling",
 };
 
 const HomePage = () => {
   const schema: WithContext<SoftwareApplication> = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "CPF Contribution Estimator",
+    name: "SimplyCPF",
     description: "Calculate CPF contributions based on income and ceiling",
-    keywords: "CPF, contribution, calculator, Singapore, income ceiling",
     url: `https://${process.env.VERCEL_URL}`,
     applicationCategory: "FinanceApplication",
     featureList: [

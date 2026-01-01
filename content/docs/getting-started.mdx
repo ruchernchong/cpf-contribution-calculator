@@ -1,9 +1,9 @@
 ---
 title: Getting Started
-description: Learn how to use the CPF Contribution Estimator API
+description: Learn how to use the SimplyCPF API
 ---
 
-This guide will help you get started with the CPF Contribution Estimator API.
+This guide will help you get started with the SimplyCPF API.
 
 ## Prerequisites
 
@@ -14,14 +14,14 @@ No authentication is required. All endpoints are publicly accessible.
 ### Using curl
 
 ```bash
-curl https://cpf-contribution-estimator.vercel.app/api/cpf/age-groups
+curl https://simplycpf.com/api/cpf/age-groups
 ```
 
 ### Using JavaScript/TypeScript
 
 ```typescript twoslash
 const response = await fetch(
-  "https://cpf-contribution-estimator.vercel.app/api/cpf/calculate",
+  "https://simplycpf.com/api/cpf/calculate",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ console.log(data);
 import requests
 
 response = requests.post(
-    "https://cpf-contribution-estimator.vercel.app/api/cpf/calculate",
+    "https://simplycpf.com/api/cpf/calculate",
     json={"income": 5000, "age": 30}
 )
 

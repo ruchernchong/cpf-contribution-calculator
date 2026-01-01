@@ -40,7 +40,7 @@ interface CalculateResponse {
 ### Example
 
 ```bash
-curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/calculate \
+curl -X POST https://simplycpf.com/api/cpf/calculate \
   -H "Content-Type: application/json" \
   -d '{"income": 5000, "age": 30}'
 ```
@@ -91,7 +91,7 @@ Returns an array of `ComputedResult` objects matching input scenarios.
 ### Example
 
 ```bash
-curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/calculate/batch \
+curl -X POST https://simplycpf.com/api/cpf/calculate/batch \
   -H "Content-Type: application/json" \
   -d '{"scenarios": [{"income": 4000}, {"income": 6000}, {"income": 8000}]}'
 ```
@@ -143,7 +143,7 @@ interface ProjectionResponse {
 ### Example
 
 ```bash
-curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/projection \
+curl -X POST https://simplycpf.com/api/cpf/projection \
   -H "Content-Type: application/json" \
   -d '{"income": 5000, "age": 30, "years": 5}'
 ```

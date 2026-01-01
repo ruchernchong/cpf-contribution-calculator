@@ -12,7 +12,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <div className="mb-4 flex items-center gap-3">
               <Logo className="size-8 shadow-sm" />
-              <span className="font-semibold text-lg">CPF Calculator</span>
+              <span className="font-semibold text-lg">SimplyCPF</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Your trusted companion for CPF contribution calculations in
@@ -86,11 +86,11 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-border border-t pt-8 md:flex-row">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} CPF Calculator. All rights reserved.
+            © {new Date().getFullYear()} SimplyCPF. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/ruchernchong/cpf-contribution-estimator"
+              href="https://github.com/ruchernchong/simplycpf"
               className="text-muted-foreground transition-colors hover:text-accent"
               target="_blank"
               rel="noopener noreferrer"

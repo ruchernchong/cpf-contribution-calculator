@@ -1,9 +1,9 @@
 ---
 title: Developer Portal
-description: Build applications with the CPF Contribution Estimator API
+description: Build applications with the SimplyCPF API
 ---
 
-Welcome to the CPF Contribution Estimator Developer Portal. This documentation provides everything you need to integrate CPF contribution calculations into your applications.
+Welcome to the SimplyCPF Developer Portal. This documentation provides everything you need to integrate CPF contribution calculations into your applications.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ The CPF API provides programmatic access to Singapore CPF contribution calculati
 All API endpoints are available at:
 
 ```
-https://cpf-contribution-estimator.vercel.app/api/cpf
+https://simplycpf.com/api/cpf
 ```
 
 ### Quick Example
@@ -22,7 +22,7 @@ https://cpf-contribution-estimator.vercel.app/api/cpf
 Calculate CPF contributions for a monthly income:
 
 ```bash
-curl -X POST https://cpf-contribution-estimator.vercel.app/api/cpf/calculate \
+curl -X POST https://simplycpf.com/api/cpf/calculate \
   -H "Content-Type: application/json" \
   -d '{"income": 5000}'
 ```

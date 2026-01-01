@@ -1,17 +1,17 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "CPF Contribution Estimator API",
+    "title": "SimplyCPF API",
     "version": "1.0.0",
     "description": "API for calculating CPF (Central Provident Fund) contributions following Singapore's 2023 Budget changes to income ceilings.",
     "contact": {
-      "name": "CPF Contribution Estimator",
-      "url": "https://cpf-contribution-estimator.vercel.app"
+      "name": "SimplyCPF",
+      "url": "https://simplycpf.com"
     }
   },
   "servers": [
     {
-      "url": "https://cpf-contribution-estimator.vercel.app/api/cpf",
+      "url": "https://simplycpf.com/api/cpf",
       "description": "Production"
     },
     {

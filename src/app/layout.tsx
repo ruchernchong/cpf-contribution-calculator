@@ -10,11 +10,9 @@ import { StructuredData } from "@/components/seo/structured-data";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CPF Contribution Estimator | Calculate Singapore CPF Contributions",
+  title: "SimplyCPF | Your CPF, simplified.",
   description:
-    "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
-  keywords:
-    "CPF, contributions, Singapore, calculator, estimator, income ceiling, 2023",
+    "Calculate your CPF contributions with the latest income ceiling changes. Your CPF, simplified.",
   authors: [
     {
       name: "Ru Chern Chong",
@@ -26,10 +24,10 @@ export const metadata: Metadata = {
 const schema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "CPF Contribution Estimator",
+  name: "SimplyCPF",
   url: `https://${process.env.VERCEL_URL}`,
   description:
-    "Calculate your CPF contributions with the latest income ceiling changes. Accurate estimations based on 2023 Ministry of Finance updates.",
+    "Calculate your CPF contributions with the latest income ceiling changes. Your CPF, simplified.",
   applicationCategory: "FinanceApplication",
   operatingSystem: "All",
   offers: {

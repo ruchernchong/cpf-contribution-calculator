@@ -1,9 +1,9 @@
 export const BASE_URL =
   `https://${process.env.VERCEL_URL}` || "http://localhost:3000";
 
-export const title: string = "CPF Contribution Estimator";
+export const title: string = "SimplyCPF";
 export const description: string =
-  "Calculate your CPF contributions after the 2023 income ceiling changes. Updated with the latest Ministry of Finance announcements from Singapore Budget 2023.";
+  "Calculate your CPF contributions with the latest income ceiling changes. Your CPF, simplified.";
 
 export const CPF_TYPE = {
   OA: "OA",

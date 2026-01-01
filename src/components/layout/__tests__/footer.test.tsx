@@ -76,7 +76,7 @@ describe("Footer", () => {
   it("displays the current year in copyright text", () => {
     render(<Footer />);
     expect(
-      screen.getByText(/© 2024 CPF Calculator. All rights reserved./),
+      screen.getByText(/© 2024 SimplyCPF. All rights reserved./),
     ).toBeTruthy();
   });
 

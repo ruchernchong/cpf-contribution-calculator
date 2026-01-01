@@ -23,7 +23,7 @@ describe("Header", () => {
   it("renders the logo with link to homepage", () => {
     render(<Header />);
 
-    const logoLink = screen.getByText("CPF Calculator");
+    const logoLink = screen.getByText("SimplyCPF");
     expect(logoLink).toBeTruthy();
     expect(logoLink.closest("a")?.getAttribute("href")).toBe("/");
   });

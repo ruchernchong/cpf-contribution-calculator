@@ -1,11 +1,11 @@
-# CPF Contribution Estimator
+# SimplyCPF
 
-[![Version](https://img.shields.io/github/package-json/v/ruchernchong/cpf-contribution-estimator)](https://github.com/ruchernchong/cpf-contribution-estimator)
-[![License](https://img.shields.io/github/license/ruchernchong/cpf-contribution-estimator)](LICENSE)
+[![Version](https://img.shields.io/github/package-json/v/ruchernchong/simplycpf)](https://github.com/ruchernchong/simplycpf)
+[![License](https://img.shields.io/github/license/ruchernchong/simplycpf)](LICENSE)
 
 A modern web application to calculate CPF (Central Provident Fund) contributions following the 2023 income ceiling changes announced by Singapore's Ministry of Finance.
 
-**[🚀 Live Calculator](https://cpf-contribution-estimator.vercel.app)**
+**[🚀 Visit SimplyCPF](https://simplycpf.com)**
 
 ## Features
 
@@ -49,8 +49,8 @@ This calculator helps Singaporeans estimate their take-home income after CPF con
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruchernchong/cpf-contribution-estimator.git
-cd cpf-contribution-estimator
+git clone https://github.com/ruchernchong/simplycpf.git
+cd simplycpf
 
 # Install dependencies
 pnpm install

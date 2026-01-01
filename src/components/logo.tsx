@@ -5,7 +5,7 @@ interface LogoProps extends SVGProps<SVGSVGElement> {
 }
 
 /**
- * CPF Calculator Logo
+ * SimplyCPF Logo
  * Three ascending bars represent OA, SA, MA accounts
  * The enclosing shape forms a stylised "C"
  */
@@ -21,10 +21,10 @@ export function Logo({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={className}
-        aria-label="CPF Calculator logo"
+        aria-label="SimplyCPF logo"
         {...props}
       >
-        <title>CPF Calculator logo</title>
+        <title>SimplyCPF logo</title>
         {/* Background circle */}
         <rect width="32" height="32" rx="8" className="fill-primary" />
 
@@ -74,10 +74,10 @@ export function Logo({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="CPF Calculator logo"
+      aria-label="SimplyCPF logo"
       {...props}
     >
-      <title>CPF Calculator logo</title>
+      <title>SimplyCPF logo</title>
       {/* Logo mark */}
       <rect width="32" height="32" rx="8" className="fill-primary" />
       <rect
@@ -113,7 +113,7 @@ export function Logo({
         className="stroke-accent opacity-60"
       />
 
-      {/* Text: CPF Calculator */}
+      {/* Text: SimplyCPF */}
       <text
         x="42"
         y="21"
@@ -124,7 +124,7 @@ export function Logo({
           fontFamily: "var(--font-sans)",
         }}
       >
-        CPF Calculator
+        SimplyCPF
       </text>
     </svg>
   );

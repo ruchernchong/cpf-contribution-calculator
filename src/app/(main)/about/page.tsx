@@ -17,18 +17,16 @@ import {
 import faqData from "@/data/faq.json";
 
 export const metadata: Metadata = {
-  title: "About - CPF Contribution Estimator",
-  description:
-    "About the CPF Contribution Estimator and frequently asked questions",
+  title: "About",
+  description: "About SimplyCPF and frequently asked questions",
 };
 
 const About = () => {
   const schema: WithContext<AboutPage> = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: "About CPF Contribution Estimator",
-    description:
-      "Information about the CPF Contribution Estimator and frequently asked questions",
+    name: "About SimplyCPF",
+    description: "Information about SimplyCPF and frequently asked questions",
     url: `https://${process.env.VERCEL_URL}/about`,
     mainEntity: {
       "@type": "FAQPage",
@@ -49,14 +47,14 @@ const About = () => {
       <div className="space-y-8 p-6">
         <Card>
           <CardHeader>
-            <CardTitle>About CPF Contribution Estimator</CardTitle>
+            <CardTitle>About SimplyCPF</CardTitle>
             <CardDescription>
               Understanding your CPF contributions made simple
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              The CPF Contribution Estimator is a user-friendly tool designed to
+              SimplyCPF is a user-friendly tool designed to
               help Singapore Citizens and Permanent Residents estimate their CPF
               contributions based on their income and age group.
             </p>
@@ -97,7 +95,7 @@ const About = () => {
           <CardHeader>
             <CardTitle>Frequently Asked Questions</CardTitle>
             <CardDescription>
-              Common questions about the CPF Contribution Estimator
+              Common questions about SimplyCPF
             </CardDescription>
           </CardHeader>
           <CardContent>
