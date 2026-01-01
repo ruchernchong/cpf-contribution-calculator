@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
   description:
     "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase from $6,000 to $8,000 affects your CPF contributions.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const HomePage = () => {

@@ -6,20 +6,27 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { ReactNode } from "react";
 import type { WebApplication, WithContext } from "schema-dts";
 import { StructuredData } from "@/components/seo/structured-data";
-import { BASE_URL } from "@/config";
+import { BASE_URL, title } from "@/config";
 
 const geist = Geist({ subsets: ["latin"] });
 
+const description =
+  "Your CPF, simplified. Calculate your CPF contributions with the latest income ceiling changes.";
+
 export const metadata: Metadata = {
-  title: "SimplyCPF | Your CPF, simplified.",
-  description:
-    "Calculate your CPF contributions with the latest income ceiling changes. Your CPF, simplified.",
+  metadataBase: new URL(BASE_URL),
+  title,
+  description,
   authors: [
     {
       name: "Ru Chern Chong",
       url: "https://ruchern.dev",
     },
   ],
+  openGraph: {
+    siteName: title,
+    url: BASE_URL,
+  },
 };
 
 const schema: WithContext<WebApplication> = {

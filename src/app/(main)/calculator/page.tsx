@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Calculator",
   description:
     "Calculate your CPF employee and employer contributions with instant results. View account distributions across Ordinary, Special, and MediSave accounts based on your age group.",
+  alternates: {
+    canonical: "/calculator",
+  },
   twitter: {
     card: "summary_large_image",
     title: "Calculator",

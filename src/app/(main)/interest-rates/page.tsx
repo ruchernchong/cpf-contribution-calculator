@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     "View current CPF interest rates for Ordinary Account (OA), Special Account (SA), and MediSave Account (MA). Learn about CPF contribution distribution rates by age group.",
   keywords:
     "CPF interest rates, OA interest, SA interest, MA interest, CPF distribution rates, age group CPF, Singapore CPF rates",
+  alternates: {
+    canonical: "/interest-rates",
+  },
   twitter: {
     card: "summary_large_image",
     title: "CPF Interest Rates | OA, SA, MA Interest Rates & Distribution",

@@ -53,9 +53,15 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     return {};
   }
 
+  const slug = params.slug?.join("/") ?? "";
+  const canonical = slug ? `/docs/${slug}` : "/docs";
+
   return {
     title: page.data.title,
     description: page.data.description,
+    alternates: {
+      canonical,
+    },
     openGraph: {
       images: getPageImage(page).url,
     },

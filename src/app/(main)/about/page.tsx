@@ -20,6 +20,9 @@ import faqData from "@/data/faq.json";
 export const metadata: Metadata = {
   title: "About",
   description: "About SimplyCPF and frequently asked questions",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 const About = () => {
