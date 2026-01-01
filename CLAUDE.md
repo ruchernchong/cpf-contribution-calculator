@@ -12,9 +12,11 @@ A Next.js application that calculates CPF (Central Provident Fund) contributions
 - `pnpm start` - Start production server
 - `pnpm lint` - Run Biome linting
 - `pnpm format` - Format code with Biome
+- `pnpm typecheck` - Run TypeScript type checking
 - `pnpm test` - Run tests once with coverage
 - `pnpm test:watch` - Run tests in watch mode
 - `pnpm test:coverage` - Run tests with coverage report
+- `pnpm generate:docs` - Generate API documentation
 
 ## Code Style
 - **Language**: Use English (Singapore) spelling across documentation and copy
@@ -97,8 +99,31 @@ RESTful API endpoints under `/api/cpf/` provide programmatic access to CPF calcu
 - **Interest Rates**: `/interest-rates`, `/interest-rates/smra`, `/interest-rates/trend`
 - **Investment**: `/investment-comparison`
 
+Other API routes:
+- `/api/search` - Full-text search across documentation
+
+### LLM Integration Routes
+Routes for AI/LLM consumption following the llms.txt specification:
+- `/llms.txt` - Concise site summary for LLMs
+- `/docs/llms-full.txt` - Complete documentation in plain text
+- `/docs/llms.mdx/[...slug]` - Individual documentation pages in MDX format
+
+### Custom Hooks
+Located in `src/hooks/`:
+- `use-calculated-cpf.ts` - Hook for accessing calculated CPF contribution results
+- `use-form-state.ts` - Form state management for user input
+- `use-animated-number.tsx` - Animated number transitions for displaying results
+
+### Utilities
+- `src/lib/cache-headers.ts` - Standardised cache header utilities for API responses
+- `src/lib/error-handler.ts` - Centralised error handling with consistent API error responses
+- `src/lib/format.ts` - Number and currency formatting utilities
+- `src/config/index.ts` - Application configuration constants
+
 ### Key Components
 - **CPF Income Ceiling Timeline** (`cpf-income-ceiling-timeline.tsx`): Interactive timeline showing the progression of CPF income ceiling changes from pre-2023 to final 2026 ceiling
+- **PDF Export** (`cpf-results-pdf.tsx`, `download-pdf.tsx`): Generate and download CPF calculation results as PDF documents using `@react-pdf/renderer`
+- **Home Page Components**: `hero-section.tsx`, `insight-banner.tsx`, `quick-actions.tsx` for the landing page
 
 ## Design System
 
