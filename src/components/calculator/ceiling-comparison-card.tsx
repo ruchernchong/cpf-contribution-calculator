@@ -31,6 +31,9 @@ const CeilingComparisonCard = () => {
   const takeHomeImpact = -comparison.takeHomePayDifference;
   const cpfImpact = -comparison.totalContributionDifference;
 
+  // Hide the card if there are no differences to show
+  const hasNoDifference = takeHomeImpact === 0 && cpfImpact === 0;
+
   const animatedTakeHomeImpact = useAnimatedNumber(takeHomeImpact);
   const animatedCpfImpact = useAnimatedNumber(cpfImpact);
 
@@ -41,6 +44,10 @@ const CeilingComparisonCard = () => {
 
   const ceilingHasIncreased =
     currentCeiling > CPF_INCOME_CEILING_BEFORE_SEPT_2023;
+
+  if (hasNoDifference) {
+    return null;
+  }
 
   return (
     <Card className="shadow-md">
