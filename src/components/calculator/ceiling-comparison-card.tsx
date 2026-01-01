@@ -25,12 +25,14 @@ const CeilingComparisonCard = () => {
   const currentCeilingDate = useAtomValue(latestIncomeCeilingDateAtom);
   const currentCeiling = CPF_INCOME_CEILING[currentCeilingDate];
 
-  const animatedTakeHomeDiff = useAnimatedNumber(
-    comparison.takeHomePayDifference,
-  );
-  const animatedContributionDiff = useAnimatedNumber(
-    comparison.totalContributionDifference,
-  );
+  // Flip the perspective: show impact under CURRENT ceiling vs old
+  // Positive = you have MORE under current ceiling
+  // Negative = you have LESS under current ceiling
+  const takeHomeImpact = -comparison.takeHomePayDifference;
+  const cpfImpact = -comparison.totalContributionDifference;
+
+  const animatedTakeHomeImpact = useAnimatedNumber(takeHomeImpact);
+  const animatedCpfImpact = useAnimatedNumber(cpfImpact);
 
   const formatDifference = (value: number) => {
     const prefix = value > 0 ? "+" : "";
@@ -68,81 +70,65 @@ const CeilingComparisonCard = () => {
       <CardContent className="flex flex-col gap-4">
         {/* Comparison Grid */}
         <div className="grid gap-4 sm:grid-cols-2">
-          {/* Take-home Pay Difference */}
+          {/* Take-home Pay Impact */}
           <div className="rounded-lg border bg-muted/30 p-4">
             <p className="mb-2 text-muted-foreground text-sm">
-              Take-home pay difference
+              Take-home pay impact
             </p>
             <div className="flex items-center gap-2">
               <HugeiconsIcon
-                icon={
-                  comparison.takeHomePayDifference >= 0
-                    ? ArrowUp01Icon
-                    : ArrowDown01Icon
-                }
+                icon={takeHomeImpact >= 0 ? ArrowUp01Icon : ArrowDown01Icon}
                 className={cn(
                   "size-5",
-                  comparison.takeHomePayDifference >= 0
-                    ? "text-emerald-600"
-                    : "text-amber-600",
+                  takeHomeImpact >= 0 ? "text-emerald-600" : "text-amber-600",
                 )}
                 strokeWidth={2}
               />
               <p
                 className={cn(
                   "font-mono font-semibold text-lg",
-                  comparison.takeHomePayDifference >= 0
-                    ? "text-emerald-600"
-                    : "text-amber-600",
+                  takeHomeImpact >= 0 ? "text-emerald-600" : "text-amber-600",
                 )}
               >
-                {formatDifference(animatedTakeHomeDiff)}
+                {formatDifference(animatedTakeHomeImpact)}
               </p>
             </div>
             <p className="mt-2 text-muted-foreground text-xs">
-              {comparison.takeHomePayDifference > 0
-                ? "More take-home under old ceiling"
-                : comparison.takeHomePayDifference < 0
-                  ? "Less take-home under current ceiling"
+              {takeHomeImpact < 0
+                ? "Less take-home under current ceiling"
+                : takeHomeImpact > 0
+                  ? "More take-home under current ceiling"
                   : "No difference in take-home pay"}
             </p>
           </div>
 
-          {/* Total Contribution Difference */}
+          {/* CPF Contribution Impact */}
           <div className="rounded-lg border bg-muted/30 p-4">
             <p className="mb-2 text-muted-foreground text-sm">
-              Total CPF contribution difference
+              CPF contribution impact
             </p>
             <div className="flex items-center gap-2">
               <HugeiconsIcon
-                icon={
-                  comparison.totalContributionDifference <= 0
-                    ? ArrowUp01Icon
-                    : ArrowDown01Icon
-                }
+                icon={cpfImpact >= 0 ? ArrowUp01Icon : ArrowDown01Icon}
                 className={cn(
                   "size-5",
-                  comparison.totalContributionDifference <= 0
-                    ? "text-accent"
-                    : "text-muted-foreground",
+                  cpfImpact >= 0 ? "text-accent" : "text-muted-foreground",
                 )}
                 strokeWidth={2}
               />
               <p
                 className={cn(
                   "font-mono font-semibold text-lg",
-                  comparison.totalContributionDifference <= 0
-                    ? "text-accent"
-                    : "text-muted-foreground",
+                  cpfImpact >= 0 ? "text-accent" : "text-muted-foreground",
                 )}
               >
-                {formatDifference(Math.abs(animatedContributionDiff) * -1)}
+                {formatDifference(animatedCpfImpact)}
               </p>
             </div>
             <p className="mt-2 text-muted-foreground text-xs">
-              {comparison.totalContributionDifference < 0
+              {cpfImpact > 0
                 ? "More CPF savings under current ceiling"
-                : comparison.totalContributionDifference > 0
+                : cpfImpact < 0
                   ? "Less CPF under current ceiling"
                   : "No difference in CPF contributions"}
             </p>
