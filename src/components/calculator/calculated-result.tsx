@@ -1,4 +1,4 @@
-import { File01Icon, Share01Icon } from "@hugeicons/core-free-icons";
+import { File01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtomValue } from "jotai";
 import { contributionRateAtom } from "@/atoms/income-ceiling-atom";
@@ -117,18 +117,10 @@ export const CalculatedResult = () => {
           </div>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter>
         <Button variant="outline" size="sm" className="gap-2">
           <HugeiconsIcon icon={File01Icon} className="size-4" strokeWidth={2} />
           Download PDF
-        </Button>
-        <Button variant="outline" size="sm" className="gap-2">
-          <HugeiconsIcon
-            icon={Share01Icon}
-            className="size-4"
-            strokeWidth={2}
-          />
-          Share Results
         </Button>
       </CardFooter>
     </Card>
