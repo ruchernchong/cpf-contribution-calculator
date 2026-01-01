@@ -1,6 +1,7 @@
 import { FavouriteIcon, Github01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 
 export function Footer() {
   return (
@@ -10,9 +11,7 @@ export function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="font-bold">C</span>
-              </div>
+              <Logo className="size-8 shadow-sm" />
               <span className="font-semibold text-lg">CPF Calculator</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
