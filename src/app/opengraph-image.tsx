@@ -17,7 +17,7 @@ export default function OpenGraphImage(): ImageResponse {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+        background: "#ffffff",
         fontFamily: "system-ui, sans-serif",
       }}
     >
@@ -27,11 +27,11 @@ export default function OpenGraphImage(): ImageResponse {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1e293b",
+          background: "#f8fafc",
           borderRadius: 24,
           padding: 24,
           marginBottom: 32,
-          border: "2px solid #334155",
+          border: "2px solid #e2e8f0",
         }}
       >
         <svg
@@ -41,9 +41,9 @@ export default function OpenGraphImage(): ImageResponse {
           role="img"
           aria-label="CPF Calculator logo"
         >
-          <rect x="7" y="18" width="5" height="8" rx="1.5" fill="#f8fafc" />
+          <rect x="7" y="18" width="5" height="8" rx="1.5" fill="#475569" />
           <rect x="13.5" y="13" width="5" height="13" rx="1.5" fill="#14b8a6" />
-          <rect x="20" y="8" width="5" height="18" rx="1.5" fill="#f8fafc" />
+          <rect x="20" y="8" width="5" height="18" rx="1.5" fill="#475569" />
           <path
             d="M6 22 Q16 4, 26 10"
             stroke="#14b8a6"
@@ -68,7 +68,7 @@ export default function OpenGraphImage(): ImageResponse {
           style={{
             fontSize: 64,
             fontWeight: 700,
-            color: "#f8fafc",
+            color: "#0f172a",
             margin: 0,
             letterSpacing: "-0.02em",
           }}
@@ -78,7 +78,7 @@ export default function OpenGraphImage(): ImageResponse {
         <p
           style={{
             fontSize: 28,
-            color: "#94a3b8",
+            color: "#64748b",
             margin: 0,
             maxWidth: 700,
             textAlign: "center",
@@ -98,9 +98,9 @@ export default function OpenGraphImage(): ImageResponse {
         }}
       >
         {[
-          { label: "OA", color: "#f8fafc" },
+          { label: "OA", color: "#475569" },
           { label: "SA", color: "#14b8a6" },
-          { label: "MA", color: "#f8fafc" },
+          { label: "MA", color: "#475569" },
         ].map((account) => (
           <div
             key={account.label}
@@ -109,7 +109,7 @@ export default function OpenGraphImage(): ImageResponse {
               alignItems: "center",
               gap: 8,
               padding: "12px 24px",
-              background: "#334155",
+              background: "#f1f5f9",
               borderRadius: 12,
             }}
           >
@@ -121,7 +121,7 @@ export default function OpenGraphImage(): ImageResponse {
                 background: account.color,
               }}
             />
-            <span style={{ color: "#f8fafc", fontSize: 20 }}>
+            <span style={{ color: "#0f172a", fontSize: 20 }}>
               {account.label}
             </span>
           </div>

@@ -9,12 +9,6 @@ export const metadata: Metadata = {
     "Calculate your CPF employee and employer contributions with instant results. View account distributions across Ordinary, Special, and MediSave accounts based on your age group.",
   keywords:
     "CPF calculator, CPF contribution calculator, employee contribution, employer contribution, OA, SA, MA, Singapore CPF",
-  openGraph: {
-    title: "CPF Calculator | Calculate Your CPF Contributions",
-    description:
-      "Calculate your CPF employee and employer contributions with instant results. View account distributions across Ordinary, Special, and MediSave accounts.",
-    url: `https://${process.env.VERCEL_URL}/calculator`,
-  },
   twitter: {
     card: "summary_large_image",
     title: "CPF Calculator | Calculate Your CPF Contributions",

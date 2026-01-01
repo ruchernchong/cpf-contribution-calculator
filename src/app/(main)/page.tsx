@@ -12,12 +12,6 @@ export const metadata: Metadata = {
     "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase from $6,000 to $8,000 affects your CPF contributions.",
   keywords:
     "CPF income ceiling, CPF ceiling 2023, CPF ceiling 2026, income ceiling increase, CPF contribution limit, Singapore CPF ceiling",
-  openGraph: {
-    title: "CPF Income Ceiling Timeline | Track CPF Ceiling Changes",
-    description:
-      "Track the progression of CPF income ceiling changes from 2023 to 2026. Understand how the gradual increase affects your CPF contributions.",
-    url: `https://${process.env.VERCEL_URL}`,
-  },
 };
 
 const HomePage = () => {
