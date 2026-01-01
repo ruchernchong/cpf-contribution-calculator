@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { CPF_INCOME_CEILING, DEFAULT_CPF_INCOME_CEILING } from "@/constants";
+import { CACHE_HEADERS } from "@/lib/cache-headers";
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {
   const searchParams = request.nextUrl.searchParams;
@@ -18,11 +19,17 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
     .sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
   if (date <= "2023-01-01") {
-    return NextResponse.json({ date, ceiling: 6000 }, { status: 200 });
+    return NextResponse.json(
+      { date, ceiling: 6000 },
+      { status: 200, headers: CACHE_HEADERS.static },
+    );
   }
 
   if (date >= "2026-01-01") {
-    return NextResponse.json({ date, ceiling: 8000 }, { status: 200 });
+    return NextResponse.json(
+      { date, ceiling: 8000 },
+      { status: 200, headers: CACHE_HEADERS.static },
+    );
   }
 
   let ceiling: number = DEFAULT_CPF_INCOME_CEILING;
@@ -35,5 +42,8 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
     }
   }
 
-  return NextResponse.json({ date, ceiling }, { status: 200 });
+  return NextResponse.json(
+    { date, ceiling },
+    { status: 200, headers: CACHE_HEADERS.static },
+  );
 };

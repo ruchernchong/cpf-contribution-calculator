@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PEGGED_RATE_MARKUP } from "@/constants/cpf-interest-rates";
+import { CACHE_HEADERS } from "@/lib/cache-headers";
 import {
   calculateSmraRate,
   isFloorRateApplied,
@@ -34,6 +35,6 @@ export const GET = async (request: Request): Promise<NextResponse> => {
       floorApplied,
       actualRate,
     },
-    { status: 200 },
+    { status: 200, headers: CACHE_HEADERS.static },
   );
 };

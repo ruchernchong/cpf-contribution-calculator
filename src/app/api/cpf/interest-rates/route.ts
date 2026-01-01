@@ -3,6 +3,7 @@ import {
   QUARTERLY_CPF_RATES,
   SGS_YIELDS_MONTHLY,
 } from "@/constants/cpf-interest-rates";
+import { CACHE_HEADERS } from "@/lib/cache-headers";
 
 export const GET = async (): Promise<NextResponse> => {
   return NextResponse.json(
@@ -10,6 +11,9 @@ export const GET = async (): Promise<NextResponse> => {
       quarterlyRates: QUARTERLY_CPF_RATES,
       sgsYields: SGS_YIELDS_MONTHLY,
     },
-    { status: 200 },
+    {
+      status: 200,
+      headers: CACHE_HEADERS.immutable,
+    },
   );
 };

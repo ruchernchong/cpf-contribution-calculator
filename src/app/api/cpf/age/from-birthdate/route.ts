@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { CACHE_HEADERS } from "@/lib/cache-headers";
 import { convertBirthDateToAge } from "@/lib/convert-birth-date-to-age";
 import { loadSearchParams } from "./search-params";
 
@@ -30,7 +31,10 @@ export const GET = async (request: Request): Promise<NextResponse> => {
       );
     }
 
-    return NextResponse.json({ birthDate, age }, { status: 200 });
+    return NextResponse.json(
+      { birthDate, age },
+      { status: 200, headers: CACHE_HEADERS.static },
+    );
   } catch {
     return NextResponse.json(
       { error: "Invalid birthDate format" },
