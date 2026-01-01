@@ -6,6 +6,7 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Route } from "next";
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 
 export function Header() {
   return (
@@ -14,11 +15,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/" className="group flex items-center gap-3">
-              {/* Logo mark - Gold C on navy */}
-              <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-                <span className="font-bold text-lg">C</span>
-              </div>
-              {/* Brand name */}
+              <Logo className="size-9 shadow-sm" />
               <span className="font-semibold text-foreground text-xl tracking-tight transition-colors group-hover:text-primary">
                 CPF Calculator
               </span>

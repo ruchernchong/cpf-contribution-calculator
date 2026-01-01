@@ -22,13 +22,6 @@ export const metadata: Metadata = {
       "Calculate your CPF contributions with the latest income ceiling changes",
     url: `https://${process.env.VERCEL_URL}`,
     siteName: "CPF Contribution Estimator",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
     locale: "en_SG",
     type: "website",
   },
@@ -37,7 +30,6 @@ export const metadata: Metadata = {
     title: "CPF Contribution Estimator",
     description:
       "Calculate your CPF contributions with the latest income ceiling changes",
-    images: ["/twitter-image.png"],
   },
 };
 
