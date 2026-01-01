@@ -131,16 +131,13 @@ const UserInput = () => {
             placeholder="0.00"
             value={monthlyGrossIncome || ""}
             onChange={(e) =>
-              startTransition(() => {
-                setSettings((setting) => ({
-                  ...setting,
-                  monthlyGrossIncome: Number.parseFloat(e.target.value) || 0,
-                }));
-              })
+              setSettings((setting) => ({
+                ...setting,
+                monthlyGrossIncome: Number.parseFloat(e.target.value) || 0,
+              }))
             }
             className="max-w-xs"
             min={0}
-            disabled={isPending}
           />
         </div>
 
