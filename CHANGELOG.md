@@ -1,3 +1,22 @@
+## [1.14.0](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.13.0...v1.14.0) (2026-01-01)
+
+### Features
+
+* add ceiling comparison card ([7fc395c](https://github.com/ruchernchong/cpf-contribution-calculator/commit/7fc395c12096b56311315b23cd2566049c6bdb94))
+* add PDF export functionality ([f8ed71b](https://github.com/ruchernchong/cpf-contribution-calculator/commit/f8ed71b726df154292969966ec55f4212fad5c45))
+* animate ceiling comparison card ([4ad1011](https://github.com/ruchernchong/cpf-contribution-calculator/commit/4ad1011e297a34118b60f8cd7721a2e415561f74))
+
+### Bug Fixes
+
+* correct ceiling comparison arrows and colors ([3036632](https://github.com/ruchernchong/cpf-contribution-calculator/commit/3036632095d4cea33670219c7662755bb56d15da))
+* hide ceiling card when no results ([1f91f1a](https://github.com/ruchernchong/cpf-contribution-calculator/commit/1f91f1af9b6ef94f80267762da4276906d6b20dc))
+* income input focus loss ([6cfae98](https://github.com/ruchernchong/cpf-contribution-calculator/commit/6cfae987bf4ccef6495c3c280ccea4293e897914))
+* resolve lint errors and add accessibility ([8e4aab9](https://github.com/ruchernchong/cpf-contribution-calculator/commit/8e4aab92c2daa2b0e889dfed666839415644045a))
+
+### Performance Improvements
+
+* add indefinite API caching ([df928a1](https://github.com/ruchernchong/cpf-contribution-calculator/commit/df928a1fb85cb705e9e8f797a794b02bd9596f71))
+
 ## [1.13.0](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.12.1...v1.13.0) (2025-12-26)
 
 ### Features
