@@ -24,6 +24,7 @@ export function Logo({
         aria-label="CPF Calculator logo"
         {...props}
       >
+        <title>CPF Calculator logo</title>
         {/* Background circle */}
         <rect width="32" height="32" rx="8" className="fill-primary" />
 
@@ -76,6 +77,7 @@ export function Logo({
       aria-label="CPF Calculator logo"
       {...props}
     >
+      <title>CPF Calculator logo</title>
       {/* Logo mark */}
       <rect width="32" height="32" rx="8" className="fill-primary" />
       <rect

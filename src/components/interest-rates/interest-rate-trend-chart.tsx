@@ -28,9 +28,15 @@ const COLORS = {
   floorLine: "#ef4444", // red
 };
 
+interface TooltipPayloadEntry {
+  name: string;
+  value: number;
+  color: string;
+}
+
 interface CustomTooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: TooltipPayloadEntry[];
   label?: string;
 }
 
@@ -39,7 +45,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     return (
       <div className="rounded border border-zinc-200 bg-white p-3 shadow-md">
         <p className="mb-2 font-medium">{label}</p>
-        {payload.map((entry: any) => (
+        {payload.map((entry) => (
           <p
             key={entry.name}
             className="text-sm"

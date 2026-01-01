@@ -25,6 +25,8 @@ export default function Icon(): ImageResponse {
         height="32"
         viewBox="0 0 32 32"
         style={{ position: "absolute" }}
+        role="img"
+        aria-label="CPF Calculator logo"
       >
         <rect x="7" y="18" width="5" height="8" rx="1.5" fill="#f8fafc" />
         <rect x="13.5" y="13" width="5" height="13" rx="1.5" fill="#14b8a6" />

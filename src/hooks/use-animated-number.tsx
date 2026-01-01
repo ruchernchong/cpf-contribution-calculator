@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const useAnimatedNumber = (targetValue: number, duration = 500) => {
   const [animatedValue, setAnimatedValue] = useState(targetValue);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: animatedValue is intentionally excluded to prevent infinite loops
   useEffect(() => {
     const startValue = animatedValue;
     const diff = targetValue - startValue;
