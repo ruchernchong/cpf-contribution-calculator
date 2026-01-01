@@ -1,3 +1,9 @@
+## [1.14.1](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.14.0...v1.14.1) (2026-01-01)
+
+### Bug Fixes
+
+* white background and siteName ([6b7b5d4](https://github.com/ruchernchong/cpf-contribution-calculator/commit/6b7b5d4a374d606ddb4beeb3f720093cb7988c85))
+
 ## [1.14.0](https://github.com/ruchernchong/cpf-contribution-calculator/compare/v1.13.0...v1.14.0) (2026-01-01)
 
 ### Features
