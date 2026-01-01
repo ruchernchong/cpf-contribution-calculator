@@ -62,6 +62,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.3.1",
     "@types/mdx": "^2.0.13",
+    "@types/node": "^24.10.4",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@types/recharts": "^1.8.29",
@@ -91,10 +92,10 @@
       "@types/react-dom": "19.2.2"
     }
   },
-  "packageManager": "pnpm@10.22.0",
   "lint-staged": {
     "*.{js,ts,tsx,jsx,json}": [
       "pnpm biome check --write"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.22.0"
 }
