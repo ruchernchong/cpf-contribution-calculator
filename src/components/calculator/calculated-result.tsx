@@ -1,8 +1,16 @@
 import { File01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtomValue } from "jotai";
-import { contributionRateAtom } from "@/atoms/income-ceiling-atom";
-import { contributionResultAtom } from "@/atoms/result-atom";
+import { useState } from "react";
+import {
+  contributionRateAtom,
+  latestIncomeCeilingDateAtom,
+} from "@/atoms/income-ceiling-atom";
+import {
+  ceilingComparisonAtom,
+  contributionResultAtom,
+  distributionResultsAtom,
+} from "@/atoms/result-atom";
 import { settingsAtom } from "@/atoms/setting-atom";
 import { ageGroupAtom } from "@/atoms/user-atom";
 import { Button } from "@/components/ui/button";
@@ -14,17 +22,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CPF_ADDITIONAL_WAGE_CEILING } from "@/constants";
+import {
+  CPF_ACCOUNT_MAP,
+  CPF_ADDITIONAL_WAGE_CEILING,
+  CPF_INCOME_CEILING,
+  CPF_INCOME_CEILING_BEFORE_SEPT_2023,
+} from "@/constants";
 import useAnimatedNumber from "@/hooks/use-animated-number";
+import { openPdf, type PdfData } from "@/lib/download-pdf";
 import { formatCurrency } from "@/lib/format";
 
-export const CalculatedResult = () => {
+export function CalculatedResult() {
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+
   const contributionRate = useAtomValue(contributionRateAtom);
   const { monthlyGrossIncome } = useAtomValue(settingsAtom);
   const ageGroup = useAtomValue(ageGroupAtom);
   const contributionResult = useAtomValue(contributionResultAtom);
+  const distributionResults = useAtomValue(distributionResultsAtom);
+  const ceilingComparison = useAtomValue(ceilingComparisonAtom);
+  const currentCeilingDate = useAtomValue(latestIncomeCeilingDateAtom);
 
   const annualWage = monthlyGrossIncome * 12;
+  const currentCeiling = CPF_INCOME_CEILING[currentCeilingDate];
 
   // Helper function to safely format currency with fallback
   const safeCurrency = (value: number | undefined, decimalPlaces = 2) => {
@@ -42,6 +62,44 @@ export const CalculatedResult = () => {
 
   const additionalWageGap = CPF_ADDITIONAL_WAGE_CEILING - annualWage;
   const remainingAdditionalWage = Math.max(0, additionalWageGap);
+
+  const takeHomeImpact = -ceilingComparison.takeHomePayDifference;
+  const cpfImpact = -ceilingComparison.totalContributionDifference;
+  const hasNoCeilingDifference = takeHomeImpact === 0 && cpfImpact === 0;
+
+  async function handleDownloadPdf() {
+    setIsGeneratingPdf(true);
+    try {
+      const pdfData: PdfData = {
+        generatedAt: new Date(),
+        ageGroup: ageGroup?.description || "Not specified",
+        monthlyGrossIncome,
+        takeHomeIncome: contributionResult.afterCpfContribution,
+        employeeContribution: contributionResult.contribution.employee,
+        employerContribution: contributionResult.contribution.employer,
+        employeeRate: Math.round((contributionRate.employee ?? 0) * 100),
+        employerRate: Math.round((contributionRate.employer ?? 0) * 100),
+        totalContribution: contributionResult.contribution.totalContribution,
+        remainingAW: remainingAdditionalWage,
+        ceilingComparison: hasNoCeilingDifference
+          ? null
+          : {
+              preCeiling: CPF_INCOME_CEILING_BEFORE_SEPT_2023,
+              currentCeiling,
+              takeHomeImpact,
+              cpfImpact,
+            },
+        distribution: distributionResults.map(({ name, value }) => ({
+          name: `${CPF_ACCOUNT_MAP[name]} (${name})`,
+          value,
+        })),
+      };
+
+      await openPdf(pdfData);
+    } finally {
+      setIsGeneratingPdf(false);
+    }
+  }
 
   return (
     <Card className="shadow-md">
@@ -118,11 +176,17 @@ export const CalculatedResult = () => {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={handleDownloadPdf}
+          disabled={isGeneratingPdf}
+        >
           <HugeiconsIcon icon={File01Icon} className="size-4" strokeWidth={2} />
-          Download PDF
+          {isGeneratingPdf ? "Generating..." : "Download PDF"}
         </Button>
       </CardFooter>
     </Card>
   );
-};
+}
