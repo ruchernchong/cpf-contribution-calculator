@@ -1,3 +1,9 @@
+## [1.15.2](https://github.com/ruchernchong/simplycpf/compare/v1.15.1...v1.15.2) (2026-01-02)
+
+### Bug Fixes
+
+* disable Twoslash to resolve build error ([3a03d2a](https://github.com/ruchernchong/simplycpf/commit/3a03d2a744bbece6f3752cf79988d8e8fd453dd0))
+
 ## [1.15.1](https://github.com/ruchernchong/simplycpf/compare/v1.15.0...v1.15.1) (2026-01-01)
 
 ### Bug Fixes
