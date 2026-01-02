@@ -17,7 +17,7 @@ describe("POST /api/cpf/calculate", () => {
   const createRequest = (body: unknown) => {
     return {
       json: async () => body,
-    } as NextRequest;
+    } as unknown as NextRequest;
   };
 
   it("should calculate CPF contribution with income only", async () => {
@@ -97,7 +97,7 @@ describe("POST /api/cpf/calculate", () => {
       json: async () => {
         throw new Error("Invalid JSON");
       },
-    } as NextRequest;
+    } as unknown as NextRequest;
     const response = await POST(req);
     const data = await response.json();
 

@@ -2,10 +2,7 @@ import { File01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useAtomValue } from "jotai";
 import { useState } from "react";
-import {
-  contributionRateAtom,
-  latestIncomeCeilingDateAtom,
-} from "@/atoms/income-ceiling-atom";
+import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import {
   ceilingComparisonAtom,
   contributionResultAtom,
@@ -35,9 +32,9 @@ import { formatCurrency } from "@/lib/format";
 export function CalculatedResult() {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
-  const contributionRate = useAtomValue(contributionRateAtom);
   const { monthlyGrossIncome } = useAtomValue(settingsAtom);
   const ageGroup = useAtomValue(ageGroupAtom);
+  const contributionRate = ageGroup.contributionRate;
   const contributionResult = useAtomValue(contributionResultAtom);
   const distributionResults = useAtomValue(distributionResultsAtom);
   const ceilingComparison = useAtomValue(ceilingComparisonAtom);

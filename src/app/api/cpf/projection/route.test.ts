@@ -4,7 +4,7 @@ import { POST } from "./route";
 const createRequest = (body: unknown): NextRequest => {
   return {
     json: async () => body,
-  } as NextRequest;
+  } as unknown as NextRequest;
 };
 
 describe("POST /api/cpf/projection", () => {
@@ -149,7 +149,7 @@ describe("POST /api/cpf/projection", () => {
       json: async () => {
         throw new Error("Invalid JSON");
       },
-    } as NextRequest;
+    } as unknown as NextRequest;
     const response = await POST(request);
     const data = await response.json();
 
