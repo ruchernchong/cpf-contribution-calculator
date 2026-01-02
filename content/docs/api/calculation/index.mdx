@@ -11,7 +11,7 @@ Calculate CPF contributions for a single income amount.
 
 ### Request Body
 
-```typescript twoslash
+```typescript
 interface CalculateRequest {
   income: number;    // Required - Monthly gross income (non-negative)
   date?: string;     // Optional - Date in YYYY-MM-DD format (defaults to today)
@@ -21,7 +21,7 @@ interface CalculateRequest {
 
 ### Response
 
-```typescript twoslash
+```typescript
 interface CalculateResponse {
   contribution: {
     totalContribution: number;
@@ -69,7 +69,7 @@ Calculate CPF contributions for multiple income scenarios (up to 100).
 
 ### Request Body
 
-```typescript twoslash
+```typescript
 interface BatchCalculateRequest {
   scenarios: Array<{
     income: number;    // Required - Monthly income
@@ -104,7 +104,7 @@ Generate multi-year CPF contribution projection with cumulative totals.
 
 ### Request Body
 
-```typescript twoslash
+```typescript
 interface ProjectionRequest {
   income: number;    // Required - Monthly income (non-negative)
   age: number;       // Required - Starting age
@@ -119,7 +119,7 @@ interface ProjectionRequest {
 
 ### Response
 
-```typescript twoslash
+```typescript
 interface ProjectionResponse {
   input: { income: number; age: number; years: number };
   projections: Array<{

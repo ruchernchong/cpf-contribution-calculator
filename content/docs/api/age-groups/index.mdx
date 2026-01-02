@@ -11,7 +11,7 @@ Retrieve all available CPF age groups with contribution and distribution rates.
 
 ### Response
 
-```typescript twoslash
+```typescript
 type AgeGroupsResponse = Array<{
   description: string;           // e.g., "35 and below"
   minAge: number;
@@ -112,7 +112,7 @@ Convert a birth date to current age.
 
 ### Response
 
-```typescript twoslash
+```typescript
 interface AgeFromBirthdateResponse {
   birthDate: string;    // Input birth date
   age: number;          // Calculated current age
