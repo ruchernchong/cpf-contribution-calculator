@@ -50,7 +50,7 @@ const MobileRow = ({ rate, isFloorApplied }: RateRowProps) => (
         </span>
       )}
     </div>
-    <div className="grid grid-cols-2 gap-3 text-sm">
+    <div className="grid grid-cols-2 gap-4 text-sm">
       {ACCOUNT_KEYS.map((key) => (
         <div key={key}>
           <p className="text-muted-foreground">
@@ -109,7 +109,7 @@ export const QuarterlyRatesTable = () => {
         </div>
 
         {/* Legend */}
-        <div className="rounded-md bg-blue-50 p-3">
+        <div className="rounded-md bg-blue-50 p-4">
           <p className="text-blue-900 text-sm">
             <span className="font-semibold">Note:</span> Quarters highlighted in
             amber indicate when the 4% floor rate was applied because the pegged

@@ -43,7 +43,7 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded border border-zinc-200 bg-white p-3 shadow-md">
+      <div className="rounded border border-zinc-200 bg-white p-4 shadow-md">
         <p className="mb-2 font-medium">{label}</p>
         {payload.map((entry) => (
           <p
@@ -146,7 +146,7 @@ export const InterestRateTrendChart = () => {
           </LineChart>
         </ResponsiveContainer>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <div className="rounded-md bg-amber-50 p-4">
             <p className="text-amber-900 text-sm">
               <span className="font-semibold">How it works:</span> The SMRA

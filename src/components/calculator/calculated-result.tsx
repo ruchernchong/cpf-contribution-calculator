@@ -165,7 +165,7 @@ export function CalculatedResult() {
           </div>
         </div>
         <div className="rounded-md border border-accent/30 bg-accent/5 p-4">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <p className="text-muted-foreground text-sm">
               Remaining Additional Wage (AW) for CPF contribution
             </p>

@@ -59,7 +59,7 @@ const CPFYearSlider = () => {
                       : "text-muted-foreground"
                   }`}
                 >
-                  <div className="mb-1">{formatDate(date)}</div>
+                  <div className="mb-2">{formatDate(date)}</div>
                   <div
                     className={cn("hidden lg:block", {
                       "font-semibold": isActive,

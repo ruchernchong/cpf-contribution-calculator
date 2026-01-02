@@ -108,7 +108,7 @@ export const CPFInterestRatesSection = () => {
 
             {/* Key Differences Explanation */}
             <div className="rounded-lg border border-border bg-muted/50 p-4">
-              <h4 className="pb-3 font-semibold text-foreground">
+              <h4 className="pb-4 font-semibold text-foreground">
                 Floor Rate vs Pegged Rate
               </h4>
               <div className="flex flex-col gap-2 text-muted-foreground text-sm">

@@ -188,15 +188,15 @@ export function CPFInvestmentComparison() {
           </div>
 
           {/* Scenario Selection */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <Label>Select Investment Scenarios (max 4 for chart):</Label>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {INVESTMENT_SCENARIOS.map((scenario) => (
                 <button
                   key={scenario.name}
                   type="button"
                   onClick={() => toggleScenario(scenario.name)}
-                  className={`rounded-lg border-2 p-3 text-left transition-all ${
+                  className={`rounded-lg border-2 p-4 text-left transition-all ${
                     selectedScenarios.includes(scenario.name)
                       ? "border-blue-500 bg-blue-50"
                       : "border-zinc-200 hover:border-zinc-300"
@@ -204,7 +204,7 @@ export function CPFInvestmentComparison() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
-                      <p className="mb-1 font-semibold text-sm">
+                      <p className="mb-2 font-semibold text-sm">
                         {scenario.name}
                       </p>
                       <p className="text-xs text-zinc-600">
@@ -350,12 +350,12 @@ export function CPFInvestmentComparison() {
           <CardTitle>Key Considerations</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-col gap-3 text-sm">
-            <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
+          <div className="flex flex-col gap-4 text-sm">
+            <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
               <h4 className="mb-2 font-semibold text-blue-900">
                 CPF Advantages
               </h4>
-              <ul className="flex flex-col gap-1 text-blue-800">
+              <ul className="flex flex-col gap-2 text-blue-800">
                 <li>• Guaranteed returns by Singapore Government</li>
                 <li>• No market volatility risk</li>
                 <li>• Tax-free interest earnings</li>
@@ -363,11 +363,11 @@ export function CPFInvestmentComparison() {
               </ul>
             </div>
 
-            <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+            <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
               <h4 className="mb-2 font-semibold text-amber-900">
                 Investment Advantages
               </h4>
-              <ul className="flex flex-col gap-1 text-amber-800">
+              <ul className="flex flex-col gap-2 text-amber-800">
                 <li>• Potential for higher returns (with higher risk)</li>
                 <li>• More liquidity and flexibility</li>
                 <li>• Diversification opportunities</li>
@@ -375,11 +375,11 @@ export function CPFInvestmentComparison() {
               </ul>
             </div>
 
-            <div className="/30 rounded-lg border border-red-200 bg-red-50 p-3">
+            <div className="rounded-lg border border-red-200 bg-red-50 p-4">
               <h4 className="mb-2 font-semibold text-red-900">
                 Investment Risks
               </h4>
-              <ul className="flex flex-col gap-1 text-red-800">
+              <ul className="flex flex-col gap-2 text-red-800">
                 <li>• Market volatility can lead to losses</li>
                 <li>• No guaranteed returns</li>
                 <li>• Requires knowledge and active management</li>

@@ -10,7 +10,7 @@ export function Footer() {
         <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand Section */}
           <div className="md:col-span-1">
-            <div className="mb-4 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-4">
               <Logo className="size-8 shadow-sm" />
               <span className="font-semibold text-lg">SimplyCPF</span>
             </div>

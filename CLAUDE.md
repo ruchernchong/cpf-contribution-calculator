@@ -149,6 +149,18 @@ Philosophy: **"Push Down, Not Pull Up"** — Elements push content below them ra
 | `mb-*` | Spacing between siblings in non-flex/grid contexts |
 | `pb-*` | Internal padding at bottom of containers |
 
+**8px Grid System:** All spacing must be multiples of 8px.
+
+| Token | Pixels | Use Case |
+|-------|--------|----------|
+| `2` | 8px | Tight (icons, related items) |
+| `4` | 16px | Default (form fields, lists) |
+| `6` | 24px | Sections (card content) |
+| `8` | 32px | Large (between cards) |
+| `12` | 48px | Page sections |
+
+**Avoid:** `1`, `3`, `5`, `7` — not 8px multiples
+
 ### Tailwind CSS v4 Conventions
 
 - Use `size-*` instead of `w-* h-*` for square elements

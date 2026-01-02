@@ -14,14 +14,14 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link href="/" className="group flex items-center gap-3">
+            <Link href="/" className="group flex items-center gap-4">
               <Logo className="size-9 shadow-sm" />
               <span className="font-semibold text-foreground text-xl tracking-tight transition-colors group-hover:text-primary">
                 SimplyCPF
               </span>
             </Link>
 
-            <nav className="hidden items-center gap-1 md:flex">
+            <nav className="hidden items-center gap-2 md:flex">
               <Link
                 href="/"
                 className="flex items-center gap-2 rounded-lg px-4 py-2 font-medium text-muted-foreground text-sm transition-all hover:bg-muted hover:text-foreground"

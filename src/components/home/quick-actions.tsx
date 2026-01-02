@@ -45,7 +45,7 @@ const QuickActions = () => {
           <Link key={action.href} href={action.href} className="group">
             <Card className="h-full shadow-sm transition-all hover:border-accent/30 hover:shadow-md">
               <CardHeader className="pb-4">
-                <div className="mb-2 flex items-center gap-3">
+                <div className="mb-2 flex items-center gap-4">
                   <div className="rounded-lg bg-accent/10 p-2">
                     <HugeiconsIcon
                       icon={action.icon}

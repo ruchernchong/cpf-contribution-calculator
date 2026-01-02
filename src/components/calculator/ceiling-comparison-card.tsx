@@ -102,7 +102,7 @@ const CeilingComparisonCard = () => {
           </CardDescription>
         </motion.div>
         {/* Timeline visual */}
-        <motion.div className="flex items-center gap-3" variants={itemVariants}>
+        <motion.div className="flex items-center gap-4" variants={itemVariants}>
           <div className="flex flex-col items-center">
             <span className="font-mono font-semibold text-muted-foreground">
               {formatCurrency(CPF_INCOME_CEILING_BEFORE_SEPT_2023, 0)}
@@ -220,7 +220,7 @@ const CeilingComparisonCard = () => {
         {/* Explanatory Note */}
         {ceilingHasIncreased && (
           <motion.div
-            className="rounded-md bg-muted/50 p-3"
+            className="rounded-md bg-muted/50 p-4"
             variants={itemVariants}
           >
             <p className="text-muted-foreground text-sm">

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const HeroSection = () => {
   return (
     <section className="text-center">
-      <h1 className="mb-3 font-bold text-3xl text-foreground tracking-tight md:text-4xl">
+      <h1 className="mb-4 font-bold text-3xl text-foreground tracking-tight md:text-4xl">
         CPF Income Ceiling Changes
       </h1>
       <p className="mx-auto mb-6 max-w-2xl text-lg text-muted-foreground">

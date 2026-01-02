@@ -22,7 +22,7 @@ const Banner = () => {
   return (
     <div className="sticky top-16 z-40 overflow-hidden">
       {/* Gradient background - Slate */}
-      <div className="relative bg-primary py-3">
+      <div className="relative bg-primary py-4">
         {/* Subtle teal accent line at top */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
 

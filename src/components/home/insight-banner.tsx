@@ -12,13 +12,13 @@ const InsightBanner = () => {
 
   return (
     <section className="rounded-lg border border-accent/20 bg-accent/5 p-4">
-      <div className="flex gap-3">
+      <div className="flex gap-4">
         <HugeiconsIcon
           icon={InformationCircleIcon}
           className="size-5 flex-shrink-0 text-accent"
           strokeWidth={2}
         />
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <p className="font-medium text-foreground text-sm">
             What does this mean for you?
           </p>

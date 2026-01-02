@@ -64,9 +64,43 @@ Elements push content below them rather than pulling from above. This creates pr
 | `mb-*` | Spacing between siblings in non-flex/grid contexts |
 | `pb-*` | Internal padding at bottom of containers |
 
-### Spacing Scale
+### Spacing Scale (8px Grid System)
 
-Use Tailwind's default scale: `2`, `4`, `6`, `8`, `12`
+This project follows the **8px grid system** used by Apple and Google design systems. All spacing values must be multiples of 8px.
+
+| Token | Pixels | Use Case |
+|-------|--------|----------|
+| `2` | 8px | Tight spacing (related items, icon gaps) |
+| `4` | 16px | Default spacing (form fields, list items) |
+| `6` | 24px | Section spacing (card content, groups) |
+| `8` | 32px | Large gaps (between cards, sections) |
+| `12` | 48px | Page sections (major content blocks) |
+
+**Allowed tokens:** `2`, `4`, `6`, `8`, `12`, `16`, `20`, `24`...
+
+**Avoid:** `1`, `3`, `5`, `7` (these are 4px, 12px, 20px, 28px — not 8px multiples)
+
+### Spacing Principles
+
+**Internal ≤ External Rule:**
+Padding inside a component should never exceed the margin around it. This creates clear visual hierarchy and grouping.
+
+```
+❌ Card with p-8 but gap-4 between cards
+✅ Card with p-4 and gap-6 between cards
+```
+
+**Container-Based Sizing:**
+
+| Container Size | Padding | Example |
+|----------------|---------|---------|
+| Large (page sections) | `p-6` to `p-8` | Layout containers, modals |
+| Medium (cards, panels) | `p-4` to `p-6` | Cards, popovers, dropdowns |
+| Small (buttons, labels) | `p-2` to `p-3` | Buttons, badges, chips |
+
+**Gestalt Proximity:**
+- Related items → smaller spacing (gap-2, gap-4)
+- Unrelated items → larger spacing (gap-6, gap-8)
 
 ## Tailwind CSS v4 Conventions
 

@@ -72,9 +72,9 @@ const CPFIncomeCeilingTimeline = () => {
                 <button
                   type="button"
                   className={cn(
-                    "mb-6 flex cursor-pointer flex-col gap-1 text-left transition-all hover:scale-105",
+                    "mb-6 flex cursor-pointer flex-col gap-2 text-left transition-all hover:scale-105",
                     isActive &&
-                      "scale-105 rounded-lg border-2 border-accent bg-accent/5 p-3",
+                      "scale-105 rounded-lg border-2 border-accent bg-accent/5 p-4",
                   )}
                   onClick={() => handleTimelineItemClick(date)}
                   disabled={isPending}
