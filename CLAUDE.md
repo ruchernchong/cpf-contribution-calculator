@@ -127,7 +127,7 @@ Located in `src/hooks/`:
 
 ## Design System
 
-See `.claude/skills/design-language-system.md` for complete design system documentation.
+See `.claude/skills/design-language-system/SKILL.md` for complete design system documentation.
 
 ### Key Principles
 
@@ -137,14 +137,22 @@ See `.claude/skills/design-language-system.md` for complete design system docume
 
 ### Spacing Rules (IMPORTANT)
 
-- **NO margin-top or padding-top** - Use `mb-*`, `pb-*`, and `gap-*` instead
-- **Prefer `gap-*`** over `space-*` for flex/grid containers
-- Elements push content down, not pull from above
+Philosophy: **"Push Down, Not Pull Up"** — Elements push content below them rather than pulling from above.
+
+- **NO `mt-*` or `pt-*`** — Use `mb-*`, `pb-*`, and `gap-*` instead
+- **Use `gap-*`** for flex/grid containers
+- **Exception:** `pt-*` allowed only for sticky elements offsetting fixed headers
+
+| Utility | Use When |
+|---------|----------|
+| `gap-*` | Flex/grid containers (preferred) |
+| `mb-*` | Spacing between siblings in non-flex/grid contexts |
+| `pb-*` | Internal padding at bottom of containers |
 
 ### Tailwind CSS v4 Conventions
 
 - Use `size-*` instead of `w-* h-*` for square elements
-- Use `gap-*` instead of `space-*` where possible
+- Use `gap-*` for flex/grid containers
 - CSS-first configuration in `globals.css` with `@theme inline`
 
 ### Off-Limits

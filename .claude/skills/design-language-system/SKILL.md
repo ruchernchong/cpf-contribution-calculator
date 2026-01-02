@@ -46,11 +46,23 @@ All colours use OKLCH colour space for perceptual uniformity. The palette uses t
 
 ## Spacing Guidelines
 
+### Philosophy: "Push Down, Not Pull Up"
+
+Elements push content below them rather than pulling from above. This creates predictable, one-directional spacing flow.
+
 ### Key Rules
 
-1. **NO margin-top or padding-top** - Use `mb-*`, `pb-*`, and `gap-*` instead
-2. **Prefer `gap-*`** over `space-*` for flex/grid containers
+1. **NO `mt-*` or `pt-*`** — Use `mb-*`, `pb-*`, and `gap-*` instead
+2. **Use `gap-*`** for flex/grid containers
 3. **Exception:** `pt-*` allowed only for sticky elements offsetting fixed headers
+
+### When to Use Each Utility
+
+| Utility | Use When |
+|---------|----------|
+| `gap-*` | Flex/grid containers (preferred) |
+| `mb-*` | Spacing between siblings in non-flex/grid contexts |
+| `pb-*` | Internal padding at bottom of containers |
 
 ### Spacing Scale
 
