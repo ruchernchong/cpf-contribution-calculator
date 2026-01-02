@@ -221,4 +221,16 @@ describe("calculateCpfContribution", () => {
       afterCpfContribution: 5700,
     });
   });
+
+  it("should use default rates when no options are provided", () => {
+    expect(calculateCpfContribution(5000, "2023-01-01")).toEqual({
+      contribution: {
+        employee: 1000,
+        employer: 850,
+        totalContribution: 1850,
+      },
+      distribution: {},
+      afterCpfContribution: 4000,
+    });
+  });
 });

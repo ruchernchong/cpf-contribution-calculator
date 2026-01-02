@@ -132,4 +132,28 @@ describe("POST /api/cpf/projection", () => {
       2,
     );
   });
+
+  it("should handle age 70+ without maxAge boundary", async () => {
+    const request = createRequest({ income: 5000, age: 70, years: 3 });
+    const response = await POST(request);
+    const data = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(data.projections[0].ageGroup).toBe("Above 70");
+    expect(data.projections[1].age).toBe(71);
+    expect(data.projections[2].age).toBe(72);
+  });
+
+  it("should return 400 for invalid JSON body", async () => {
+    const request = {
+      json: async () => {
+        throw new Error("Invalid JSON");
+      },
+    } as NextRequest;
+    const response = await POST(request);
+    const data = await response.json();
+
+    expect(response.status).toBe(400);
+    expect(data.error).toBe("Invalid request body");
+  });
 });

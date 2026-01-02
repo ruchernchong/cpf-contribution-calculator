@@ -41,6 +41,7 @@ describe("captureError", () => {
 
   afterEach(() => {
     consoleSpy.mockClear();
+    vi.unstubAllEnvs();
   });
 
   it("should log error without context", () => {
@@ -51,5 +52,17 @@ describe("captureError", () => {
   it("should log error with context", () => {
     captureError(new Error("Test error"), "API");
     expect(consoleSpy).toHaveBeenCalledWith("[API]", expect.any(AppError));
+  });
+
+  it("should log only error message in production mode", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    captureError(new Error("Production error"), "Service");
+    expect(consoleSpy).toHaveBeenCalledWith("[Service]", "Production error");
+  });
+
+  it("should log only error message in production mode without context", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    captureError(new Error("Production error"));
+    expect(consoleSpy).toHaveBeenCalledWith("[Error]", "Production error");
   });
 });
