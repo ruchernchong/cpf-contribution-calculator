@@ -33,9 +33,9 @@ export default defineConfig({
         "src/app/opengraph-image.tsx",
         "src/app/twitter-image.tsx",
         // Page components (presentational, better for e2e)
-        "src/app/(main)/**/page.tsx",
-        "src/app/(main)/**/loading.tsx",
-        "src/app/(main)/**/error.tsx",
+        "src/app/\\(main\\)/**/page.tsx",
+        "src/app/\\(main\\)/**/loading.tsx",
+        "src/app/\\(main\\)/**/error.tsx",
         // State atoms (require React context)
         "src/atoms/**",
         // Hooks (require React context and mocking)
@@ -61,10 +61,10 @@ export default defineConfig({
       ],
       thresholds: {
         autoUpdate: (threshold) => Math.floor(threshold / 5) * 5,
-        statements: 85,
+        statements: 90,
         branches: 90,
-        functions: 80,
-        lines: 85,
+        functions: 85,
+        lines: 90,
       },
     },
   },
