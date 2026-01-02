@@ -37,7 +37,7 @@ const DesktopRow = ({ group, isCurrentGroup }: DistributionRowProps) => (
 const MobileRow = ({ group, isCurrentGroup }: DistributionRowProps) => (
   <div
     className={cn(
-      "-mx-4 space-y-2 border-b px-4 py-4 last:border-0",
+      "-mx-4 flex flex-col gap-2 border-b px-4 py-4 last:border-0",
       isCurrentGroup && "bg-emerald-50",
     )}
   >
@@ -89,7 +89,7 @@ export const DistributionRatesTable = () => {
         </div>
 
         {/* Mobile: Stacked list */}
-        <div className="space-y-4 md:hidden">
+        <div className="flex flex-col gap-4 md:hidden">
           {ageGroups.map((group) => (
             <MobileRow
               key={group.description}

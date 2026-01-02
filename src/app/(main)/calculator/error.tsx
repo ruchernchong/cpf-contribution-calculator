@@ -38,7 +38,7 @@ const CalculatorError = ({ error, reset }: ErrorProps): ReactNode => {
             Something went wrong with your calculation
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="flex flex-col gap-4">
           <p className="text-muted-foreground text-sm">
             {error.message || "An unexpected error occurred"}
           </p>

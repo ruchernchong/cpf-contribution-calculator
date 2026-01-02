@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="border-border border-t bg-muted/30">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="mb-4 flex items-center gap-3">
@@ -84,7 +84,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-border border-t pt-8 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-border border-t py-8 md:flex-row">
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} SimplyCPF. All rights reserved.
           </p>

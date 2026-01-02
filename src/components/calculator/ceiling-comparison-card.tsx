@@ -2,8 +2,8 @@
 
 import { ArrowDown01Icon, ArrowUp01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { type Variants, motion } from "motion/react";
 import { useAtomValue } from "jotai";
+import { motion, type Variants } from "motion/react";
 import { latestIncomeCeilingDateAtom } from "@/atoms/income-ceiling-atom";
 import { ceilingComparisonAtom } from "@/atoms/result-atom";
 import {
@@ -97,10 +97,12 @@ const CeilingComparisonCard = () => {
       <CardHeader>
         <motion.div variants={itemVariants}>
           <CardTitle>Ceiling Comparison</CardTitle>
-          <CardDescription>Impact of income ceiling changes</CardDescription>
+          <CardDescription className="mb-4">
+            Impact of income ceiling changes
+          </CardDescription>
         </motion.div>
         {/* Timeline visual */}
-        <motion.div className="mt-4 flex items-center gap-3" variants={itemVariants}>
+        <motion.div className="flex items-center gap-3" variants={itemVariants}>
           <div className="flex flex-col items-center">
             <span className="font-mono font-semibold text-muted-foreground">
               {formatCurrency(CPF_INCOME_CEILING_BEFORE_SEPT_2023, 0)}
@@ -109,7 +111,7 @@ const CeilingComparisonCard = () => {
           </div>
           <div className="relative flex-1">
             <motion.div
-              className="border-muted-foreground/40 border-t-2 border-dashed origin-left"
+              className="origin-left border-muted-foreground/40 border-t-2 border-dashed"
               variants={timelineVariants}
             />
             <motion.div
@@ -136,10 +138,10 @@ const CeilingComparisonCard = () => {
             variants={itemVariants}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
           >
-            <p className="mb-2 text-muted-foreground text-sm">
+            <p className="mb-4 text-muted-foreground text-sm">
               Take-home pay impact
             </p>
-            <div className="flex items-center gap-2">
+            <div className="mb-2 flex items-center gap-2">
               <motion.div
                 initial={{ rotate: takeHomeImpact >= 0 ? -90 : 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
@@ -163,7 +165,7 @@ const CeilingComparisonCard = () => {
                 {formatDifference(animatedTakeHomeImpact)}
               </p>
             </div>
-            <p className="mt-2 text-muted-foreground text-xs">
+            <p className="text-muted-foreground text-xs">
               {takeHomeImpact < 0
                 ? "Less take-home under current ceiling"
                 : takeHomeImpact > 0
@@ -178,10 +180,10 @@ const CeilingComparisonCard = () => {
             variants={itemVariants}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
           >
-            <p className="mb-2 text-muted-foreground text-sm">
+            <p className="mb-4 text-muted-foreground text-sm">
               CPF contribution impact
             </p>
-            <div className="flex items-center gap-2">
+            <div className="mb-2 flex items-center gap-2">
               <motion.div
                 initial={{ rotate: cpfImpact >= 0 ? -90 : 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
@@ -205,7 +207,7 @@ const CeilingComparisonCard = () => {
                 {formatDifference(animatedCpfImpact)}
               </p>
             </div>
-            <p className="mt-2 text-muted-foreground text-xs">
+            <p className="text-muted-foreground text-xs">
               {cpfImpact > 0
                 ? "More CPF savings under current ceiling"
                 : cpfImpact < 0

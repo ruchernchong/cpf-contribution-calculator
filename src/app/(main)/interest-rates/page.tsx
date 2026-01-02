@@ -38,7 +38,7 @@ const InterestRatesPage = () => {
   return (
     <>
       <StructuredData data={schema} />
-      <div className="space-y-12">
+      <div className="flex flex-col gap-12">
         <div>
           <h2 className="mb-6 text-center font-semibold text-2xl">
             CPF Interest Rates

@@ -80,7 +80,7 @@ export const InterestRateTrendChart = () => {
           CPF Interest Rate Trends (12-Month View)
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col gap-6">
         <ResponsiveContainer width="100%" height={400}>
           <LineChart
             data={chartData}
@@ -146,7 +146,7 @@ export const InterestRateTrendChart = () => {
           </LineChart>
         </ResponsiveContainer>
 
-        <div className="mt-6 space-y-3">
+        <div className="flex flex-col gap-3">
           <div className="rounded-md bg-amber-50 p-4">
             <p className="text-amber-900 text-sm">
               <span className="font-semibold">How it works:</span> The SMRA

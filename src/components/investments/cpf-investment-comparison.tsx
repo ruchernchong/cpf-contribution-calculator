@@ -135,7 +135,7 @@ export function CPFInvestmentComparison() {
   }));
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       {/* Disclaimer Banner */}
       <Card className="border-amber-200 bg-amber-50">
         <CardContent>
@@ -154,10 +154,10 @@ export function CPFInvestmentComparison() {
         <CardHeader>
           <CardTitle>Investment Returns Calculator</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="flex flex-col gap-6">
           {/* Input Controls */}
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="principal">Initial Amount (S$)</Label>
               <Input
                 id="principal"
@@ -170,8 +170,10 @@ export function CPFInvestmentComparison() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="years">Investment Period: {years} years</Label>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="years" className="mb-2 block">
+                Investment Period: {years} years
+              </Label>
               <Slider
                 id="years"
                 min={1}
@@ -181,13 +183,12 @@ export function CPFInvestmentComparison() {
                 onValueChange={(value) =>
                   setYears(Array.isArray(value) ? value[0] : value)
                 }
-                className="mt-2"
               />
             </div>
           </div>
 
           {/* Scenario Selection */}
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3">
             <Label>Select Investment Scenarios (max 4 for chart):</Label>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {INVESTMENT_SCENARIOS.map((scenario) => (
@@ -203,8 +204,10 @@ export function CPFInvestmentComparison() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
-                      <p className="font-semibold text-sm">{scenario.name}</p>
-                      <p className="mt-1 text-xs text-zinc-600">
+                      <p className="mb-1 font-semibold text-sm">
+                        {scenario.name}
+                      </p>
+                      <p className="text-xs text-zinc-600">
                         {formatPercentage(scenario.rate / 100, {
                           decimalPlaces: 1,
                         })}{" "}
@@ -229,7 +232,7 @@ export function CPFInvestmentComparison() {
           </div>
 
           {/* Growth Chart */}
-          <div className="mt-6">
+          <div>
             <h3 className="mb-4 font-semibold text-lg">Growth Over Time</h3>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart data={chartData}>
@@ -346,13 +349,13 @@ export function CPFInvestmentComparison() {
         <CardHeader>
           <CardTitle>Key Considerations</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-3 text-sm">
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 text-sm">
             <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
               <h4 className="mb-2 font-semibold text-blue-900">
                 CPF Advantages
               </h4>
-              <ul className="space-y-1 text-blue-800">
+              <ul className="flex flex-col gap-1 text-blue-800">
                 <li>• Guaranteed returns by Singapore Government</li>
                 <li>• No market volatility risk</li>
                 <li>• Tax-free interest earnings</li>
@@ -364,7 +367,7 @@ export function CPFInvestmentComparison() {
               <h4 className="mb-2 font-semibold text-amber-900">
                 Investment Advantages
               </h4>
-              <ul className="space-y-1 text-amber-800">
+              <ul className="flex flex-col gap-1 text-amber-800">
                 <li>• Potential for higher returns (with higher risk)</li>
                 <li>• More liquidity and flexibility</li>
                 <li>• Diversification opportunities</li>
@@ -376,7 +379,7 @@ export function CPFInvestmentComparison() {
               <h4 className="mb-2 font-semibold text-red-900">
                 Investment Risks
               </h4>
-              <ul className="space-y-1 text-red-800">
+              <ul className="flex flex-col gap-1 text-red-800">
                 <li>• Market volatility can lead to losses</li>
                 <li>• No guaranteed returns</li>
                 <li>• Requires knowledge and active management</li>

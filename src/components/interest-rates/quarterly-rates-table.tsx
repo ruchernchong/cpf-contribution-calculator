@@ -38,7 +38,7 @@ const DesktopRow = ({ rate, isFloorApplied }: RateRowProps) => (
 const MobileRow = ({ rate, isFloorApplied }: RateRowProps) => (
   <div
     className={cn(
-      "-mx-4 space-y-2 border-b px-4 py-4 last:border-0",
+      "-mx-4 flex flex-col gap-2 border-b px-4 py-4 last:border-0",
       isFloorApplied && "bg-amber-50",
     )}
   >
@@ -77,7 +77,7 @@ export const QuarterlyRatesTable = () => {
           Quarterly CPF Interest Rates (2024-2025)
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col gap-6">
         {/* Desktop: Table-like grid */}
         <div className="hidden md:block">
           <div className="grid grid-cols-5 gap-4 border-b pb-4 font-semibold">
@@ -98,7 +98,7 @@ export const QuarterlyRatesTable = () => {
         </div>
 
         {/* Mobile: Stacked list */}
-        <div className="space-y-4 md:hidden">
+        <div className="flex flex-col gap-4 md:hidden">
           {QUARTERLY_CPF_RATES.map((rate) => (
             <MobileRow
               key={rate.quarter}
@@ -109,7 +109,7 @@ export const QuarterlyRatesTable = () => {
         </div>
 
         {/* Legend */}
-        <div className="mt-6 rounded-md bg-blue-50 p-3">
+        <div className="rounded-md bg-blue-50 p-3">
           <p className="text-blue-900 text-sm">
             <span className="font-semibold">Note:</span> Quarters highlighted in
             amber indicate when the 4% floor rate was applied because the pegged

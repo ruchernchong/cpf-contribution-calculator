@@ -38,7 +38,7 @@ const CPFYearSlider = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="space-y-6">
+        <div className="flex flex-col gap-6">
           <Slider
             value={[dateKeys.indexOf(sliderValue)]}
             onValueChange={handleValueChange}

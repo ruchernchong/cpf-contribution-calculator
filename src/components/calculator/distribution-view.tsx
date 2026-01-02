@@ -21,8 +21,8 @@ export const DistributionView = ({
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       <Card className="shadow-md">
-        <CardContent className="pt-6">
-          <div className="space-y-0">
+        <CardContent className="p-6">
+          <div>
             <div className="flex items-center justify-between border-b py-4 font-semibold text-xl last:border-0">
               <p>Total Contribution</p>
               <p>{formatCurrency(totalCpfContribution)}</p>
@@ -42,7 +42,7 @@ export const DistributionView = ({
         </CardContent>
       </Card>
       <Card className="shadow-md">
-        <CardContent className="flex h-[300px] items-center justify-center pt-6">
+        <CardContent className="flex h-[300px] items-center justify-center p-6">
           <DistributionPieChart
             data={distributionResults}
             className="block h-full w-full"

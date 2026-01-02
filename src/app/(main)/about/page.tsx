@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { AboutPage, WithContext } from "schema-dts";
 import { StructuredData } from "@/components/seo/structured-data";
-import { BASE_URL } from "@/config";
 import {
   Accordion,
   AccordionContent,
@@ -15,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BASE_URL } from "@/config";
 import faqData from "@/data/faq.json";
 
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ const About = () => {
   return (
     <>
       <StructuredData data={schema} />
-      <div className="space-y-8 p-6">
+      <div className="flex flex-col gap-8 p-6">
         <Card>
           <CardHeader>
             <CardTitle>About SimplyCPF</CardTitle>
@@ -56,11 +56,11 @@ const About = () => {
               Understanding your CPF contributions made simple
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="flex flex-col gap-4">
             <p>
-              SimplyCPF is a user-friendly tool designed to
-              help Singapore Citizens and Permanent Residents estimate their CPF
-              contributions based on their income and age group.
+              SimplyCPF is a user-friendly tool designed to help Singapore
+              Citizens and Permanent Residents estimate their CPF contributions
+              based on their income and age group.
             </p>
             <p>
               We keep our calculator updated with the latest CPF policies and
@@ -80,14 +80,14 @@ const About = () => {
             <CardTitle>Important Disclaimer</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>
+            <p className="mb-4">
               This calculator is an independent tool created to assist with CPF
               contribution calculations. It is not affiliated with, endorsed by,
               or officially connected to the Central Provident Fund Board (CPF
               Board), Ministry of Manpower (MOM), or any other government
               agency.
             </p>
-            <p className="mt-4">
+            <p>
               While we strive to maintain accuracy, for official information and
               verification of CPF matters, please refer to the official CPF
               Board website or contact CPF Board directly.
@@ -98,9 +98,7 @@ const About = () => {
         <Card>
           <CardHeader>
             <CardTitle>Frequently Asked Questions</CardTitle>
-            <CardDescription>
-              Common questions about SimplyCPF
-            </CardDescription>
+            <CardDescription>Common questions about SimplyCPF</CardDescription>
           </CardHeader>
           <CardContent>
             <Accordion className="w-full">
